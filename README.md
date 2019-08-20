@@ -55,7 +55,8 @@ If you want to use UiBooster than add the following to you pom.xml.
     <id>jitpack.io</id>
     <url>https://jitpack.io</url>
 </repository>
-...
+```
+```
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
