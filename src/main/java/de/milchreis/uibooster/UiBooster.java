@@ -2,6 +2,8 @@ package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.components.ColorPickerDialog;
 import de.milchreis.uibooster.components.FilesystemDialog;
+import de.milchreis.uibooster.components.LoginDialog;
+import de.milchreis.uibooster.model.LoginCredentials;
 
 import javax.swing.*;
 
@@ -111,5 +113,19 @@ public class UiBooster {
      */
     public File showFileOrDirectorySelection() {
         return FilesystemDialog.showFileOrDirectorySelectionDialog();
+    }
+
+    /**
+     * Shows a login dialog with username and password.
+     * @return returns the login data or null on cancel.
+     */
+    public LoginCredentials showLogin(String title, String message, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
+        return new LoginDialog(
+                title,
+                message,
+                usernameLabel,
+                passwordLabel,
+                loginButtonLabel,
+                cancelButtonLabel).showDialog();
     }
 }

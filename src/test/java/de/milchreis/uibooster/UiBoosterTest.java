@@ -65,13 +65,13 @@ class UiBoosterTest {
     @Test
     public void test_login_dialog() {
         UiBooster booster = new UiBooster();
-        LoginCredentials credentials = new LoginDialog(
+        LoginCredentials credentials = booster.showLogin(
                 "Login",
                 "Internal area",
                 "Username",
                 "Password",
                 "Go",
-                "Cancel").showDialog();
+                "Cancel");
 
         System.out.println(credentials);
     }
