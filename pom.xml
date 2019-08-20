@@ -7,6 +7,7 @@
     <groupId>de.milchreis</groupId>
     <artifactId>UiBooster</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <dependencies>
 
@@ -27,6 +28,7 @@
 
 
     <build>
+        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
