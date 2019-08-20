@@ -47,3 +47,18 @@ LoginCredentials credentials = new UiBooster().showLogin(
         "Go",
         "Cancel");
 ```
+
+## Maven
+If you want to use UiBooster than add the following to you pom.xml.
+```
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+...
+<dependency>
+    <groupId>com.github.Milchreis</groupId>
+    <artifactId>UiBooster</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
