@@ -7,7 +7,7 @@ UiBooster is a lean library to create fast and easy dialogs for utility tools.
 new UiBooster().showInfoDialog("Info message");
 ```
 
-### Ask the user for conformation
+### Ask the user for confirmation
 ```java
 new UiBooster().showConfirmDialog(
                 "Do you really want this action?",
@@ -16,7 +16,7 @@ new UiBooster().showConfirmDialog(
                 () -> System.out.println("Action declined"));
 ```
 
-### The user can selection from a string list
+### The user can select from a string list
 ```java
 String selection = new UiBooster().showSelectionDialog(
         "What's your favorite movie?",
@@ -29,7 +29,7 @@ String selection = new UiBooster().showSelectionDialog(
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
 
-### Select a file or directory of both
+### Select a file or directory or both
 ```java
 UiBooster booster = new UiBooster();
 File file = booster.showFileSelection();
