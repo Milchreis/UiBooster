@@ -33,6 +33,43 @@ public class UiBooster {
     }
 
     /**
+     * Shows a warning dialog and blocks until the ok button was clicked.
+     * '\n' is allowed as newline character for the warn message.
+     *
+     * @param warningMessage  expects the warn message
+     * @param title           expects the title for the window
+     */
+    public void showWarningDialog(String warningMessage, String title) {
+        nonNull(warningMessage);
+        nonNull(title);
+        JOptionPane.showMessageDialog(mainWindow, warningMessage, title, JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * Shows an error dialog and blocks until the ok button was clicked.
+     * '\n' is allowed as newline character for the error message.
+     *
+     * @param errorMessage    expects the error message
+     * @param title           expects the title for the window
+     */
+    public void showErrorDialog(String errorMessage, String title) {
+        nonNull(errorMessage);
+        nonNull(title);
+        JOptionPane.showMessageDialog(mainWindow, errorMessage, title, JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
+     * Shows a dialog with text input field.
+     *
+     * @param message      expects a message or question for the user.
+     * @return             the user input or null on cancel
+     */
+    public String showTextInputDialog(String message) {
+        nonNull(message);
+        return JOptionPane.showInputDialog(mainWindow, message);
+    }
+
+    /**
      * Shows a confirm dialog and blocks until a decision is selected.
      * '\n' is allowed as newline character for the message.
      *

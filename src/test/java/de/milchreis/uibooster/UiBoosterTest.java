@@ -1,14 +1,11 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.LoginDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UiBoosterTest {
 
@@ -17,6 +14,25 @@ class UiBoosterTest {
     public void test_info_dialog() {
         UiBooster booster = new UiBooster();
         booster.showInfoDialog("Info message");
+    }
+
+    @Test
+    public void test_warn_dialog() {
+        UiBooster booster = new UiBooster();
+        booster.showWarningDialog("Warning message", "WARN");
+    }
+
+    @Test
+    public void test_error_dialog() {
+        UiBooster booster = new UiBooster();
+        booster.showErrorDialog("Error message", "ERROR");
+    }
+
+    @Test
+    public void test_textinput_dialog() {
+        UiBooster booster = new UiBooster();
+        String opinion = booster.showTextInputDialog("What do you think?");
+        System.out.println(opinion);
     }
 
     @Test
@@ -73,6 +89,9 @@ class UiBoosterTest {
                 "Go",
                 "Cancel");
 
-        System.out.println(credentials);
+        if(credentials != null)
+            System.out.println(credentials.getUsername() + " - " + credentials.getPassword());
+        else
+            System.out.println("No credentials");
     }
 }

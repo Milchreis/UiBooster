@@ -2,12 +2,25 @@
 UiBooster is a lean library to create fast and easy dialogs for utility tools.
 
 ## Usage
-### Show an information to the user
+### Information dialogs
 ```java
 new UiBooster().showInfoDialog("Info message");
 ```
 
-### Ask the user for confirmation
+```java
+new UiBooster().showWarningDialog("Warning message", "WARN");
+```
+
+```java
+new UiBooster().showErrorDialog("Error message", "ERROR");
+```
+
+### Text input dialog
+```java
+String opinion = new UiBooster().showTextInputDialog("What do you think?");
+```
+
+### Confirmation dialog
 ```java
 new UiBooster().showConfirmDialog(
                 "Do you really want this action?",
@@ -16,7 +29,7 @@ new UiBooster().showConfirmDialog(
                 () -> System.out.println("Action declined"));
 ```
 
-### The user can select from a string list
+### Selection dialog
 ```java
 String selection = new UiBooster().showSelectionDialog(
         "What's your favorite movie?",
@@ -24,12 +37,12 @@ String selection = new UiBooster().showSelectionDialog(
         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"));
 ```
 
-### The user can pick a color
+### Colorpicker
 ```java
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
 
-### Select a file or directory or both
+### File and directory selection dialogs
 ```java
 UiBooster booster = new UiBooster();
 File file = booster.showFileSelection();
@@ -37,7 +50,7 @@ File directory = booster.showDirectorySelection();
 File fileOrDirectory = booster.showFileOrDirectorySelection();
 ```
 
-### Ask the user for login credentials
+### Login dialog
 ```java
 LoginCredentials credentials = new UiBooster().showLogin(
         "Login",
@@ -60,6 +73,6 @@ If you want to use UiBooster than add the following to you pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
