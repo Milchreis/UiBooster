@@ -1,4 +1,6 @@
 # UiBooster
+[![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
+
 UiBooster is a lean library to create fast and easy dialogs for utility tools. It's based on basic
 Java Swing components to run on current JREs and inspired by [ZENITY](https://de.wikipedia.org/wiki/Zenity).
 
@@ -95,7 +97,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 
 ### Gradle
 Add the repo and the dependency to your root build.gradle, if you want to use it.
-```
+```gradle
 allprojects {
     repositories {
         ...
@@ -103,7 +105,7 @@ allprojects {
     }
 }
 ```
-```
+```gradle
 dependencies {
         implementation 'com.github.Milchreis:UiBooster:1.2.0'
 }
