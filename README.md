@@ -1,8 +1,7 @@
 # UiBooster
 [![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
 
-UiBooster is a lean library to create fast and easy dialogs for utility tools. It's based on basic
-Java Swing components to run on current JREs and inspired by [ZENITY](https://de.wikipedia.org/wiki/Zenity).
+UiBooster is a lean library to create fast and easy dialogs for utility tools. It's based on Java swing components to run on current JREs without struggle. I decided to create this project, because I missed somthing like [zenity](https://de.wikipedia.org/wiki/Zenity) for my Java applications.
 
 ## Components
 ### Information dialogs
