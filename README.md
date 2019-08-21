@@ -89,7 +89,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -105,6 +105,6 @@ allprojects {
 ```
 ```
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.1.0'
+        implementation 'com.github.Milchreis:UiBooster:1.2.0'
 }
 ```
