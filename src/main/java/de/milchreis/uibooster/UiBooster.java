@@ -1,9 +1,6 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.ColorPickerDialog;
-import de.milchreis.uibooster.components.FilesystemDialog;
-import de.milchreis.uibooster.components.LoginDialog;
-import de.milchreis.uibooster.components.WaitingDialog;
+import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
@@ -11,10 +8,15 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 
+/**
+ * The UiBooster class it the main entry point to create a new dialog.
+ * It provides all implemented dialogs.
+ */
 public class UiBooster {
 
     public UiBooster() {
@@ -30,7 +32,6 @@ public class UiBooster {
             } catch (Exception e) {
             }
         }
-
     }
 
     /**
@@ -168,7 +169,8 @@ public class UiBooster {
      * Shows a login dialog with username and password.
      * @return returns the login data or null on cancel.
      */
-    public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
+    public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel,
+                                      String loginButtonLabel, String cancelButtonLabel) {
         return new LoginDialog(
                 title,
                 message,
@@ -185,5 +187,15 @@ public class UiBooster {
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
         return WaitingDialog.showWaitingDialog(message, title);
+    }
+
+    /**
+     * Shows a date picker dialog to choose a specific date.
+     * @param message   expects a message
+     * @param title     expects a title for the window
+     * @return          the selected date or null on cancel
+     */
+    public Date showDatePicker(String message, String title) {
+        return DatePickerDialog.showDatePicker(message, title);
     }
 }

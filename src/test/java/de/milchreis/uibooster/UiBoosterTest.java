@@ -1,5 +1,6 @@
 package de.milchreis.uibooster;
 
+import de.milchreis.uibooster.components.DatePickerDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Date;
 
 class UiBoosterTest {
 
@@ -108,5 +110,12 @@ class UiBoosterTest {
         dialog.setMessage("Ready");
         Thread.sleep(500);
         dialog.close();
+    }
+
+    @Test
+    public void test_datepicker_dialog() {
+        UiBooster booster = new UiBooster();
+        Date birthday = booster.showDatePicker("What's your birthday?", "Birthday");
+        System.out.println(birthday);
     }
 }
