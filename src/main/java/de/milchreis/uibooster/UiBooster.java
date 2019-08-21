@@ -15,12 +15,6 @@ import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 
 public class UiBooster {
 
-    private JFrame mainWindow;
-
-    public UiBooster() {
-        mainWindow = new JFrame();
-    }
-
     /**
      * Shows an info dialog and blocks until the ok button was clicked.
      * '\n' is allowed as newline character for the info message.
@@ -29,7 +23,7 @@ public class UiBooster {
      */
     public void showInfoDialog(String infoMessage) {
         nonNull(infoMessage);
-        JOptionPane.showMessageDialog(mainWindow, infoMessage);
+        JOptionPane.showMessageDialog(null, infoMessage);
     }
 
     /**
@@ -42,7 +36,7 @@ public class UiBooster {
     public void showWarningDialog(String warningMessage, String title) {
         nonNull(warningMessage);
         nonNull(title);
-        JOptionPane.showMessageDialog(mainWindow, warningMessage, title, JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, warningMessage, title, JOptionPane.WARNING_MESSAGE);
     }
 
     /**
@@ -55,7 +49,7 @@ public class UiBooster {
     public void showErrorDialog(String errorMessage, String title) {
         nonNull(errorMessage);
         nonNull(title);
-        JOptionPane.showMessageDialog(mainWindow, errorMessage, title, JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, errorMessage, title, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -66,7 +60,7 @@ public class UiBooster {
      */
     public String showTextInputDialog(String message) {
         nonNull(message);
-        return JOptionPane.showInputDialog(mainWindow, message);
+        return JOptionPane.showInputDialog(null, message);
     }
 
     /**
@@ -81,7 +75,7 @@ public class UiBooster {
     public void showConfirmDialog(String message, String title, Runnable onConfirm, Runnable onDecline) {
         nonNull(message);
         nonNull(title);
-        int n = JOptionPane.showConfirmDialog(mainWindow,
+        int n = JOptionPane.showConfirmDialog(null,
                 message,
                 title,
                 JOptionPane.YES_NO_OPTION);
@@ -107,7 +101,7 @@ public class UiBooster {
         nonNull(title);
 
         String selection = (String) JOptionPane.showInputDialog(
-                mainWindow,
+                null,
                 message,
                 title,
                 JOptionPane.PLAIN_MESSAGE,

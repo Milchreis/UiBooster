@@ -1,5 +1,6 @@
 package de.milchreis.uibooster;
 
+import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
 import org.junit.jupiter.api.Test;
 
@@ -93,5 +94,13 @@ class UiBoosterTest {
             System.out.println(credentials.getUsername() + " - " + credentials.getPassword());
         else
             System.out.println("No credentials");
+    }
+
+    @Test
+    public void test_waiting_dialog() throws InterruptedException {
+        WaitingDialog dialog = WaitingDialog.showWaitingDialog("message", "title");
+        System.out.println("ende");
+        Thread.sleep(3000);
+        dialog.close();
     }
 }
