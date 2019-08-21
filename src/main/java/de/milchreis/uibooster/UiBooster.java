@@ -3,7 +3,9 @@ package de.milchreis.uibooster;
 import de.milchreis.uibooster.components.ColorPickerDialog;
 import de.milchreis.uibooster.components.FilesystemDialog;
 import de.milchreis.uibooster.components.LoginDialog;
+import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
+import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
 
@@ -14,6 +16,22 @@ import java.util.List;
 import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 
 public class UiBooster {
+
+    public UiBooster() {
+    }
+
+    public UiBooster(UiBoosterOptions options) {
+        if(options == null)
+            return;
+
+        if(options.isUseNativeLookAndFeel()) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e) {
+            }
+        }
+
+    }
 
     /**
      * Shows an info dialog and blocks until the ok button was clicked.
@@ -150,7 +168,7 @@ public class UiBooster {
      * Shows a login dialog with username and password.
      * @return returns the login data or null on cancel.
      */
-    public LoginCredentials showLogin(String title, String message, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
+    public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
         return new LoginDialog(
                 title,
                 message,
@@ -158,5 +176,14 @@ public class UiBooster {
                 passwordLabel,
                 loginButtonLabel,
                 cancelButtonLabel).showDialog();
+    }
+
+    /**
+     * Shows a waiting dialog with a changeable message.
+     * This dialog does not wait for any user input. Its decoupled from the rest of the application.
+     * @return returns the dialog object to change the message and hide the dialog if needed.
+     */
+    public WaitingDialog showWaitingDialog(String message, String title) {
+        return WaitingDialog.showWaitingDialog(message, title);
     }
 }

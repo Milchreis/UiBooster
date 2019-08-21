@@ -2,6 +2,7 @@ package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
+import de.milchreis.uibooster.model.UiBoosterOptions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -31,7 +32,7 @@ class UiBoosterTest {
 
     @Test
     public void test_textinput_dialog() {
-        UiBooster booster = new UiBooster();
+        UiBooster booster = new UiBooster(new UiBoosterOptions(true));
         String opinion = booster.showTextInputDialog("What do you think?");
         System.out.println(opinion);
     }
@@ -98,9 +99,14 @@ class UiBoosterTest {
 
     @Test
     public void test_waiting_dialog() throws InterruptedException {
-        WaitingDialog dialog = WaitingDialog.showWaitingDialog("message", "title");
-        System.out.println("ende");
-        Thread.sleep(3000);
+        UiBooster booster = new UiBooster();
+        WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait");
+
+        Thread.sleep(1000);
+        dialog.setMessage("Initializing");
+        Thread.sleep(2000);
+        dialog.setMessage("Ready");
+        Thread.sleep(500);
         dialog.close();
     }
 }

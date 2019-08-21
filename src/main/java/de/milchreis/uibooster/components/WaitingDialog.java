@@ -7,9 +7,15 @@ import java.awt.*;
 public class WaitingDialog {
 
     private JFrame dialog;
+    private JLabel messageLabel;
 
-    public WaitingDialog(JFrame dialog) {
+    public WaitingDialog(JFrame dialog, JLabel messageLabel) {
         this.dialog = dialog;
+        this.messageLabel = messageLabel;
+    }
+
+    public void setMessage(String message) {
+        SwingUtilities.invokeLater(() -> messageLabel.setText(message));
     }
 
     public void close() {
@@ -36,7 +42,7 @@ public class WaitingDialog {
 
         window.add(panel);
 
-        WaitingDialog waitingDialog = new WaitingDialog(window);
+        WaitingDialog waitingDialog = new WaitingDialog(window, messageLabel);
         window.setVisible(true);
         return waitingDialog;
     }

@@ -1,7 +1,8 @@
 # UiBooster
-UiBooster is a lean library to create fast and easy dialogs for utility tools.
+UiBooster is a lean library to create fast and easy dialogs for utility tools. It's based on basic
+Java Swing components to run on current JREs and inspired by [ZENITY](https://de.wikipedia.org/wiki/Zenity).
 
-## Usage
+## Components
 ### Information dialogs
 ```java
 new UiBooster().showInfoDialog("Info message");
@@ -61,18 +62,49 @@ LoginCredentials credentials = new UiBooster().showLogin(
         "Cancel");
 ```
 
-## Maven
-If you want to use UiBooster than add the following to you pom.xml.
+### Waiting dialog
+```java
+WaitingDialog dialog = new UiBooster().showWaitingDialog("Starting", "Please wait");
+dialog.setMessage("Ready");
+dialog.close();
 ```
+
+## Options
+```java
+boolean useNativeLookAndFeel = true;
+UiBooster booster = new UiBooster(new UiBoosterOptions(useNativeLookAndFeel));
+```
+
+
+## Include to project
+### Maven
+If you want to use UiBooster than add the following to you pom.xml.
+```xml
 <repository>
     <id>jitpack.io</id>
     <url>https://jitpack.io</url>
 </repository>
 ```
-```
+```xml
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
     <version>1.1.0</version>
 </dependency>
+```
+
+### Gradle
+Add the repo and the dependency to your root build.gradle, if you want to use it.
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+```
+dependencies {
+        implementation 'com.github.Milchreis:UiBooster:1.1.0'
+}
 ```
