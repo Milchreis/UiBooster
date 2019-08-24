@@ -70,6 +70,18 @@ dialog.setMessage("Ready");
 dialog.close();
 ```
 
+### table dialog
+```java
+String[][] modifiedData = new UiBooster().showTable(    // showTableImmutable for immutable tables
+        new String[][]{
+                {"Jimmy Johnson", "35", "Zombieland"},
+                {"Danny Durango", "23", "Hangover"},
+                {"Larry Berry", "54", ""}
+        },
+        Arrays.asList("Name", "Age", "Favorite movie"),
+        "Favorite movies");
+```
+
 ## Options
 ```java
 boolean useNativeLookAndFeel = true;

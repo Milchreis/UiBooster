@@ -1,6 +1,5 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.DatePickerDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
@@ -93,7 +92,7 @@ class UiBoosterTest {
                 "Go",
                 "Cancel");
 
-        if(credentials != null)
+        if (credentials != null)
             System.out.println(credentials.getUsername() + " - " + credentials.getPassword());
         else
             System.out.println("No credentials");
@@ -118,4 +117,22 @@ class UiBoosterTest {
         Date birthday = booster.showDatePicker("What's your birthday?", "Birthday");
         System.out.println(birthday);
     }
+
+    @Test
+    public void test_table_dialog() {
+
+        UiBooster booster = new UiBooster();
+        String[][] modifiedData = booster.showTable(
+                new String[][]{
+                        {"Jimmy Johnson", "35", "Zombieland"},
+                        {"Danny Durango", "23", "Hangover"},
+                        {"Larry Berry", "54", ""}
+                },
+                Arrays.asList("Name", "Age", "Favorite movie"),
+                "Favorite movies");
+
+        System.out.println(modifiedData);
+
+    }
+
 }

@@ -198,4 +198,30 @@ public class UiBooster {
     public Date showDatePicker(String message, String title) {
         return DatePickerDialog.showDatePicker(message, title);
     }
+
+    /**
+     * Shows a dialog with a table view. It allows to change cell values, add rows and remove rows.
+     * The dialogs wait for user input.
+     *
+     * @param data      expects the values in rows of columns -> [row_n][column_n]
+     * @param header    expects the labels for the columns
+     * @param title     expects a title for the window
+     * @return          the accepted or changed data or null on cancel.
+     */
+    public String[][] showTable(String[][] data, List<String> header, String title) {
+        return TableDialog.showTable(data, header, title, true);
+    }
+
+    /**
+     * Shows a dialog with a table view. The table values are not changeable.
+     * The dialogs wait for user input.
+     *
+     * @param data      expects the values in rows of columns -> [row_n][column_n]
+     * @param header    expects the labels for the columns
+     * @param title     expects a title for the window
+     * @return          the accepted or changed data or null on cancel.
+     */
+    public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
+        return TableDialog.showTable(data, header, title, false);
+    }
 }
