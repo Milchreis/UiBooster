@@ -74,6 +74,16 @@ dialog.setMessage("Ready");
 dialog.close();
 ```
 
+### Progress dialog
+```java
+ProgressDialog dialog = new UiBooster().showProgressDialog("Please wait", "Waiting", 0, 120);
+dialog.setProgress(10);
+// ...
+dialog.setProgress(120);
+dialog.setMessage("Ready");
+dialog.close();
+```
+
 ### Table dialog
 ```java
 String[][] modifiedData = new UiBooster().showTable(    // showTableImmutable for immutable tables

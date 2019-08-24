@@ -183,10 +183,27 @@ public class UiBooster {
     /**
      * Shows a waiting dialog with a changeable message.
      * This dialog does not wait for any user input. Its decoupled from the rest of the application.
-     * @return returns the dialog object to change the message and hide the dialog if needed.
+     *
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
-        return WaitingDialog.showWaitingDialog(message, title);
+        return WaitingDialog.showDialog(message, title);
+    }
+
+    /**
+     *  Shows dialog with progressbar and changeable message.
+     *  The dialog does not wait for any user input. Its decoupled form the rest of the application.
+     *
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @param min       expects the minimal value for the progress
+     * @param max       expects the maximal value for the progress
+     * @return          returns the dialog object to change the message and the progress and hide the dialog as needed.
+     */
+    public ProgressDialog showProgressDialog(String message, String title, int min, int max) {
+        return ProgressDialog.showDialog(message, title, min, max);
     }
 
     /**

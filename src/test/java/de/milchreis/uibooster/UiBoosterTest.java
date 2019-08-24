@@ -1,5 +1,6 @@
 package de.milchreis.uibooster;
 
+import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
@@ -106,6 +107,22 @@ class UiBoosterTest {
         Thread.sleep(1000);
         dialog.setMessage("Initializing");
         Thread.sleep(2000);
+        dialog.setMessage("Ready");
+        Thread.sleep(500);
+        dialog.close();
+    }
+
+    @Test
+    public void test_progress_dialog() throws InterruptedException {
+
+        UiBooster booster = new UiBooster();
+        ProgressDialog dialog = booster.showProgressDialog("Please wait", "Waiting", 0, 120);
+
+        for(int i=0; i< 11; i++) {
+            dialog.setProgress(i * 12);
+            Thread.sleep(100);
+        }
+
         dialog.setMessage("Ready");
         Thread.sleep(500);
         dialog.close();
