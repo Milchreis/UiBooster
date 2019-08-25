@@ -9,24 +9,27 @@ because I missed something like [zenity](https://de.wikipedia.org/wiki/Zenity) f
 
 ## Components
 ### Information dialogs
+![screenshot info dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/info.jpg?raw=true)
+![screenshot warn dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/warn.jpg?raw=true)
+![screenshot error dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/error.jpg?raw=true)
 ```java
-new UiBooster().showInfoDialog("Info message");
+new UiBooster().showInfoDialog("UiBooster is a lean library to ....");
 ```
-
 ```java
-new UiBooster().showWarningDialog("Warning message", "WARN");
+new UiBooster().showWarningDialog("Your computer has a low battery ....", "WARN");
 ```
-
 ```java
-new UiBooster().showErrorDialog("Error message", "ERROR");
+new UiBooster().showErrorDialog("The connection to SQL database is failed.", "ERROR");
 ```
 
 ### Text input dialog
+![screenshot input dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/input.jpg?raw=true)
 ```java
 String opinion = new UiBooster().showTextInputDialog("What do you think?");
 ```
 
 ### Confirmation dialog
+![screenshot confirm dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/confirm.jpg?raw=true)
 ```java
 new UiBooster().showConfirmDialog(
                 "Do you really want this action?",
@@ -36,6 +39,7 @@ new UiBooster().showConfirmDialog(
 ```
 
 ### Selection dialog
+![screenshot selection dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/selection.jpg?raw=true)
 ```java
 String selection = new UiBooster().showSelectionDialog(
         "What's your favorite movie?",
@@ -44,11 +48,13 @@ String selection = new UiBooster().showSelectionDialog(
 ```
 
 ### Colorpicker
+![screenshot color dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/color.jpg?raw=true)
 ```java
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
 
 ### File and directory selection dialogs
+![screenshot file dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/fileselection.jpg?raw=true)
 ```java
 UiBooster booster = new UiBooster();
 File file = booster.showFileSelection();
@@ -57,6 +63,7 @@ File fileOrDirectory = booster.showFileOrDirectorySelection();
 ```
 
 ### Login dialog
+![screenshot login dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/login.jpg?raw=true)
 ```java
 LoginCredentials credentials = new UiBooster().showLogin(
         "Login",
@@ -68,6 +75,7 @@ LoginCredentials credentials = new UiBooster().showLogin(
 ```
 
 ### Waiting dialog
+![screenshot waiting dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/waiting.jpg?raw=true)
 ```java
 WaitingDialog dialog = new UiBooster().showWaitingDialog("Starting", "Please wait");
 dialog.setMessage("Ready");
@@ -75,6 +83,7 @@ dialog.close();
 ```
 
 ### Progress dialog
+![screenshot progress dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/progress.jpg?raw=true)
 ```java
 ProgressDialog dialog = new UiBooster().showProgressDialog("Please wait", "Waiting", 0, 120);
 dialog.setProgress(10);
@@ -85,6 +94,7 @@ dialog.close();
 ```
 
 ### Table dialog
+![screenshot table dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/table.jpg?raw=true)
 ```java
 String[][] modifiedData = new UiBooster().showTable(    // showTableImmutable for immutable tables
         new String[][]{
@@ -101,7 +111,6 @@ String[][] modifiedData = new UiBooster().showTable(    // showTableImmutable fo
 boolean useNativeLookAndFeel = true;
 UiBooster booster = new UiBooster(new UiBoosterOptions(useNativeLookAndFeel));
 ```
-
 
 ## Include to project
 ### Maven
