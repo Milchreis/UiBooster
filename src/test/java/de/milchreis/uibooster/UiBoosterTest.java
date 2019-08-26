@@ -104,11 +104,12 @@ class UiBoosterTest {
     public void test_waiting_dialog() throws InterruptedException {
         UiBooster booster = new UiBooster();
         WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait");
-
         Thread.sleep(1000);
         dialog.setMessage("Initializing");
+        dialog.setLargeMessage("Some more informations...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
         Thread.sleep(2000);
         dialog.setMessage("Ready");
+        dialog.addToLargeMessage("Ready!!!");
         Thread.sleep(500);
         dialog.close();
     }
@@ -152,7 +153,6 @@ class UiBoosterTest {
         System.out.println(modifiedData);
 
     }
-
 
     @Test
     public void test_form_dialog() {

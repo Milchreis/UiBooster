@@ -192,6 +192,10 @@ public class UiBooster {
         return WaitingDialog.showDialog(message, title);
     }
 
+    public WaitingDialog showWaitingDialog(String message, String title, String largeText) {
+        return WaitingDialog.showDialog(message, title, largeText);
+    }
+
     /**
      *  Shows dialog with progressbar and changeable message.
      *  The dialog does not wait for any user input. Its decoupled form the rest of the application.
