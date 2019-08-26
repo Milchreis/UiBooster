@@ -1,9 +1,6 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.ColorPickerDialog;
-import de.milchreis.uibooster.components.FilesystemDialog;
-import de.milchreis.uibooster.components.LoginDialog;
-import de.milchreis.uibooster.components.WaitingDialog;
+import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
@@ -185,5 +182,9 @@ public class UiBooster {
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
         return WaitingDialog.showWaitingDialog(message, title);
+    }
+
+    public Form createForm(String title) {
+        return new Form(title);
     }
 }

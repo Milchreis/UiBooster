@@ -1,6 +1,7 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.components.WaitingDialog;
+import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 import org.junit.jupiter.api.Test;
@@ -108,5 +109,19 @@ class UiBoosterTest {
         dialog.setMessage("Ready");
         Thread.sleep(500);
         dialog.close();
+    }
+
+    @Test
+    public void test_form_dialog() {
+        UiBooster booster = new UiBooster();
+        FilledForm form = booster
+                .createForm("Personal informations")
+                .addText("Whats your first name?")
+                .addTextArea("Tell me something about you")
+                .addSelection(
+                        "Whats your favorite movie?",
+                        Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
+                .show();
+
     }
 }
