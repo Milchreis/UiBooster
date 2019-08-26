@@ -106,7 +106,7 @@ class UiBoosterTest {
         WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait");
         Thread.sleep(1000);
         dialog.setMessage("Initializing");
-        dialog.setLargeMessage("Some more informations...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
+        dialog.setLargeMessage("Some more information...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
         Thread.sleep(2000);
         dialog.setMessage("Ready");
         dialog.addToLargeMessage("Ready!!!");
