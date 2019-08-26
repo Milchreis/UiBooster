@@ -192,6 +192,15 @@ public class UiBooster {
         return WaitingDialog.showDialog(message, title);
     }
 
+    /**
+     * Shows a waiting dialog with a changeable message and a large (scrollable) message area.
+     * This dialog does not wait for any user input. Its decoupled from the rest of the application.
+     *
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @param largeText optional large message
+     * @return returns the dialog object to change the message and hide the dialog as needed.
+     */
     public WaitingDialog showWaitingDialog(String message, String title, String largeText) {
         return WaitingDialog.showDialog(message, title, largeText);
     }
