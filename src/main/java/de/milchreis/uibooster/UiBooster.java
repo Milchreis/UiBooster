@@ -8,10 +8,15 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 
+/**
+ * The UiBooster class it the main entry point to create a new dialog.
+ * It provides all implemented dialogs.
+ */
 public class UiBooster {
 
     public UiBooster() {
@@ -27,7 +32,6 @@ public class UiBooster {
             } catch (Exception e) {
             }
         }
-
     }
 
     /**
@@ -165,7 +169,8 @@ public class UiBooster {
      * Shows a login dialog with username and password.
      * @return returns the login data or null on cancel.
      */
-    public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
+    public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel,
+                                      String loginButtonLabel, String cancelButtonLabel) {
         return new LoginDialog(
                 title,
                 message,
@@ -178,10 +183,63 @@ public class UiBooster {
     /**
      * Shows a waiting dialog with a changeable message.
      * This dialog does not wait for any user input. Its decoupled from the rest of the application.
-     * @return returns the dialog object to change the message and hide the dialog if needed.
+     *
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
-        return WaitingDialog.showWaitingDialog(message, title);
+        return WaitingDialog.showDialog(message, title);
+    }
+
+    /**
+     *  Shows dialog with progressbar and changeable message.
+     *  The dialog does not wait for any user input. Its decoupled form the rest of the application.
+     *
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @param min       expects the minimal value for the progress
+     * @param max       expects the maximal value for the progress
+     * @return          returns the dialog object to change the message and the progress and hide the dialog as needed.
+     */
+    public ProgressDialog showProgressDialog(String message, String title, int min, int max) {
+        return ProgressDialog.showDialog(message, title, min, max);
+    }
+
+    /**
+     * Shows a date picker dialog to choose a specific date.
+     * @param message   expects a message
+     * @param title     expects a title for the window
+     * @return          the selected date or null on cancel
+     */
+    public Date showDatePicker(String message, String title) {
+        return DatePickerDialog.showDatePicker(message, title);
+    }
+
+    /**
+     * Shows a dialog with a table view. It allows to change cell values, add rows and remove rows.
+     * The dialogs wait for user input.
+     *
+     * @param data      expects the values in rows of columns -> [row_n][column_n]
+     * @param header    expects the labels for the columns
+     * @param title     expects a title for the window
+     * @return          the accepted or changed data or null on cancel.
+     */
+    public String[][] showTable(String[][] data, List<String> header, String title) {
+        return TableDialog.showTable(data, header, title, true);
+    }
+
+    /**
+     * Shows a dialog with a table view. The table values are not changeable.
+     * The dialogs wait for user input.
+     *
+     * @param data      expects the values in rows of columns -> [row_n][column_n]
+     * @param header    expects the labels for the columns
+     * @param title     expects a title for the window
+     * @return          the accepted or changed data or null on cancel.
+     */
+    public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
+        return TableDialog.showTable(data, header, title, false);
     }
 
     public Form createForm(String title) {

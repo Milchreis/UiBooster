@@ -1,5 +1,6 @@
 package de.milchreis.uibooster;
 
+import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.LoginCredentials;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Date;
 
 class UiBoosterTest {
 
@@ -110,6 +112,47 @@ class UiBoosterTest {
         Thread.sleep(500);
         dialog.close();
     }
+
+    @Test
+    public void test_progress_dialog() throws InterruptedException {
+
+        UiBooster booster = new UiBooster();
+        ProgressDialog dialog = booster.showProgressDialog("Please wait", "Waiting", 0, 120);
+
+        for(int i=0; i< 11; i++) {
+            dialog.setProgress(i * 12);
+            Thread.sleep(100);
+        }
+
+        dialog.setMessage("Ready");
+        Thread.sleep(500);
+        dialog.close();
+    }
+
+    @Test
+    public void test_datepicker_dialog() {
+        UiBooster booster = new UiBooster();
+        Date birthday = booster.showDatePicker("What's your birthday?", "Birthday");
+        System.out.println(birthday);
+    }
+
+    @Test
+    public void test_table_dialog() {
+
+        UiBooster booster = new UiBooster();
+        String[][] modifiedData = booster.showTable(
+                new String[][]{
+                        {"Jimmy Johnson", "35", "Zombieland"},
+                        {"Danny Durango", "23", "Hangover"},
+                        {"Larry Berry", "54", ""}
+                },
+                Arrays.asList("Name", "Age", "Favorite movie"),
+                "Favorite movies");
+
+        System.out.println(modifiedData);
+
+    }
+
 
     @Test
     public void test_form_dialog() {
