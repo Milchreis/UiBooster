@@ -1,5 +1,6 @@
 package de.milchreis.uibooster;
 
+import de.milchreis.uibooster.components.PictureGalleryDialog;
 import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -152,6 +154,15 @@ class UiBoosterTest {
 
         System.out.println(modifiedData);
 
+    }
+
+    @Test
+    public void test_picture_dialog() throws IOException, InterruptedException {
+        new UiBooster().showPictures("My picture",  Arrays.asList(
+                new File("screenshots/color.jpg"),
+                new File("screenshots/dateselection.jpg"),
+                new File("screenshots/table.jpg"),
+                new File("screenshots/confirm.jpg")));
     }
 
     @Test

@@ -4,6 +4,7 @@ import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.FilledForm;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -39,21 +40,17 @@ public class Form {
 
         DialogClosingState closingState = new DialogClosingState();
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-        cs.fill = GridBagConstraints.HORIZONTAL;
+        JPanel panel = new JPanel(new GridLayout(0, 1));
 
         for(int i=0; i < formularStructure.size(); i++) {
+
+            JPanel elementPanel = new JPanel(new BorderLayout());
 
             FormularElement element = formularStructure.get(i);
 
             JLabel label = new JLabel(element.label);
-            cs.gridx = 0;
-            cs.gridy = i;
-            cs.gridwidth = 1;
-            cs.ipadx = 5;
-            cs.ipady = 5;
-            panel.add(label, cs);
+            label.setBorder(new EmptyBorder(0, 0, 5, 0));
+            panel.add(label);
 
             JComponent component = null;
 
@@ -67,12 +64,11 @@ public class Form {
                 component = new JTextField();
             }
 
-            cs.gridx = 1;
-            cs.gridy = i;
-            cs.ipadx = 5;
-            cs.ipady = 5;
-            cs.gridwidth = 2;
-            panel.add(component, cs);
+            elementPanel.add(label, BorderLayout.NORTH);
+            elementPanel.add(component, BorderLayout.CENTER);
+            elementPanel.add(new JLabel(" "), BorderLayout.SOUTH);
+
+            panel.add(elementPanel);
         }
 
         JOptionPane optionPane = new JOptionPane();
@@ -80,7 +76,6 @@ public class Form {
 
         JDialog dialog = optionPane.createDialog(null, title);
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        dialog.pack();
         dialog.setResizable(true);
         dialog.addWindowListener(new WindowAdapter() {
             @Override

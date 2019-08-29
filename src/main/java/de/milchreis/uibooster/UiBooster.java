@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -253,6 +254,31 @@ public class UiBooster {
      */
     public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
         return TableDialog.showTable(data, header, title, false);
+    }
+
+    /**
+     * Creates a resizable window whichs shows the given image. The image is scaled with the
+     * correct ratio. The dialogs blocks the process until it's closed.
+     *
+     * @param title     expects a title for the window
+     * @param image     expects an image (JPG, PNG and BMP are supported).
+     * @return
+     */
+    public PictureGalleryDialog showPicture(String title, File image) {
+        return PictureGalleryDialog.showDialog(title, Arrays.asList(image));
+    }
+
+    /**
+     * Creates a resizable window which shows the given images as a gallery. The images are scaled with the
+     * correct ratio. The user can step forward and backwards thru the gallery.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param title     expects a title for the window
+     * @param images     expects a list of images (JPG, PNG and BMP are supported).
+     * @return
+     */
+    public PictureGalleryDialog showPictures(String title, List<File> images) {
+        return PictureGalleryDialog.showDialog(title, images);
     }
 
     public Form createForm(String title) {

@@ -106,6 +106,18 @@ String[][] modifiedData = new UiBooster().showTable(    // showTableImmutable fo
         "Favorite movies");
 ```
 
+### Gallery dialog
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/gallery.jpg?raw=true)
+```java
+new UiBooster().showPictures(
+        "My picture",
+        Arrays.asList(
+            new File("/home/nick/pictures/img-01.jpg"),
+            new File("/home/nick/pictures/img-02.jpg")
+        )
+);
+```
+
 ## Options
 ```java
 boolean useNativeLookAndFeel = true;
