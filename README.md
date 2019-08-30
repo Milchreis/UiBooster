@@ -81,6 +81,13 @@ WaitingDialog dialog = new UiBooster().showWaitingDialog("Starting", "Please wai
 dialog.setMessage("Ready");
 dialog.close();
 ```
+![screenshot waiting with message dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/waiting_with_message.jpg?raw=true)
+```java
+WaitingDialog dialog = new UiBooster().showWaitingDialog("Starting", "Please wait");
+dialog.setMessage("Initializing");
+dialog.setLargeMessage("Some more information...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
+dialog.close();
+```
 
 ### Progress dialog
 ![screenshot progress dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/progress.jpg?raw=true)
