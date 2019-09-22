@@ -262,7 +262,7 @@ public class UiBooster {
      *
      * @param title     expects a title for the window
      * @param image     expects an image (JPG, PNG and BMP are supported).
-     * @return
+     * @return          the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPicture(String title, File image) {
         return PictureGalleryDialog.showDialog(title, Arrays.asList(image));
@@ -274,13 +274,20 @@ public class UiBooster {
      * The dialogs blocks the process until it's closed.
      *
      * @param title     expects a title for the window
-     * @param images     expects a list of images (JPG, PNG and BMP are supported).
-     * @return
+     * @param images    expects a list of images (JPG, PNG and BMP are supported).
+     * @return          the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPictures(String title, List<File> images) {
         return PictureGalleryDialog.showDialog(title, images);
     }
 
+    /**
+     * Creates an object for building a form with selections, textfields and textareas.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param title     expects a title for the window
+     * @return          the object to create and control the form dialog
+     */
     public Form createForm(String title) {
         return new Form(title);
     }

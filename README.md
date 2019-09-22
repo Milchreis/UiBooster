@@ -132,6 +132,19 @@ new UiBooster().showPictures(
 );
 ```
 
+### Form dialog
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/form.jpg?raw=true)
+```java
+ FilledForm form = new UiBooster()
+            .createForm("Personal informations")
+            .addText("Whats your first name?")
+            .addTextArea("Tell me something about you")
+            .addSelection(
+                    "Whats your favorite movie?",
+                    Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
+            .show();
+```
+
 ## Options
 ```java
 boolean useNativeLookAndFeel = true;

@@ -2,6 +2,7 @@ package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.FilledForm;
+import de.milchreis.uibooster.model.FormElement;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Form {
 
     private String title;
-    private List<FormularElement> formularStructure;
+    private List<FormElement> formularStructure;
 
     public Form(String title) {
         this.title = title;
@@ -22,17 +23,17 @@ public class Form {
     }
 
     public Form addText(String label) {
-        formularStructure.add(new FormularElement(label, InputType.TEXT, null));
+        formularStructure.add(new FormElement(label, InputType.TEXT, null));
         return this;
     }
 
     public Form addTextArea(String label) {
-        formularStructure.add(new FormularElement(label, InputType.TEXT_AREA, null));
+        formularStructure.add(new FormElement(label, InputType.TEXT_AREA, null));
         return this;
     }
 
     public Form addSelection(String label, List<String> possibilities) {
-        formularStructure.add(new FormularElement(label, InputType.SELECTION, possibilities));
+        formularStructure.add(new FormElement(label, InputType.SELECTION, possibilities));
         return this;
     }
 
@@ -40,28 +41,34 @@ public class Form {
 
         DialogClosingState closingState = new DialogClosingState();
 
-        JPanel panel = new JPanel(new GridLayout(0, 1));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         for(int i=0; i < formularStructure.size(); i++) {
 
             JPanel elementPanel = new JPanel(new BorderLayout());
 
-            FormularElement element = formularStructure.get(i);
+            FormElement element = formularStructure.get(i);
 
-            JLabel label = new JLabel(element.label);
+            JLabel label = new JLabel(element.getLabel());
             label.setBorder(new EmptyBorder(0, 0, 5, 0));
             panel.add(label);
 
             JComponent component = null;
 
-            if(element.inputType == InputType.SELECTION) {
-                component = new JComboBox(((List<String>)element.placeholder).toArray());
+            if(element.getInputType() == InputType.SELECTION) {
+                component = new JComboBox(((List<String>)element.getPlaceholder()).toArray());
+                element.setComponent(component);
 
-            } else if(element.inputType == InputType.TEXT_AREA) {
-                component = new JTextArea();
+            } else if(element.getInputType() == InputType.TEXT_AREA) {
+                JTextArea area = new JTextArea();
+                element.setComponent(area);
+                area.setRows(3);
+                component = new JScrollPane(area);
 
             } else {
                 component = new JTextField();
+                element.setComponent(component);
             }
 
             elementPanel.add(label, BorderLayout.NORTH);
@@ -87,26 +94,11 @@ public class Form {
         dialog.setVisible(true);
         dialog.dispose();
 
-        // TODO: read filled elements and return filled formular
-
-        return null;
+        return new FilledForm(formularStructure);
     }
 
     public enum InputType {
         TEXT, TEXT_AREA, SELECTION
-    }
-
-    private class FormularElement {
-
-        private String label;
-        private InputType inputType;
-        private Object placeholder;
-
-        public FormularElement(String label, InputType inputType, Object placeholder) {
-            this.label = label;
-            this.inputType = inputType;
-            this.placeholder = placeholder;
-        }
     }
 
 }

@@ -167,8 +167,7 @@ class UiBoosterTest {
 
     @Test
     public void test_form_dialog() {
-        UiBooster booster = new UiBooster();
-        FilledForm form = booster
+        FilledForm form = new UiBooster()
                 .createForm("Personal informations")
                 .addText("Whats your first name?")
                 .addTextArea("Tell me something about you")
@@ -176,6 +175,10 @@ class UiBoosterTest {
                         "Whats your favorite movie?",
                         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
                 .show();
+
+        form.getElements().forEach(e -> {
+            System.out.println(e.getLabel() + " -> " + e.getValue());
+        });
 
     }
 }
