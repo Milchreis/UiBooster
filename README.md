@@ -7,6 +7,10 @@ fast with GUI components for user without CLI experience.
 It's based on Java swing components to run on current JREs without struggle. I decided to create this project,
 because I missed something like [zenity](https://de.wikipedia.org/wiki/Zenity) for my Java applications.
 
+If you like this project and you want to keep me awake 🤪
+
+<a href='https://ko-fi.com/L4L21072C' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 ## Components
 ### Information dialogs
 ![screenshot info dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/info.jpg?raw=true)
