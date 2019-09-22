@@ -1,4 +1,7 @@
-# UiBooster
+<p align="center">
+  <img src="https://github.com/Milchreis/UiBooster/blob/master/screenshots/logo.png?raw=true" />
+</p>
+
 [![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
 
 UiBooster is a lean library to create fast and easy dialogs for utility tools. It equips your commandline tools blazing
