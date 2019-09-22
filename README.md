@@ -15,6 +15,20 @@ If you like this project and you want to keep me awake 🤪
 <a href='https://ko-fi.com/L4L21072C' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Components
+
+ - [Infomation dialogs](#information-dialogs)
+ - [Text input dialog](#text-input-dialog)
+ - [Confirmation dialog](#confirmation-dialog)
+ - [Selection dialog](#selection-dialog)
+ - [Colorpicker](#colorpicker)
+ - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
+ - [Login dialog](#login-dialog)
+ - [Waiting dialog](#waiting-dialog)
+ - [Progress dialog](#progress-dialog)
+ - [Tabel dialog](#table-dialog)
+ - [Gallery dialog](#gallery-dialog)
+ - [Form dialog](#form-dialog)
+
 ### Information dialogs
 ![screenshot info dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/info.jpg?raw=true)
 ![screenshot warn dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/warn.jpg?raw=true)
