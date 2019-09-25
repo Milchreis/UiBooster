@@ -181,4 +181,14 @@ class UiBoosterTest {
         });
 
     }
+
+    @Test
+    public void test_tray_dialog() throws InterruptedException {
+        UiBooster booster = new UiBooster();
+        booster.createTrayMenu("Food", "screenshots/color.jpg")
+                .withPopupMenu()
+                .addMenu("Hotdogs", () -> booster.showInfoDialog("Sausage in a roll"))
+                .addMenu("Fries", () -> booster.showInfoDialog("Fried potatoes"))
+                .addMenu("Pizza", () -> booster.showInfoDialog("Dough with tomato sauce"));
+    }
 }

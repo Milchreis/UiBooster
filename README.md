@@ -160,6 +160,17 @@ new UiBooster().showPictures(
             .show();
 ```
 
+### System tray
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/tray.jpg?raw=true)
+```java
+UiBooster booster = new UiBooster();
+booster.createTrayMenu("Food", "screenshots/color.jpg")
+        .withPopupMenu()
+        .addMenu("Hotdogs", () -> booster.showInfoDialog("Sausage in a roll"))
+        .addMenu("Fries", () -> booster.showInfoDialog("Fried potatoes"))
+        .addMenu("Pizza", () -> booster.showInfoDialog("Dough with tomato sauce"));
+```
+
 ## Options
 ```java
 boolean useNativeLookAndFeel = true;

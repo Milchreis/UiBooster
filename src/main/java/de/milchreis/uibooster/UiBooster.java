@@ -291,4 +291,28 @@ public class UiBooster {
     public Form createForm(String title) {
         return new Form(title);
     }
+
+
+    /**
+     * Creates an object for building a system tray menu.
+     *
+     * @param title     expects a title for the tray symbole
+     * @param iconPath  expects a path for the tray icon
+     * @return          the object to create and control the system tray
+     */
+    public TrayMenu createTrayMenu(String title, String iconPath) {
+        return new TrayMenu(title, iconPath, null);
+    }
+
+    /**
+     * Creates an object for building a system tray menu.
+     *
+     * @param title         expects a title for the tray symbole
+     * @param iconPath      expects a path for the tray icon
+     * @param onIconClicked expects an action which starts on clicking the tray icon
+     * @return              the object to create and control the system tray
+     */
+    public TrayMenu createTrayMenu(String title, String iconPath, Runnable onIconClicked) {
+        return new TrayMenu(title, iconPath, onIconClicked);
+    }
 }
