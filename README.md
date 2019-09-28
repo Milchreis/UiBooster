@@ -22,6 +22,7 @@ If you like this project and you want to keep me awake 🤪
  - [Confirmation dialog](#confirmation-dialog)
  - [Selection dialog](#selection-dialog)
  - [Colorpicker](#colorpicker)
+ - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
  - [Login dialog](#login-dialog)
  - [Waiting dialog](#waiting-dialog)
@@ -75,6 +76,12 @@ String selection = new UiBooster().showSelectionDialog(
 ```java
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
+
+### Datepicker
+![screenshot datepicker](https://github.com/Milchreis/UiBooster/blob/master/screenshots/dateselection.jpg?raw=true)
+```java
+Date birthday = new UiBooster().showDatePicker("What's your birthday?", "Birthday");
+```
 
 ### File and directory selection dialogs
 ![screenshot file dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/fileselection.jpg?raw=true)
