@@ -201,7 +201,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
 </dependency>
 ```
 
@@ -217,6 +217,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.4.0'
+        implementation 'com.github.Milchreis:UiBooster:1.5.0'
 }
 ```
