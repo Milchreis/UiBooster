@@ -1,5 +1,6 @@
 package de.milchreis.uibooster.components;
 
+import de.milchreis.uibooster.model.formelements.*;
 import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
@@ -15,25 +16,39 @@ import java.util.List;
 public class Form {
 
     private String title;
-    private List<FormElement> formularStructure;
+    private List<FormElement> formElements;
 
     public Form(String title) {
         this.title = title;
-        this.formularStructure = new ArrayList<>();
+        this.formElements = new ArrayList<>();
     }
 
     public Form addText(String label) {
-        formularStructure.add(new FormElement(label, InputType.TEXT, null));
+        formElements.add(new TextFormElement(label));
         return this;
     }
 
     public Form addTextArea(String label) {
-        formularStructure.add(new FormElement(label, InputType.TEXT_AREA, null));
+        formElements.add(new TextAreaFormElement(label));
         return this;
     }
 
     public Form addSelection(String label, List<String> possibilities) {
-        formularStructure.add(new FormElement(label, InputType.SELECTION, possibilities));
+        formElements.add(new SelectionFormElement(label, possibilities));
+        return this;
+    }
+
+    public Form addLabel(String label) {
+        formElements.add(new LabelFormElement(label));
+        return this;
+    }
+
+    public Form addButton(String buttonLabel, Runnable onClick) {
+        return addButton(null, buttonLabel, onClick);
+    }
+
+    public Form addButton(String label, String buttonLabel, Runnable onClick) {
+        formElements.add(new ButtonFormElement(label, buttonLabel, onClick));
         return this;
     }
 
@@ -44,36 +59,25 @@ public class Form {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        for(int i=0; i < formularStructure.size(); i++) {
+        for(int i = 0; i < formElements.size(); i++) {
 
             JPanel elementPanel = new JPanel(new BorderLayout());
 
-            FormElement element = formularStructure.get(i);
+            FormElement element = formElements.get(i);
 
-            JLabel label = new JLabel(element.getLabel());
-            label.setBorder(new EmptyBorder(0, 0, 5, 0));
-            panel.add(label);
+            JComponent component = element.createComponent();
 
-            JComponent component = null;
-
-            if(element.getInputType() == InputType.SELECTION) {
-                component = new JComboBox(((List<String>)element.getPlaceholder()).toArray());
-                element.setComponent(component);
-
-            } else if(element.getInputType() == InputType.TEXT_AREA) {
-                JTextArea area = new JTextArea();
-                element.setComponent(area);
-                area.setRows(3);
-                component = new JScrollPane(area);
-
-            } else {
-                component = new JTextField();
-                element.setComponent(component);
+            if(element.getLabel() != null) {
+                JLabel label = new JLabel(element.getLabel());
+                label.setBorder(new EmptyBorder(0, 0, 5, 0));
+                panel.add(label);
+                elementPanel.add(label, BorderLayout.NORTH);
             }
 
-            elementPanel.add(label, BorderLayout.NORTH);
-            elementPanel.add(component, BorderLayout.CENTER);
-            elementPanel.add(new JLabel(" "), BorderLayout.SOUTH);
+            if(component != null) {
+                elementPanel.add(component, BorderLayout.CENTER);
+                elementPanel.add(new JLabel(" "), BorderLayout.SOUTH);
+            }
 
             panel.add(elementPanel);
         }
@@ -94,11 +98,11 @@ public class Form {
         dialog.setVisible(true);
         dialog.dispose();
 
-        return new FilledForm(formularStructure);
+        return new FilledForm(formElements);
     }
 
     public enum InputType {
-        TEXT, TEXT_AREA, SELECTION
+        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON;
     }
 
 }

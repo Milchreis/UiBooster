@@ -165,6 +165,9 @@ new UiBooster().showPictures(
             .addSelection(
                     "Whats your favorite movie?",
                     Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
+            .addLabel("Choose an action")
+            .addButton("half full", () -> booster.showInfoDialog("Optimist"))
+            .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
             .show();
 ```
 

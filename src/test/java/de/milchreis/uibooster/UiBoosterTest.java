@@ -167,13 +167,17 @@ class UiBoosterTest {
 
     @Test
     public void test_form_dialog() {
-        FilledForm form = new UiBooster()
-                .createForm("Personal informations")
+        UiBooster booster = new UiBooster();
+        FilledForm form = booster
+                .createForm("Personal information")
                 .addText("Whats your first name?")
                 .addTextArea("Tell me something about you")
                 .addSelection(
                         "Whats your favorite movie?",
                         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
+                .addLabel("Choose an action")
+                .addButton("half full", () -> booster.showInfoDialog("Optimist"))
+                .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
                 .show();
 
         form.getElements().forEach(e -> {
@@ -183,7 +187,7 @@ class UiBoosterTest {
     }
 
     @Test
-    public void test_tray_dialog() throws InterruptedException {
+    public void test_tray_dialog() {
         UiBooster booster = new UiBooster();
         booster.createTrayMenu("Food", "screenshots/color.jpg")
                 .withPopupMenu()
