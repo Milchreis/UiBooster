@@ -1,6 +1,5 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.PictureGalleryDialog;
 import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
@@ -16,35 +15,31 @@ import java.util.Date;
 
 class UiBoosterTest {
 
+    UiBooster booster = new UiBooster();
 
     @Test
     public void test_info_dialog() {
-        UiBooster booster = new UiBooster();
         booster.showInfoDialog("Info message");
     }
 
     @Test
     public void test_warn_dialog() {
-        UiBooster booster = new UiBooster();
         booster.showWarningDialog("Warning message", "WARN");
     }
 
     @Test
     public void test_error_dialog() {
-        UiBooster booster = new UiBooster();
         booster.showErrorDialog("Error message", "ERROR");
     }
 
     @Test
     public void test_textinput_dialog() {
-        UiBooster booster = new UiBooster(new UiBoosterOptions(true));
         String opinion = booster.showTextInputDialog("What do you think?");
         System.out.println(opinion);
     }
 
     @Test
     public void test_confirm_dialog() {
-        UiBooster booster = new UiBooster();
         booster.showConfirmDialog(
                 "Do you really want this action?",
                 "Are you sure?",
@@ -54,9 +49,6 @@ class UiBoosterTest {
 
     @Test
     public void test_selection_dialog() {
-
-        UiBooster booster = new UiBooster();
-
         String selection = booster.showSelectionDialog(
                 "What's your favorite movie?",
                 "Favorite Movie?",
@@ -67,14 +59,12 @@ class UiBoosterTest {
 
     @Test
     public void test_colorpicker_dialog() {
-        UiBooster booster = new UiBooster();
         Color selectedColor = booster.showColorPicker("Choose your favorite color", "Color picking");
         System.out.println(selectedColor);
     }
 
     @Test
     public void test_fileselection_dialog() {
-        UiBooster booster = new UiBooster();
         File file = booster.showFileSelection();
         System.out.println(file);
 
@@ -87,7 +77,6 @@ class UiBoosterTest {
 
     @Test
     public void test_login_dialog() {
-        UiBooster booster = new UiBooster();
         LoginCredentials credentials = booster.showLogin(
                 "Login",
                 "Internal area",
@@ -104,7 +93,6 @@ class UiBoosterTest {
 
     @Test
     public void test_waiting_dialog() throws InterruptedException {
-        UiBooster booster = new UiBooster();
         WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait");
         Thread.sleep(1000);
         dialog.setMessage("Initializing");
@@ -119,7 +107,6 @@ class UiBoosterTest {
     @Test
     public void test_progress_dialog() throws InterruptedException {
 
-        UiBooster booster = new UiBooster();
         ProgressDialog dialog = booster.showProgressDialog("Please wait", "Waiting", 0, 120);
 
         for(int i=0; i< 11; i++) {
@@ -134,7 +121,6 @@ class UiBoosterTest {
 
     @Test
     public void test_datepicker_dialog() {
-        UiBooster booster = new UiBooster();
         Date birthday = booster.showDatePicker("What's your birthday?", "Birthday");
         System.out.println(birthday);
     }
@@ -142,7 +128,6 @@ class UiBoosterTest {
     @Test
     public void test_table_dialog() {
 
-        UiBooster booster = new UiBooster();
         String[][] modifiedData = booster.showTable(
                 new String[][]{
                         {"Jimmy Johnson", "35", "Zombieland"},
@@ -167,7 +152,6 @@ class UiBoosterTest {
 
     @Test
     public void test_form_dialog() {
-        UiBooster booster = new UiBooster();
         FilledForm form = booster
                 .createForm("Personal information")
                 .addText("Whats your first name?")
@@ -188,7 +172,6 @@ class UiBoosterTest {
 
     @Test
     public void test_tray_dialog() {
-        UiBooster booster = new UiBooster();
         booster.createTrayMenu("Food", "screenshots/color.jpg")
                 .withPopupMenu()
                 .addMenu("Hotdogs", () -> booster.showInfoDialog("Sausage in a roll"))

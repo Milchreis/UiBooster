@@ -184,8 +184,7 @@ booster.createTrayMenu("Food", "screenshots/color.jpg")
 
 ## Options
 ```java
-boolean useNativeLookAndFeel = true;
-UiBooster booster = new UiBooster(new UiBoosterOptions(useNativeLookAndFeel));
+UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
 ```
 
 ## Include to project
@@ -201,7 +200,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.4.0</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 
@@ -217,6 +216,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.4.0'
+        implementation 'com.github.Milchreis:UiBooster:1.6.0'
 }
 ```

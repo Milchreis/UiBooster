@@ -2,17 +2,21 @@ package de.milchreis.uibooster.model;
 
 public class UiBoosterOptions {
 
-    private boolean useNativeLookAndFeel;
-
-    public UiBoosterOptions(boolean useNativeLookAndFeel) {
-        this.useNativeLookAndFeel = useNativeLookAndFeel;
+    public enum Theme {
+        DARK_THEME, SWING, OS_NATIVE
     }
 
-    public boolean isUseNativeLookAndFeel() {
-        return useNativeLookAndFeel;
+    private Theme theme;
+
+    public UiBoosterOptions(Theme theme) {
+        this.theme = theme;
     }
 
-    public void setUseNativeLookAndFeel(boolean useNativeLookAndFeel) {
-        this.useNativeLookAndFeel = useNativeLookAndFeel;
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
 }

@@ -1,10 +1,12 @@
 package de.milchreis.uibooster;
 
+import com.bulenkov.darcula.DarculaLaf;
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 import java.awt.*;
 import java.io.File;
@@ -21,15 +23,23 @@ import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 public class UiBooster {
 
     public UiBooster() {
+        this(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
     }
 
     public UiBooster(UiBoosterOptions options) {
         if(options == null)
             return;
 
-        if(options.isUseNativeLookAndFeel()) {
+        if (options.getTheme() != null) {
+
             try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                if(options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
+                    UIManager.setLookAndFeel(new DarculaLaf());
+
+                } else if(options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                }
+
             } catch (Exception e) {
             }
         }
