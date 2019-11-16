@@ -182,6 +182,12 @@ booster.createTrayMenu("Food", "screenshots/color.jpg")
         .addMenu("Pizza", () -> booster.showInfoDialog("Dough with tomato sauce"));
 ```
 
+### Notification
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/notification.jpg?raw=true)
+```java
+new UiBooster().createNotification("Dinner is ready", "It's hot and delicious");
+```
+
 ## Options
 ```java
 UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));

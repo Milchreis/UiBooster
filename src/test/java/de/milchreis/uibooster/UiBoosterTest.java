@@ -178,4 +178,15 @@ class UiBoosterTest {
                 .addMenu("Fries", () -> booster.showInfoDialog("Fried potatoes"))
                 .addMenu("Pizza", () -> booster.showInfoDialog("Dough with tomato sauce"));
     }
+
+    @Test
+    public void test_notification() {
+        booster.createNotification("Dinner is ready", "It's hot and delicious");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -6,7 +6,6 @@ import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 
 import java.awt.*;
 import java.io.File;
@@ -324,5 +323,16 @@ public class UiBooster {
      */
     public TrayMenu createTrayMenu(String title, String iconPath, Runnable onIconClicked) {
         return new TrayMenu(title, iconPath, onIconClicked);
+    }
+
+    /**
+     * Creates a notification window with title and message. The appearance and the support depends
+     * on the used OS.
+     *
+     * @param title     expects a title for the notification
+     * @param message   expects a message for the notificaiton
+     */
+    public void createNotification(String title, String message) {
+        new Notification().display(title, message);
     }
 }
