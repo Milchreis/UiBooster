@@ -31,6 +31,7 @@ If you like this project and you want to keep me awake 🤪
  - [Gallery dialog](#gallery-dialog)
  - [Form dialog](#form-dialog)
  - [System tray menu](#system-tray)
+ - [Notification](#notification)
 
 ### Information dialogs
 ![screenshot info dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/info.jpg?raw=true)
@@ -159,7 +160,7 @@ new UiBooster().showPictures(
 ![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/form.jpg?raw=true)
 ```java
 UiBooster booster = new UiBooster();
-FilledForm form = booster.createForm("Personal informations")
+FilledForm form = booster.createForm("Personal information")
             .addText("Whats your first name?")
             .addTextArea("Tell me something about you")
             .addSelection(
