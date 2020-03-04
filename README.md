@@ -196,7 +196,7 @@ UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DA
 
 ## Include to project
 ### Maven
-If you want to use UiBooster than add the following to you pom.xml.
+If you want to use `UiBooster` than add the following to your pom.xml.
 ```xml
 <repository>
     <id>jitpack.io</id>
@@ -212,7 +212,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 ```
 
 ### Gradle
-Add the repo and the dependency to your root build.gradle, if you want to use it.
+If you want to use `UiBooster` with gradle than add the repo and the dependency to your root build.gradle file.
 ```gradle
 allprojects {
     repositories {
