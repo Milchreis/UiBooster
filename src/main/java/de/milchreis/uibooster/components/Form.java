@@ -52,9 +52,12 @@ public class Form {
         return this;
     }
 
-    public FilledForm show() {
+    public Form addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
+        formElements.add(new SliderFormElement(label, min, max, init, majorTick, minorTick));
+        return this;
+    }
 
-        DialogClosingState closingState = new DialogClosingState();
+    public FilledForm show() {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -82,27 +85,14 @@ public class Form {
             panel.add(elementPanel);
         }
 
-        JOptionPane optionPane = new JOptionPane();
-        optionPane.setMessage(new Object[]{panel});
-
-        JDialog dialog = optionPane.createDialog(null, title);
-        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        dialog.setResizable(true);
-        dialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                closingState.setClosedByUser(true);
-            }
-        });
-
-        dialog.setVisible(true);
-        dialog.dispose();
+        SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
+        dialog.showDialog(null, title);
 
         return new FilledForm(formElements);
     }
 
     public enum InputType {
-        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON;
+        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER;
     }
 
 }

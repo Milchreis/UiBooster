@@ -335,4 +335,36 @@ public class UiBooster {
     public void createNotification(String title, String message) {
         new Notification().display(title, message);
     }
+
+    /**
+     * Shows a dialog with a customizable slider, to ask the user for amounts.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param title     expects a title for the window
+     * @param message   expects a message for the meaning of this selection
+     * @param min       expects the lowest allowed value
+     * @param max       expects the highest allowed value
+     * @param init      expects the number to start with
+     * @return          the selected value or null if the dialog was closed
+     */
+    public Integer showSlider(String title, String message, int min, int max, int init) {
+        return SliderDialog.showDialog(message, title, min, max, init, 10, 1);
+    }
+
+    /**
+     * Shows a dialog with a customizable slider, to ask the user for amounts.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param title     expects a title for the window
+     * @param message   expects a message for the meaning of this selection
+     * @param min       expects the lowest allowed value
+     * @param max       expects the highest allowed value
+     * @param init      expects the number to start with
+     * @param majorTick expects the number of steps for the labeled ticks
+     * @param minorTick expects the number of steps for each tick
+     * @return          the selected value or null if the dialog was closed
+     */
+    public Integer showSlider(String title, String message, int min, int max, int init, int majorTick, int minorTick) {
+        return SliderDialog.showDialog(message, title, min, max, init, majorTick, minorTick);
+    }
 }

@@ -21,6 +21,7 @@ If you like this project and you want to keep me awake 🤪
  - [Text input dialog](#text-input-dialog)
  - [Confirmation dialog](#confirmation-dialog)
  - [Selection dialog](#selection-dialog)
+ - [Slider dialog](#slider-dialog)
  - [Colorpicker](#colorpicker)
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
@@ -69,6 +70,13 @@ String selection = new UiBooster().showSelectionDialog(
         "What's your favorite movie?",
         "Favorite Movie?",
         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"));
+```
+
+### Slider dialog
+![screenshot slider dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/slider.jpg?raw=true)
+```java
+Integer numberOfHotDogs = new UiBooster().showSlider("Your order", "How many HotDogs do you want?", 
+                0, 10, 2, 5, 1);
 ```
 
 ### Colorpicker
@@ -168,6 +176,7 @@ FilledForm form = booster.createForm("Personal informations")
             .addLabel("Choose an action")
             .addButton("half full", () -> booster.showInfoDialog("Optimist"))
             .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
+            .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
             .show();
 ```
 

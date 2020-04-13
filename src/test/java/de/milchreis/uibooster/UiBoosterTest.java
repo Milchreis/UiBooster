@@ -162,6 +162,7 @@ class UiBoosterTest {
                 .addLabel("Choose an action")
                 .addButton("half full", () -> booster.showInfoDialog("Optimist"))
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
+                .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .show();
 
         form.getElements().forEach(e -> {
@@ -188,5 +189,12 @@ class UiBoosterTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void test_slider_dialog() {
+        Integer numberOfHotDogs = booster.showSlider("Your order", "How many HotDogs do you want?",
+                0, 10, 2, 5, 1);
+        System.out.println(numberOfHotDogs);
     }
 }
