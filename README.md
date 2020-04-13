@@ -32,6 +32,7 @@ If you like this project and you want to keep me awake 🤪
  - [Gallery dialog](#gallery-dialog)
  - [Form dialog](#form-dialog)
  - [System tray menu](#system-tray)
+ - [Notification](#notification)
 
 ### Information dialogs
 ![screenshot info dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/info.jpg?raw=true)
@@ -167,7 +168,7 @@ new UiBooster().showPictures(
 ![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/form.jpg?raw=true)
 ```java
 UiBooster booster = new UiBooster();
-FilledForm form = booster.createForm("Personal informations")
+FilledForm form = booster.createForm("Personal information")
             .addText("Whats your first name?")
             .addTextArea("Tell me something about you")
             .addSelection(
@@ -204,7 +205,7 @@ UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DA
 
 ## Include to project
 ### Maven
-If you want to use UiBooster than add the following to you pom.xml.
+If you want to use `UiBooster` than add the following to your pom.xml.
 ```xml
 <repository>
     <id>jitpack.io</id>
@@ -220,7 +221,7 @@ If you want to use UiBooster than add the following to you pom.xml.
 ```
 
 ### Gradle
-Add the repo and the dependency to your root build.gradle, if you want to use it.
+If you want to use `UiBooster` with gradle than add the repo and the dependency to your root build.gradle file.
 ```gradle
 allprojects {
     repositories {
