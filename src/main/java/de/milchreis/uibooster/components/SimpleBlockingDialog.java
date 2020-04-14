@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class SimpleBlockingDialog {
 
+    private JDialog dialog;
     private JComponent[] components;
     private DialogClosingState closingState = new DialogClosingState();
 
@@ -24,7 +25,7 @@ public class SimpleBlockingDialog {
         else
             optionPane.setMessage(new Object[]{components});
 
-        JDialog dialog = optionPane.createDialog(null, title);
+        dialog = optionPane.createDialog(null, title);
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -39,4 +40,7 @@ public class SimpleBlockingDialog {
         return closingState;
     }
 
+    public JDialog getDialog() {
+        return dialog;
+    }
 }
