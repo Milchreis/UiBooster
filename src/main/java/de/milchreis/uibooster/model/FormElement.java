@@ -3,7 +3,6 @@ package de.milchreis.uibooster.model;
 import de.milchreis.uibooster.components.Form;
 
 import javax.swing.*;
-import java.awt.*;
 
 public abstract class FormElement {
 
@@ -16,10 +15,22 @@ public abstract class FormElement {
     }
 
     public abstract JComponent createComponent();
+
     public abstract String getValue();
 
     public String getLabel() {
         return label;
     }
 
+    public Float asFloat() {
+        return Float.parseFloat(getValue());
+    }
+
+    public Integer asInt() {
+        return Integer.parseInt(getValue());
+    }
+
+    public String asString() {
+        return getValue();
+    }
 }
