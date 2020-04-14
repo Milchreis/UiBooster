@@ -179,6 +179,8 @@ FilledForm form = booster.createForm("Personal information")
             .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
             .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
             .show();
+
+// use .run() instead of show() to open the form without blocking.
 ```
 
 ### System tray
