@@ -1,16 +1,15 @@
 package de.milchreis.uibooster.components;
 
-import de.milchreis.uibooster.model.formelements.*;
-import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
+import de.milchreis.uibooster.model.formelements.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Form {
@@ -38,6 +37,11 @@ public class Form {
         return this;
     }
 
+    public Form addSelection(String label, String... possibilities) {
+        addSelection(label, Arrays.asList(possibilities));
+        return this;
+    }
+
     public Form addLabel(String label) {
         formElements.add(new LabelFormElement(label));
         return this;
@@ -59,7 +63,26 @@ public class Form {
 
     public FilledForm show() {
 
+        JPanel panel = createPanel();
+
+        SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
+        dialog.showDialog(null, title);
+
+        return new FilledForm(dialog.getDialog(), formElements);
+    }
+
+    public FilledForm run() {
+        JPanel panel = createPanel();
+
+        SimpleDialog dialog = new SimpleDialog(title, panel);
+
+        return new FilledForm(dialog, formElements);
+    }
+
+    @NotNull
+    private JPanel createPanel() {
         JPanel panel = new JPanel();
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         for(int i = 0; i < formElements.size(); i++) {
@@ -84,11 +107,7 @@ public class Form {
 
             panel.add(elementPanel);
         }
-
-        SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
-        dialog.showDialog(null, title);
-
-        return new FilledForm(formElements);
+        return panel;
     }
 
     public enum InputType {
