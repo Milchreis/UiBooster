@@ -14,9 +14,8 @@ import java.util.List;
 
 public class Form {
 
-    public Form addColorPicker(String label) {
-        formElements.add(new ColorPickerElement(label));
-        return this;
+    public enum InputType {
+        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER, DATE_PICKER
     }
 
     private String title;
@@ -71,8 +70,9 @@ public class Form {
         return this;
     }
 
-    public enum InputType {
-        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER, DATE_PICKER
+    public Form addColorPicker(String label) {
+        formElements.add(new ColorPickerElement(label));
+        return this;
     }
 
     public FilledForm show() {
