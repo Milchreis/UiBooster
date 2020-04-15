@@ -9,18 +9,23 @@ public class ColorPickerDialog {
 
     public static Color showColorPicker(String message, String title) {
 
-        ColorPicker picker = new ColorPicker(false,false);
+        ColorPicker picker = createColorPicker();
+
+        SimpleBlockingDialog dialog = new SimpleBlockingDialog(picker);
+        DialogClosingState closingState = dialog.showDialog(message, title);
+
+        return closingState.isClosedByUser() ? null : picker.getColor();
+    }
+
+    public static ColorPicker createColorPicker() {
+        ColorPicker picker = new ColorPicker(false, false);
         picker.setColor(new Color(219, 185, 47));
         picker.setRGBControlsVisible(false);
         picker.setHexControlsVisible(false);
         picker.setPreviewSwatchVisible(false);
         picker.setHSBControlsVisible(false);
         picker.setVisible(true);
-
-        SimpleBlockingDialog dialog = new SimpleBlockingDialog(picker);
-        DialogClosingState closingState = dialog.showDialog(message, title);
-
-        return closingState.isClosedByUser() ?  null : picker.getColor();
+        return picker;
     }
 
 }

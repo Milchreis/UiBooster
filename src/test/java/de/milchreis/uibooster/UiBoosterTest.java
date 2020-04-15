@@ -4,7 +4,6 @@ import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.LoginCredentials;
-import de.milchreis.uibooster.model.UiBoosterOptions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -163,6 +162,7 @@ class UiBoosterTest {
                 .addButton("half full", () -> booster.showInfoDialog("Optimist"))
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
+                .addColorPicker("Favorite color?")
                 .show();
 
         form.getElements().forEach(e -> {
