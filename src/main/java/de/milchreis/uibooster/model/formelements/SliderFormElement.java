@@ -1,14 +1,9 @@
 package de.milchreis.uibooster.model.formelements;
 
 import de.milchreis.uibooster.components.Form;
-import de.milchreis.uibooster.components.SliderDialog;
 import de.milchreis.uibooster.model.FormElement;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import java.awt.*;
 
 import static de.milchreis.uibooster.components.SliderDialog.createSlider;
@@ -45,7 +40,7 @@ public class SliderFormElement extends FormElement {
     }
 
     @Override
-    public String getValue() {
-        return slider.getValue() + "";
+    public Integer getValue() {
+        return slider.getValue();
     }
 }

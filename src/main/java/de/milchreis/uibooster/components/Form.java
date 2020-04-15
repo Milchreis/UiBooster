@@ -66,8 +66,13 @@ public class Form {
         return this;
     }
 
+    public Form addDatePicker(String label) {
+        formElements.add(new DatePickerElement(label));
+        return this;
+    }
+
     public enum InputType {
-        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER
+        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER, DATE_PICKER
     }
 
     public FilledForm show() {

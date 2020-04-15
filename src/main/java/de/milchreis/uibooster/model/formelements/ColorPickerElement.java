@@ -23,9 +23,7 @@ public class ColorPickerElement extends FormElement {
     }
 
     @Override
-    public String getValue() {
-        Color color = picker.getColor();
-        String hex = String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
-        return hex;
+    public Color getValue() {
+        return picker.getColor();
     }
 }

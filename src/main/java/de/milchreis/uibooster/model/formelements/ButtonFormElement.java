@@ -26,7 +26,7 @@ public class ButtonFormElement extends FormElement {
     }
 
     @Override
-    public String getValue() {
+    public Object getValue() {
         return button.getName();
     }
 }

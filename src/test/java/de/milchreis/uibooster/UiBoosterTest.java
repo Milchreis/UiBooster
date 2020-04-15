@@ -154,6 +154,7 @@ class UiBoosterTest {
         FilledForm form = booster
                 .createForm("Personal information")
                 .addText("Whats your first name?")
+                .addDatePicker("Whats your birthday?")
                 .addTextArea("Tell me something about you")
                 .addSelection(
                         "Whats your favorite movie?",
