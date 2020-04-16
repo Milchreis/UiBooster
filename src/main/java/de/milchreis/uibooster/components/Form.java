@@ -3,7 +3,6 @@ package de.milchreis.uibooster.components;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.formelements.*;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -93,7 +92,6 @@ public class Form {
         return new FilledForm(dialog, formElements);
     }
 
-    @NotNull
     private JPanel createPanel() {
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
