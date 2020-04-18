@@ -6,7 +6,6 @@ import de.milchreis.uibooster.model.LoginCredentials;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
@@ -21,18 +20,22 @@ import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
  */
 public class UiBooster {
 
+    private UiBoosterOptions options;
+
     public UiBooster() {
         this(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
     }
 
     public UiBooster(UiBoosterOptions options) {
-        if(options == null)
+        this.options = options;
+
+        if (options == null)
             return;
 
         if (options.getTheme() != null) {
 
             try {
-                if(options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
+                if (options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
                     UIManager.setLookAndFeel(new DarculaLaf());
 
                 } else if(options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
@@ -199,7 +202,7 @@ public class UiBooster {
      * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
-        return WaitingDialog.showDialog(message, title);
+        return WaitingDialog.showDialog(message, title, options);
     }
 
     /**
@@ -212,7 +215,7 @@ public class UiBooster {
      * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title, String largeText) {
-        return WaitingDialog.showDialog(message, title, largeText);
+        return WaitingDialog.showDialog(message, title, largeText, options);
     }
 
     /**

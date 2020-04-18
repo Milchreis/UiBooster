@@ -1,8 +1,12 @@
 package de.milchreis.uibooster.components;
 
+import de.milchreis.uibooster.model.UiBoosterOptions;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+
+import static de.milchreis.uibooster.model.UiBoosterOptions.Theme.DARK_THEME;
 
 public class WaitingDialog {
 
@@ -42,13 +46,16 @@ public class WaitingDialog {
         this.dialog.dispose();
     }
 
-    public static WaitingDialog showDialog(String message, String title) {
-        return showDialog(message, title, null);
+    public static WaitingDialog showDialog(String message, String title, UiBoosterOptions options) {
+        return showDialog(message, title, null, options);
     }
 
-    public static WaitingDialog showDialog(String message, String title, String largeMessage) {
+    public static WaitingDialog showDialog(String message, String title, String largeMessage, UiBoosterOptions options) {
 
-        JLabel loading = new JLabel(new ImageIcon(WaitingDialog.class.getResource("/loading-75.gif")));
+        String loadingImage = options != null && options.getTheme() == DARK_THEME ?
+                "/loading-75_darcular.gif" : "/loading-75.gif";
+
+        JLabel loading = new JLabel(new ImageIcon(WaitingDialog.class.getResource(loadingImage)));
 
         JFrame window = new JFrame();
         window.setTitle(title);
