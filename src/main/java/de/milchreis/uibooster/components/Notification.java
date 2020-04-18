@@ -12,7 +12,7 @@ public class Notification {
     public void display(String title, String message) {
 
         SystemTray tray = SystemTray.getSystemTray();
-        Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+        Image image = Toolkit.getDefaultToolkit().createImage("/icon.png");
 
         TrayIcon trayIcon = new TrayIcon(image, "Notification");
         trayIcon.setImageAutoSize(true);

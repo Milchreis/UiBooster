@@ -10,9 +10,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
+
 public class TableDialog {
 
-    public static String[][] showTable(String[][] data, List<String> header, String title, boolean isEditable) {
+    public static String[][] showTable(String[][] data, List<String> header, String title, String iconPath, boolean isEditable) {
 
         DialogClosingState closingState = new DialogClosingState();
 
@@ -52,6 +54,8 @@ public class TableDialog {
                 closingState.setClosedByUser(true);
             }
         });
+
+        applyWindowIcon(iconPath, dialog);
 
         dialog.setVisible(true);
         dialog.dispose();

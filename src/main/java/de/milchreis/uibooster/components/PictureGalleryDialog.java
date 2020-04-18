@@ -7,10 +7,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
+import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
+
 public class PictureGalleryDialog {
 
-    public static PictureGalleryDialog showDialog(String title, List<File> images) {
-        return new PictureGalleryDialog(title, images);
+    public static PictureGalleryDialog showDialog(String title, String iconPath, List<File> images) {
+        return new PictureGalleryDialog(title, iconPath, images);
     }
 
     private JDialog window;
@@ -18,13 +20,16 @@ public class PictureGalleryDialog {
     private List<File> images;
     private int imageIndex = -1;
 
-    public PictureGalleryDialog(String title, List<File> images) {
+    public PictureGalleryDialog(String title, String iconPath, List<File> images) {
         this.images = images;
 
         window = new JDialog((Dialog) null, title, true);
         window.setTitle(title);
         window.setResizable(true);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        applyWindowIcon(iconPath, window);
+
         window.setLayout(new BorderLayout());
 
         imagePanel = new ImagePanel(null);

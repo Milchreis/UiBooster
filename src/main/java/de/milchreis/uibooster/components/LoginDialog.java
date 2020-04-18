@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
+
 public class LoginDialog extends JDialog {
 
     private JTextField tfUsername;
@@ -22,7 +24,7 @@ public class LoginDialog extends JDialog {
     private JButton btnCancel;
     private DialogClosingState closingState;
 
-    public LoginDialog(String title, String message, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel) {
+    public LoginDialog(String title, String message, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel, String iconPath) {
         super((JFrame) null, title, true);
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints cs = new GridBagConstraints();
@@ -109,6 +111,9 @@ public class LoginDialog extends JDialog {
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
+
+        applyWindowIcon(iconPath, this);
+
         tfUsername.requestFocus();
     }
 

@@ -2,6 +2,7 @@ package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
+import de.milchreis.uibooster.model.UiBoosterOptions;
 import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
@@ -19,9 +20,11 @@ public class Form {
 
     private String title;
     private List<FormElement> formElements;
+    private UiBoosterOptions options;
 
-    public Form(String title) {
+    public Form(String title, UiBoosterOptions options) {
         this.title = title;
+        this.options = options;
         this.formElements = new ArrayList<>();
     }
 
@@ -79,7 +82,7 @@ public class Form {
         JPanel panel = createPanel();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
-        dialog.showDialog(null, title);
+        dialog.showDialog(null, title, options.getIconPath());
 
         return new FilledForm(dialog.getDialog(), formElements);
     }
@@ -87,7 +90,7 @@ public class Form {
     public FilledForm run() {
         JPanel panel = createPanel();
 
-        SimpleDialog dialog = new SimpleDialog(title, panel);
+        SimpleDialog dialog = new SimpleDialog(title, panel, options.getIconPath());
 
         return new FilledForm(dialog, formElements);
     }

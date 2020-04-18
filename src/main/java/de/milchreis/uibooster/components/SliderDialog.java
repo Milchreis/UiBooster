@@ -6,22 +6,20 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class SliderDialog {
 
-    public static Integer showDialog(String message, String title, int min, int max, int init, int majorTick, int minorTick) {
+    public static Integer showDialog(String message, String title, int min, int max, int init, int majorTick, int minorTick, String iconPath) {
 
-        JLabel current = new JLabel(init+"");
+        JLabel current = new JLabel(init + "");
         current.setHorizontalAlignment(JLabel.CENTER);
 
         JSlider slider = createSlider(min, max, init, majorTick, minorTick, current);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(current, slider);
-        DialogClosingState closingState = dialog.showDialog(message, title);
+        DialogClosingState closingState = dialog.showDialog(message, title, iconPath);
 
-        return closingState.isClosedByUser() ?  null : slider.getValue();
+        return closingState.isClosedByUser() ? null : slider.getValue();
     }
 
     @NotNull

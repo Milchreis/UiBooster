@@ -202,7 +202,12 @@ new UiBooster().createNotification("Dinner is ready", "It's hot and delicious");
 
 ## Options
 ```java
-UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
+UiBooster booster = new UiBooster(
+    new UiBoosterOptions(
+        UiBoosterOptions.Theme.DARK_THEME,
+        "/path/to/your/custom-window-icon.png"
+    )
+);
 ```
 
 ## Include to project

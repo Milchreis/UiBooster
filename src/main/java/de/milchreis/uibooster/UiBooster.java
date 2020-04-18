@@ -27,10 +27,7 @@ public class UiBooster {
     }
 
     public UiBooster(UiBoosterOptions options) {
-        this.options = options;
-
-        if (options == null)
-            return;
+        this.options = options == null ? new UiBoosterOptions() : options;
 
         if (options.getTheme() != null) {
 
@@ -151,7 +148,7 @@ public class UiBooster {
      * @return          the selected color, on close it returns null.
      */
     public Color showColorPicker(String message, String title) {
-        return ColorPickerDialog.showColorPicker(message, title);
+        return ColorPickerDialog.showColorPicker(message, title, options.getIconPath());
     }
 
     /**
@@ -190,7 +187,8 @@ public class UiBooster {
                 usernameLabel,
                 passwordLabel,
                 loginButtonLabel,
-                cancelButtonLabel).showDialog();
+                cancelButtonLabel,
+                options.getIconPath()).showDialog();
     }
 
     /**
@@ -239,7 +237,7 @@ public class UiBooster {
      * @return          the selected date or null on cancel
      */
     public Date showDatePicker(String message, String title) {
-        return DatePickerDialog.showDatePicker(message, title);
+        return DatePickerDialog.showDatePicker(message, title, options.getIconPath());
     }
 
     /**
@@ -252,7 +250,7 @@ public class UiBooster {
      * @return          the accepted or changed data or null on cancel.
      */
     public String[][] showTable(String[][] data, List<String> header, String title) {
-        return TableDialog.showTable(data, header, title, true);
+        return TableDialog.showTable(data, header, title, options.getIconPath(), true);
     }
 
     /**
@@ -265,7 +263,7 @@ public class UiBooster {
      * @return          the accepted or changed data or null on cancel.
      */
     public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
-        return TableDialog.showTable(data, header, title, false);
+        return TableDialog.showTable(data, header, title, options.getIconPath(), false);
     }
 
     /**
@@ -277,7 +275,7 @@ public class UiBooster {
      * @return          the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPicture(String title, File image) {
-        return PictureGalleryDialog.showDialog(title, Arrays.asList(image));
+        return PictureGalleryDialog.showDialog(title, options.getIconPath(), Arrays.asList(image));
     }
 
     /**
@@ -290,7 +288,7 @@ public class UiBooster {
      * @return          the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPictures(String title, List<File> images) {
-        return PictureGalleryDialog.showDialog(title, images);
+        return PictureGalleryDialog.showDialog(title, options.getIconPath(), images);
     }
 
     /**
@@ -301,7 +299,7 @@ public class UiBooster {
      * @return          the object to create and control the form dialog
      */
     public Form createForm(String title) {
-        return new Form(title);
+        return new Form(title, options);
     }
 
 
@@ -351,7 +349,7 @@ public class UiBooster {
      * @return          the selected value or null if the dialog was closed
      */
     public Integer showSlider(String title, String message, int min, int max, int init) {
-        return SliderDialog.showDialog(message, title, min, max, init, 10, 1);
+        return showSlider(message, title, min, max, init, 10, 1);
     }
 
     /**
@@ -368,6 +366,6 @@ public class UiBooster {
      * @return          the selected value or null if the dialog was closed
      */
     public Integer showSlider(String title, String message, int min, int max, int init, int majorTick, int minorTick) {
-        return SliderDialog.showDialog(message, title, min, max, init, majorTick, minorTick);
+        return SliderDialog.showDialog(message, title, min, max, init, majorTick, minorTick, options.getIconPath());
     }
 }

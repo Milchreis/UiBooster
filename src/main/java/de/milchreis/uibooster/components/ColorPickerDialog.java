@@ -7,12 +7,12 @@ import java.awt.*;
 
 public class ColorPickerDialog {
 
-    public static Color showColorPicker(String message, String title) {
+    public static Color showColorPicker(String message, String title, String iconPath) {
 
         ColorPicker picker = createColorPicker();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(picker);
-        DialogClosingState closingState = dialog.showDialog(message, title);
+        DialogClosingState closingState = dialog.showDialog(message, title, iconPath);
 
         return closingState.isClosedByUser() ? null : picker.getColor();
     }

@@ -6,17 +6,30 @@ public class UiBoosterOptions {
         DARK_THEME, SWING, OS_NATIVE
     }
 
-    private Theme theme;
+    private Theme theme = Theme.DARK_THEME;
+    private String iconPath = "/icon.png";
+
+    public UiBoosterOptions() {
+    }
+
+    public UiBoosterOptions(String iconPath) {
+        this.iconPath = iconPath;
+    }
 
     public UiBoosterOptions(Theme theme) {
         this.theme = theme;
     }
 
-    public Theme getTheme() {
-        return theme;
+    public UiBoosterOptions(Theme theme, String iconPath) {
+        this.theme = theme;
+        this.iconPath = iconPath;
     }
 
-    public void setTheme(Theme theme) {
-        this.theme = theme;
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public Theme getTheme() {
+        return theme;
     }
 }

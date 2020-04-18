@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -141,8 +140,8 @@ class UiBoosterTest {
     }
 
     @Test
-    public void test_picture_dialog() throws IOException, InterruptedException {
-        new UiBooster().showPictures("My picture",  Arrays.asList(
+    public void test_picture_dialog() {
+        new UiBooster().showPictures("My picture", Arrays.asList(
                 new File("screenshots/color.jpg"),
                 new File("screenshots/dateselection.jpg"),
                 new File("screenshots/table.jpg"),

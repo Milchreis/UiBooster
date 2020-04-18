@@ -52,7 +52,7 @@ public class WaitingDialog {
 
     public static WaitingDialog showDialog(String message, String title, String largeMessage, UiBoosterOptions options) {
 
-        String loadingImage = options != null && options.getTheme() == DARK_THEME ?
+        String loadingImage = options.getTheme() == DARK_THEME ?
                 "/loading-75_darcular.gif" : "/loading-75.gif";
 
         JLabel loading = new JLabel(new ImageIcon(WaitingDialog.class.getResource(loadingImage)));
