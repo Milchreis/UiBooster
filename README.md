@@ -31,6 +31,7 @@ If you like this project, and you want to keep me awake 🤪
  - [Table dialog](#table-dialog)
  - [Gallery dialog](#gallery-dialog)
  - [Form dialog](#form-dialog)
+ - [Splash screen](#splash-screen)
  - [System tray menu](#system-tray)
  - [Notification](#notification)
 
@@ -181,6 +182,14 @@ FilledForm form = booster.createForm("Personal information")
             .show();
 
 // use .run() instead of show() to open the form without blocking.
+```
+
+### Splash screen
+![screenshot splash screen](https://github.com/Milchreis/UiBooster/blob/master/screenshots/splash.jpg?raw=true)
+```java
+Splashscreen splash = new UiBooster().showSplashscreen("/path/to/your/splash.png");
+// do your stuff
+splash.hide();
 ```
 
 ### System tray
