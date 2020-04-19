@@ -1,6 +1,7 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.components.ProgressDialog;
+import de.milchreis.uibooster.components.Splashscreen;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.LoginCredentials;
@@ -83,37 +84,37 @@ class UiBoosterTest {
                 "Go",
                 "Cancel");
 
-        if(credentials != null)
+        if (credentials != null)
             System.out.println(credentials.getUsername() + " - " + credentials.getPassword());
         else
             System.out.println("No credentials");
     }
 
     @Test
-    public void test_waiting_dialog() throws InterruptedException {
+    public void test_waiting_dialog() {
         WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait");
-        Thread.sleep(1000);
+        sleep(1000);
         dialog.setMessage("Initializing");
         dialog.setLargeMessage("Some more information...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
-        Thread.sleep(2000);
+        sleep(2000);
         dialog.setMessage("Ready");
         dialog.addToLargeMessage("Ready!!!");
-        Thread.sleep(500);
+        sleep(500);
         dialog.close();
     }
 
     @Test
-    public void test_progress_dialog() throws InterruptedException {
+    public void test_progress_dialog() {
 
         ProgressDialog dialog = booster.showProgressDialog("Please wait", "Waiting", 0, 120);
 
-        for(int i=0; i< 11; i++) {
+        for (int i = 0; i < 11; i++) {
             dialog.setProgress(i * 12);
-            Thread.sleep(100);
+            sleep(100);
         }
 
         dialog.setMessage("Ready");
-        Thread.sleep(500);
+        sleep(500);
         dialog.close();
     }
 
@@ -183,18 +184,30 @@ class UiBoosterTest {
     @Test
     public void test_notification() {
         booster.createNotification("Dinner is ready", "It's hot and delicious");
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(5000);
     }
+
 
     @Test
     public void test_slider_dialog() {
         Integer numberOfHotDogs = booster.showSlider("Your order", "How many HotDogs do you want?",
                 0, 10, 2, 5, 1);
         System.out.println(numberOfHotDogs);
+    }
+
+    @Test
+    void test_splashscreen_dialog() {
+        Splashscreen splash = booster.showSplashscreen("src/main/resources/icon.png");
+        sleep(5000);
+        splash.hide();
+    }
+
+
+    private void sleep(int timeInMillis) {
+        try {
+            Thread.sleep(timeInMillis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

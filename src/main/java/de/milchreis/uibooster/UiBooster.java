@@ -35,7 +35,7 @@ public class UiBooster {
                 if (options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
                     UIManager.setLookAndFeel(new DarculaLaf());
 
-                } else if(options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
+                } else if (options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 }
 
@@ -48,7 +48,7 @@ public class UiBooster {
      * Shows an info dialog and blocks until the ok button was clicked.
      * '\n' is allowed as newline character for the info message.
      *
-     * @param infoMessage  expects the info message
+     * @param infoMessage expects the info message
      */
     public void showInfoDialog(String infoMessage) {
         nonNull(infoMessage);
@@ -59,8 +59,8 @@ public class UiBooster {
      * Shows a warning dialog and blocks until the ok button was clicked.
      * '\n' is allowed as newline character for the warn message.
      *
-     * @param warningMessage  expects the warn message
-     * @param title           expects the title for the window
+     * @param warningMessage expects the warn message
+     * @param title          expects the title for the window
      */
     public void showWarningDialog(String warningMessage, String title) {
         nonNull(warningMessage);
@@ -72,8 +72,8 @@ public class UiBooster {
      * Shows an error dialog and blocks until the ok button was clicked.
      * '\n' is allowed as newline character for the error message.
      *
-     * @param errorMessage    expects the error message
-     * @param title           expects the title for the window
+     * @param errorMessage expects the error message
+     * @param title        expects the title for the window
      */
     public void showErrorDialog(String errorMessage, String title) {
         nonNull(errorMessage);
@@ -84,8 +84,8 @@ public class UiBooster {
     /**
      * Shows a dialog with text input field.
      *
-     * @param message      expects a message or question for the user.
-     * @return             the user input or null on cancel
+     * @param message expects a message or question for the user.
+     * @return the user input or null on cancel
      */
     public String showTextInputDialog(String message) {
         nonNull(message);
@@ -109,10 +109,10 @@ public class UiBooster {
                 title,
                 JOptionPane.YES_NO_OPTION);
 
-        if(n == 0 && onConfirm != null)
+        if (n == 0 && onConfirm != null)
             onConfirm.run();
 
-        if(n == 1 && onDecline != null)
+        if (n == 1 && onDecline != null)
             onDecline.run();
     }
 
@@ -123,7 +123,7 @@ public class UiBooster {
      * @param message       expects the message
      * @param title         expects the window title
      * @param possibilities expects a list with possibilities
-     * @return              the selection element form possibilities list or null on close
+     * @return the selection element form possibilities list or null on close
      */
     public String showSelectionDialog(String message, String title, List<String> possibilities) {
         nonNull(message);
@@ -143,9 +143,10 @@ public class UiBooster {
 
     /**
      * Shows a simple color picker to select an RGB value.
-     * @param message   optional message above the color picker
-     * @param title     expects a window title
-     * @return          the selected color, on close it returns null.
+     *
+     * @param message optional message above the color picker
+     * @param title   expects a window title
+     * @return the selected color, on close it returns null.
      */
     public Color showColorPicker(String message, String title) {
         return ColorPickerDialog.showColorPicker(message, title, options.getIconPath());
@@ -153,6 +154,7 @@ public class UiBooster {
 
     /**
      * Shows a file selection dialog. Only files are shown and selectable
+     *
      * @return returns the selection file or null on cancel
      */
     public File showFileSelection() {
@@ -161,6 +163,7 @@ public class UiBooster {
 
     /**
      * Shows a directory selection dialog. Only directories are shown and selectable
+     *
      * @return returns the selection directory or null on cancel
      */
     public File showDirectorySelection() {
@@ -169,6 +172,7 @@ public class UiBooster {
 
     /**
      * Shows a selection dialog for files and directories.
+     *
      * @return returns the selection or null on cancel
      */
     public File showFileOrDirectorySelection() {
@@ -177,6 +181,7 @@ public class UiBooster {
 
     /**
      * Shows a login dialog with username and password.
+     *
      * @return returns the login data or null on cancel.
      */
     public LoginCredentials showLogin(String message, String title, String usernameLabel, String passwordLabel,
@@ -195,8 +200,8 @@ public class UiBooster {
      * Shows a waiting dialog with a changeable message.
      * This dialog does not wait for any user input. Its decoupled from the rest of the application.
      *
-     * @param message   optional message to the user
-     * @param title     expects a title for the window
+     * @param message optional message to the user
+     * @param title   expects a title for the window
      * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title) {
@@ -217,14 +222,14 @@ public class UiBooster {
     }
 
     /**
-     *  Shows dialog with progressbar and changeable message.
-     *  The dialog does not wait for any user input. Its decoupled form the rest of the application.
+     * Shows dialog with progressbar and changeable message.
+     * The dialog does not wait for any user input. Its decoupled form the rest of the application.
      *
-     * @param message   optional message to the user
-     * @param title     expects a title for the window
-     * @param min       expects the minimal value for the progress
-     * @param max       expects the maximal value for the progress
-     * @return          returns the dialog object to change the message and the progress and hide the dialog as needed.
+     * @param message optional message to the user
+     * @param title   expects a title for the window
+     * @param min     expects the minimal value for the progress
+     * @param max     expects the maximal value for the progress
+     * @return returns the dialog object to change the message and the progress and hide the dialog as needed.
      */
     public ProgressDialog showProgressDialog(String message, String title, int min, int max) {
         return ProgressDialog.showDialog(message, title, min, max);
@@ -232,9 +237,10 @@ public class UiBooster {
 
     /**
      * Shows a date picker dialog to choose a specific date.
-     * @param message   expects a message
-     * @param title     expects a title for the window
-     * @return          the selected date or null on cancel
+     *
+     * @param message expects a message
+     * @param title   expects a title for the window
+     * @return the selected date or null on cancel
      */
     public Date showDatePicker(String message, String title) {
         return DatePickerDialog.showDatePicker(message, title, options.getIconPath());
@@ -244,10 +250,10 @@ public class UiBooster {
      * Shows a dialog with a table view. It allows to change cell values, add rows and remove rows.
      * The dialogs wait for user input.
      *
-     * @param data      expects the values in rows of columns -> [row_n][column_n]
-     * @param header    expects the labels for the columns
-     * @param title     expects a title for the window
-     * @return          the accepted or changed data or null on cancel.
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @return the accepted or changed data or null on cancel.
      */
     public String[][] showTable(String[][] data, List<String> header, String title) {
         return TableDialog.showTable(data, header, title, options.getIconPath(), true);
@@ -257,10 +263,10 @@ public class UiBooster {
      * Shows a dialog with a table view. The table values are not changeable.
      * The dialogs wait for user input.
      *
-     * @param data      expects the values in rows of columns -> [row_n][column_n]
-     * @param header    expects the labels for the columns
-     * @param title     expects a title for the window
-     * @return          the accepted or changed data or null on cancel.
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @return the accepted or changed data or null on cancel.
      */
     public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
         return TableDialog.showTable(data, header, title, options.getIconPath(), false);
@@ -270,9 +276,9 @@ public class UiBooster {
      * Creates a resizable window whichs shows the given image. The image is scaled with the
      * correct ratio. The dialogs blocks the process until it's closed.
      *
-     * @param title     expects a title for the window
-     * @param image     expects an image (JPG, PNG and BMP are supported).
-     * @return          the object to control the picture gallery dialog
+     * @param title expects a title for the window
+     * @param image expects an image (JPG, PNG and BMP are supported).
+     * @return the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPicture(String title, File image) {
         return PictureGalleryDialog.showDialog(title, options.getIconPath(), Arrays.asList(image));
@@ -283,9 +289,9 @@ public class UiBooster {
      * correct ratio. The user can step forward and backwards thru the gallery.
      * The dialogs blocks the process until it's closed.
      *
-     * @param title     expects a title for the window
-     * @param images    expects a list of images (JPG, PNG and BMP are supported).
-     * @return          the object to control the picture gallery dialog
+     * @param title  expects a title for the window
+     * @param images expects a list of images (JPG, PNG and BMP are supported).
+     * @return the object to control the picture gallery dialog
      */
     public PictureGalleryDialog showPictures(String title, List<File> images) {
         return PictureGalleryDialog.showDialog(title, options.getIconPath(), images);
@@ -295,8 +301,8 @@ public class UiBooster {
      * Creates an object for building a form with selections, textfields and textareas.
      * The dialogs blocks the process until it's closed.
      *
-     * @param title     expects a title for the window
-     * @return          the object to create and control the form dialog
+     * @param title expects a title for the window
+     * @return the object to create and control the form dialog
      */
     public Form createForm(String title) {
         return new Form(title, options);
@@ -306,9 +312,9 @@ public class UiBooster {
     /**
      * Creates an object for building a system tray menu.
      *
-     * @param title     expects a title for the tray symbole
-     * @param iconPath  expects a path for the tray icon
-     * @return          the object to create and control the system tray
+     * @param title    expects a title for the tray symbole
+     * @param iconPath expects a path for the tray icon
+     * @return the object to create and control the system tray
      */
     public TrayMenu createTrayMenu(String title, String iconPath) {
         return new TrayMenu(title, iconPath, null);
@@ -320,7 +326,7 @@ public class UiBooster {
      * @param title         expects a title for the tray symbole
      * @param iconPath      expects a path for the tray icon
      * @param onIconClicked expects an action which starts on clicking the tray icon
-     * @return              the object to create and control the system tray
+     * @return the object to create and control the system tray
      */
     public TrayMenu createTrayMenu(String title, String iconPath, Runnable onIconClicked) {
         return new TrayMenu(title, iconPath, onIconClicked);
@@ -330,8 +336,8 @@ public class UiBooster {
      * Creates a notification window with title and message. The appearance and the support depends
      * on the used OS.
      *
-     * @param title     expects a title for the notification
-     * @param message   expects a message for the notificaiton
+     * @param title   expects a title for the notification
+     * @param message expects a message for the notificaiton
      */
     public void createNotification(String title, String message) {
         new Notification().display(title, message);
@@ -341,12 +347,12 @@ public class UiBooster {
      * Shows a dialog with a customizable slider, to ask the user for amounts.
      * The dialogs blocks the process until it's closed.
      *
-     * @param title     expects a title for the window
-     * @param message   expects a message for the meaning of this selection
-     * @param min       expects the lowest allowed value
-     * @param max       expects the highest allowed value
-     * @param init      expects the number to start with
-     * @return          the selected value or null if the dialog was closed
+     * @param title   expects a title for the window
+     * @param message expects a message for the meaning of this selection
+     * @param min     expects the lowest allowed value
+     * @param max     expects the highest allowed value
+     * @param init    expects the number to start with
+     * @return the selected value or null if the dialog was closed
      */
     public Integer showSlider(String title, String message, int min, int max, int init) {
         return showSlider(message, title, min, max, init, 10, 1);
@@ -363,9 +369,32 @@ public class UiBooster {
      * @param init      expects the number to start with
      * @param majorTick expects the number of steps for the labeled ticks
      * @param minorTick expects the number of steps for each tick
-     * @return          the selected value or null if the dialog was closed
+     * @return the selected value or null if the dialog was closed
      */
     public Integer showSlider(String title, String message, int min, int max, int init, int majorTick, int minorTick) {
         return SliderDialog.showDialog(message, title, min, max, init, majorTick, minorTick, options.getIconPath());
+    }
+
+    /**
+     * Shows an undecorated window with a given image as splash screen. PNG files with
+     * transparency are supported.
+     *
+     * @param imagePath expects the path to splash screen image
+     * @return a splash screen object to hide or show the screen.
+     */
+    public Splashscreen showSplashscreen(String imagePath) {
+        return new Splashscreen(imagePath, -1, 1, options.getIconPath());
+    }
+
+    /**
+     * Shows an undecorated window with a given image as splash screen. PNG files with
+     * transparency are supported.
+     *
+     * @param imagePath        expects the path to splash screen image
+     * @param lifeTimeInMillis defines the time for showing the splash screen in milli seconds, after that the screen closes automatically
+     * @return a splash screen object to hide or show the screen.
+     */
+    public Splashscreen showSplashscreen(String imagePath, int lifeTimeInMillis) {
+        return new Splashscreen(imagePath, lifeTimeInMillis, 1, options.getIconPath());
     }
 }
