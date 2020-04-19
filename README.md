@@ -17,7 +17,7 @@ If you like this project and you want to keep me awake 🤪
 
 ## Components
 
- - [Infomation dialogs](#information-dialogs)
+ - [Information dialogs](#information-dialogs)
  - [Text input dialog](#text-input-dialog)
  - [Confirmation dialog](#confirmation-dialog)
  - [Selection dialog](#selection-dialog)
@@ -28,7 +28,7 @@ If you like this project and you want to keep me awake 🤪
  - [Login dialog](#login-dialog)
  - [Waiting dialog](#waiting-dialog)
  - [Progress dialog](#progress-dialog)
- - [Tabel dialog](#table-dialog)
+ - [Table dialog](#table-dialog)
  - [Gallery dialog](#gallery-dialog)
  - [Form dialog](#form-dialog)
  - [System tray menu](#system-tray)
