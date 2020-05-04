@@ -349,10 +349,10 @@ public class UiBooster {
      * Creates a notification window with title and message. The appearance and the support depends
      * on the used OS.
      *
-     * @param title   expects a title for the notification
      * @param message expects a message for the notificaiton
+     * @param title   expects a title for the notification
      */
-    public void createNotification(String title, String message) {
+    public void createNotification(String message, String title) {
         new Notification().display(title, message);
     }
 
@@ -360,14 +360,14 @@ public class UiBooster {
      * Shows a dialog with a customizable slider, to ask the user for amounts.
      * The dialogs blocks the process until it's closed.
      *
-     * @param title   expects a title for the window
      * @param message expects a message for the meaning of this selection
+     * @param title   expects a title for the window
      * @param min     expects the lowest allowed value
      * @param max     expects the highest allowed value
      * @param init    expects the number to start with
      * @return the selected value or null if the dialog was closed
      */
-    public Integer showSlider(String title, String message, int min, int max, int init) {
+    public Integer showSlider(String message, String title, int min, int max, int init) {
         return showSlider(message, title, min, max, init, 10, 1);
     }
 
@@ -375,8 +375,8 @@ public class UiBooster {
      * Shows a dialog with a customizable slider, to ask the user for amounts.
      * The dialogs blocks the process until it's closed.
      *
-     * @param title     expects a title for the window
      * @param message   expects a message for the meaning of this selection
+     * @param title     expects a title for the window
      * @param min       expects the lowest allowed value
      * @param max       expects the highest allowed value
      * @param init      expects the number to start with
@@ -384,7 +384,7 @@ public class UiBooster {
      * @param minorTick expects the number of steps for each tick
      * @return the selected value or null if the dialog was closed
      */
-    public Integer showSlider(String title, String message, int min, int max, int init, int majorTick, int minorTick) {
+    public Integer showSlider(String message, String title, int min, int max, int init, int majorTick, int minorTick) {
         return SliderDialog.showDialog(message, title, min, max, init, majorTick, minorTick, options.getIconPath());
     }
 

@@ -77,7 +77,7 @@ String selection = new UiBooster().showSelectionDialog(
 ### Slider dialog
 ![screenshot slider dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/slider.jpg?raw=true)
 ```java
-Integer numberOfHotDogs = new UiBooster().showSlider("Your order", "How many HotDogs do you want?", 
+Integer numberOfHotDogs = new UiBooster().showSlider("How many HotDogs do you want?", "Your order", 
                 0, 10, 2, 5, 1);
 ```
 
@@ -206,7 +206,7 @@ booster.createTrayMenu("Food", "screenshots/color.jpg")
 ### Notification
 ![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/notification.jpg?raw=true)
 ```java
-new UiBooster().createNotification("Dinner is ready", "It's hot and delicious");
+new UiBooster().createNotification("It's hot and delicious", "Dinner is ready");
 ```
 
 ## Options
