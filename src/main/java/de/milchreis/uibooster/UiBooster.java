@@ -126,6 +126,19 @@ public class UiBooster {
      * @return the selection element form possibilities list or null on close
      */
     public String showSelectionDialog(String message, String title, List<String> possibilities) {
+        return showSelectionDialog(message, title, possibilities.toArray(new String[]{}));
+    }
+
+    /**
+     * Shows an info dialog and blocks until the ok button was clicked.
+     * '\n' is allowed as newline character for the info message.
+     *
+     * @param message       expects the message
+     * @param title         expects the window title
+     * @param possibilities expects a list with possibilities
+     * @return the selection element form possibilities list or null on close
+     */
+    public String showSelectionDialog(String message, String title, String... possibilities) {
         nonNull(message);
         nonNull(title);
 
@@ -135,8 +148,8 @@ public class UiBooster {
                 title,
                 JOptionPane.PLAIN_MESSAGE,
                 null,
-                possibilities.toArray(),
-                possibilities.get(0));
+                possibilities,
+                possibilities[0]);
 
         return selection;
     }
