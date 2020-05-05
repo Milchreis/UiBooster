@@ -166,6 +166,18 @@ public class UiBooster {
     }
 
     /**
+     * Shows a simple color picker to select an RGB value.
+     *
+     * @param message optional message above the color picker
+     * @param title   expects a window title
+     * @return the selected color as int value, on close it returns null.
+     */
+    public Integer showColorPickerAndGetRGB(String message, String title) {
+        Color color = showColorPicker(message, title);
+        return color != null ? color.getRGB() : null;
+    }
+
+    /**
      * Shows a file selection dialog. Only files are shown and selectable
      *
      * @return returns the selection file or null on cancel
