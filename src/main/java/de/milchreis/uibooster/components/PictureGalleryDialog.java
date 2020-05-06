@@ -91,8 +91,8 @@ public class PictureGalleryDialog {
             int defaultWidth = (int) ((double) screenSize.width * 0.5);
             int defaultHeight = (int) ((double) screenSize.height * 0.5);
 
-            defaultWidth = image.getWidth() < defaultWidth ? image.getWidth() : defaultWidth;
-            defaultHeight = image.getHeight() < defaultHeight ? image.getHeight() : defaultHeight;
+            defaultWidth = Math.min(image.getWidth(), defaultWidth);
+            defaultHeight = Math.min(image.getHeight(), defaultHeight);
 
             imagePanel.setImage(image);
 
