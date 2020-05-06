@@ -11,6 +11,8 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
 
@@ -346,6 +348,20 @@ public class UiBooster {
      */
     public PictureGalleryDialog showPictures(String title, List<File> images) {
         return PictureGalleryDialog.showDialog(title, options.getIconPath(), images);
+    }
+
+    /**
+     * Creates a resizable window which shows the given images as a gallery. The images are scaled with the
+     * correct ratio. The user can step forward and backwards thru the gallery.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param title  expects a title for the window
+     * @param images expects a list of images (JPG, PNG and BMP are supported).
+     * @return the object to control the picture gallery dialog
+     */
+    public PictureGalleryDialog showPictures(String title, String[] images) {
+        List<File> imageFiles = Stream.of(images).map(File::new).collect(Collectors.toList());
+        return PictureGalleryDialog.showDialog(title, options.getIconPath(), imageFiles);
     }
 
     /**
