@@ -164,12 +164,15 @@ class UiBoosterTest {
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addColorPicker("Favorite color?")
+                .setChangeListener((element, value) -> System.out.println(
+                        "Component " + element.getLabel() +
+                                " at position " + element.getIndex() +
+                                " changed to " + value.toString()))
                 .show();
 
         form.getElements().forEach(e -> {
             System.out.println(e.getLabel() + " -> " + e.getValue());
         });
-
     }
 
     @Test

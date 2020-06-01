@@ -2,6 +2,7 @@ package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
+import de.milchreis.uibooster.model.FormElementChangeListener;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 import de.milchreis.uibooster.model.formelements.*;
 
@@ -18,9 +19,10 @@ public class Form {
         TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER, DATE_PICKER
     }
 
-    private String title;
-    private List<FormElement> formElements;
-    private UiBoosterOptions options;
+    private final String title;
+    private final List<FormElement> formElements;
+    private final UiBoosterOptions options;
+    private FormElementChangeListener changeListener;
 
     public Form(String title, UiBoosterOptions options) {
         this.title = title;
@@ -29,17 +31,17 @@ public class Form {
     }
 
     public Form addText(String label) {
-        formElements.add(new TextFormElement(label));
+        formElements.add(new TextFormElement(label, formElements.size()));
         return this;
     }
 
     public Form addTextArea(String label) {
-        formElements.add(new TextAreaFormElement(label));
+        formElements.add(new TextAreaFormElement(label, formElements.size()));
         return this;
     }
 
     public Form addSelection(String label, List<String> possibilities) {
-        formElements.add(new SelectionFormElement(label, possibilities));
+        formElements.add(new SelectionFormElement(label, formElements.size(), possibilities));
         return this;
     }
 
@@ -49,7 +51,7 @@ public class Form {
     }
 
     public Form addLabel(String label) {
-        formElements.add(new LabelFormElement(label));
+        formElements.add(new LabelFormElement(label, formElements.size()));
         return this;
     }
 
@@ -58,22 +60,27 @@ public class Form {
     }
 
     public Form addButton(String label, String buttonLabel, Runnable onClick) {
-        formElements.add(new ButtonFormElement(label, buttonLabel, onClick));
+        formElements.add(new ButtonFormElement(label, buttonLabel, formElements.size(), onClick));
         return this;
     }
 
     public Form addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
-        formElements.add(new SliderFormElement(label, min, max, init, majorTick, minorTick));
+        formElements.add(new SliderFormElement(label, min, max, init, majorTick, minorTick, formElements.size()));
         return this;
     }
 
     public Form addDatePicker(String label) {
-        formElements.add(new DatePickerElement(label));
+        formElements.add(new DatePickerElement(label, formElements.size()));
         return this;
     }
 
     public Form addColorPicker(String label) {
-        formElements.add(new ColorPickerElement(label));
+        formElements.add(new ColorPickerElement(label, formElements.size()));
+        return this;
+    }
+
+    public Form setChangeListener(FormElementChangeListener onChange) {
+        this.changeListener = onChange;
         return this;
     }
 
@@ -105,8 +112,7 @@ public class Form {
             JPanel elementPanel = new JPanel(new BorderLayout());
 
             FormElement element = formElements.get(i);
-
-            JComponent component = element.createComponent();
+            JComponent component = element.createComponent(changeListener);
 
             if(element.getLabel() != null) {
                 JLabel label = new JLabel(element.getLabel());

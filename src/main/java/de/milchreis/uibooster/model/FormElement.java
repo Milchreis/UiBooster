@@ -10,19 +10,25 @@ import java.util.Date;
 public abstract class FormElement {
 
     protected String label;
+    protected final int formIndex;
     protected Form.InputType inputType;
 
-    public FormElement(String label, Form.InputType inputType) {
+    public FormElement(String label, Form.InputType inputType, int formIndex) {
         this.label = label;
         this.inputType = inputType;
+        this.formIndex = formIndex;
     }
 
-    public abstract JComponent createComponent();
+    public abstract JComponent createComponent(FormElementChangeListener onChange);
 
     public abstract Object getValue();
 
     public String getLabel() {
         return label;
+    }
+
+    public int getIndex() {
+        return formIndex;
     }
 
     public Float asFloat() {
