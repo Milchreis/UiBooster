@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class LabelFormElement extends FormElement {
 
-    private String label;
+    private final String label;
 
     public LabelFormElement(String label, int formIndex) {
         super(null, Form.InputType.LABEL, formIndex);

@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class DatePickerElement extends FormElement {
 
-    private JXDatePicker picker;
+    private final JXDatePicker picker;
 
     public DatePickerElement(String label, int formIndex) {
         super(label, Form.InputType.DATE_PICKER, formIndex);

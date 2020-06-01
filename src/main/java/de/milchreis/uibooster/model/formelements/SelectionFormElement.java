@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SelectionFormElement extends FormElement {
 
-    private List<String> possibilities;
+    private final List<String> possibilities;
     private JComboBox<String> box;
 
     public SelectionFormElement(String label, int formIndex, List<String> possibilities) {
