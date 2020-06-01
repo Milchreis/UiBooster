@@ -20,6 +20,7 @@ If you like this project, and you want to keep me awake 🤪
  - [Information dialogs](#information-dialogs)
  - [Text input dialog](#text-input-dialog)
  - [Confirmation dialog](#confirmation-dialog)
+ - [Password input dialog](#password-input-dialog)
  - [Selection dialog](#selection-dialog)
  - [Slider dialog](#slider-dialog)
  - [Colorpicker](#colorpicker)
@@ -63,6 +64,12 @@ new UiBooster().showConfirmDialog(
                 "Are you sure?",
                 () -> System.out.println("Action accepted"),
                 () -> System.out.println("Action declined"));
+```
+
+### Password input dialog
+![screenshot password dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/password.jpg?raw=true)
+```java
+String password = booster.showPasswordDialog("Whats your password?", "Password");
 ```
 
 ### Selection dialog

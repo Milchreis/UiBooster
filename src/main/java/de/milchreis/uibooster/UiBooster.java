@@ -95,6 +95,19 @@ public class UiBooster {
     }
 
     /**
+     * Shows a dialog with a password input field.
+     *
+     * @param message expects a message or question for the user.
+     * @param title   expects the window title
+     * @return the typed password or null on cancel
+     */
+    public String showPasswordDialog(String message, String title) {
+        nonNull(message);
+        nonNull(title);
+        return PasswordDialog.show(message, title, options.getIconPath());
+    }
+
+    /**
      * Shows a confirm dialog and blocks until a decision is selected.
      * '\n' is allowed as newline character for the message.
      *

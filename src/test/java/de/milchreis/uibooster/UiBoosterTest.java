@@ -38,6 +38,12 @@ class UiBoosterTest {
     }
 
     @Test
+    public void test_password_dialog() {
+        String password = booster.showPasswordDialog("Whats your password?", "Password");
+        System.out.println(password);
+    }
+
+    @Test
     public void test_confirm_dialog() {
         booster.showConfirmDialog(
                 "Do you really want this action?",
