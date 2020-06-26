@@ -11,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.stream.Stream;
 
 class UiBoosterTest {
 
@@ -142,8 +143,7 @@ class UiBoosterTest {
                 Arrays.asList("Name", "Age", "Favorite movie"),
                 "Favorite movies");
 
-        System.out.println(modifiedData);
-
+        Stream.of(modifiedData).forEach(row -> System.out.println(String.join(", ", row)));
     }
 
     @Test

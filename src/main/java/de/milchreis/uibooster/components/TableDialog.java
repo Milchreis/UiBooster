@@ -25,6 +25,7 @@ public class TableDialog {
         final JTable table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(500, 500));
         table.setFillsViewportHeight(true);
+        table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         table.setEnabled(isEditable);
 
         JButton addRow = new JButton("+");

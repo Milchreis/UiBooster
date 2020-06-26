@@ -5,8 +5,8 @@ import java.util.List;
 
 public class FilledForm {
 
-    private JDialog window;
-    private List<FormElement> elements;
+    private final JDialog window;
+    private final List<FormElement> elements;
 
     public FilledForm(JDialog dialog, List<FormElement> elements) {
         window = dialog;
