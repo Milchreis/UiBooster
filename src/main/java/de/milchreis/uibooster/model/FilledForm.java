@@ -2,6 +2,7 @@ package de.milchreis.uibooster.model;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
 
 public class FilledForm {
 
@@ -18,7 +19,10 @@ public class FilledForm {
     }
 
     public FormElement getByLabel(String label) {
-        return elements.stream().filter(element -> element.label.equals(label)).findFirst().get();
+        return elements.stream()
+                .filter(element -> Objects.nonNull(element.label))
+                .filter(element -> element.label.equals(label))
+                .findFirst().get();
     }
 
     public List<FormElement> getElements() {
