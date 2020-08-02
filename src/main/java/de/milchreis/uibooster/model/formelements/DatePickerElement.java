@@ -30,4 +30,12 @@ public class DatePickerElement extends FormElement {
     public Date getValue() {
         return picker.getDate();
     }
+
+    @Override
+    public void setValue(Object value) {
+        if (!(value instanceof Date))
+            throw new IllegalArgumentException("The given value has to be of type 'Date'");
+
+        picker.setDate((Date) value);
+    }
 }

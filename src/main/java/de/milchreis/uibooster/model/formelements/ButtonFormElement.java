@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class ButtonFormElement extends FormElement {
 
-    private final String buttonLabel;
+    private String buttonLabel;
     private final Runnable onClick;
     private JButton button;
 
@@ -29,5 +29,11 @@ public class ButtonFormElement extends FormElement {
     @Override
     public Object getValue() {
         return button.getName();
+    }
+
+    @Override
+    public void setValue(Object value) {
+        buttonLabel = value.toString();
+        button.setText(buttonLabel);
     }
 }

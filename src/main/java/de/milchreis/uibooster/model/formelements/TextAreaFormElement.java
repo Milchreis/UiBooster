@@ -37,4 +37,9 @@ public class TextAreaFormElement extends FormElement {
     public String getValue() {
         return area.getText();
     }
+
+    @Override
+    public void setValue(Object value) {
+        area.setText(value.toString());
+    }
 }

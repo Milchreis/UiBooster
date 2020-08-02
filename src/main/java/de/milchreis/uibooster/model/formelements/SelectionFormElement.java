@@ -33,4 +33,15 @@ public class SelectionFormElement extends FormElement {
         Object text = box.getSelectedItem();
         return text != null ? text.toString() : "";
     }
+
+    @Override
+    public void setValue(Object value) {
+        if (!(value instanceof String))
+            throw new IllegalArgumentException("The given value has to be of type 'Date'");
+
+        if (possibilities.contains(value.toString()))
+            throw new IllegalArgumentException("The given value has to be an element of the supported possibilities list");
+
+        box.setSelectedItem(value.toString());
+    }
 }

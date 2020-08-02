@@ -30,4 +30,15 @@ public class ColorPickerElement extends FormElement {
     public Color getValue() {
         return picker.getColor();
     }
+
+    @Override
+    public void setValue(Object value) {
+        if (!(value instanceof Color) && !(value instanceof Integer))
+            throw new IllegalArgumentException("The given value has to be of type 'Color' or 'int'");
+
+        if (value instanceof Integer)
+            picker.setColor(new Color((int) value));
+        else
+            picker.setColor((Color) value);
+    }
 }

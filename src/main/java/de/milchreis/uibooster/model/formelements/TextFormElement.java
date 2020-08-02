@@ -37,4 +37,9 @@ public class TextFormElement extends FormElement {
     public String getValue() {
         return textfield.getText();
     }
+
+    @Override
+    public void setValue(Object value) {
+        textfield.setText(value.toString());
+    }
 }

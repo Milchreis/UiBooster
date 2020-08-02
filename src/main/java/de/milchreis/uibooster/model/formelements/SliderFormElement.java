@@ -46,4 +46,12 @@ public class SliderFormElement extends FormElement {
     public Integer getValue() {
         return slider.getValue();
     }
+
+    @Override
+    public void setValue(Object value) {
+        if (!(value instanceof Integer))
+            throw new IllegalArgumentException("The given value has to be of type 'int'");
+
+        slider.setValue((int) value);
+    }
 }

@@ -23,6 +23,8 @@ public abstract class FormElement {
 
     public abstract Object getValue();
 
+    public abstract void setValue(Object value);
+
     public String getLabel() {
         return label;
     }
