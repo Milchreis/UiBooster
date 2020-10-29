@@ -111,6 +111,19 @@ class UiBoosterTest {
     }
 
     @Test
+    public void test_waiting_dialog_with_titlebar() {
+        WaitingDialog dialog = booster.showWaitingDialog("Starting", "Please wait", true);
+        sleep(1000);
+        dialog.setMessage("Initializing");
+        dialog.setLargeMessage("Some more information...\nMaybe from log files or other resources. \nBe transparent to the user to understand long processes...");
+        sleep(2000);
+        dialog.setMessage("Ready");
+        dialog.addToLargeMessage("Ready!!!");
+        sleep(500);
+        dialog.close();
+    }
+
+    @Test
     public void test_progress_dialog() {
 
         ProgressDialog dialog = booster.showProgressDialog("Please wait", "Waiting", 0, 120);
