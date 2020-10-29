@@ -35,6 +35,8 @@ public class UiBooster {
 
             try {
                 if (options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
+                    // Little hack to start working on linux
+                    javax.swing.UIManager.getFont("Label.font");
                     UIManager.setLookAndFeel(new DarculaLaf());
 
                 } else if (options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
@@ -42,6 +44,7 @@ public class UiBooster {
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
