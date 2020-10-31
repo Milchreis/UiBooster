@@ -128,7 +128,7 @@ ListElement selectedElement = new UiBooster().showList(
     "Select a robot", 
     "Avatars from RoboHash.org",
     element -> System.out.println("Selected: " + element.toString()),
-    new ListElement("Robo 1", "Green and strong",          "src/test/resources/avatar1.png"),
+    new ListElement("Robo 1", "Green and strong",         "src/test/resources/avatar1.png"),
     new ListElement("Robo 2", "Shy without an avatar!"),
     new ListElement("Robo 3", "- Crazy\n- Fast\n- Funny", "src/test/resources/avatar2.png"),
     new ListElement("Robo 4", null,                       "src/test/resources/avatar3.png")
