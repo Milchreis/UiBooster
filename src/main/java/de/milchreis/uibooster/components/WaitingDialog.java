@@ -10,8 +10,8 @@ import static de.milchreis.uibooster.model.UiBoosterOptions.Theme.DARK_THEME;
 
 public class WaitingDialog {
 
-    private JFrame dialog;
-    private JLabel messageLabel;
+    private final JFrame dialog;
+    private final JLabel messageLabel;
     private JTextArea largeMessageText;
 
     public WaitingDialog(JFrame dialog, JLabel messageLabel, JTextArea largeMessageText) {
@@ -46,11 +46,7 @@ public class WaitingDialog {
         this.dialog.dispose();
     }
 
-    public static WaitingDialog showDialog(String message, String title, UiBoosterOptions options) {
-        return showDialog(message, title, null, options);
-    }
-
-    public static WaitingDialog showDialog(String message, String title, String largeMessage, UiBoosterOptions options) {
+    public static WaitingDialog showDialog(String message, String title, String largeMessage, UiBoosterOptions options, boolean decorated) {
 
         String loadingImage = options.getTheme() == DARK_THEME ?
                 "/loading-75_darcular.gif" : "/loading-75.gif";
@@ -60,7 +56,7 @@ public class WaitingDialog {
         JFrame window = new JFrame();
         window.setTitle(title);
         window.setSize(largeMessage != null ? 500 : 300, largeMessage != null ? 500 : 120);
-        window.setUndecorated(true);
+        window.setUndecorated(!decorated);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setLocationRelativeTo(null);
 
