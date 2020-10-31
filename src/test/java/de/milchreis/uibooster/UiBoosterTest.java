@@ -226,6 +226,11 @@ class UiBoosterTest {
     }
 
     @Test
+    void test_stacktrace_dialog() {
+        booster.showException("An error occurred", "Exception message", new Exception("Something went wrong ..."));
+    }
+
+    @Test
     void test_list_dialog() {
         ListElement selectedElement = booster.showList("Select a message", "Some messages",
                 element -> System.out.println("Selected: " + element.toString()),

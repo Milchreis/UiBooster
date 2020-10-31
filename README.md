@@ -26,6 +26,7 @@ If you like this project, and you want to keep me awake 🤪
  - [Colorpicker](#colorpicker)
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
+ - [Exception dialog](#exception-dialog)
  - [Login dialog](#login-dialog)
  - [Waiting dialog](#waiting-dialog)
  - [Progress dialog](#progress-dialog)
@@ -107,6 +108,16 @@ UiBooster booster = new UiBooster();
 File file = booster.showFileSelection();
 File directory = booster.showDirectorySelection();
 File fileOrDirectory = booster.showFileOrDirectorySelection();
+```
+
+### Exception dialog
+![screenshot file dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/exception.jpg?raw=true)
+```java
+new UiBooster().showException(
+    "An error occurred", 
+    "Exception message",
+    new Exception("Something went wrong ...")
+);
 ```
 
 ### Login dialog

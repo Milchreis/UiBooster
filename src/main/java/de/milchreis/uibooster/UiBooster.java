@@ -536,4 +536,16 @@ public class UiBooster {
     public ListElement showList(String message, String title, SelectElementListener onSelect, ListElement... elements) {
         return ListDialog.showList(message, title, options.getIconPath(), onSelect, elements);
     }
+
+    /**
+     * Shows an exception stack trace in a dialog
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param message   expects a message for the meaning of this selection
+     * @param title     expects a title for the window
+     * @param exception excepts an exception to show the stacktrace
+     */
+    public void showException(String message, String title, Exception exception) {
+        ExceptionDialog.showDialog(message, title, options, exception);
+    }
 }
