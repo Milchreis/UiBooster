@@ -232,12 +232,12 @@ class UiBoosterTest {
 
     @Test
     void test_list_dialog() {
-        ListElement selectedElement = booster.showList("Select a message", "Some messages",
+        ListElement selectedElement = booster.showList("Select a robot", "Avatars from RoboHash.org",
                 element -> System.out.println("Selected: " + element.toString()),
-                new ListElement("Titel 1", "Some message with an icon", "src/main/resources/icon.png"),
-                new ListElement("Titel 2", "Another message without an icon!"),
-                new ListElement("Titel 3", "A message\nwith a newline", "src/main/resources/icon.png"),
-                new ListElement("Titel 4", null));
+                new ListElement("Robo 1", "Green and strong", "src/test/resources/avatar1.png"),
+                new ListElement("Robo 2", "Shy without an avatar!"),
+                new ListElement("Robo 3", "- Crazy\n- Fast\n- Funny", "src/test/resources/avatar2.png"),
+                new ListElement("Robo 4", null, "src/test/resources/avatar3.png"));
 
         assert selectedElement != null;
         System.out.println(selectedElement.toString());

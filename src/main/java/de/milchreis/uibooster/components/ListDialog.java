@@ -17,13 +17,22 @@ public class ListDialog {
         return showList(message, title, iconPath, null, elements);
     }
 
-    public static ListElement showList(String message, String title, String iconPath, SelectElementListener selectElementListener, ListElement... elements) {
+    public static ListElement showList(String message, String title, String iconPath,
+                                       SelectElementListener selectElementListener,
+                                       ListElement... elements) {
 
         JList<ListElement> list = createList(selectElementListener, elements);
 
-        SimpleBlockingDialog dialog = new SimpleBlockingDialog(new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
-        DialogClosingState closingState = dialog.showDialog(message, title, iconPath, true);
+        final JScrollPane jScrollPane = new JScrollPane(
+                list,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        jScrollPane.setPreferredSize(new Dimension(400, 400));
+
+        SimpleBlockingDialog dialog = new SimpleBlockingDialog(jScrollPane);
+
+        DialogClosingState closingState = dialog.showDialog(message, title, iconPath, true);
         return closingState.isClosedByUser() ? null : list.getSelectedValue();
     }
 
@@ -84,21 +93,29 @@ public class ListDialog {
         return list;
     }
 
-    static class JMultilineLabel extends JTextArea {
+    static class JMultilineLabel extends JLabel {
         private static final long serialVersionUID = 1L;
 
         public JMultilineLabel(String text, boolean bold) {
-            super(text);
-            setEditable(false);
+            super();
+
+            if (text != null) {
+                final String prepared = "<html>"
+                        + text
+                        .replace("\r", "")
+                        .replace("\n", "<br>")
+                        + "</html>";
+
+                setText(prepared);
+            }
+
             setCursor(null);
             setOpaque(false);
             setFocusable(false);
             setFont(UIManager.getFont("Label.font"));
             if (!bold)
                 setFont(getFont().deriveFont(getFont().getStyle() & ~Font.BOLD));
-            setWrapStyleWord(true);
-            setLineWrap(true);
-            setBorder(new EmptyBorder(5, 5, 5, 5));
+            setBorder(new EmptyBorder(5, 5, 0, 5));
             setAlignmentY(JLabel.CENTER_ALIGNMENT);
         }
     }

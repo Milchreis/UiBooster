@@ -27,6 +27,7 @@ If you like this project, and you want to keep me awake 🤪
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
  - [Exception dialog](#exception-dialog)
+ - [List dialog](#list-dialog)
  - [Login dialog](#login-dialog)
  - [Waiting dialog](#waiting-dialog)
  - [Progress dialog](#progress-dialog)
@@ -111,12 +112,26 @@ File fileOrDirectory = booster.showFileOrDirectorySelection();
 ```
 
 ### Exception dialog
-![screenshot file dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/exception.jpg?raw=true)
+![screenshot exception dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/exception.jpg?raw=true)
 ```java
 new UiBooster().showException(
     "An error occurred", 
     "Exception message",
     new Exception("Something went wrong ...")
+);
+```
+
+### List dialog
+![screenshot list dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/list.jpg?raw=true)
+```java
+ListElement selectedElement = new UiBooster().showList(
+    "Select a robot", 
+    "Avatars from RoboHash.org",
+    element -> System.out.println("Selected: " + element.toString()),
+    new ListElement("Robo 1", "Green and strong",          "src/test/resources/avatar1.png"),
+    new ListElement("Robo 2", "Shy without an avatar!"),
+    new ListElement("Robo 3", "- Crazy\n- Fast\n- Funny", "src/test/resources/avatar2.png"),
+    new ListElement("Robo 4", null,                       "src/test/resources/avatar3.png")
 );
 ```
 
