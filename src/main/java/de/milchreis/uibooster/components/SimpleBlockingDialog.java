@@ -11,15 +11,18 @@ import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
 public class SimpleBlockingDialog {
 
     private JDialog dialog;
-    private JComponent[] components;
-    private DialogClosingState closingState = new DialogClosingState();
+    private final JComponent[] components;
+    private final DialogClosingState closingState = new DialogClosingState();
 
     public SimpleBlockingDialog(JComponent... component) {
         this.components = component;
     }
 
     public DialogClosingState showDialog(String message, String title, String iconPath) {
+        return showDialog(message, title, iconPath, false);
+    }
 
+    public DialogClosingState showDialog(String message, String title, String iconPath, boolean resizable) {
         JOptionPane optionPane = new JOptionPane();
 
         if (message != null && !message.isEmpty())
@@ -38,6 +41,8 @@ public class SimpleBlockingDialog {
             }
         });
 
+        dialog.setResizable(resizable);
+        dialog.pack();
         dialog.setVisible(true);
         dialog.dispose();
 

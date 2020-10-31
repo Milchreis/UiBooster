@@ -2,7 +2,9 @@ package de.milchreis.uibooster;
 
 import com.bulenkov.darcula.DarculaLaf;
 import de.milchreis.uibooster.components.*;
+import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.LoginCredentials;
+import de.milchreis.uibooster.model.SelectElementListener;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
@@ -476,5 +478,32 @@ public class UiBooster {
      */
     public Splashscreen showSplashscreen(String imagePath, int lifeTimeInMillis) {
         return new Splashscreen(imagePath, lifeTimeInMillis, 1, options.getIconPath());
+    }
+
+    /**
+     * Shows a list with a headline, a message part and an image.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param message  expects a message for the meaning of this selection
+     * @param title    expects a title for the window
+     * @param elements expects the elements used for the list
+     * @return the selected value or null if the dialog was closed
+     */
+    public ListElement showList(String message, String title, ListElement... elements) {
+        return ListDialog.showList(message, title, options.getIconPath(), elements);
+    }
+
+    /**
+     * Shows a list with a headline, a message part and an image.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param message  expects a message for the meaning of this selection
+     * @param title    expects a title for the window
+     * @param onSelect expects a callback implementation when a elements was selected
+     * @param elements expects the elements used for the list
+     * @return the selected value or null if the dialog was closed
+     */
+    public ListElement showList(String message, String title, SelectElementListener onSelect, ListElement... elements) {
+        return ListDialog.showList(message, title, options.getIconPath(), onSelect, elements);
     }
 }

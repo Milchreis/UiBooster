@@ -4,6 +4,7 @@ import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.Splashscreen;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.FilledForm;
+import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.LoginCredentials;
 import org.junit.jupiter.api.Test;
 
@@ -209,6 +210,19 @@ class UiBoosterTest {
         Splashscreen splash = booster.showSplashscreen("src/main/resources/icon.png");
         sleep(5000);
         splash.hide();
+    }
+
+    @Test
+    void test_list_dialog() {
+        ListElement selectedElement = booster.showList("Select a message", "Some messages",
+                element -> System.out.println("Selected: " + element.toString()),
+                new ListElement("Titel 1", "Some message with an icon", "src/main/resources/icon.png"),
+                new ListElement("Titel 2", "Another message without an icon!"),
+                new ListElement("Titel 3", "A message\nwith a newline", "src/main/resources/icon.png"),
+                new ListElement("Titel 4", null));
+
+        assert selectedElement != null;
+        System.out.println(selectedElement.toString());
     }
 
 

@@ -9,11 +9,11 @@ import java.net.URL;
 public class WindowIconHelper {
 
     public static ImageIcon getIcon(String iconPath) {
-        URL resource = WaitingDialog.class.getResource(iconPath);
-        if (resource == null)
+        if (iconPath == null || iconPath.isEmpty())
             return new ImageIcon(iconPath);
-        else
-            return new ImageIcon(resource);
+
+        URL resource = WaitingDialog.class.getResource(iconPath);
+        return resource == null ? new ImageIcon(iconPath) : new ImageIcon(resource);
     }
 
     public static void applyWindowIcon(String iconPath, Window component) {
