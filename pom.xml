@@ -24,7 +24,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.bulenkov</groupId>
+            <groupId>com.github.ice1k</groupId>
             <artifactId>darcula</artifactId>
             <version>2018.2</version>
         </dependency>
@@ -39,9 +39,8 @@
 
     <repositories>
         <repository>
-            <id>bintray-ice1000-ice1000</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/ice1000/ice1000</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
