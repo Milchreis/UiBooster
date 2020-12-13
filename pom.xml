@@ -39,9 +39,9 @@
 
     <repositories>
         <repository>
-            <id>spring</id>
-            <name>spring</name>
-            <url>https://repo.spring.io/plugins-release/</url>
+            <id>bintray-ice1000-ice1000</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/ice1000/ice1000</url>
         </repository>
     </repositories>
 
