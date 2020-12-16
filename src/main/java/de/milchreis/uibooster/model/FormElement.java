@@ -1,7 +1,5 @@
 package de.milchreis.uibooster.model;
 
-import de.milchreis.uibooster.components.Form;
-
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -10,12 +8,13 @@ import java.util.Date;
 public abstract class FormElement {
 
     protected String label;
-    protected final int formIndex;
-    protected Form.InputType inputType;
+    protected int formIndex;
 
-    public FormElement(String label, Form.InputType inputType, int formIndex) {
+    public FormElement(String label) {
         this.label = label;
-        this.inputType = inputType;
+    }
+
+    public void setFormIndex(int formIndex) {
         this.formIndex = formIndex;
     }
 

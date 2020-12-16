@@ -1,6 +1,5 @@
 package de.milchreis.uibooster.model.formelements;
 
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 import org.jdesktop.swingx.JXDatePicker;
@@ -12,8 +11,8 @@ public class DatePickerElement extends FormElement {
 
     private final JXDatePicker picker;
 
-    public DatePickerElement(String label, int formIndex) {
-        super(label, Form.InputType.DATE_PICKER, formIndex);
+    public DatePickerElement(String label) {
+        super(label);
         picker = new JXDatePicker(new Date(System.currentTimeMillis()));
     }
 

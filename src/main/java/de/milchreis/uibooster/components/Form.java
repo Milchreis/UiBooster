@@ -15,10 +15,6 @@ import java.util.List;
 
 public class Form {
 
-    public enum InputType {
-        TEXT, TEXT_AREA, SELECTION, LABEL, BUTTON, SLIDER, COLOR_PICKER, DATE_PICKER
-    }
-
     private final String title;
     private final List<FormElement> formElements;
     private final UiBoosterOptions options;
@@ -31,17 +27,17 @@ public class Form {
     }
 
     public Form addText(String label) {
-        formElements.add(new TextFormElement(label, formElements.size()));
+        addElement(new TextFormElement(label));
         return this;
     }
 
     public Form addTextArea(String label) {
-        formElements.add(new TextAreaFormElement(label, formElements.size()));
+        addElement(new TextAreaFormElement(label));
         return this;
     }
 
     public Form addSelection(String label, List<String> possibilities) {
-        formElements.add(new SelectionFormElement(label, formElements.size(), possibilities));
+        addElement(new SelectionFormElement(label, possibilities));
         return this;
     }
 
@@ -50,8 +46,13 @@ public class Form {
         return this;
     }
 
+    public Form addCustomElement(FormElement element) {
+        addElement(element);
+        return this;
+    }
+
     public Form addLabel(String label) {
-        formElements.add(new LabelFormElement(label, formElements.size()));
+        addElement(new LabelFormElement(label));
         return this;
     }
 
@@ -60,22 +61,23 @@ public class Form {
     }
 
     public Form addButton(String label, String buttonLabel, Runnable onClick) {
-        formElements.add(new ButtonFormElement(label, buttonLabel, formElements.size(), onClick));
+        addElement(new ButtonFormElement(label, buttonLabel, onClick));
         return this;
     }
 
+
     public Form addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
-        formElements.add(new SliderFormElement(label, min, max, init, majorTick, minorTick, formElements.size()));
+        addElement(new SliderFormElement(label, min, max, init, majorTick, minorTick));
         return this;
     }
 
     public Form addDatePicker(String label) {
-        formElements.add(new DatePickerElement(label, formElements.size()));
+        addElement(new DatePickerElement(label));
         return this;
     }
 
     public Form addColorPicker(String label) {
-        formElements.add(new ColorPickerElement(label, formElements.size()));
+        addElement(new ColorPickerElement(label));
         return this;
     }
 
@@ -107,21 +109,19 @@ public class Form {
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        for(int i = 0; i < formElements.size(); i++) {
+        for (FormElement formElement : formElements) {
 
             JPanel elementPanel = new JPanel(new BorderLayout());
+            JComponent component = formElement.createComponent(changeListener);
 
-            FormElement element = formElements.get(i);
-            JComponent component = element.createComponent(changeListener);
-
-            if(element.getLabel() != null) {
-                JLabel label = new JLabel(element.getLabel());
+            if (formElement.getLabel() != null) {
+                JLabel label = new JLabel(formElement.getLabel());
                 label.setBorder(new EmptyBorder(0, 0, 5, 0));
                 panel.add(label);
                 elementPanel.add(label, BorderLayout.NORTH);
             }
 
-            if(component != null) {
+            if (component != null) {
                 elementPanel.add(component, BorderLayout.CENTER);
                 elementPanel.add(new JLabel(" "), BorderLayout.SOUTH);
             }
@@ -130,4 +130,10 @@ public class Form {
         }
         return panel;
     }
+
+    private void addElement(FormElement e) {
+        e.setFormIndex(formElements.size());
+        formElements.add(e);
+    }
+
 }

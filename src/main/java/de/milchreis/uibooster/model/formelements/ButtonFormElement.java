@@ -1,6 +1,5 @@
 package de.milchreis.uibooster.model.formelements;
 
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
@@ -12,8 +11,8 @@ public class ButtonFormElement extends FormElement {
     private final Runnable onClick;
     private JButton button;
 
-    public ButtonFormElement(String label, String buttonLabel, int formIndex, Runnable onClick) {
-        super(label, Form.InputType.BUTTON, formIndex);
+    public ButtonFormElement(String label, String buttonLabel, Runnable onClick) {
+        super(label);
 
         this.buttonLabel = buttonLabel;
         this.onClick = onClick;

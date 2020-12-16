@@ -1,6 +1,5 @@
 package de.milchreis.uibooster.model.formelements;
 
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
@@ -10,8 +9,8 @@ public class LabelFormElement extends FormElement {
 
     private final JLabel label;
 
-    public LabelFormElement(String label, int formIndex) {
-        super(null, Form.InputType.LABEL, formIndex);
+    public LabelFormElement(String label) {
+        super(null);
         this.label = new JLabel(label);
     }
 

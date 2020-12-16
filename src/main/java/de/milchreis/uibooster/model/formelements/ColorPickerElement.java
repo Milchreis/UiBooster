@@ -2,7 +2,6 @@ package de.milchreis.uibooster.model.formelements;
 
 import com.bric.colorpicker.ColorPicker;
 import de.milchreis.uibooster.components.ColorPickerDialog;
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
@@ -13,8 +12,8 @@ public class ColorPickerElement extends FormElement {
 
     private final ColorPicker picker;
 
-    public ColorPickerElement(String label, int formIndex) {
-        super(label, Form.InputType.COLOR_PICKER, formIndex);
+    public ColorPickerElement(String label) {
+        super(label);
         picker = ColorPickerDialog.createColorPicker();
     }
 

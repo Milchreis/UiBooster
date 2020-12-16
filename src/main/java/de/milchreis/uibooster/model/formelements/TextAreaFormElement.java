@@ -1,6 +1,5 @@
 package de.milchreis.uibooster.model.formelements;
 
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
@@ -12,8 +11,8 @@ public class TextAreaFormElement extends FormElement {
 
     private JTextArea area;
 
-    public TextAreaFormElement(String label, int formIndex) {
-        super(label, Form.InputType.TEXT_AREA, formIndex);
+    public TextAreaFormElement(String label) {
+        super(label);
     }
 
     @Override

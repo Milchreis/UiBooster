@@ -1,6 +1,5 @@
 package de.milchreis.uibooster.model.formelements;
 
-import de.milchreis.uibooster.components.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
@@ -14,8 +13,8 @@ public class SliderFormElement extends FormElement {
     private JSlider slider;
     private final int min, max, init, majorTick, minorTick;
 
-    public SliderFormElement(String label, int min, int max, int init, int majorTick, int minorTick, int formIndex) {
-        super(label, Form.InputType.SLIDER, formIndex);
+    public SliderFormElement(String label, int min, int max, int init, int majorTick, int minorTick) {
+        super(label);
         this.min = min;
         this.max = max;
         this.init = init;
