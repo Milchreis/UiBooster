@@ -4,7 +4,6 @@ import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.LoginCredentials;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,14 +14,10 @@ import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
 
 public class LoginDialog extends JDialog {
 
-    private JTextField tfUsername;
-    private JPasswordField pfPassword;
-    private JLabel lbAddress;
-    private JLabel lbUsername;
-    private JLabel lbPassword;
-    private JButton btnLogin;
-    private JButton btnCancel;
-    private DialogClosingState closingState;
+    private final JTextField tfUsername;
+    private final JPasswordField pfPassword;
+    private final JButton btnLogin;
+    private final DialogClosingState closingState;
 
     public LoginDialog(String title, String message, String usernameLabel, String passwordLabel, String loginButtonLabel, String cancelButtonLabel, String iconPath) {
         super((JFrame) null, title, true);
@@ -33,13 +28,13 @@ public class LoginDialog extends JDialog {
         cs.ipadx = 5;
         cs.ipady = 5;
 
-        lbAddress = new JLabel(message);
+        JLabel lbAddress = new JLabel(message);
         cs.gridx = 0;
         cs.gridy = 0;
         cs.gridwidth = 2;
         panel.add(lbAddress, cs);
 
-        lbUsername = new JLabel(usernameLabel);
+        JLabel lbUsername = new JLabel(usernameLabel);
         cs.gridx = 0;
         cs.gridy = 1;
         cs.gridwidth = 1;
@@ -51,7 +46,7 @@ public class LoginDialog extends JDialog {
         cs.gridwidth = 2;
         panel.add(tfUsername, cs);
 
-        lbPassword = new JLabel(passwordLabel);
+        JLabel lbPassword = new JLabel(passwordLabel);
         cs.gridx = 0;
         cs.gridy = 2;
         cs.gridwidth = 1;
@@ -62,7 +57,6 @@ public class LoginDialog extends JDialog {
         cs.gridy = 2;
         cs.gridwidth = 2;
         panel.add(pfPassword, cs);
-        panel.setBorder(new LineBorder(Color.GRAY));
 
         pfPassword.addKeyListener(new KeyListener() {
 
@@ -87,7 +81,7 @@ public class LoginDialog extends JDialog {
         btnLogin = new JButton(loginButtonLabel);
 
         btnLogin.addActionListener(e -> dispose());
-        btnCancel = new JButton(cancelButtonLabel);
+        JButton btnCancel = new JButton(cancelButtonLabel);
         btnCancel.addActionListener(e -> {
             closingState.setClosedByUser(true);
             dispose();
