@@ -81,6 +81,16 @@ public class Form {
         return this;
     }
 
+    public Form addMultipleSelection(String label, String... elements) {
+        addElement(new FilterableCheckboxListFormElement(label, Arrays.asList(elements)));
+        return this;
+    }
+
+    public Form addMultipleSelection(String label, List<String> elements) {
+        addElement(new FilterableCheckboxListFormElement(label, elements));
+        return this;
+    }
+
     public Form setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;

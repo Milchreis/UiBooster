@@ -3,7 +3,6 @@ package de.milchreis.uibooster;
 import de.milchreis.uibooster.components.ProgressDialog;
 import de.milchreis.uibooster.components.Splashscreen;
 import de.milchreis.uibooster.components.WaitingDialog;
-import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.LoginCredentials;
 import org.junit.jupiter.api.Test;
@@ -12,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Stream;
 
 class UiBoosterTest {
@@ -170,32 +170,6 @@ class UiBoosterTest {
     }
 
     @Test
-    public void test_form_dialog() {
-        FilledForm form = booster
-                .createForm("Personal information")
-                .addText("Whats your first name?")
-                .addDatePicker("Whats your birthday?")
-                .addTextArea("Tell me something about you")
-                .addSelection(
-                        "Whats your favorite movie?",
-                        Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
-                .addLabel("Choose an action")
-                .addButton("half full", () -> booster.showInfoDialog("Optimist"))
-                .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
-                .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
-                .addColorPicker("Favorite color?")
-                .setChangeListener((element, value) -> System.out.println(
-                        "Component " + element.getLabel() +
-                                " at position " + element.getIndex() +
-                                " changed to " + value.toString()))
-                .show();
-
-        form.getElements().forEach(e -> {
-            System.out.println(e.getLabel() + " -> " + e.getValue());
-        });
-    }
-
-    @Test
     public void test_tray_dialog() {
         booster.createTrayMenu("Food", "screenshots/color.jpg")
                 .withPopupMenu()
@@ -238,6 +212,18 @@ class UiBoosterTest {
                 new ListElement("Robo 2", "Shy without an avatar!"),
                 new ListElement("Robo 3", "- Crazy\n- Fast\n- Funny", "src/test/resources/avatar2.png"),
                 new ListElement("Robo 4", null, "src/test/resources/avatar3.png"));
+
+        assert selectedElement != null;
+        System.out.println(selectedElement.toString());
+    }
+
+    @Test
+    void test_checkbox_list_dialog() {
+        List<String> selectedElement = booster.showMultipleSelection(
+                "What are your favorite hobbies?",
+                "Your hobbies",
+                "Reading", "Traveling", "Fishing", "Music", "Gardening", "Sport", "Television",
+                "Video Games", "Crafting", "Bird Watching", "Collecting");
 
         assert selectedElement != null;
         System.out.println(selectedElement.toString());

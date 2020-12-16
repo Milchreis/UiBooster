@@ -257,10 +257,10 @@ public class UiBooster {
      * Shows a waiting dialog with a changeable message.
      * This dialog does not wait for any user input. Its decoupled from the rest of the application.
      *
-     * @param message     optional message to the user
-     * @param title       expects a title for the window
-     * @param decorated   hides or shows the window title bar (true = show)
-     * @return            returns the dialog object to change the message and hide the dialog as needed.
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @param decorated hides or shows the window title bar (true = show)
+     * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title, boolean decorated) {
         return WaitingDialog.showDialog(message, title, null, options, decorated);
@@ -283,11 +283,11 @@ public class UiBooster {
      * Shows a waiting dialog with a changeable message.
      * This dialog does not wait for any user input. Its decoupled from the rest of the application.
      *
-     * @param message     optional message to the user
-     * @param title       expects a title for the window
-     * @param decorated   hides or shows the window title bar (true = show)
-     * @param largeText   optional large message
-     * @return            returns the dialog object to change the message and hide the dialog as needed.
+     * @param message   optional message to the user
+     * @param title     expects a title for the window
+     * @param decorated hides or shows the window title bar (true = show)
+     * @param largeText optional large message
+     * @return returns the dialog object to change the message and hide the dialog as needed.
      */
     public WaitingDialog showWaitingDialog(String message, String title, String largeText, boolean decorated) {
         return WaitingDialog.showDialog(message, title, largeText, options, decorated);
@@ -547,5 +547,18 @@ public class UiBooster {
      */
     public void showException(String message, String title, Exception exception) {
         ExceptionDialog.showDialog(message, title, options, exception);
+    }
+
+    /**
+     * Shows a fiterable list with multiple selectable elements in a dialog.
+     * The dialog blocks the process until it's closed.
+     *
+     * @param message  expects a message for the meaning of this selection
+     * @param title    expects a title for the window
+     * @param elements expects a list of selectable elements
+     * @return the selected elements
+     */
+    public List<String> showMultipleSelection(String message, String title, String... elements) {
+        return FilterableCheckboxListDialog.show(message, title, Arrays.asList(elements), options.getIconPath());
     }
 }

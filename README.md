@@ -22,6 +22,7 @@ If you like this project, and you want to keep me awake 🤪
  - [Confirmation dialog](#confirmation-dialog)
  - [Password input dialog](#password-input-dialog)
  - [Selection dialog](#selection-dialog)
+ - [Multiple selection dialog](#multiple-selection-dialog)
  - [Slider dialog](#slider-dialog)
  - [Colorpicker](#colorpicker)
  - [Datepicker](#datepicker)
@@ -81,6 +82,16 @@ String selection = new UiBooster().showSelectionDialog(
         "What's your favorite movie?",
         "Favorite Movie?",
         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"));
+```
+
+### Multiple selection dialog
+![screenshot multiple selection dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/multiselection.jpg?raw=true)
+```java
+ List<String> selectedElement = new UiBooster().showMultipleSelection(
+            "What are your favorite hobbies?",
+            "Your hobbies",
+            "Reading", "Traveling", "Fishing", "Music", "Gardening", "Sport", "Television",
+            "Video Games", "Crafting", "Bird Watching", "Collecting");
 ```
 
 ### Slider dialog
