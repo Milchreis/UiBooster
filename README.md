@@ -5,13 +5,16 @@
 [![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
 [![Build Status](https://travis-ci.org/Milchreis/UiBooster.svg?branch=master)](https://travis-ci.org/Milchreis/UiBooster)
 
-UiBooster is a lean library to create fast and easy dialogs for utility tools. It equips your commandline tools blazing
-fast with GUI components for user without CLI experience.
+UiBooster is a lean library to create fast and easy dialogs for utility tools. It equips your applications blazing
+fast with GUI components to increase the comfort for your users.
 
-It's based on Java swing components to run on current JREs without a struggle. I decided to create this project,
-because I missed something like [zenity](https://de.wikipedia.org/wiki/Zenity) for my Java applications.
+It's based on Java swing components to run on current JREs without any struggle. This library encapsulates the long and 
+sometimes complicated GUI code and leaves more clarity in your project.
+ 
+I decided to create this project, because I missed something like [zenity](https://de.wikipedia.org/wiki/Zenity) 
+for my Java applications.
 
-If you like this project, and you want to keep me awake 🤪
+If you like this project, and you want to keep me awake 🤪, please:
 
 <a href='https://ko-fi.com/L4L21072C' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
