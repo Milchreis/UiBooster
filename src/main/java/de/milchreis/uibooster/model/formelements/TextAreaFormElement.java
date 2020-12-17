@@ -9,16 +9,17 @@ import java.awt.event.KeyEvent;
 
 public class TextAreaFormElement extends FormElement {
 
-    private JTextArea area;
+    private final JTextArea area;
 
-    public TextAreaFormElement(String label) {
+    public TextAreaFormElement(String label, String initialText, boolean readOnly) {
         super(label);
+        area = new JTextArea(initialText);
+        area.setEditable(!readOnly);
+        area.setRows(3);
     }
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        area = new JTextArea();
-        area.setRows(3);
 
         if (changeListener != null) {
             area.addKeyListener(new KeyAdapter() {

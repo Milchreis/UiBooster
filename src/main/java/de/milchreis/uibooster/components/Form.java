@@ -32,7 +32,17 @@ public class Form {
     }
 
     public Form addTextArea(String label) {
-        addElement(new TextAreaFormElement(label));
+        addElement(new TextAreaFormElement(label, "", false));
+        return this;
+    }
+
+    public Form addTextArea(String label, String initialText) {
+        addElement(new TextAreaFormElement(label, initialText, false));
+        return this;
+    }
+
+    public Form addTextArea(String label, String initialText, boolean readonly) {
+        addElement(new TextAreaFormElement(label, initialText, readonly));
         return this;
     }
 
