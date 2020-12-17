@@ -75,6 +75,10 @@ public class Form {
         return this;
     }
 
+    public Form addProgress(String label, int min, int max, int initial) {
+        addElement(new ProgressElement(label, min, max, initial));
+        return this;
+    }
 
     public Form addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
         addElement(new SliderFormElement(label, min, max, init, majorTick, minorTick));
