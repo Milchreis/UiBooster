@@ -29,6 +29,28 @@ public class FilledForm {
         return elements;
     }
 
+    /**
+     * Hides the form window, but keeps the form data.
+     */
+    public void hide() {
+        window.setVisible(false);
+    }
+
+    /**
+     * Shows the window again, if it's hidden
+     */
+    public void show() {
+        if (!window.isVisible())
+            window.setVisible(true);
+    }
+
+    /**
+     * Closes the form window and removes the form data.
+     */
+    public void close() {
+        window.dispose();
+    }
+
     public JDialog getWindow() {
         return window;
     }
