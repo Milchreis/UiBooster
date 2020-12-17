@@ -230,7 +230,7 @@ FilledForm form = booster.createForm("Personal information")
 
 // use .run() instead of show() to open the form without blocking.
 ```
-You can add you custom elements: [Look here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormElementTest.java)
+You can also add your own elements: [Look here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormElementTest.java)
 
 ### Splash screen
 ![screenshot splash screen](https://github.com/Milchreis/UiBooster/blob/master/screenshots/splash.jpg?raw=true)
