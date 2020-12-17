@@ -82,12 +82,22 @@ public class Form {
     }
 
     public Form addMultipleSelection(String label, String... elements) {
-        addElement(new FilterableCheckboxListFormElement(label, Arrays.asList(elements)));
+        addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements)));
+        return this;
+    }
+
+    public Form addMultipleSelection(String label, boolean hideFilter, String... elements) {
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements)));
         return this;
     }
 
     public Form addMultipleSelection(String label, List<String> elements) {
-        addElement(new FilterableCheckboxListFormElement(label, elements));
+        addElement(new FilterableCheckboxListFormElement(label, false, elements));
+        return this;
+    }
+
+    public Form addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements));
         return this;
     }
 

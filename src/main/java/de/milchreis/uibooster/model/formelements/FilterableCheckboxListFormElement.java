@@ -18,12 +18,14 @@ public class FilterableCheckboxListFormElement extends FormElement {
 
     private final JTextField search;
     private final JList<JCheckBox> list;
+    private final boolean hideFilter;
     private List<String> allItems;
     private final List<String> selected = new ArrayList<>();
     private FormElementChangeListener onChange;
 
-    public FilterableCheckboxListFormElement(String label, List<String> possibleValues) {
+    public FilterableCheckboxListFormElement(String label, boolean hideFilter, List<String> possibleValues) {
         super(label);
+        this.hideFilter = hideFilter;
 
         allItems = possibleValues;
 
@@ -87,7 +89,10 @@ public class FilterableCheckboxListFormElement extends FormElement {
         this.onChange = onChange;
 
         Box vbox = Box.createVerticalBox();
-        vbox.add(search);
+
+        if (!hideFilter)
+            vbox.add(search);
+
         vbox.add(new JScrollPane(
                 list,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,

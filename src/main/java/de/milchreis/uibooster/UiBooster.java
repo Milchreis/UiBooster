@@ -559,6 +559,20 @@ public class UiBooster {
      * @return the selected elements
      */
     public List<String> showMultipleSelection(String message, String title, String... elements) {
-        return FilterableCheckboxListDialog.show(message, title, Arrays.asList(elements), options.getIconPath());
+        return FilterableCheckboxListDialog.show(message, title, Arrays.asList(elements), false, options.getIconPath());
+    }
+
+    /**
+     * Shows a fiterable list with multiple selectable elements in a dialog.
+     * The dialog blocks the process until it's closed.
+     *
+     * @param message    expects a message for the meaning of this selection
+     * @param title      expects a title for the window
+     * @param hideFilter if true, the filter text field is hidden
+     * @param elements   expects a list of selectable elements
+     * @return the selected elements
+     */
+    public List<String> showMultipleSelection(String message, String title, boolean hideFilter, String... elements) {
+        return FilterableCheckboxListDialog.show(message, title, Arrays.asList(elements), hideFilter, options.getIconPath());
     }
 }

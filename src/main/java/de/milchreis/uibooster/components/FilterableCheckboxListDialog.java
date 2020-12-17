@@ -8,9 +8,9 @@ import java.util.List;
 public class FilterableCheckboxListDialog {
 
 
-    public static List<String> show(String message, String title, List<String> items, String iconPath) {
+    public static List<String> show(String message, String title, List<String> items, boolean hideFilter, String iconPath) {
 
-        FilterableCheckboxListFormElement element = new FilterableCheckboxListFormElement(message, items);
+        FilterableCheckboxListFormElement element = new FilterableCheckboxListFormElement(message, hideFilter, items);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(element.createComponent(null));
         DialogClosingState closingState = dialog.showDialog(message, title, iconPath);
