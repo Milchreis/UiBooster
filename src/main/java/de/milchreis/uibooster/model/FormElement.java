@@ -25,12 +25,16 @@ public abstract class FormElement {
 
     public abstract void setValue(Object value);
 
-    public void setID(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getLabel() {
         return label;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public int getIndex() {

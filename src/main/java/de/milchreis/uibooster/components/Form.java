@@ -125,7 +125,7 @@ public class Form {
             return this;
 
         final FormElement lastElement = formElements.get(formElements.size() - 1);
-        lastElement.setID(id);
+        lastElement.setId(id);
         return this;
     }
 
