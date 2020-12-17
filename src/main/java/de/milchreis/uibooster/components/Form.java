@@ -120,6 +120,15 @@ public class Form {
         return this;
     }
 
+    public Form setID(String id) {
+        if (formElements.size() == 0)
+            return this;
+
+        final FormElement lastElement = formElements.get(formElements.size() - 1);
+        lastElement.setID(id);
+        return this;
+    }
+
     public FilledForm show() {
 
         JPanel panel = createPanel();

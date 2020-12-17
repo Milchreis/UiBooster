@@ -14,6 +14,13 @@ public class FilledForm {
         this.elements = elements;
     }
 
+    public FormElement getById(String id) {
+        return elements.stream()
+                .filter(element -> Objects.nonNull(element.id))
+                .filter(element -> element.id.equals(id))
+                .findFirst().get();
+    }
+
     public FormElement getByIndex(int index) {
         return elements.get(index);
     }

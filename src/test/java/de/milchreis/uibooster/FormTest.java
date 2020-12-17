@@ -1,6 +1,7 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.FilledForm;
+import de.milchreis.uibooster.model.FormElement;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -49,5 +50,21 @@ class FormTest {
         });
     }
 
+
+    @Test
+    public void test_form_dialog_access_elements() {
+        FilledForm form = booster
+                .createForm("Personal information")
+                .addText("Whats your first name?").setID("name")
+                .addMultipleSelection("What are your hobbies?", "Reading", "Traveling")
+                .show();
+
+        final FormElement byId = form.getById("name");
+        final FormElement byIndex = form.getByIndex(0);
+        assert byId == byIndex;
+
+        assert form.getByIndex(1) != form.getByIndex(0);
+        assert form.getByIndex(1) == form.getByLabel("What are your hobbies?");
+    }
 
 }

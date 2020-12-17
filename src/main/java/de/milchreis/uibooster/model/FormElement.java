@@ -7,6 +7,7 @@ import java.util.Date;
 
 public abstract class FormElement {
 
+    protected String id;
     protected String label;
     protected int formIndex;
 
@@ -23,6 +24,10 @@ public abstract class FormElement {
     public abstract Object getValue();
 
     public abstract void setValue(Object value);
+
+    public void setID(String id) {
+        this.id = id;
+    }
 
     public String getLabel() {
         return label;
