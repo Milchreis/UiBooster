@@ -3,6 +3,7 @@ package de.milchreis.uibooster.components;
 import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.SelectElementListener;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -32,14 +33,12 @@ public class ListDialog {
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(jScrollPane);
 
-        DialogClosingState closingState = dialog.showDialog(message, title, iconPath, true);
+        DialogClosingState closingState = dialog.showDialog(message, title, null, iconPath, true);
         return closingState.isClosedByUser() ? null : list.getSelectedValue();
     }
 
     public static JList<ListElement> createList(SelectElementListener selectElementListener, ListElement[] elements) {
-        DefaultListModel<ListElement> listModel = new DefaultListModel<>();
-        Stream.of(elements).forEach(listModel::addElement);
-
+        DefaultListModel<ListElement> listModel = createListModel(elements);
         JList<ListElement> list = new JList<>(listModel);
 
         if (selectElementListener != null) {
@@ -91,6 +90,13 @@ public class ListDialog {
         });
 
         return list;
+    }
+
+    @NotNull
+    public static DefaultListModel<ListElement> createListModel(ListElement[] elements) {
+        DefaultListModel<ListElement> listModel = new DefaultListModel<>();
+        Stream.of(elements).forEach(listModel::addElement);
+        return listModel;
     }
 
     static class JMultilineLabel extends JLabel {

@@ -2,9 +2,12 @@ package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.FilledForm;
 import de.milchreis.uibooster.model.FormElement;
+import de.milchreis.uibooster.model.ListElement;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+
+import static java.lang.Thread.sleep;
 
 class FormTest {
 
@@ -66,5 +69,42 @@ class FormTest {
         assert form.getByIndex(1) != form.getByIndex(0);
         assert form.getByIndex(1) == form.getByLabel("What are your hobbies?");
     }
+
+    @Test
+    public void test_form_window_settings() throws InterruptedException {
+        FilledForm form = booster
+                .createForm("Personal information")
+                .addText("Whats your first name?").setID("name")
+                .addMultipleSelection("What are your hobbies?", "Reading", "Traveling")
+                .andWindow()
+                .setSize(300, 800)
+                .setUndecorated()
+                .setPosition(300, 20)
+                .save()
+                .show();
+
+        sleep(5000);
+    }
+
+
+    @Test
+    public void test_form_list() {
+        FilledForm form = booster
+                .createForm("Personal information")
+                .addText("Whats your first name?").setID("name")
+                .addList("What are your favorite hobby?",
+                        new ListElement("Reading", "Books, Blogs, Magazines or comics"),
+                        new ListElement("Traveling", "I love it to be not at home."),
+                        new ListElement("Music", "Making, hearing or dancing to music ... all is allowed")
+                ).setID("hobby")
+                .setChangeListener((element, value) -> {
+                    if (element.getId().equals("hobby")) {
+                        System.out.println(element.getValue() + " was selected");
+                    }
+                })
+                .show();
+
+    }
+
 
 }

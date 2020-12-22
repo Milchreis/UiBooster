@@ -1,9 +1,6 @@
 package de.milchreis.uibooster.components;
 
-import de.milchreis.uibooster.model.FilledForm;
-import de.milchreis.uibooster.model.FormElement;
-import de.milchreis.uibooster.model.FormElementChangeListener;
-import de.milchreis.uibooster.model.UiBoosterOptions;
+import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
@@ -19,6 +16,7 @@ public class Form {
     private final List<FormElement> formElements;
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
+    private WindowSetting windowSetting;
 
     public Form(String title, UiBoosterOptions options) {
         this.title = title;
@@ -115,6 +113,11 @@ public class Form {
         return this;
     }
 
+    public Form addList(String label, ListElement... elements) {
+        addElement(new ListFormElement(label, elements));
+        return this;
+    }
+
     public Form setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;
@@ -129,12 +132,17 @@ public class Form {
         return this;
     }
 
+    public WindowSetting andWindow() {
+        windowSetting = new WindowSetting(this);
+        return windowSetting;
+    }
+
     public FilledForm show() {
 
         JPanel panel = createPanel();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
-        dialog.showDialog(null, title, options.getIconPath());
+        dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
 
         return new FilledForm(dialog.getDialog(), formElements);
     }
@@ -142,7 +150,7 @@ public class Form {
     public FilledForm run() {
         JPanel panel = createPanel();
 
-        SimpleDialog dialog = new SimpleDialog(title, panel, options.getIconPath());
+        SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
 
         return new FilledForm(dialog, formElements);
     }
