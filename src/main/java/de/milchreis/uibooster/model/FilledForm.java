@@ -38,17 +38,23 @@ public class FilledForm {
 
     /**
      * Hides the form window, but keeps the form data.
+     *
+     * @return the current FilledForm object for method chaining
      */
-    public void hide() {
+    public FilledForm hide() {
         window.setVisible(false);
+        return this;
     }
 
     /**
      * Shows the window again, if it's hidden
+     *
+     * @return
      */
-    public void show() {
+    public FilledForm show() {
         if (!window.isVisible())
             window.setVisible(true);
+        return this;
     }
 
     /**

@@ -3,6 +3,7 @@ package de.milchreis.uibooster.components;
 import de.milchreis.uibooster.model.DialogClosingState;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,10 +20,10 @@ public class SimpleBlockingDialog {
     }
 
     public DialogClosingState showDialog(String message, String title, String iconPath) {
-        return showDialog(message, title, iconPath, false);
+        return showDialog(message, title, null, iconPath, false);
     }
 
-    public DialogClosingState showDialog(String message, String title, String iconPath, boolean resizable) {
+    public DialogClosingState showDialog(String message, String title, WindowSetting setting, String iconPath, boolean resizable) {
         JOptionPane optionPane = new JOptionPane();
 
         if (message != null && !message.isEmpty())
@@ -30,7 +31,7 @@ public class SimpleBlockingDialog {
         else
             optionPane.setMessage(new Object[]{components});
 
-        dialog = optionPane.createDialog(null, title);
+        dialog = createDialog(title, optionPane);
         applyWindowIcon(iconPath, dialog);
 
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,12 +42,23 @@ public class SimpleBlockingDialog {
             }
         });
 
+        if (setting != null) {
+            // Works currently not with JDialog created by JOptionPane
+//            dialog.setUndecorated(setting.isUndecorated());
+            dialog.setPreferredSize(new Dimension(setting.getWidth(), setting.getHeight()));
+            dialog.setLocation(setting.getPositionX(), setting.getPositionY());
+        }
+
         dialog.setResizable(resizable);
         dialog.pack();
         dialog.setVisible(true);
         dialog.dispose();
 
         return closingState;
+    }
+
+    private JDialog createDialog(String title, JOptionPane optionPane) {
+        return optionPane.createDialog(null, title);
     }
 
     public JDialog getDialog() {
