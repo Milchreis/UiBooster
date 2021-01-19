@@ -34,6 +34,11 @@ public class ListFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        list.setEnabled(enable);
+    }
+
+    @Override
     public ListElement getValue() {
         return list.getSelectedValue();
     }

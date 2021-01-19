@@ -20,6 +20,11 @@ public class LabelFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        label.setEnabled(enable);
+    }
+
+    @Override
     public String getValue() {
         return label.getText();
     }

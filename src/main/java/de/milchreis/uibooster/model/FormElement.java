@@ -21,6 +21,8 @@ public abstract class FormElement {
 
     public abstract JComponent createComponent(FormElementChangeListener onChange);
 
+    public abstract void setEnabled(boolean enable);
+
     public abstract Object getValue();
 
     public abstract void setValue(Object value);

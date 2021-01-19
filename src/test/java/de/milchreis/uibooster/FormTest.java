@@ -86,6 +86,23 @@ class FormTest {
         sleep(5000);
     }
 
+    @Test
+    public void test_form_disable_elements() throws InterruptedException {
+
+        FilledForm form = booster
+                .createForm("Personal information")
+                .addText("Whats your first name?").setDisabled()
+                .run();
+
+        sleep(1000);
+        form.getByIndex(0).setEnabled(true);
+
+        sleep(1000);
+        form.getByIndex(0).setEnabled(false);
+
+        sleep(3000);
+    }
+
 
     @Test
     public void test_form_list() {

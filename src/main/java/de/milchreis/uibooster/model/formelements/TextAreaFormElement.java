@@ -34,6 +34,11 @@ public class TextAreaFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        area.setEnabled(enable);
+    }
+
+    @Override
     public String getValue() {
         return area.getText();
     }

@@ -83,7 +83,6 @@ public class FilterableCheckboxListFormElement extends FormElement {
         });
     }
 
-
     @Override
     public JComponent createComponent(FormElementChangeListener onChange) {
         this.onChange = onChange;
@@ -99,6 +98,12 @@ public class FilterableCheckboxListFormElement extends FormElement {
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 
         return vbox;
+    }
+
+    @Override
+    public void setEnabled(boolean enable) {
+        search.setEnabled(enable);
+        list.setEnabled(enable);
     }
 
     @Override

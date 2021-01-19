@@ -33,6 +33,11 @@ public class TextFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        textfield.setEnabled(enable);
+    }
+
+    @Override
     public String getValue() {
         return textfield.getText();
     }

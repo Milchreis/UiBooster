@@ -26,6 +26,11 @@ public class DatePickerElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        picker.setEnabled(enable);
+    }
+
+    @Override
     public Date getValue() {
         return picker.getDate();
     }

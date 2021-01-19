@@ -26,6 +26,11 @@ public class ColorPickerElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        picker.setEnabled(enable);
+    }
+
+    @Override
     public Color getValue() {
         return picker.getColor();
     }

@@ -26,6 +26,11 @@ public class ButtonFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        button.setEnabled(enable);
+    }
+
+    @Override
     public Object getValue() {
         return button.getName();
     }

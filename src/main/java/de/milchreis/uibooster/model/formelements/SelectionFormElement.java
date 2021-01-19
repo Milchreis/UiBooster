@@ -28,6 +28,11 @@ public class SelectionFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        box.setEnabled(enable);
+    }
+
+    @Override
     public String getValue() {
         Object text = box.getSelectedItem();
         return text != null ? text.toString() : "";

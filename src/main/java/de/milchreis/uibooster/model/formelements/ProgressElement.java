@@ -26,6 +26,11 @@ public class ProgressElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        progressBar.setEnabled(enable);
+    }
+
+    @Override
     public Integer getValue() {
         return progressBar.getValue();
     }

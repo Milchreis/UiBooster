@@ -42,6 +42,11 @@ public class SliderFormElement extends FormElement {
     }
 
     @Override
+    public void setEnabled(boolean enable) {
+        slider.setEnabled(enable);
+    }
+
+    @Override
     public Integer getValue() {
         return slider.getValue();
     }
