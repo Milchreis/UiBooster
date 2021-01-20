@@ -49,6 +49,8 @@ public class SimpleBlockingDialog {
 
             if (setting.getPositionX() != null && setting.getPositionY() != null)
                 dialog.setLocation(setting.getPositionX(), setting.getPositionY());
+            else
+                dialog.setLocationRelativeTo(null);
         }
 
         dialog.setResizable(resizable);
