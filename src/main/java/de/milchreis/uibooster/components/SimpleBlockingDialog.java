@@ -46,7 +46,9 @@ public class SimpleBlockingDialog {
             // Works currently not with JDialog created by JOptionPane
 //            dialog.setUndecorated(setting.isUndecorated());
             dialog.setPreferredSize(new Dimension(setting.getWidth(), setting.getHeight()));
-            dialog.setLocation(setting.getPositionX(), setting.getPositionY());
+
+            if (setting.getPositionX() != null && setting.getPositionY() != null)
+                dialog.setLocation(setting.getPositionX(), setting.getPositionY());
         }
 
         dialog.setResizable(resizable);
