@@ -56,12 +56,12 @@ public class WindowSetting {
         return undecorated;
     }
 
-    int getPositionX() {
-        return positionX;
+    Integer getPositionX() {
+        return positionX <= -1 ? null : positionX;
     }
 
-    int getPositionY() {
-        return positionY;
+    Integer getPositionY() {
+        return positionY <= -1 ? null : positionY;
     }
 
     public Form save() {
