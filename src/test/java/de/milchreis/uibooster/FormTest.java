@@ -53,6 +53,23 @@ class FormTest {
         });
     }
 
+    @Test
+    public void test_form_textarea_size() {
+        FilledForm form = booster
+                .createForm("Personal information")
+                .addTextArea("Text with 1 row", 1)
+                .addTextArea("Text with 2 row", 2)
+                .addTextArea("Text with 3 row", 3)
+                .addTextArea("Text with 4 row", 4)
+                .addTextArea("Text with 5 row", 5)
+                .addTextArea("Text with 6 row", 6)
+                .show();
+
+        form.getElements().forEach(e -> {
+            System.out.println(e.getLabel() + " -> " + e.getValue());
+        });
+    }
+
 
     @Test
     public void test_form_dialog_access_elements() {

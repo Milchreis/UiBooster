@@ -11,11 +11,11 @@ public class TextAreaFormElement extends FormElement {
 
     private final JTextArea area;
 
-    public TextAreaFormElement(String label, String initialText, boolean readOnly) {
+    public TextAreaFormElement(String label, int rows, String initialText, boolean readOnly) {
         super(label);
         area = new JTextArea(initialText);
         area.setEditable(!readOnly);
-        area.setRows(3);
+        area.setRows(rows);
     }
 
     @Override

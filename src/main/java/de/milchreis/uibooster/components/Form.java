@@ -32,17 +32,27 @@ public class Form {
     }
 
     public Form addTextArea(String label) {
-        addElement(new TextAreaFormElement(label, "", false));
+        addElement(new TextAreaFormElement(label, 3, "", false));
+        return this;
+    }
+
+    public Form addTextArea(String label, int rows) {
+        addElement(new TextAreaFormElement(label, rows, "", false));
         return this;
     }
 
     public Form addTextArea(String label, String initialText) {
-        addElement(new TextAreaFormElement(label, initialText, false));
+        addElement(new TextAreaFormElement(label, 3, initialText, false));
         return this;
     }
 
-    public Form addTextArea(String label, String initialText, boolean readonly) {
-        addElement(new TextAreaFormElement(label, initialText, readonly));
+    public Form addTextArea(String label, int rows, String initialText) {
+        addElement(new TextAreaFormElement(label, rows, initialText, false));
+        return this;
+    }
+
+    public Form addTextArea(String label, int rows, String initialText, boolean readonly) {
+        addElement(new TextAreaFormElement(label, rows, initialText, readonly));
         return this;
     }
 
