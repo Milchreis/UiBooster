@@ -30,7 +30,8 @@ public class SimpleDialog extends JDialog {
 
         if (setting != null) {
             setSize(new Dimension(setting.getWidth(), setting.getHeight()));
-            setLocation(setting.getPositionX(), setting.getPositionY());
+            if (setting.getPositionX() != null && setting.getPositionY() != null)
+                setLocation(setting.getPositionX(), setting.getPositionY());
             setVisible(setting.isVisible());
 
         } else {
