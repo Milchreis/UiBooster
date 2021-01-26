@@ -14,6 +14,10 @@ public class TextFormElement extends FormElement {
     public TextFormElement(String label, String initialText) {
         super(label);
         textfield = new JTextField(initialText);
+
+        if (initialText != null) {
+            textfield.setCaretPosition(initialText.length());
+        }
     }
 
     @Override
