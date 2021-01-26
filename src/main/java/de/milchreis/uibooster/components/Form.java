@@ -27,7 +27,12 @@ public class Form {
     }
 
     public Form addText(String label) {
-        addElement(new TextFormElement(label));
+        addElement(new TextFormElement(label, null));
+        return this;
+    }
+
+    public Form addText(String label, String initialText) {
+        addElement(new TextFormElement(label, initialText));
         return this;
     }
 

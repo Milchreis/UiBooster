@@ -9,15 +9,15 @@ import java.awt.event.KeyEvent;
 
 public class TextFormElement extends FormElement {
 
-    private JTextField textfield;
+    private final JTextField textfield;
 
-    public TextFormElement(String label) {
+    public TextFormElement(String label, String initialText) {
         super(label);
+        textfield = new JTextField(initialText);
     }
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        textfield = new JTextField();
 
         if (changeListener != null) {
             textfield.addKeyListener(new KeyAdapter() {
