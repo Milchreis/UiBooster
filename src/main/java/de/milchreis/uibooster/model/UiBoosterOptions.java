@@ -7,7 +7,7 @@ public class UiBoosterOptions {
     }
 
     private Theme theme = Theme.DARK_THEME;
-    private String iconPath = "/icon.png";
+    private String iconPath = "/uibooster-default-icon.png";
 
     public UiBoosterOptions() {
     }
