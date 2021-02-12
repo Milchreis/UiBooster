@@ -280,7 +280,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.9.1</version>
+    <version>1.10.0</version>
 </dependency>
 ```
 
