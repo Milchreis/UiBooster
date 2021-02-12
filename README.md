@@ -296,6 +296,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.9.1'
+        implementation 'com.github.Milchreis:UiBooster:1.10.0'
 }
 ```
