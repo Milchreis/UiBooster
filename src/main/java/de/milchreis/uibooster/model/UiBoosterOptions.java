@@ -3,7 +3,7 @@ package de.milchreis.uibooster.model;
 public class UiBoosterOptions {
 
     public enum Theme {
-        DARK_THEME, SWING, OS_NATIVE
+        DARK_THEME, SWING, OS_NATIVE, DEFAULT;
     }
 
     private Theme theme = Theme.DARK_THEME;

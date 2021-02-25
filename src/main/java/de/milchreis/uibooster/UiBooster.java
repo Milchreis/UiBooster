@@ -8,6 +8,7 @@ import de.milchreis.uibooster.model.SelectElementListener;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
@@ -34,15 +35,20 @@ public class UiBooster {
         this.options = options == null ? new UiBoosterOptions() : options;
 
         if (options.getTheme() != null) {
-
             try {
                 if (options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
                     // Little hack to start working on linux
-                    javax.swing.UIManager.getFont("Label.font");
+                    UIManager.getFont("Label.font");
                     UIManager.setLookAndFeel(new DarculaLaf());
 
                 } else if (options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+                } else if (options.getTheme() == UiBoosterOptions.Theme.SWING) {
+                    UIManager.setLookAndFeel(new MetalLookAndFeel());
+
+                } else if (options.getTheme() == UiBoosterOptions.Theme.DEFAULT) {
+                    UIManager.setLookAndFeel(UIManager.getLookAndFeel());
                 }
 
             } catch (Exception e) {
