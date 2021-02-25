@@ -75,11 +75,17 @@ class UiBoosterTest {
         File file = booster.showFileSelection();
         System.out.println(file);
 
+        File pdfFiles = booster.showFileSelection("PDF files", "pdf");
+        System.out.println(pdfFiles);
+
         File directory = booster.showDirectorySelection();
         System.out.println(directory);
 
         File fileOrDirectory = booster.showFileOrDirectorySelection();
         System.out.println(fileOrDirectory);
+
+        File pdfFileOrDirectory = booster.showFileOrDirectorySelection("PDF files", "pdf");
+        System.out.println(pdfFileOrDirectory);
     }
 
     @Test

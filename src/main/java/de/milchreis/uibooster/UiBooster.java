@@ -207,6 +207,17 @@ public class UiBooster {
     }
 
     /**
+     * Shows a file selection dialog. Only files are shown and selectable
+     *
+     * @param description expects a short and readable description for the extensions
+     * @param extensions  expects one or more allowed extensions without the dot (f.e. bmp, png, pdf)
+     * @return returns the selection file or null on cancel
+     */
+    public File showFileSelection(String description, String... extensions) {
+        return FilesystemDialog.showFileSelectionDialog(description, extensions);
+    }
+
+    /**
      * Shows a directory selection dialog. Only directories are shown and selectable
      *
      * @return returns the selection directory or null on cancel
@@ -222,6 +233,17 @@ public class UiBooster {
      */
     public File showFileOrDirectorySelection() {
         return FilesystemDialog.showFileOrDirectorySelectionDialog();
+    }
+
+    /**
+     * Shows a selection dialog for files and directories.
+     *
+     * @param description expects a short and readable description for the extensions
+     * @param extensions  expects one or more allowed extensions without the dot (f.e. bmp, png, pdf)
+     * @return returns the selection or null on cancel
+     */
+    public File showFileOrDirectorySelection(String description, String... extensions) {
+        return FilesystemDialog.showFileOrDirectorySelectionDialog(description, extensions);
     }
 
     /**
