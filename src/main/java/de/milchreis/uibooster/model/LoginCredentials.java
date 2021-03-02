@@ -17,4 +17,8 @@ public class LoginCredentials {
     public String getPassword() {
         return password;
     }
+
+    public boolean isFilled() {
+        return username != null && !username.isEmpty() && password != null && !password.isEmpty();
+    }
 }
