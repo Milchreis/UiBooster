@@ -21,7 +21,13 @@ public class ButtonFormElement extends FormElement {
     @Override
     public JComponent createComponent(FormElementChangeListener onChange) {
         button = new JButton(buttonLabel);
-        button.addActionListener(l -> onClick.run());
+        button.addActionListener(l -> {
+            onClick.run();
+
+            if (onChange != null)
+                onChange.onChange(this, buttonLabel);
+        });
+
         return button;
     }
 
