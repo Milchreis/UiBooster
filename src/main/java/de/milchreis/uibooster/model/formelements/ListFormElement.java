@@ -65,4 +65,9 @@ public class ListFormElement extends FormElement {
         elements = arrayList.toArray(elements);
         list.setModel(createListModel(elements));
     }
+
+    public void clearAll() {
+        elements = new ListElement[]{};
+        list.setModel(createListModel(elements));
+    }
 }
