@@ -135,6 +135,16 @@ public class Form {
         return this;
     }
 
+    public Form addTable(String label, List<String> header, String[][] data, boolean isEditable) {
+        addElement(new TableFormElement(label, header, data, isEditable));
+        return this;
+    }
+
+    public Form addTable(String label, List<String> header, String[][] data) {
+        addElement(new TableFormElement(label, header, data, true));
+        return this;
+    }
+
     public Form setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;
