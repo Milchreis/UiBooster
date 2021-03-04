@@ -15,9 +15,9 @@ public class PictureGalleryDialog {
         return new PictureGalleryDialog(title, iconPath, images);
     }
 
-    private JDialog window;
-    private ImagePanel imagePanel;
-    private List<File> images;
+    private final JDialog window;
+    private final ImagePanel imagePanel;
+    private final List<File> images;
     private int imageIndex = -1;
 
     public PictureGalleryDialog(String title, String iconPath, List<File> images) {
