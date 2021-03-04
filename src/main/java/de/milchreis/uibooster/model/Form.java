@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Objects;
 
-public class FilledForm {
+public class Form {
 
     private final JDialog window;
     private final List<FormElement> elements;
 
-    public FilledForm(JDialog dialog, List<FormElement> elements) {
+    public Form(JDialog dialog, List<FormElement> elements) {
         window = dialog;
         this.elements = elements;
+        this.elements.forEach(e -> e.setForm(this));
     }
 
     public FormElement getById(String id) {
@@ -41,7 +42,7 @@ public class FilledForm {
      *
      * @return the current FilledForm object for method chaining
      */
-    public FilledForm hide() {
+    public Form hide() {
         window.setVisible(false);
         return this;
     }
@@ -51,7 +52,7 @@ public class FilledForm {
      *
      * @return
      */
-    public FilledForm show() {
+    public Form show() {
         if (!window.isVisible())
             window.setVisible(true);
         return this;

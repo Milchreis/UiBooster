@@ -37,7 +37,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [Progress dialog](#progress-dialog)
  - [Table dialog](#table-dialog)
  - [Gallery dialog](#gallery-dialog)
- - [Form dialog](#form-dialog)
+ - [Form dialog](#formBuilder-dialog)
  - [Splash screen](#splash-screen)
  - [System tray menu](#system-tray)
  - [Notification](#notification)
@@ -213,10 +213,10 @@ new UiBooster().showPictures(
 ```
 
 ### Form dialog
-![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/form.jpg?raw=true)
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/formBuilder.jpg?raw=true)
 ```java
 UiBooster booster = new UiBooster();
-FilledForm form = booster.createForm("Personal information")
+FilledForm formBuilder = booster.createForm("Personal information")
             .addText("Whats your first name?")
             .addTextArea("Tell me something about you")
             .addSelection(
@@ -228,7 +228,7 @@ FilledForm form = booster.createForm("Personal information")
             .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
             .show();
 
-// use .run() instead of show() to open the form without blocking.
+// use .run() instead of show() to open the formBuilder without blocking.
 ```
 You can also add your own elements: [Look here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormElementTest.java)
 

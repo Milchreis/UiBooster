@@ -60,7 +60,7 @@ public class FilterableCheckboxListFormElement extends FormElement {
                     list.repaint();
 
                     if (onChange != null)
-                        onChange.onChange(FilterableCheckboxListFormElement.this, selected);
+                        onChange.onChange(FilterableCheckboxListFormElement.this, selected, form);
                 }
             }
         });

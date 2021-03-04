@@ -21,7 +21,7 @@ public class SelectionFormElement extends FormElement {
         box = new JComboBox<>((possibilities).toArray(new String[]{}));
 
         if (changeListener != null) {
-            box.addActionListener(e -> changeListener.onChange(SelectionFormElement.this, getValue()));
+            box.addActionListener(e -> changeListener.onChange(SelectionFormElement.this, getValue(), form));
         }
 
         return box;

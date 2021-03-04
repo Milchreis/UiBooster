@@ -20,7 +20,7 @@ public class ColorPickerElement extends FormElement {
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
         if (changeListener != null) {
-            picker.addColorListener(e -> changeListener.onChange(ColorPickerElement.this, getValue()));
+            picker.addColorListener(e -> changeListener.onChange(ColorPickerElement.this, getValue(), form));
         }
         return picker;
     }

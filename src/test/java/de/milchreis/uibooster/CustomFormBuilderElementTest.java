@@ -1,13 +1,13 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.model.FilledForm;
+import de.milchreis.uibooster.model.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-class CustomFormElementTest {
+class CustomFormBuilderElementTest {
 
     UiBooster booster = new UiBooster();
 
@@ -54,7 +54,7 @@ class CustomFormElementTest {
 
     @Test
     public void test_custom_form_dialog() {
-        FilledForm form = booster
+        Form form = booster
                 .createForm("Custom elements")
                 .addCustomElement(new CustomRobotFormElement("Your custom robot"))
                 .show();

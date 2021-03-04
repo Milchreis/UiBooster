@@ -25,7 +25,7 @@ public class ButtonFormElement extends FormElement {
             onClick.run();
 
             if (onChange != null)
-                onChange.onChange(this, buttonLabel);
+                onChange.onChange(this, buttonLabel, form);
         });
 
         return button;

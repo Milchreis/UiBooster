@@ -35,7 +35,7 @@ public class SliderFormElement extends FormElement {
         panel.add(slider, BorderLayout.SOUTH);
 
         if (changeListener != null) {
-            slider.addChangeListener(e -> changeListener.onChange(SliderFormElement.this, getValue()));
+            slider.addChangeListener(e -> changeListener.onChange(SliderFormElement.this, getValue(), form));
         }
 
         return panel;

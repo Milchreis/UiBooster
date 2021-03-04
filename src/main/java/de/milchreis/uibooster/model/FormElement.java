@@ -10,6 +10,7 @@ public abstract class FormElement {
     protected String id;
     protected String label;
     protected int formIndex;
+    protected Form form;
 
     public FormElement(String label) {
         this.label = label;
@@ -71,4 +72,9 @@ public abstract class FormElement {
         Color color = (Color) getValue();
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
+
+    void setForm(Form filledForm) {
+        this.form = filledForm;
+    }
+
 }

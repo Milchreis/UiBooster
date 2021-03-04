@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Form {
+public class FormBuilder {
 
     private final String title;
     private final List<FormElement> formElements;
@@ -19,138 +19,138 @@ public class Form {
     private FormElementChangeListener changeListener;
     private WindowSetting windowSetting;
 
-    public Form(String title, UiBoosterOptions options) {
+    public FormBuilder(String title, UiBoosterOptions options) {
         this.title = title;
         this.options = options;
         this.formElements = new ArrayList<>();
         this.initialElementsDisabled = new ArrayList<>();
     }
 
-    public Form addText(String label) {
+    public FormBuilder addText(String label) {
         addElement(new TextFormElement(label, null));
         return this;
     }
 
-    public Form addText(String label, String initialText) {
+    public FormBuilder addText(String label, String initialText) {
         addElement(new TextFormElement(label, initialText));
         return this;
     }
 
-    public Form addTextArea(String label) {
+    public FormBuilder addTextArea(String label) {
         addElement(new TextAreaFormElement(label, 3, "", false));
         return this;
     }
 
-    public Form addTextArea(String label, int rows) {
+    public FormBuilder addTextArea(String label, int rows) {
         addElement(new TextAreaFormElement(label, rows, "", false));
         return this;
     }
 
-    public Form addTextArea(String label, String initialText) {
+    public FormBuilder addTextArea(String label, String initialText) {
         addElement(new TextAreaFormElement(label, 3, initialText, false));
         return this;
     }
 
-    public Form addTextArea(String label, int rows, String initialText) {
+    public FormBuilder addTextArea(String label, int rows, String initialText) {
         addElement(new TextAreaFormElement(label, rows, initialText, false));
         return this;
     }
 
-    public Form addTextArea(String label, int rows, String initialText, boolean readonly) {
+    public FormBuilder addTextArea(String label, int rows, String initialText, boolean readonly) {
         addElement(new TextAreaFormElement(label, rows, initialText, readonly));
         return this;
     }
 
-    public Form addSelection(String label, List<String> possibilities) {
+    public FormBuilder addSelection(String label, List<String> possibilities) {
         addElement(new SelectionFormElement(label, possibilities));
         return this;
     }
 
-    public Form addSelection(String label, String... possibilities) {
+    public FormBuilder addSelection(String label, String... possibilities) {
         addSelection(label, Arrays.asList(possibilities));
         return this;
     }
 
-    public Form addCustomElement(FormElement element) {
+    public FormBuilder addCustomElement(FormElement element) {
         addElement(element);
         return this;
     }
 
-    public Form addLabel(String label) {
+    public FormBuilder addLabel(String label) {
         addElement(new LabelFormElement(label));
         return this;
     }
 
-    public Form addButton(String buttonLabel, Runnable onClick) {
+    public FormBuilder addButton(String buttonLabel, Runnable onClick) {
         return addButton(null, buttonLabel, onClick);
     }
 
-    public Form addButton(String label, String buttonLabel, Runnable onClick) {
+    public FormBuilder addButton(String label, String buttonLabel, Runnable onClick) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick));
         return this;
     }
 
-    public Form addProgress(String label, int min, int max, int initial) {
+    public FormBuilder addProgress(String label, int min, int max, int initial) {
         addElement(new ProgressElement(label, min, max, initial));
         return this;
     }
 
-    public Form addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
+    public FormBuilder addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
         addElement(new SliderFormElement(label, min, max, init, majorTick, minorTick));
         return this;
     }
 
-    public Form addDatePicker(String label) {
+    public FormBuilder addDatePicker(String label) {
         addElement(new DatePickerElement(label));
         return this;
     }
 
-    public Form addColorPicker(String label) {
+    public FormBuilder addColorPicker(String label) {
         addElement(new ColorPickerElement(label));
         return this;
     }
 
-    public Form addMultipleSelection(String label, String... elements) {
+    public FormBuilder addMultipleSelection(String label, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements)));
         return this;
     }
 
-    public Form addMultipleSelection(String label, boolean hideFilter, String... elements) {
+    public FormBuilder addMultipleSelection(String label, boolean hideFilter, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements)));
         return this;
     }
 
-    public Form addMultipleSelection(String label, List<String> elements) {
+    public FormBuilder addMultipleSelection(String label, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, elements));
         return this;
     }
 
-    public Form addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
+    public FormBuilder addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements));
         return this;
     }
 
-    public Form addList(String label, ListElement... elements) {
+    public FormBuilder addList(String label, ListElement... elements) {
         addElement(new ListFormElement(label, elements));
         return this;
     }
 
-    public Form addTable(String label, List<String> header, String[][] data, boolean isEditable) {
+    public FormBuilder addTable(String label, List<String> header, String[][] data, boolean isEditable) {
         addElement(new TableFormElement(label, header, data, isEditable));
         return this;
     }
 
-    public Form addTable(String label, List<String> header, String[][] data) {
+    public FormBuilder addTable(String label, List<String> header, String[][] data) {
         addElement(new TableFormElement(label, header, data, true));
         return this;
     }
 
-    public Form setChangeListener(FormElementChangeListener onChange) {
+    public FormBuilder setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;
     }
 
-    public Form setID(String id) {
+    public FormBuilder setID(String id) {
         if (formElements.size() == 0)
             return this;
 
@@ -159,7 +159,7 @@ public class Form {
         return this;
     }
 
-    public Form setDisabled() {
+    public FormBuilder setDisabled() {
         if (formElements.size() == 0)
             return this;
 
@@ -173,24 +173,23 @@ public class Form {
         return windowSetting;
     }
 
-    public FilledForm show() {
+    public Form show() {
 
         JPanel panel = createPanel();
         setInitialDisabledFormElements();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
+        final Form form = new Form(dialog.getDialog(), formElements);
         dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
-
-        return new FilledForm(dialog.getDialog(), formElements);
+        return form;
     }
 
-    public FilledForm run() {
+    public Form run() {
         JPanel panel = createPanel();
         setInitialDisabledFormElements();
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
-
-        return new FilledForm(dialog, formElements);
+        return new Form(dialog, formElements);
     }
 
     private JPanel createPanel() {

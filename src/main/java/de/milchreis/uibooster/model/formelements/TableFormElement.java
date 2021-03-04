@@ -5,6 +5,7 @@ import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class TableFormElement extends FormElement {
@@ -21,10 +22,15 @@ public class TableFormElement extends FormElement {
 
         panel.getTable().getModel().addTableModelListener(e -> {
             if (changeListener != null)
-                changeListener.onChange(this, panel.getData());
+                changeListener.onChange(this, panel.getData(), form);
         });
 
         return panel;
+    }
+
+    public void addRow(String[] row) {
+        final DefaultTableModel model = (DefaultTableModel) panel.getTable().getModel();
+        model.addRow(row);
     }
 
     @Override

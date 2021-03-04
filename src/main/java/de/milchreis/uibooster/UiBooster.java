@@ -444,8 +444,8 @@ public class UiBooster {
      * @param title expects a title for the window
      * @return the object to create and control the form dialog
      */
-    public Form createForm(String title) {
-        return new Form(title, options);
+    public FormBuilder createForm(String title) {
+        return new FormBuilder(title, options);
     }
 
 

@@ -28,7 +28,7 @@ public class TextFormElement extends FormElement {
                 @Override
                 public void keyReleased(KeyEvent e) {
                     super.keyReleased(e);
-                    changeListener.onChange(TextFormElement.this, getValue());
+                    changeListener.onChange(TextFormElement.this, getValue(), form);
                 }
             });
         }

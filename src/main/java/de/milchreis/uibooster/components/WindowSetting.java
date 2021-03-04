@@ -12,10 +12,10 @@ public class WindowSetting {
     private int positionX = -1;
     private int positionY = -1;
 
-    private final Form form;
+    private final FormBuilder formBuilder;
 
-    public WindowSetting(Form form) {
-        this.form = form;
+    public WindowSetting(FormBuilder formBuilder) {
+        this.formBuilder = formBuilder;
     }
 
     public WindowSetting hide() {
@@ -64,7 +64,7 @@ public class WindowSetting {
         return positionY <= -1 ? null : positionY;
     }
 
-    public Form save() {
-        return form;
+    public FormBuilder save() {
+        return formBuilder;
     }
 }
