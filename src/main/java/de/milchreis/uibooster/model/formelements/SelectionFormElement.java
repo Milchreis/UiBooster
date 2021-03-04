@@ -4,11 +4,12 @@ import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectionFormElement extends FormElement {
 
-    private final List<String> possibilities;
+    private List<String> possibilities;
     private JComboBox<String> box;
 
     public SelectionFormElement(String label, List<String> possibilities) {
@@ -47,5 +48,11 @@ public class SelectionFormElement extends FormElement {
             throw new IllegalArgumentException("The given value has to be an element of the supported possibilities list");
 
         box.setSelectedItem(value.toString());
+    }
+
+    public void addSelection(String element) {
+        possibilities = new ArrayList<>(possibilities);
+        possibilities.add(element);
+        box.addItem(element);
     }
 }

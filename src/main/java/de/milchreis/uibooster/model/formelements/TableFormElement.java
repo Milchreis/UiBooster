@@ -28,11 +28,6 @@ public class TableFormElement extends FormElement {
         return panel;
     }
 
-    public void addRow(String[] row) {
-        final DefaultTableModel model = (DefaultTableModel) panel.getTable().getModel();
-        model.addRow(row);
-    }
-
     @Override
     public void setEnabled(boolean enable) {
         panel.setEditable(enable);
@@ -68,4 +63,10 @@ public class TableFormElement extends FormElement {
                     "The given value has to be of type 'String[][]' for data, " +
                             "'List<String>' for headers or boolean for isEditable");
     }
+
+    public void addRow(String[] row) {
+        final DefaultTableModel model = (DefaultTableModel) panel.getTable().getModel();
+        model.addRow(row);
+    }
+
 }

@@ -1,5 +1,9 @@
 package de.milchreis.uibooster.model;
 
+import de.milchreis.uibooster.model.formelements.ListFormElement;
+import de.milchreis.uibooster.model.formelements.SelectionFormElement;
+import de.milchreis.uibooster.model.formelements.TableFormElement;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -77,4 +81,15 @@ public abstract class FormElement {
         this.form = filledForm;
     }
 
+    public TableFormElement toTable() {
+        return (TableFormElement) this;
+    }
+
+    public ListFormElement toList() {
+        return (ListFormElement) this;
+    }
+
+    public SelectionFormElement toSelection() {
+        return (SelectionFormElement) this;
+    }
 }

@@ -5,6 +5,8 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 import de.milchreis.uibooster.model.ListElement;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static de.milchreis.uibooster.components.ListDialog.createList;
@@ -55,5 +57,12 @@ public class ListFormElement extends FormElement {
 
         } else
             throw new IllegalArgumentException("The given value has to be of type 'ListElement[]' or 'List<ListElement>'");
+    }
+
+    public void addElement(ListElement element) {
+        ArrayList<ListElement> arrayList = new ArrayList<>(Arrays.asList(elements));
+        arrayList.add(element);
+        elements = arrayList.toArray(elements);
+        list.setModel(createListModel(elements));
     }
 }

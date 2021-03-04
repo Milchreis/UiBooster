@@ -26,7 +26,7 @@ class FormBuilderChangeListenerTest {
                         String lastName = form.getById("last").asString();
                         Date birthday = form.getById("birthday").asDate();
 
-                        final TableFormElement table = (TableFormElement) form.getById("table");
+                        final TableFormElement table = form.getById("table").toTable();
                         table.addRow(new String[]{firstName, lastName, birthday.toString()});
 
                         form.getById("first").setValue("");
