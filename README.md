@@ -213,10 +213,10 @@ new UiBooster().showPictures(
 ```
 
 ### Form dialog
-![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/formBuilder.jpg?raw=true)
+![screenshot gallery dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/form.jpg?raw=true)
 ```java
 UiBooster booster = new UiBooster();
-FilledForm formBuilder = booster.createForm("Personal information")
+Form form = booster.createForm("Personal information")
             .addText("Whats your first name?")
             .addTextArea("Tell me something about you")
             .addSelection(
