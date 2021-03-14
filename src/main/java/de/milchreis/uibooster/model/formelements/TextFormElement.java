@@ -11,9 +11,10 @@ public class TextFormElement extends FormElement {
 
     private final JTextField textfield;
 
-    public TextFormElement(String label, String initialText) {
+    public TextFormElement(String label, String initialText, boolean readonly) {
         super(label);
         textfield = new JTextField(initialText);
+        textfield.setEditable(!readonly);
 
         if (initialText != null) {
             textfield.setCaretPosition(initialText.length());

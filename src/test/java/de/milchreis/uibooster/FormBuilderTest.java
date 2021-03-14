@@ -98,7 +98,7 @@ class FormBuilderTest {
                 .setUndecorated()
                 .setPosition(300, 20)
                 .save()
-                .show();
+                .run();
 
         sleep(5000);
     }

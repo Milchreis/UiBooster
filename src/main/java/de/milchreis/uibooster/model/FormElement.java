@@ -89,7 +89,12 @@ public abstract class FormElement {
         return (ListFormElement) this;
     }
 
+    public RowFormElement toRow() {
+        return (RowFormElement) this;
+    }
+
     public SelectionFormElement toSelection() {
         return (SelectionFormElement) this;
     }
+
 }

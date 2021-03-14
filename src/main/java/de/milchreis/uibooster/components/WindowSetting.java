@@ -1,5 +1,7 @@
 package de.milchreis.uibooster.components;
 
+import de.milchreis.uibooster.model.FormBuilder;
+
 public class WindowSetting {
 
     private boolean visible = true;

@@ -2,10 +2,7 @@ package de.milchreis.uibooster;
 
 import com.bulenkov.darcula.DarculaLaf;
 import de.milchreis.uibooster.components.*;
-import de.milchreis.uibooster.model.ListElement;
-import de.milchreis.uibooster.model.LoginCredentials;
-import de.milchreis.uibooster.model.SelectElementListener;
-import de.milchreis.uibooster.model.UiBoosterOptions;
+import de.milchreis.uibooster.model.*;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;

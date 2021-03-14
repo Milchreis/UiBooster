@@ -1,23 +1,27 @@
-package de.milchreis.uibooster.components;
+package de.milchreis.uibooster.model;
 
-import de.milchreis.uibooster.model.*;
+import de.milchreis.uibooster.components.SimpleBlockingDialog;
+import de.milchreis.uibooster.components.SimpleDialog;
+import de.milchreis.uibooster.components.WindowSetting;
 import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static de.milchreis.uibooster.utils.FormPanel.createPanel;
+
 public class FormBuilder {
 
-    private final String title;
-    private final List<FormElement> formElements;
+    protected final String title;
+    protected final List<FormElement> formElements;
     private final List<Integer> initialElementsDisabled;
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
     private WindowSetting windowSetting;
+    private RowFormBuilder rowFormBuilder;
+
 
     public FormBuilder(String title, UiBoosterOptions options) {
         this.title = title;
@@ -27,12 +31,17 @@ public class FormBuilder {
     }
 
     public FormBuilder addText(String label) {
-        addElement(new TextFormElement(label, null));
+        addElement(new TextFormElement(label, null, false));
         return this;
     }
 
     public FormBuilder addText(String label, String initialText) {
-        addElement(new TextFormElement(label, initialText));
+        addElement(new TextFormElement(label, initialText, false));
+        return this;
+    }
+
+    public FormBuilder addText(String label, String initialText, boolean readonly) {
+        addElement(new TextFormElement(label, initialText, readonly));
         return this;
     }
 
@@ -175,48 +184,23 @@ public class FormBuilder {
 
     public Form show() {
 
-        JPanel panel = createPanel();
+        final Form form = new Form(null, formElements, null);
+
+        JPanel panel = createPanel(formElements, changeListener, 10);
         setInitialDisabledFormElements();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
-        final Form form = new Form(dialog.getDialog(), formElements);
-        dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
+        final DialogClosingState closingState = dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
+        form.setClosedByUser(closingState.isClosedByUser());
         return form;
     }
 
     public Form run() {
-        JPanel panel = createPanel();
+        JPanel panel = createPanel(formElements, changeListener, 10);
         setInitialDisabledFormElements();
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
         return new Form(dialog, formElements);
-    }
-
-    private JPanel createPanel() {
-        JPanel panel = new JPanel();
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        for (FormElement formElement : formElements) {
-
-            JPanel elementPanel = new JPanel(new BorderLayout());
-            JComponent component = formElement.createComponent(changeListener);
-
-            if (formElement.getLabel() != null) {
-                JLabel label = new JLabel(formElement.getLabel());
-                label.setBorder(new EmptyBorder(0, 0, 5, 0));
-                panel.add(label);
-                elementPanel.add(label, BorderLayout.NORTH);
-            }
-
-            if (component != null) {
-                elementPanel.add(component, BorderLayout.CENTER);
-                elementPanel.add(new JLabel(" "), BorderLayout.SOUTH);
-            }
-
-            panel.add(elementPanel);
-        }
-        return panel;
     }
 
     private void setInitialDisabledFormElements() {
@@ -230,4 +214,17 @@ public class FormBuilder {
         formElements.add(e);
     }
 
+    public RowFormBuilder startRow() {
+        return startRow(null);
+    }
+
+    public RowFormBuilder startRow(String label) {
+        rowFormBuilder = new RowFormBuilder(label, options, this);
+        return rowFormBuilder;
+    }
+
+    public FormBuilder endRow() {
+        formElements.add(rowFormBuilder.getRowElement());
+        return this;
+    }
 }
