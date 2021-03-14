@@ -17,9 +17,9 @@ class FormBuilderWithRowsTest {
                 .createForm("Personal information")
                 .addText("Whats your first name?")
                 .startRow("Select one")
-                .addButton(" ", "half full", () -> booster.showInfoDialog("Optimist")).setID("btn1")
-                .addButton(" ", "half empty", () -> booster.showInfoDialog("Pessimist"))
-                .addText("?").setID("my")
+                    .addButton(" ", "half full", () -> booster.showInfoDialog("Optimist")).setID("btn1")
+                    .addButton(" ", "half empty", () -> booster.showInfoDialog("Pessimist"))
+                    .addText("?").setID("?")
                 .endRow()
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addColorPicker("Favorite color?")
@@ -30,7 +30,7 @@ class FormBuilderWithRowsTest {
                 .show();
 
         assert form.getByIndex(1).getId().equals("btn1");
-        assert form.getById("my") != null;
+        assert form.getById("?") != null;
 
         form.getElements().forEach(e -> {
             System.out.println(e.getLabel() + " -> " + e.getValue());
