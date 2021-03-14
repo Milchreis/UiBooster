@@ -37,7 +37,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [Progress dialog](#progress-dialog)
  - [Table dialog](#table-dialog)
  - [Gallery dialog](#gallery-dialog)
- - [Form dialog](#formBuilder-dialog)
+ - [Form dialog](#form-dialog)
  - [Splash screen](#splash-screen)
  - [System tray menu](#system-tray)
  - [Notification](#notification)
