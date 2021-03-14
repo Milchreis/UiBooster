@@ -42,39 +42,26 @@ class FormBuilderWithRowsTest {
         booster.createForm("Calculator")
                 .addText("Result", "", true).setID("result")
                 .startRow()
-                .addButton("7", () -> {
-                })
-                .addButton("8", () -> {
-                })
-                .addButton("9", () -> {
-                })
+                    .addButton("7", () -> {})
+                    .addButton("8", () -> {})
+                    .addButton("9", () -> {})
                 .endRow()
                 .startRow()
-                .addButton("4", () -> {
-                })
-                .addButton("5", () -> {
-                })
-                .addButton("6", () -> {
-                })
+                    .addButton("4", () -> {})
+                    .addButton("5", () -> {})
+                    .addButton("6", () -> {})
                 .endRow()
                 .startRow()
-                .addButton("1", () -> {
-                })
-                .addButton("2", () -> {
-                })
-                .addButton("3", () -> {
-                })
+                    .addButton("1", () -> {})
+                    .addButton("2", () -> {})
+                    .addButton("3", () -> {})
                 .endRow()
                 .startRow()
-                .addButton("0", () -> {
-                })
-                .addButton("+", () -> {
-                }).setID("plus")
-                .addButton("-", () -> {
-                }).setID("minus")
+                    .addButton("0", () -> {})
+                    .addButton("+", () -> {}).setID("plus")
+                    .addButton("-", () -> {}).setID("minus")
                 .endRow()
-                .addButton("=", () -> {
-                })
+                .addButton("=", () -> {})
                 .setChangeListener((element, value, filledForm) -> {
                     String input = filledForm.getById("result").getValue() + "";
 
