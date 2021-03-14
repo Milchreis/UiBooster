@@ -231,7 +231,7 @@ Form form = booster.createForm("Personal information")
 // use .run() instead of show() to open the formBuilder without blocking.
 ```
 The form is very powerful and provides a lot of features:
- * add your own elements: [Look here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormElementTest.java)
+ * add your own elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
  * put multiple elements in one row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
  * add a listener for any changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
  * set window setting, f.e. size and position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L96))
