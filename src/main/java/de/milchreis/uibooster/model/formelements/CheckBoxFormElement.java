@@ -1,7 +1,13 @@
+package de.milchreis.uibooster.model.formelements;
+
+import de.milchreis.uibooster.model.FormElement;
+import de.milchreis.uibooster.model.FormElementChangeListener;
+import javax.swing.*;
+
 public class CheckBoxFormElement extends FormElement {
   private boolean ticked;
   private final JCheckBox button;
-  
+
   /**
    * Button label is propably more important than the component label.
    */
@@ -9,7 +15,7 @@ public class CheckBoxFormElement extends FormElement {
     this("", buttonLabel);
   }
 
-  public TickBox(String label, String buttonLabel) {
+  public CheckBoxFormElement(String label, String buttonLabel) {
     super(label);
     ticked = false;
     button = new JCheckBox(buttonLabel);
