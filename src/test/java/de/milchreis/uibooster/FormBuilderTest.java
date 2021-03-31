@@ -23,6 +23,10 @@ class FormBuilderTest {
                 .addSelection(
                         "Whats your favorite movie?",
                         Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"))
+                .addSelectionWithCheckboxes(
+                        "Whats your favorite genres?",
+                        Arrays.asList("Action", "Drama", "Comedy", "Romance", "Thriller", "Animation", "Fantasy",
+                                "Adventure", "Crime", "Mystery", "Sci-fi", "Horror"))
                 .addLabel("Choose an action")
                 .addButton("half full", () -> booster.showInfoDialog("Optimist"))
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))

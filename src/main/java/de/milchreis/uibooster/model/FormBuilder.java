@@ -80,6 +80,16 @@ public class FormBuilder {
         return this;
     }
 
+    public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities) {
+        addElement(new CheckboxSelectionFormElement(label, possibilities));
+        return this;
+    }
+
+    public FormBuilder addSelectionWithCheckboxes(String label, String... possibilities) {
+        addSelectionWithCheckboxes(label, Arrays.asList(possibilities));
+        return this;
+    }
+
     public FormBuilder addCustomElement(FormElement element) {
         addElement(element);
         return this;
