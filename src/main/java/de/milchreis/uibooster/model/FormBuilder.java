@@ -200,6 +200,8 @@ public class FormBuilder {
         setInitialDisabledFormElements();
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
+        dialog.setDialogCreatedListener(form::setWindow);
+
         final DialogClosingState closingState = dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
         form.setClosedByUser(closingState.isClosedByUser());
         return form;

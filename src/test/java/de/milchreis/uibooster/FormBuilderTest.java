@@ -14,6 +14,22 @@ class FormBuilderTest {
     UiBooster booster = new UiBooster();
 
     @Test
+    public void test_form_close_itself() {
+
+        booster.createForm("Title")
+                .addButton("Close window", () -> {
+                            System.out.println("Close this window");
+                        }
+                ).setID("close")
+                .setChangeListener((element, value, form) -> {
+                    if (element.getId().equals("close")) {
+                        form.close();
+                    }
+                }).show();
+    }
+
+
+    @Test
     public void test_form_dialog() {
         Form form = booster
                 .createForm("Personal information")

@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Form {
 
-    private final JDialog window;
+    private JDialog window;
     private final List<FormElement> elements;
     private boolean closed = false;
 
@@ -58,6 +58,16 @@ public class Form {
 
     void setClosedByUser(boolean closed) {
         this.closed = closed;
+    }
+
+    void setWindow(JDialog window) {
+        this.window = window;
+        this.window.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                closed = true;
+            }
+        });
     }
 
     public boolean isClosedByUser() {

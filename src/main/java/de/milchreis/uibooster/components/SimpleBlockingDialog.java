@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.function.Consumer;
 
 import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
 
@@ -14,9 +15,14 @@ public class SimpleBlockingDialog {
     private JDialog dialog;
     private final JComponent[] components;
     private final DialogClosingState closingState = new DialogClosingState();
+    private Consumer<JDialog> onDialogCreated;
 
     public SimpleBlockingDialog(JComponent... component) {
         this.components = component;
+    }
+
+    public void setDialogCreatedListener(Consumer<JDialog> onDialogCreated) {
+        this.onDialogCreated = onDialogCreated;
     }
 
     public DialogClosingState showDialog(String message, String title, String iconPath) {
@@ -33,6 +39,9 @@ public class SimpleBlockingDialog {
 
         dialog = createDialog(title, optionPane);
         applyWindowIcon(iconPath, dialog);
+
+        if(onDialogCreated != null)
+            onDialogCreated.accept(dialog);
 
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.addWindowListener(new WindowAdapter() {
@@ -68,4 +77,5 @@ public class SimpleBlockingDialog {
     public JDialog getDialog() {
         return dialog;
     }
+
 }
