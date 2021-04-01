@@ -1,11 +1,10 @@
 package de.milchreis.uibooster;
 
-import com.bulenkov.darcula.DarculaLaf;
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
+import de.milchreis.uibooster.model.options.*;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
@@ -25,34 +24,41 @@ public class UiBooster {
     private final UiBoosterOptions options;
 
     public UiBooster() {
-        this(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
+        this(new DefaultUiBoosterOptions());
     }
 
     public UiBooster(UiBoosterOptions options) {
-        this.options = options == null ? new UiBoosterOptions() : options;
-
-        if (options.getTheme() != null) {
-            try {
-                if (options.getTheme() == UiBoosterOptions.Theme.DARK_THEME) {
-                    // Little hack to start working on linux
-                    UIManager.getFont("Label.font");
-                    UIManager.setLookAndFeel(new DarculaLaf());
-
-                } else if (options.getTheme() == UiBoosterOptions.Theme.OS_NATIVE) {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-                } else if (options.getTheme() == UiBoosterOptions.Theme.SWING) {
-                    UIManager.setLookAndFeel(new MetalLookAndFeel());
-
-                } else if (options.getTheme() == UiBoosterOptions.Theme.DEFAULT) {
-                    UIManager.setLookAndFeel(UIManager.getLookAndFeel());
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        this.options = options;
+        try {
+            UIManager.setLookAndFeel(options.getLookAndFeel());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    public UiBooster(UiBoosterOptions.Theme options) {
+        switch (options) {
+            case DARK_THEME:
+                this.options = new DarkUiBoosterOptions();
+                break;
+            case SWING:
+                this.options = new SwingUiBoosterOptions();
+                break;
+            case OS_NATIVE:
+                this.options = new OSNativeUiBoosterOptions();
+                break;
+            default:
+                this.options = new DefaultUiBoosterOptions();
+                break;
+        }
+        try {
+            UIManager.setLookAndFeel(this.options.getLookAndFeel());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Shows an info dialog and blocks until the ok button was clicked.

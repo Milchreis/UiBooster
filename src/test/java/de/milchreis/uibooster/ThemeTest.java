@@ -16,11 +16,20 @@ class ThemeTest {
             e.printStackTrace();
         }
 
-        UiBooster booster = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DEFAULT));
-        booster.showInfoDialog("Info message");
+        UiBooster booster = new UiBooster();
+        booster.showInfoDialog("Info Message Empty Constructor");
 
-        UiBooster boosterDark = new UiBooster(new UiBoosterOptions(UiBoosterOptions.Theme.DARK_THEME));
-        boosterDark.showInfoDialog("Info message");
+        UiBooster boosterDefault = new UiBooster(UiBoosterOptions.Theme.DEFAULT);
+        boosterDefault.showInfoDialog("Info message Theme.DEFAULT");
+
+        UiBooster boosterDark = new UiBooster(UiBoosterOptions.Theme.DARK_THEME);
+        boosterDark.showInfoDialog("Info message Theme.DARK_THEME");
+
+        UiBooster boosterSwing = new UiBooster(UiBoosterOptions.Theme.SWING);
+        boosterSwing.showInfoDialog("Info message Theme.SWING");
+
+        UiBooster boosterOSNative = new UiBooster(UiBoosterOptions.Theme.OS_NATIVE);
+        boosterOSNative.showInfoDialog("Info message Theme.OS_NATIVE");
     }
 
 }
