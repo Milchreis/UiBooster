@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-import static de.milchreis.uibooster.model.UiBoosterOptions.Theme.DARK_THEME;
 
 public class WaitingDialog {
 
@@ -48,8 +47,7 @@ public class WaitingDialog {
 
     public static WaitingDialog showDialog(String message, String title, String largeMessage, UiBoosterOptions options, boolean decorated) {
 
-        String loadingImage = options.getTheme() == DARK_THEME ?
-                "/loading-75_darcular.gif" : "/loading-75.gif";
+        String loadingImage = options.getLoadingImage();
 
         JLabel loading = new JLabel(new ImageIcon(WaitingDialog.class.getResource(loadingImage)));
 
