@@ -2,7 +2,9 @@ package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
-import de.milchreis.uibooster.model.options.*;
+import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
+import de.milchreis.uibooster.model.options.OSNativeUiBoosterOptions;
+import de.milchreis.uibooster.model.options.SwingUiBoosterOptions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +26,7 @@ public class UiBooster {
     private final UiBoosterOptions options;
 
     public UiBooster() {
-        this(new DefaultUiBoosterOptions());
+        this(new DarkUiBoosterOptions());
     }
 
     public UiBooster(UiBoosterOptions options) {
@@ -39,17 +41,15 @@ public class UiBooster {
 
     public UiBooster(UiBoosterOptions.Theme options) {
         switch (options) {
-            case DARK_THEME:
-                this.options = new DarkUiBoosterOptions();
-                break;
             case SWING:
                 this.options = new SwingUiBoosterOptions();
                 break;
             case OS_NATIVE:
                 this.options = new OSNativeUiBoosterOptions();
                 break;
+            case DARK_THEME:
             default:
-                this.options = new DefaultUiBoosterOptions();
+                this.options = new DarkUiBoosterOptions();
                 break;
         }
         try {
@@ -58,7 +58,6 @@ public class UiBooster {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Shows an info dialog and blocks until the ok button was clicked.

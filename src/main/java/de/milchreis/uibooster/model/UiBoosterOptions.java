@@ -4,32 +4,35 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
  * Abstract base class for user defined look and feel of the application.
- *
  */
 public abstract class UiBoosterOptions {
-  public enum Theme {
-    DARK_THEME, SWING, OS_NATIVE, DEFAULT;
-  }
 
-  protected final BasicLookAndFeel lookAndFeel;
-  protected final String iconPath;
-  protected final String loadingImage;
+    public enum Theme {
+        DARK_THEME, SWING, OS_NATIVE, DEFAULT;
+    }
 
-  public UiBoosterOptions(BasicLookAndFeel lookAndFeel, String iconPath, String loadingImage) {
-    this.lookAndFeel = lookAndFeel;
-    this.iconPath = iconPath;
-    this.loadingImage = loadingImage;
-  }
+    public static final String defaultIconPath = "/uibooster-default-icon.png";
+    public static final String defaultLoadingImage = "/loading-75.gif";
 
-  public BasicLookAndFeel getLookAndFeel() {
-    return lookAndFeel;
-  }
+    protected final BasicLookAndFeel lookAndFeel;
+    protected final String iconPath;
+    protected final String loadingImage;
 
-  public String getIconPath() {
-    return iconPath;
-  }
+    public UiBoosterOptions(BasicLookAndFeel lookAndFeel, String iconPath, String loadingImage) {
+        this.lookAndFeel = lookAndFeel;
+        this.iconPath = iconPath;
+        this.loadingImage = loadingImage;
+    }
 
-  public String getLoadingImage() {
-    return loadingImage;
-  }
+    public BasicLookAndFeel getLookAndFeel() {
+        return lookAndFeel;
+    }
+
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public String getLoadingImage() {
+        return loadingImage;
+    }
 }
