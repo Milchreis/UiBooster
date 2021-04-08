@@ -40,16 +40,20 @@ public class UiBooster {
     }
 
     public UiBooster(UiBoosterOptions.Theme options) {
+        this(options, null);
+    }
+
+    public UiBooster(UiBoosterOptions.Theme options, String iconPath) {
         switch (options) {
             case SWING:
-                this.options = new SwingUiBoosterOptions();
+                this.options = new SwingUiBoosterOptions(iconPath);
                 break;
             case OS_NATIVE:
-                this.options = new OSNativeUiBoosterOptions();
+                this.options = new OSNativeUiBoosterOptions(iconPath);
                 break;
             case DARK_THEME:
             default:
-                this.options = new DarkUiBoosterOptions();
+                this.options = new DarkUiBoosterOptions(iconPath);
                 break;
         }
         try {

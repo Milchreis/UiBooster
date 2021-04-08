@@ -9,7 +9,11 @@ public class DarkUiBoosterOptions extends UiBoosterOptions {
     public static final String defaultLoadingImage = "/loading-75_darcula.gif";
 
     public DarkUiBoosterOptions() {
-        super(new DarculaLaf(), defaultIconPath, defaultLoadingImage);
+        this(defaultIconPath);
+    }
+
+    public DarkUiBoosterOptions(String iconPath) {
+        super(new DarculaLaf(), iconPath, defaultLoadingImage);
 
         // Little hack to start working on linux
         UIManager.getFont("Label.font");

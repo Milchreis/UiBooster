@@ -28,6 +28,11 @@ public class OSNativeUiBoosterOptions extends UiBoosterOptions {
     }
 
     public OSNativeUiBoosterOptions() {
-        super(OSNativeLookAndFeel(), defaultIconPath, defaultLoadingImage);
+        this(defaultIconPath);
     }
+
+    public OSNativeUiBoosterOptions(String iconPath) {
+        super(OSNativeLookAndFeel(), iconPath, defaultLoadingImage);
+    }
+
 }

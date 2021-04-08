@@ -20,7 +20,7 @@ public abstract class UiBoosterOptions {
 
     public UiBoosterOptions(BasicLookAndFeel lookAndFeel, String iconPath, String loadingImage) {
         this.lookAndFeel = lookAndFeel;
-        this.iconPath = iconPath;
+        this.iconPath = iconPath == null ? defaultIconPath : iconPath;
         this.loadingImage = loadingImage;
     }
 

@@ -7,6 +7,10 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 public class SwingUiBoosterOptions extends UiBoosterOptions {
 
     public SwingUiBoosterOptions() {
-        super(new MetalLookAndFeel(), defaultIconPath, defaultLoadingImage);
+        this(defaultIconPath);
+    }
+
+    public SwingUiBoosterOptions(String iconPath) {
+        super(new MetalLookAndFeel(), iconPath == null ? defaultIconPath : iconPath, defaultLoadingImage);
     }
 }
