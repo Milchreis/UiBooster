@@ -264,12 +264,11 @@ new UiBooster().createNotification("It's hot and delicious", "Dinner is ready");
 ## Options
 ```java
 UiBooster booster = new UiBooster(
-    new UiBoosterOptions(
-        UiBoosterOptions.Theme.DARK_THEME,
-        "/path/to/your/custom-window-icon.png"
-    )
+    UiBoosterOptions.Theme.DARK_THEME,
+    "/path/to/your/custom-window-icon.png"
 );
 ```
+See some examples for UiBoosterOptions [here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/UiBoosterOptionsTest.java)  
 
 ## Include to project
 ### Maven
