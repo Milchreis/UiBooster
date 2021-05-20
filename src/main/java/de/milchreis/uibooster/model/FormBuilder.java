@@ -164,6 +164,19 @@ public class FormBuilder {
         return this;
     }
 
+    public FormBuilder addImage(String imagePath) {
+        return addImage(null, imagePath, false);
+    }
+
+    public FormBuilder addImageCentered(String imagePath) {
+        return addImage(null, imagePath, true);
+    }
+
+    public FormBuilder addImage(String label, String imagePath, boolean centered) {
+        addElement(new ImageFormElement(label, imagePath, centered));
+        return this;
+    }
+
     public FormBuilder setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;
@@ -239,4 +252,5 @@ public class FormBuilder {
         formElements.add(rowFormBuilder.getRowElement());
         return this;
     }
+
 }

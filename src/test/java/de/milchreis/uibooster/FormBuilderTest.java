@@ -124,6 +124,19 @@ class FormBuilderTest {
     }
 
     @Test
+    public void test_picture_element() throws InterruptedException {
+        Form form = booster
+                .createForm("Images")
+                .addImage("src/main/resources/uibooster-default-icon.png")
+                .addImageCentered("src/main/resources/uibooster-default-icon.png")
+                .andWindow()
+                .setSize(500, 500).save()
+                .run();
+
+        sleep(5000);
+    }
+
+    @Test
     public void test_form_disable_elements() throws InterruptedException {
 
         Form form = booster
