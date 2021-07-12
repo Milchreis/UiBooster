@@ -44,7 +44,7 @@ public class SelectionFormElement extends FormElement {
         if (!(value instanceof String))
             throw new IllegalArgumentException("The given value has to be of type 'Date'");
 
-        if (possibilities.contains(value.toString()))
+        if (!possibilities.contains(value.toString()))
             throw new IllegalArgumentException("The given value has to be an element of the supported possibilities list");
 
         box.setSelectedItem(value.toString());
