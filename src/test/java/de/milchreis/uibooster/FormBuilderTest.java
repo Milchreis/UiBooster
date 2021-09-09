@@ -157,8 +157,7 @@ class FormBuilderTest {
     public void test_disable_button_dialog() throws InterruptedException {
         Form form = booster
                 .createForm("Test")
-                .addButton("Prev", () -> {
-                }).setDisabled().setID("test")
+                .addButton("Prev", () -> {}).setDisabled().setID("test")
                 .run();
 
         sleep(1000);
@@ -170,12 +169,9 @@ class FormBuilderTest {
         Form form = booster
                 .createForm("Test")
                 .startRow()
-                .addButton("On", () -> {
-                }).setID("on1")
-                .addButton("Off", () -> {
-                }).setDisabled().setID("off1")
-                .addButton("On", () -> {
-                }).setID("on2")
+                .addButton("On", () -> {}).setID("on1")
+                .addButton("Off", () -> {}).setDisabled().setID("off1")
+                .addButton("On", () -> {}).setID("on2")
                 .endRow()
                 .show();
 
