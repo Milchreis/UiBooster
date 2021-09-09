@@ -1,5 +1,7 @@
 package de.milchreis.uibooster.model;
 
+import de.milchreis.uibooster.components.SimpleDialog;
+
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,6 +34,11 @@ public class Form {
         } else if (closingState != null) {
             closed = closingState.isClosedByUser();
         }
+    }
+
+    public Form(SimpleDialog dialog, List<FormElement> formElements, List<Integer> initialElementsDisabled) {
+        this(dialog, formElements);
+        setElementsDisableByIndices(initialElementsDisabled);
     }
 
     public FormElement getById(String id) {
@@ -122,6 +129,10 @@ public class Form {
         }
 
         return allElements;
+    }
+
+    void setElementsDisableByIndices(List<Integer> disableElementsIndices) {
+        disableElementsIndices.forEach(index -> getByIndex(index).setEnabled(false));
     }
 
 }

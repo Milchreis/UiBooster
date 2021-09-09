@@ -16,7 +16,7 @@ public class FormBuilder {
 
     protected final String title;
     protected final List<FormElement> formElements;
-    private final List<Integer> initialElementsDisabled;
+    protected final List<Integer> initialElementsDisabled;
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
     private WindowSetting windowSetting;
@@ -207,10 +207,10 @@ public class FormBuilder {
 
     public Form show() {
 
-        final Form form = new Form(null, formElements, null);
+        final Form form = new Form(null, formElements);
 
         JPanel panel = createPanel(formElements, changeListener, 10);
-        setInitialDisabledFormElements();
+        form.setElementsDisableByIndices(initialElementsDisabled);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
         dialog.setDialogCreatedListener(form::setWindow);
@@ -222,16 +222,9 @@ public class FormBuilder {
 
     public Form run() {
         JPanel panel = createPanel(formElements, changeListener, 10);
-        setInitialDisabledFormElements();
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
-        return new Form(dialog, formElements);
-    }
-
-    private void setInitialDisabledFormElements() {
-        for (Integer index : initialElementsDisabled) {
-            formElements.get(index).setEnabled(false);
-        }
+        return new Form(dialog, formElements, initialElementsDisabled);
     }
 
     private void addElement(FormElement e) {
@@ -253,4 +246,7 @@ public class FormBuilder {
         return this;
     }
 
+    protected void addIndexToInitialElementsDisabled(int index) {
+        initialElementsDisabled.add(index);
+    }
 }

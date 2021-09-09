@@ -153,6 +153,35 @@ class FormBuilderTest {
         sleep(3000);
     }
 
+    @Test
+    public void test_disable_button_dialog() throws InterruptedException {
+        Form form = booster
+                .createForm("Test")
+                .addButton("Prev", () -> {
+                }).setDisabled().setID("test")
+                .run();
+
+        sleep(1000);
+        form.getByIndex(0).setEnabled(true);
+    }
+
+    @Test
+    public void test_disable_button_in_row_dialog() throws InterruptedException {
+        Form form = booster
+                .createForm("Test")
+                .startRow()
+                .addButton("On", () -> {
+                }).setID("on1")
+                .addButton("Off", () -> {
+                }).setDisabled().setID("off1")
+                .addButton("On", () -> {
+                }).setID("on2")
+                .endRow()
+                .show();
+
+        sleep(1000);
+        form.getByIndex(0).setEnabled(true);
+    }
 
     @Test
     public void test_form_list() {
