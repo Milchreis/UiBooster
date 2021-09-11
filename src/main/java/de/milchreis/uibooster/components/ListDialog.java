@@ -3,7 +3,6 @@ package de.milchreis.uibooster.components;
 import de.milchreis.uibooster.model.DialogClosingState;
 import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.SelectElementListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -92,7 +91,6 @@ public class ListDialog {
         return list;
     }
 
-    @NotNull
     public static DefaultListModel<ListElement> createListModel(ListElement[] elements) {
         DefaultListModel<ListElement> listModel = new DefaultListModel<>();
         Stream.of(elements).forEach(listModel::addElement);

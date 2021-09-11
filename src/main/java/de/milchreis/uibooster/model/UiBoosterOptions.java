@@ -8,7 +8,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 public abstract class UiBoosterOptions {
 
     public enum Theme {
-        DARK_THEME, SWING, OS_NATIVE, DEFAULT;
+        DARK_THEME, LIGHT_THEME, SWING, OS_NATIVE, DEFAULT;
     }
 
     public static final String defaultIconPath = "/uibooster-default-icon.png";

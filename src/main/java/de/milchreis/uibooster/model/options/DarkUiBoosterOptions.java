@@ -1,6 +1,6 @@
 package de.milchreis.uibooster.model.options;
 
-import com.bulenkov.darcula.DarculaLaf;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class DarkUiBoosterOptions extends UiBoosterOptions {
     }
 
     public DarkUiBoosterOptions(String iconPath) {
-        super(new DarculaLaf(), iconPath, defaultLoadingImage);
+        super(new FlatDarculaLaf(), iconPath, defaultLoadingImage);
 
         // Little hack to start working on linux
         UIManager.getFont("Label.font");

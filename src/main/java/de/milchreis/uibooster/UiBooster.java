@@ -3,6 +3,7 @@ package de.milchreis.uibooster;
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
+import de.milchreis.uibooster.model.options.LightUiBoosterOptions;
 import de.milchreis.uibooster.model.options.OSNativeUiBoosterOptions;
 import de.milchreis.uibooster.model.options.SwingUiBoosterOptions;
 
@@ -50,6 +51,9 @@ public class UiBooster {
                 break;
             case OS_NATIVE:
                 this.options = new OSNativeUiBoosterOptions(iconPath);
+                break;
+            case LIGHT_THEME:
+                this.options = new LightUiBoosterOptions(iconPath);
                 break;
             case DARK_THEME:
             default:

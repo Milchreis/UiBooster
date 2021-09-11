@@ -2,7 +2,6 @@ package de.milchreis.uibooster.model.formelements;
 
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -125,7 +124,6 @@ public class FilterableCheckboxListFormElement extends FormElement {
             throw new IllegalArgumentException("The given value has to be List<String> or String[]");
     }
 
-    @NotNull
     private DefaultListModel<JCheckBox> createModel(List<String> possibleValues) {
         DefaultListModel<JCheckBox> model = new DefaultListModel<>();
         possibleValues.forEach(v -> model.addElement(new JCheckBox(v, selected.contains(v))));

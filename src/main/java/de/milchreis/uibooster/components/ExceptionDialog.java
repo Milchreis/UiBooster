@@ -1,7 +1,6 @@
 package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.UiBoosterOptions;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,7 +17,6 @@ public class ExceptionDialog {
         dialog.showDialog(message, title, options.getIconPath());
     }
 
-    @NotNull
     private static JPanel createExceptionPanel(String message, Exception exception) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));

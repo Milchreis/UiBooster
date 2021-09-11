@@ -1,6 +1,6 @@
 package de.milchreis.uibooster.model.options;
 
-import com.bulenkov.darcula.DarculaLaf;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class OSNativeUiBoosterOptions extends UiBoosterOptions {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new DarculaLaf();
+            return new FlatDarculaLaf();
         }
     }
 

@@ -1,7 +1,6 @@
 package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.DialogClosingState;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -22,7 +21,6 @@ public class SliderDialog {
         return closingState.isClosedByUser() ? null : slider.getValue();
     }
 
-    @NotNull
     public static JSlider createSlider(int min, int max, int init, int majorTick, int minorTick, JLabel current) {
         JSlider slider = new JSlider(JSlider.HORIZONTAL, min, max, init);
         slider.setMajorTickSpacing(majorTick);
