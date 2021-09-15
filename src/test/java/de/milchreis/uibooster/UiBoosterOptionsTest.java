@@ -4,6 +4,8 @@ import de.milchreis.uibooster.model.UiBoosterOptions;
 import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 class UiBoosterOptionsTest {
 
     @Test
@@ -29,6 +31,12 @@ class UiBoosterOptionsTest {
     @Test
     public void test_options() {
         new UiBooster(new DarkUiBoosterOptions());
+    }
+
+    @Test
+    public void test_different_font() {
+        final UiBooster booster = new UiBooster(new Font("Comic Sans MS", Font.BOLD, 24));
+        booster.showInfoDialog("Some fancy information with crazy font");
     }
 
 }

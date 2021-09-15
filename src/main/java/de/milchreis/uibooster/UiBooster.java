@@ -6,6 +6,7 @@ import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
 import de.milchreis.uibooster.model.options.LightUiBoosterOptions;
 import de.milchreis.uibooster.model.options.OSNativeUiBoosterOptions;
 import de.milchreis.uibooster.model.options.SwingUiBoosterOptions;
+import de.milchreis.uibooster.utils.FontHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,17 +35,24 @@ public class UiBooster {
         this.options = options;
         try {
             UIManager.setLookAndFeel(options.getLookAndFeel());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public UiBooster(UiBoosterOptions.Theme options) {
-        this(options, null);
+        this(options, null, null);
+    }
+
+    public UiBooster(Font font) {
+        this(UiBoosterOptions.Theme.DEFAULT, null, font);
     }
 
     public UiBooster(UiBoosterOptions.Theme options, String iconPath) {
+        this(options, iconPath, null);
+    }
+
+    public UiBooster(UiBoosterOptions.Theme options, String iconPath, Font font) {
         switch (options) {
             case SWING:
                 this.options = new SwingUiBoosterOptions(iconPath);
@@ -61,7 +69,9 @@ public class UiBooster {
                 break;
         }
         try {
+            FontHelper.setFontInUIManager(font);
             UIManager.setLookAndFeel(this.options.getLookAndFeel());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
