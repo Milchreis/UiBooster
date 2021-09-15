@@ -12,14 +12,13 @@ public class CheckboxFormElement extends FormElement {
     private final JCheckBox checkbox;
 
     public CheckboxFormElement(String label) {
-        super(null);
-        title = new JLabel(label);
-        checkbox = new JCheckBox();
+        this(label, null);
     }
 
-    @Override
-    public String getLabel() {
-        return title.getText();
+    public CheckboxFormElement(String label, String headline) {
+        super(headline);
+        title = new JLabel(label);
+        checkbox = new JCheckBox();
     }
 
     @Override

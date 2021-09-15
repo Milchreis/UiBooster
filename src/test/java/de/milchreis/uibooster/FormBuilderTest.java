@@ -212,7 +212,7 @@ class FormBuilderTest {
     public void test_form_single_checkboxes() {
         final Form form = booster.createForm("Personal information")
                 .addLabel("What are your favorite snacks?")
-                .addCheckbox("potato chips")
+                .addCheckbox("potato chips", "crispy fried potato slices")
                 .addCheckbox("pretzels")
                 .addCheckbox("chocolate")
                 .addCheckbox("I hate snacks").setDisabled()
