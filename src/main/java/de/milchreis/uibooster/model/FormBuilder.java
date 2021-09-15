@@ -177,6 +177,11 @@ public class FormBuilder {
         return this;
     }
 
+    public FormBuilder addCheckbox(String label) {
+        addElement(new CheckboxFormElement(label));
+        return this;
+    }
+
     public FormBuilder setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;

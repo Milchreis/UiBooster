@@ -208,5 +208,20 @@ class FormBuilderTest {
                 .show();
     }
 
+    @Test
+    public void test_form_single_checkboxes() {
+        final Form form = booster.createForm("Personal information")
+                .addLabel("What are your favorite snacks?")
+                .addCheckbox("potato chips")
+                .addCheckbox("pretzels")
+                .addCheckbox("chocolate")
+                .addCheckbox("I hate snacks").setDisabled()
+                .show();
+
+        form.getElements().forEach(e -> {
+            System.out.println(e.getLabel() + " -> " + e.getValue());
+        });
+    }
+
 
 }
