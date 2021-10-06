@@ -157,7 +157,8 @@ class FormBuilderTest {
     public void test_disable_button_dialog() throws InterruptedException {
         Form form = booster
                 .createForm("Test")
-                .addButton("Prev", () -> {}).setDisabled().setID("test")
+                .addButton("Prev", () -> {
+                }).setDisabled().setID("test")
                 .run();
 
         sleep(1000);
@@ -223,5 +224,18 @@ class FormBuilderTest {
         });
     }
 
+    @Test
+    public void test_form_change_possibilities() throws InterruptedException {
+        final Form form = booster.createForm("Personal information")
+                .addSelection("What are your favorite snacks?", Arrays.asList(
+                        "potato chips", "pretzels", "chocolate", "I hate snacks"))
+                .run();
+
+        form.getByIndex(0)
+                .toSelection()
+                .setPossibilities(Arrays.asList("apples", "bananas", "grapes"));
+
+        sleep(10000);
+    }
 
 }

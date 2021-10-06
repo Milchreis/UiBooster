@@ -55,4 +55,14 @@ public class SelectionFormElement extends FormElement {
         possibilities.add(element);
         box.addItem(element);
     }
+
+    public List<String> getPossibilities() {
+        return possibilities;
+    }
+
+    public void setPossibilities(List<String> possibilities) {
+        this.possibilities = possibilities;
+        box.removeAllItems();
+        possibilities.forEach(box::addItem);
+    }
 }
