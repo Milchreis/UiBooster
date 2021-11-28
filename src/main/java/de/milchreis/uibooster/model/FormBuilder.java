@@ -218,7 +218,7 @@ public class FormBuilder {
 
         final Form form = new Form(null, formElements);
 
-        JPanel panel = createPanel(formElements, changeListener, 10);
+        JPanel panel = createPanel(formElements, changeListener, 5);
         form.setElementsDisableByIndices(initialElementsDisabled);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
@@ -230,7 +230,7 @@ public class FormBuilder {
     }
 
     public Form run() {
-        JPanel panel = createPanel(formElements, changeListener, 10);
+        JPanel panel = createPanel(formElements, changeListener, 5);
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
         return new Form(dialog, formElements, initialElementsDisabled);
