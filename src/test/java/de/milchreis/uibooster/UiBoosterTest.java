@@ -200,7 +200,7 @@ class UiBoosterTest {
 
     @Test
     void test_splashscreen_dialog() {
-        Splashscreen splash = booster.showSplashscreen("src/main/resources/icon.png");
+        Splashscreen splash = booster.showSplashscreen("src/main/resources/uibooster-default-icon.png");
         sleep(5000);
         splash.hide();
     }
@@ -220,7 +220,7 @@ class UiBoosterTest {
                 new ListElement("Robo 4", null, "src/test/resources/avatar3.png"));
 
         assert selectedElement != null;
-        System.out.println(selectedElement.toString());
+        System.out.println(selectedElement);
     }
 
     @Test
@@ -232,7 +232,7 @@ class UiBoosterTest {
                 "Video Games", "Crafting", "Bird Watching", "Collecting");
 
         assert selectedElement != null;
-        System.out.println(selectedElement.toString());
+        System.out.println(selectedElement);
     }
 
 
