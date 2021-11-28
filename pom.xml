@@ -6,7 +6,7 @@
 
     <groupId>de.milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.13.3-SNAPSHOT</version>
+    <version>1.14.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -61,6 +61,11 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+<!--                    Necessary for Java 9-->
+<!--                    <compilerArgs>-->
+<!--                        <arg>&#45;&#45;add-exports</arg>-->
+<!--                        <arg>java.desktop/com.sun.java.swing.plaf=ALL-UNNAMED</arg>-->
+<!--                    </compilerArgs>-->
                 </configuration>
             </plugin>
 
