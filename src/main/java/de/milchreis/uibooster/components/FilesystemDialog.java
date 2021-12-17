@@ -10,29 +10,44 @@ import static javax.swing.JFileChooser.FILES_ONLY;
 public class FilesystemDialog {
 
     public static File showFileSelectionDialog() {
-        return showFsSelectionDialog(FILES_ONLY, null, null);
+        return showFileSelectionDialog(null);
     }
 
-    public static File showFileSelectionDialog(String description, String... extensions) {
-        return showFsSelectionDialog(FILES_ONLY, description, extensions);
+    public static File showFileSelectionDialog(String currentDirectory) {
+        return showFsSelectionDialog(currentDirectory, FILES_ONLY, null, null);
+    }
+
+    public static File showFileSelectionDialog(String currentDirectory, String description, String... extensions) {
+        return showFsSelectionDialog(currentDirectory, FILES_ONLY, description, extensions);
     }
 
     public static File showDirectorySelectionDialog() {
-        return showFsSelectionDialog(JFileChooser.DIRECTORIES_ONLY, null, null);
+        return showDirectorySelectionDialog(null);
+    }
+
+    public static File showDirectorySelectionDialog(String currentDirectory) {
+        return showFsSelectionDialog(currentDirectory, JFileChooser.DIRECTORIES_ONLY, null, null);
     }
 
     public static File showFileOrDirectorySelectionDialog() {
-        return showFsSelectionDialog(FILES_AND_DIRECTORIES, null, null);
+        return showFileOrDirectorySelectionDialog(null);
     }
 
-    public static File showFileOrDirectorySelectionDialog(String description, String... extensions) {
-        return showFsSelectionDialog(FILES_AND_DIRECTORIES, description, extensions);
+    public static File showFileOrDirectorySelectionDialog(String currentDirectory) {
+        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, null, null);
     }
 
-    private static File showFsSelectionDialog(int type, String description, String... extensions) {
+    public static File showFileOrDirectorySelectionDialog(String currentDirectory, String description, String... extensions) {
+        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, description, extensions);
+    }
+
+    private static File showFsSelectionDialog(String currentDirectoryPath, int type, String description, String... extensions) {
 
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(type);
+
+        if (currentDirectoryPath != null)
+            chooser.setCurrentDirectory(new File(currentDirectoryPath));
 
         if ((type == FILES_ONLY || type == FILES_AND_DIRECTORIES) && extensions != null && extensions.length > 0) {
             chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));

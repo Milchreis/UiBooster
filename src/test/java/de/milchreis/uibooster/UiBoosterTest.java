@@ -89,6 +89,26 @@ class UiBoosterTest {
     }
 
     @Test
+    public void test_fileselection_with_path_dialog() {
+        String currentPath = "./";
+
+        File file = booster.showFileSelectionFromPath(currentPath);
+        System.out.println(file);
+
+        File pdfFiles = booster.showFileSelectionFromPath(currentPath, "PDF files", "pdf");
+        System.out.println(pdfFiles);
+
+        File directory = booster.showDirectorySelectionFromPath(currentPath);
+        System.out.println(directory);
+
+        File fileOrDirectory = booster.showFileOrDirectorySelectionFromPath(currentPath);
+        System.out.println(fileOrDirectory);
+
+        File pdfFileOrDirectory = booster.showFileOrDirectorySelectionFromPath(currentPath, "PDF files", "pdf");
+        System.out.println(pdfFileOrDirectory);
+    }
+
+    @Test
     public void test_login_dialog() {
         LoginCredentials credentials = booster.showLogin(
                 "Login",
