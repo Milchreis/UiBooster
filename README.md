@@ -231,10 +231,17 @@ Form form = booster.createForm("Personal information")
 // use .run() instead of show() to open the formBuilder without blocking.
 ```
 The form is very powerful and provides a lot of features:
- * add your own elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
- * put multiple elements in one row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
- * add a listener for any changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
- * set window setting, f.e. size and position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L116))
+
+* add your own
+  elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
+* put multiple elements in one
+  row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
+* add a listener for any
+  changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
+* add a listener on window
+  close ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L115))
+* set window setting, f.e. size and
+  position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L141))
 
 ### Splash screen
 ![screenshot splash screen](https://github.com/Milchreis/UiBooster/blob/master/screenshots/splash.jpg?raw=true)
@@ -283,7 +290,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.14.0</version>
+    <version>1.14.1</version>
 </dependency>
 ```
 
@@ -299,6 +306,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.14.0'
+        implementation 'com.github.Milchreis:UiBooster:1.14.1'
 }
 ```
