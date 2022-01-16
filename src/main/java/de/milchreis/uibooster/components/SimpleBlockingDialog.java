@@ -1,6 +1,7 @@
 package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.DialogClosingState;
+import de.milchreis.uibooster.model.FormCloseListenerWrapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,10 +27,10 @@ public class SimpleBlockingDialog {
     }
 
     public DialogClosingState showDialog(String message, String title, String iconPath) {
-        return showDialog(message, title, null, iconPath, false);
+        return showDialog(message, title, null, iconPath, null, false);
     }
 
-    public DialogClosingState showDialog(String message, String title, WindowSetting setting, String iconPath, boolean resizable) {
+    public DialogClosingState showDialog(String message, String title, WindowSetting setting, String iconPath, FormCloseListenerWrapper exitListenerWrapper, boolean resizable) {
         JOptionPane optionPane = new JOptionPane();
 
         if (message != null && !message.isEmpty())
@@ -40,14 +41,17 @@ public class SimpleBlockingDialog {
         dialog = createDialog(title, optionPane);
         applyWindowIcon(iconPath, dialog);
 
-        if(onDialogCreated != null)
+        if (onDialogCreated != null)
             onDialogCreated.accept(dialog);
 
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                closingState.setClosedByUser(true);
+                closingState.setClosedByUser(optionPane.getValue() == null);
+
+                if (exitListenerWrapper != null)
+                    exitListenerWrapper.executeListener();
             }
         });
 

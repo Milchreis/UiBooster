@@ -32,7 +32,7 @@ public class ListDialog {
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(jScrollPane);
 
-        DialogClosingState closingState = dialog.showDialog(message, title, null, iconPath, true);
+        DialogClosingState closingState = dialog.showDialog(message, title, null, iconPath, null, true);
         return closingState.isClosedByUser() ? null : list.getSelectedValue();
     }
 

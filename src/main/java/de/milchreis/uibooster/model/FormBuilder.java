@@ -19,6 +19,7 @@ public class FormBuilder {
     protected final List<Integer> initialElementsDisabled;
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
+    private FormCloseListener formCloseListener;
     private WindowSetting windowSetting;
     private RowFormBuilder rowFormBuilder;
 
@@ -181,6 +182,7 @@ public class FormBuilder {
         addElement(new CheckboxFormElement(label));
         return this;
     }
+
     public FormBuilder addCheckbox(String headline, String label) {
         addElement(new CheckboxFormElement(label, headline));
         return this;
@@ -188,6 +190,11 @@ public class FormBuilder {
 
     public FormBuilder setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
+        return this;
+    }
+
+    public FormBuilder setCloseListener(FormCloseListener closeListener) {
+        formCloseListener = closeListener;
         return this;
     }
 
@@ -224,8 +231,13 @@ public class FormBuilder {
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
         dialog.setDialogCreatedListener(form::setWindow);
 
-        final DialogClosingState closingState = dialog.showDialog(null, title, windowSetting, options.getIconPath(), true);
-        form.setClosedByUser(closingState.isClosedByUser());
+        dialog.showDialog(null, title,
+                windowSetting,
+                options.getIconPath(),
+                new FormCloseListenerWrapper(form, formCloseListener),
+                true);
+
+        form.setClosedByUser(false);
         return form;
     }
 
@@ -233,7 +245,7 @@ public class FormBuilder {
         JPanel panel = createPanel(formElements, changeListener, 5);
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
-        return new Form(dialog, formElements, initialElementsDisabled);
+        return new Form(dialog, formElements, initialElementsDisabled, formCloseListener);
     }
 
     private void addElement(FormElement e) {
@@ -258,4 +270,5 @@ public class FormBuilder {
     protected void addIndexToInitialElementsDisabled(int index) {
         initialElementsDisabled.add(index);
     }
+
 }

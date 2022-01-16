@@ -71,6 +71,20 @@ class UiBoosterTest {
     }
 
     @Test
+    void test_list_selection_dialog() {
+
+        final ListElement selectedElement = booster.showList("What's your favorite movie",
+                "Favorite movie",
+                new ListElement("Pulp Fiction", "Director: Quentin Tarantino"),
+                new ListElement("Bambi", "Directors: James Algar, Sam Armstrong"),
+                new ListElement("The Godfather", "Director: Francis Ford Coppola"),
+                new ListElement("Hangover", "Director: Todd Phillips")
+        );
+
+        System.out.println(selectedElement);
+    }
+
+    @Test
     public void test_fileselection_dialog() {
         File file = booster.showFileSelection();
         System.out.println(file);

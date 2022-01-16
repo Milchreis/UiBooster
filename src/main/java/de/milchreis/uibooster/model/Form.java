@@ -13,31 +13,32 @@ public class Form {
 
     private JDialog window;
     private final List<FormElement> elements;
-    private boolean closed = false;
+    private Boolean closed;
 
     public Form(JDialog dialog, List<FormElement> elements) {
         this(dialog, elements, null);
     }
 
-    public Form(JDialog dialog, List<FormElement> elements, DialogClosingState closingState) {
+    public Form(JDialog dialog, List<FormElement> elements, FormCloseListener formCloseListener) {
         window = dialog;
         this.elements = elements;
         getAllFormElements().forEach(e -> e.setForm(this));
 
-        if (window != null && closingState == null) {
+        if (window != null) {
             window.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    closed = true;
+                    setClosedByUser(true);
+
+                    if (formCloseListener != null)
+                        formCloseListener.onClose(Form.this);
                 }
             });
-        } else if (closingState != null) {
-            closed = closingState.isClosedByUser();
         }
     }
 
-    public Form(SimpleDialog dialog, List<FormElement> formElements, List<Integer> initialElementsDisabled) {
-        this(dialog, formElements);
+    public Form(SimpleDialog dialog, List<FormElement> formElements, List<Integer> initialElementsDisabled, FormCloseListener formCloseListener) {
+        this(dialog, formElements, formCloseListener);
         setElementsDisableByIndices(initialElementsDisabled);
     }
 
@@ -64,7 +65,8 @@ public class Form {
     }
 
     void setClosedByUser(boolean closed) {
-        this.closed = closed;
+        if (this.closed == null)
+            this.closed = closed;
     }
 
     void setWindow(JDialog window) {
@@ -72,7 +74,7 @@ public class Form {
         this.window.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                closed = true;
+                setClosedByUser(true);
             }
         });
     }

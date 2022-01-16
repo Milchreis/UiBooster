@@ -22,8 +22,7 @@ public class SimpleDialog extends JDialog {
 
         setLayout(new BorderLayout());
 
-        if (panel != null)
-            add(panel, BorderLayout.CENTER);
+        if (panel != null) add(panel, BorderLayout.CENTER);
 
         setResizable(true);
         pack();
@@ -33,8 +32,7 @@ public class SimpleDialog extends JDialog {
 
             if (setting.getPositionX() != null && setting.getPositionY() != null)
                 setLocation(setting.getPositionX(), setting.getPositionY());
-            else
-                setLocationRelativeTo(null);
+            else setLocationRelativeTo(null);
 
             setVisible(setting.isVisible());
 

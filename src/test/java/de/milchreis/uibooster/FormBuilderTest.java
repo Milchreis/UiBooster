@@ -54,6 +54,10 @@ class FormBuilderTest {
                                 " changed to " + value.toString()))
                 .show();
 
+        if (form.isClosedByUser())
+            System.exit(-1);
+        System.out.println("closed by user");
+
         form.getElements().forEach(e -> {
             System.out.println(e.getLabel() + " -> " + e.getValue());
         });
@@ -98,6 +102,27 @@ class FormBuilderTest {
                 .addText("Whats your first name?").setID("name")
                 .addMultipleSelection("What are your hobbies?", "Reading", "Traveling")
                 .show();
+
+        final FormElement byId = form.getById("name");
+        final FormElement byIndex = form.getByIndex(0);
+        assert byId == byIndex;
+
+        assert form.getByIndex(1) != form.getByIndex(0);
+        assert form.getByIndex(1) == form.getByLabel("What are your hobbies?");
+    }
+
+    @Test
+    public void test_form_dialog_with_exit_action() throws InterruptedException {
+        Form form = booster
+                .createForm("Personal information")
+                .addText("Whats your first name?").setID("name")
+                .addMultipleSelection("What are your hobbies?", "Reading", "Traveling")
+                .setCloseListener((f) -> {
+                    System.out.println("Is form closed by user? " + f.isClosedByUser());
+                })
+                .run();
+
+        sleep(15000);
 
         final FormElement byId = form.getById("name");
         final FormElement byIndex = form.getByIndex(0);
