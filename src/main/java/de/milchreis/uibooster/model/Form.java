@@ -80,7 +80,7 @@ public class Form {
     }
 
     public boolean isClosedByUser() {
-        return closed;
+        return closed != null && closed;
     }
 
     /**
