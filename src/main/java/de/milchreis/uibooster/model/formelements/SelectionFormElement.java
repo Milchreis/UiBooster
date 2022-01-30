@@ -62,7 +62,7 @@ public class SelectionFormElement extends FormElement {
 
     public void setPossibilities(List<String> possibilities) {
         this.possibilities = possibilities;
-        box.removeAllItems();
-        possibilities.forEach(box::addItem);
+        box.setModel(new DefaultComboBoxModel<>(possibilities.toArray(new String[0])));
+        box.setSelectedItem(possibilities.get(0));
     }
 }
