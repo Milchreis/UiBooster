@@ -77,8 +77,8 @@ public abstract class FormElement {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    void setForm(Form filledForm) {
-        this.form = filledForm;
+    void setForm(Form form) {
+        this.form = form;
     }
 
     public TableFormElement toTable() {
