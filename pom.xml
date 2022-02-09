@@ -6,7 +6,7 @@
 
     <groupId>de.milchreis</groupId>
     <artifactId>UiBooster</artifactId>
-    <version>1.14.1</version>
+    <version>1.14.2</version>
     <packaging>jar</packaging>
 
     <properties>
