@@ -8,9 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FilterableCheckboxListFormElement extends FormElement {
@@ -19,7 +17,7 @@ public class FilterableCheckboxListFormElement extends FormElement {
     private final JList<JCheckBox> list;
     private final boolean hideFilter;
     private List<String> allItems;
-    private final List<String> selected = new ArrayList<>();
+    private final Set<String> selected = new LinkedHashSet<>();
     private FormElementChangeListener onChange;
 
     public FilterableCheckboxListFormElement(String label, boolean hideFilter, List<String> possibleValues) {
@@ -47,19 +45,8 @@ public class FilterableCheckboxListFormElement extends FormElement {
             public void mousePressed(MouseEvent e) {
                 int index = list.locationToIndex(e.getPoint());
                 if (index != -1) {
-                    JCheckBox checkbox = list.getModel().getElementAt(index);
-                    checkbox.setSelected(!checkbox.isSelected());
-
-                    if (checkbox.isSelected()) {
-                        selected.add(checkbox.getText());
-                    } else {
-                        selected.remove(checkbox.getText());
-                    }
-
-                    list.repaint();
-
-                    if (onChange != null)
-                        onChange.onChange(FilterableCheckboxListFormElement.this, selected, form);
+                    toggleCheckbox(index);
+                    updateUiAndListener();
                 }
             }
         });
@@ -107,7 +94,7 @@ public class FilterableCheckboxListFormElement extends FormElement {
 
     @Override
     public Object getValue() {
-        return selected;
+        return new ArrayList<>(this.selected);
     }
 
     @Override
@@ -124,9 +111,66 @@ public class FilterableCheckboxListFormElement extends FormElement {
             throw new IllegalArgumentException("The given value has to be List<String> or String[]");
     }
 
+    public List<String> getVisibleItems() {
+        List<String> items = new ArrayList<>();
+        for (int i = 0; i < list.getModel().getSize(); i++) {
+            final JCheckBox checkBox = list.getModel().getElementAt(i);
+            items.add(checkBox.getText());
+        }
+        return items;
+    }
+
+    public void select(String item) {
+        for (int i = 0; i < list.getModel().getSize(); i++) {
+            final JCheckBox checkBox = list.getModel().getElementAt(i);
+            if (checkBox.getText().equals(item)) {
+                selectCheckbox(i, true);
+            }
+        }
+        updateUiAndListener();
+    }
+
+    public void unselect(String item) {
+        for (int i = 0; i < list.getModel().getSize(); i++) {
+            final JCheckBox checkBox = list.getModel().getElementAt(i);
+            if (checkBox.getText().equals(item)) {
+                selectCheckbox(i, false);
+            }
+        }
+        updateUiAndListener();
+    }
+
     private DefaultListModel<JCheckBox> createModel(List<String> possibleValues) {
         DefaultListModel<JCheckBox> model = new DefaultListModel<>();
         possibleValues.forEach(v -> model.addElement(new JCheckBox(v, selected.contains(v))));
         return model;
+    }
+
+    private void toggleCheckbox(int index) {
+        JCheckBox checkbox = list.getModel().getElementAt(index);
+        checkbox.setSelected(!checkbox.isSelected());
+
+        if (checkbox.isSelected()) {
+            selected.add(checkbox.getText());
+        } else {
+            selected.remove(checkbox.getText());
+        }
+    }
+
+    private void selectCheckbox(int index, boolean select) {
+        JCheckBox checkbox = list.getModel().getElementAt(index);
+        checkbox.setSelected(select);
+        if (select) {
+            selected.add(checkbox.getText());
+        } else {
+            selected.remove(checkbox.getText());
+        }
+    }
+
+    private void updateUiAndListener() {
+        list.repaint();
+
+        if (onChange != null)
+            onChange.onChange(this, selected, form);
     }
 }
