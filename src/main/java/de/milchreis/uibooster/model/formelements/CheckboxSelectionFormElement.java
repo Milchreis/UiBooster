@@ -24,7 +24,16 @@ public class CheckboxSelectionFormElement extends FormElement {
     public JComponent createComponent(FormElementChangeListener onChange) {
         JPanel panel = new JPanel();
         panel.setLayout(new WrapLayout());
-        checkboxes.forEach(panel::add);
+
+        for (JCheckBox checkbox : checkboxes) {
+            panel.add(checkbox);
+
+            checkbox.addActionListener((l) -> {
+                if (onChange != null)
+                    onChange.onChange(this, checkbox, form);
+            });
+        }
+
         return panel;
     }
 

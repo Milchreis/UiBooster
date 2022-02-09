@@ -26,6 +26,12 @@ public class CheckboxFormElement extends FormElement {
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(title, BorderLayout.WEST);
         panel.add(checkbox, BorderLayout.EAST);
+
+        checkbox.addActionListener((l) -> {
+            if (onChange != null)
+                onChange.onChange(this, checkbox, form);
+        });
+
         return panel;
     }
 
@@ -43,7 +49,7 @@ public class CheckboxFormElement extends FormElement {
     @Override
     public void setValue(Object value) {
         if (value instanceof Boolean) {
-           checkbox.setSelected((Boolean) value);
+            checkbox.setSelected((Boolean) value);
         } else {
             throw new IllegalArgumentException("The value has to be a boolean");
         }

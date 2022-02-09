@@ -5,7 +5,9 @@ import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.ListElement;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -47,6 +49,7 @@ class FormBuilderTest {
                 .addButton("half full", () -> booster.showInfoDialog("Optimist"))
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
+                .addCheckbox("Are you fine?", "yes")
                 .addColorPicker("Favorite color?")
                 .setChangeListener((element, value, filledForm) -> System.out.println(
                         "Component " + element.getLabel() +
@@ -182,7 +185,8 @@ class FormBuilderTest {
     public void test_disable_button_dialog() throws InterruptedException {
         Form form = booster
                 .createForm("Test")
-                .addButton("Prev", () -> {}).setDisabled().setID("test")
+                .addButton("Prev", () -> {
+                }).setDisabled().setID("test")
                 .run();
 
         sleep(1000);
@@ -194,9 +198,12 @@ class FormBuilderTest {
         Form form = booster
                 .createForm("Test")
                 .startRow()
-                .addButton("On", () -> {}).setID("on1")
-                .addButton("Off", () -> {}).setDisabled().setID("off1")
-                .addButton("On", () -> {}).setID("on2")
+                .addButton("On", () -> {
+                }).setID("on1")
+                .addButton("Off", () -> {
+                }).setDisabled().setID("off1")
+                .addButton("On", () -> {
+                }).setID("on2")
                 .endRow()
                 .show();
 
@@ -260,6 +267,32 @@ class FormBuilderTest {
                 .setPossibilities(Arrays.asList("apples", "bananas", "grapes"));
 
         sleep(10000);
+    }
+
+    @Test
+    public void test_form_change_possibilities2() throws InterruptedException {
+        final Form form = booster.createForm("Personal information")
+                .addSelection("What are your favorite snacks?", elements)
+                .run();
+
+        sleep(3000);
+
+        refresh();
+
+        form.getByIndex(0)
+                .toSelection()
+                .setPossibilities(elements);
+
+        sleep(10000);
+    }
+
+    private List<String> elements = new ArrayList<>();
+
+    public void refresh() {
+        elements = new ArrayList<>();
+
+        for (int i = 0; i < 10000; i++)
+            elements.add("some string " + (i + 1));
     }
 
 }
