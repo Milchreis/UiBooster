@@ -1,11 +1,9 @@
 package de.milchreis.uibooster;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
-import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
-import de.milchreis.uibooster.model.options.LightUiBoosterOptions;
-import de.milchreis.uibooster.model.options.OSNativeUiBoosterOptions;
-import de.milchreis.uibooster.model.options.SwingUiBoosterOptions;
+import de.milchreis.uibooster.model.options.*;
 import de.milchreis.uibooster.utils.FontHelper;
 
 import javax.swing.*;
@@ -24,7 +22,6 @@ import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
  * It provides all implemented dialogs.
  */
 public class UiBooster {
-
     private final UiBoosterOptions options;
 
     public UiBooster() {
@@ -64,14 +61,16 @@ public class UiBooster {
                 this.options = new LightUiBoosterOptions(iconPath);
                 break;
             case DARK_THEME:
-            default:
                 this.options = new DarkUiBoosterOptions(iconPath);
+                break;
+            default:
+            case DEFAULT:
+                this.options = new InferredUiBoosterOptions(iconPath);
                 break;
         }
         try {
             FontHelper.setFontInUIManager(font);
             UIManager.setLookAndFeel(this.options.getLookAndFeel());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
