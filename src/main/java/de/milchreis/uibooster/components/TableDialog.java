@@ -5,7 +5,6 @@ import de.milchreis.uibooster.model.DialogClosingState;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
@@ -27,7 +26,7 @@ public class TableDialog {
         dialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                closingState.setClosedByUser(true);
+                closingState.setClosedByUser(optionPane.getValue() == null);
             }
         });
 
@@ -35,11 +34,6 @@ public class TableDialog {
 
         dialog.setVisible(true);
         dialog.dispose();
-
-        final JTable table = (JTable) Arrays.stream(panel.getComponents())
-                .filter(c -> c instanceof JTable)
-                .findFirst()
-                .orElse(null);
 
         return closingState.isClosedByUser() ? null : panel.getData();
     }
