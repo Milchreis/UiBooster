@@ -13,8 +13,12 @@ public class ColorPickerElement extends FormElement {
     private final ColorPicker picker;
 
     public ColorPickerElement(String label) {
+        this(label, null);
+    }
+
+    public ColorPickerElement(String label, Color initialColor) {
         super(label);
-        picker = ColorPickerDialog.createColorPicker();
+        picker = ColorPickerDialog.createColorPicker(initialColor);
     }
 
     @Override

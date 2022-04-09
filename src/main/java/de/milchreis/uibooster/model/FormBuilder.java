@@ -6,6 +6,7 @@ import de.milchreis.uibooster.components.WindowSetting;
 import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -127,6 +128,11 @@ public class FormBuilder {
 
     public FormBuilder addColorPicker(String label) {
         addElement(new ColorPickerElement(label));
+        return this;
+    }
+
+    public FormBuilder addColorPicker(String label, Color initialColor) {
+        addElement(new ColorPickerElement(label, initialColor));
         return this;
     }
 

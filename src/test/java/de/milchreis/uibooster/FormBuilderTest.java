@@ -5,6 +5,7 @@ import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.ListElement;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +51,7 @@ class FormBuilderTest {
                 .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addCheckbox("Are you fine?", "yes")
-                .addColorPicker("Favorite color?")
+                .addColorPicker("Favorite color?", new Color(212, 32, 39))
                 .setChangeListener((element, value, filledForm) -> System.out.println(
                         "Component " + element.getLabel() +
                                 " at position " + element.getIndex() +

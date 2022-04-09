@@ -71,6 +71,12 @@ class UiBoosterTest {
     }
 
     @Test
+    public void test_colorpicker_initialcolor_dialog() {
+        Color selectedColor = booster.showColorPicker("Choose your favorite color", "Color picking", new Color(210, 123, 43));
+        System.out.println(selectedColor);
+    }
+
+    @Test
     void test_list_selection_dialog() {
 
         final ListElement selectedElement = booster.showList("What's your favorite movie",

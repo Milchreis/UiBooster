@@ -8,8 +8,12 @@ import java.awt.*;
 public class ColorPickerDialog {
 
     public static Color showColorPicker(String message, String title, String iconPath) {
+        return showColorPicker(message, title, null, iconPath);
+    }
 
-        ColorPicker picker = createColorPicker();
+    public static Color showColorPicker(String message, String title, Color color, String iconPath) {
+
+        ColorPicker picker = createColorPicker(color);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(picker);
         DialogClosingState closingState = dialog.showDialog(message, title, iconPath);
@@ -17,9 +21,13 @@ public class ColorPickerDialog {
         return closingState.isClosedByUser() ? null : picker.getColor();
     }
 
-    public static ColorPicker createColorPicker() {
+    public static ColorPicker createColorPicker(Color initialColor) {
+        Color color = initialColor == null
+                ? new Color(219, 185, 47)
+                : initialColor;
+
         ColorPicker picker = new ColorPicker(false, false);
-        picker.setColor(new Color(219, 185, 47));
+        picker.setColor(color);
         picker.setRGBControlsVisible(false);
         picker.setHexControlsVisible(false);
         picker.setPreviewSwatchVisible(false);

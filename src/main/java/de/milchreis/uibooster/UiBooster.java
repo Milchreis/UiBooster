@@ -1,6 +1,5 @@
 package de.milchreis.uibooster;
 
-import com.formdev.flatlaf.FlatLightLaf;
 import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.options.*;
@@ -211,6 +210,18 @@ public class UiBooster {
     }
 
     /**
+     * Shows a simple color picker to select an RGB value with an initial color value
+     *
+     * @param message      optional message above the color picker
+     * @param title        expects a window title
+     * @param initialColor optional color value which should be already selected on start
+     * @return the selected color, on close it returns null.
+     */
+    public Color showColorPicker(String message, String title, Color initialColor) {
+        return ColorPickerDialog.showColorPicker(message, title, initialColor, options.getIconPath());
+    }
+
+    /**
      * Shows a simple color picker to select an RGB value.
      *
      * @param message optional message above the color picker
@@ -219,6 +230,19 @@ public class UiBooster {
      */
     public Integer showColorPickerAndGetRGB(String message, String title) {
         Color color = showColorPicker(message, title);
+        return color != null ? color.getRGB() : null;
+    }
+
+    /**
+     * Shows a simple color picker to select an RGB value with an initial color value.
+     *
+     * @param message      optional message above the color picker
+     * @param title        expects a window title
+     * @param initialColor optional color value which should be already selected on start
+     * @return the selected color as int value, on close it returns null.
+     */
+    public Integer showColorPickerAndGetRGB(String message, String title, Color initialColor) {
+        Color color = showColorPicker(message, title, initialColor);
         return color != null ? color.getRGB() : null;
     }
 
