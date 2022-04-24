@@ -32,130 +32,294 @@ public class FormBuilder {
         this.initialElementsDisabled = new ArrayList<>();
     }
 
+    /**
+     * Adds an input text field to the form.
+     *
+     * @param label expects the label for this input element
+     */
     public FormBuilder addText(String label) {
         addElement(new TextFormElement(label, null, false));
         return this;
     }
 
+    /**
+     * Adds an input text field to the form with an initial text.
+     *
+     * @param label       expects the label for this input element
+     * @param initialText expects a text which will be set into the text field
+     */
     public FormBuilder addText(String label, String initialText) {
         addElement(new TextFormElement(label, initialText, false));
         return this;
     }
 
+    /**
+     * Adds an input text field to the form with an initial text.
+     *
+     * @param label       expects the label for this input element
+     * @param initialText expects a text which will be set into the text field.
+     * @param readonly    if readonly is set to true, the input field is not changable for the user
+     */
     public FormBuilder addText(String label, String initialText, boolean readonly) {
         addElement(new TextFormElement(label, initialText, readonly));
         return this;
     }
 
+    /**
+     * Adds an input text area with 3 lines to the form.
+     *
+     * @param label expects the label for this input element
+     */
     public FormBuilder addTextArea(String label) {
         addElement(new TextAreaFormElement(label, 3, "", false));
         return this;
     }
 
+    /**
+     * Adds an input text area with specified number of lines to the form.
+     *
+     * @param label expects the label for this input element
+     * @param rows  expects the number of lines
+     */
     public FormBuilder addTextArea(String label, int rows) {
         addElement(new TextAreaFormElement(label, rows, "", false));
         return this;
     }
 
+    /**
+     * Adds an input text area with 3 lines to the form and an initial text.
+     *
+     * @param label       expects the label for this input element
+     * @param initialText expects a text which will be set into the text area
+     */
     public FormBuilder addTextArea(String label, String initialText) {
         addElement(new TextAreaFormElement(label, 3, initialText, false));
         return this;
     }
 
+    /**
+     * Adds an input text area with specified number of lines to the form and an initial text.
+     *
+     * @param label       expects the label for this input element
+     * @param rows        expects the number of lines
+     * @param initialText expects a text which will be set into the text area
+     */
     public FormBuilder addTextArea(String label, int rows, String initialText) {
         addElement(new TextAreaFormElement(label, rows, initialText, false));
         return this;
     }
 
+    /**
+     * Adds an input text area with specified number of lines to the form and an initial text.
+     *
+     * @param label       expects the label for this input element
+     * @param rows        expects the number of lines
+     * @param initialText expects a text which will be set into the text area
+     * @param readonly    if readonly is set to true, the input field is not changable for the user
+     */
     public FormBuilder addTextArea(String label, int rows, String initialText, boolean readonly) {
         addElement(new TextAreaFormElement(label, rows, initialText, readonly));
         return this;
     }
 
+    /**
+     * Adds a selection list to the form, which allows to choose one option.
+     *
+     * @param label         expects the label for this input element
+     * @param possibilities expects a list of possible texts options
+     */
     public FormBuilder addSelection(String label, List<String> possibilities) {
         addElement(new SelectionFormElement(label, possibilities));
         return this;
     }
 
+    /**
+     * Adds a selection list to the form, which allows to choose one option.
+     *
+     * @param label         expects the label for this input element
+     * @param possibilities expects a list of possible texts options
+     * @return
+     */
     public FormBuilder addSelection(String label, String... possibilities) {
         addSelection(label, Arrays.asList(possibilities));
         return this;
     }
 
+    /**
+     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     *
+     * @param label         expects the label for this input element
+     * @param possibilities expects a list of possible texts options
+     */
     public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities) {
         addElement(new CheckboxSelectionFormElement(label, possibilities));
         return this;
     }
 
+    /**
+     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     *
+     * @param label         expects the label for this input element
+     * @param possibilities expects a list of possible texts options
+     */
     public FormBuilder addSelectionWithCheckboxes(String label, String... possibilities) {
         addSelectionWithCheckboxes(label, Arrays.asList(possibilities));
         return this;
     }
 
+    /**
+     * Adds the given self implemented FormElement to the form.
+     *
+     * @param element expects an implementation of FormElement
+     */
     public FormBuilder addCustomElement(FormElement element) {
         addElement(element);
         return this;
     }
 
+    /**
+     * Adds just a label to the form.
+     *
+     * @param label expects the label
+     */
     public FormBuilder addLabel(String label) {
         addElement(new LabelFormElement(label));
         return this;
     }
 
+    /**
+     * Adds a button to the form.
+     *
+     * @param buttonLabel expects the text which is shown on the button
+     * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
+     */
     public FormBuilder addButton(String buttonLabel, Runnable onClick) {
         return addButton(null, buttonLabel, onClick);
     }
 
+    /**
+     * Adds a button to the form.
+     *
+     * @param label       expects the label for this input element
+     * @param buttonLabel expects the text which is shown on the button
+     * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
+     */
     public FormBuilder addButton(String label, String buttonLabel, Runnable onClick) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick));
         return this;
     }
 
+    /**
+     * Adds a progress bar to the form.
+     *
+     * @param label   expects the label for this input element
+     * @param min     expects the minimum value of the progress bar
+     * @param max     expects the maximum value of the progress bar
+     * @param initial expects the current value of the progress bar
+     */
     public FormBuilder addProgress(String label, int min, int max, int initial) {
         addElement(new ProgressElement(label, min, max, initial));
         return this;
     }
 
+    /**
+     * Adds a slider to the form, which allows to choose a value in between some bounds.
+     *
+     * @param label     expects the label for this input element
+     * @param min       expects the minimum value of the slider
+     * @param max       expects the maximum value of the slider
+     * @param init      expects the current value of the slider
+     * @param majorTick expects the step size for the bigger major tick
+     * @param minorTick expects the step size for the smaller minor tick
+     */
     public FormBuilder addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
         addElement(new SliderFormElement(label, min, max, init, majorTick, minorTick));
         return this;
     }
 
+    /**
+     * Adds a date picker to the form.
+     *
+     * @param label expects the label for this input element
+     */
     public FormBuilder addDatePicker(String label) {
         addElement(new DatePickerElement(label));
         return this;
     }
 
+    /**
+     * Adds a color picker to the form.
+     *
+     * @param label expects the label for this input element
+     */
     public FormBuilder addColorPicker(String label) {
         addElement(new ColorPickerElement(label));
         return this;
     }
 
+    /**
+     * Adds a color picker to the form.
+     *
+     * @param label        expects the label for this input element
+     * @param initialColor expects a color which is set to the picker as default
+     */
     public FormBuilder addColorPicker(String label, Color initialColor) {
         addElement(new ColorPickerElement(label, initialColor));
         return this;
     }
 
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label    expects the label for this input element
+     * @param elements expects a list of options as text
+     */
     public FormBuilder addMultipleSelection(String label, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements)));
         return this;
     }
 
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label      expects the label for this input element
+     * @param hideFilter if set to true, the input text field for the search will be not shown
+     * @param elements   expects a list of options as text
+     */
     public FormBuilder addMultipleSelection(String label, boolean hideFilter, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements)));
         return this;
     }
 
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label    expects the label for this input element
+     * @param elements expects a list of options as text
+     */
     public FormBuilder addMultipleSelection(String label, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, elements));
         return this;
     }
 
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label      expects the label for this input element
+     * @param hideFilter if set to true, the input text field for the search will be not shown
+     * @param elements   expects a list of options as text
+     */
     public FormBuilder addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements));
         return this;
     }
 
+    /**
+     * Adds a list with more complex elements to the form.
+     *
+     * @param label    expects the label for this input element
+     * @param elements expects a list of objects with type ListElement
+     */
     public FormBuilder addList(String label, ListElement... elements) {
         addElement(new ListFormElement(label, elements));
         return this;
