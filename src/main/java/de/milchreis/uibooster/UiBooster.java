@@ -4,6 +4,7 @@ import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.options.*;
 import de.milchreis.uibooster.utils.FontHelper;
+import de.milchreis.uibooster.utils.WindowIconHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +84,17 @@ public class UiBooster {
      */
     public void showInfoDialog(String infoMessage) {
         nonNull(infoMessage);
-        JOptionPane.showMessageDialog(null, infoMessage);
+
+        JOptionPane jp = new JOptionPane(
+                infoMessage,
+                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.DEFAULT_OPTION,
+                null
+        );
+        JDialog dialog = jp.createDialog(null, infoMessage);
+        ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setVisible(true);
     }
 
     /**
@@ -96,7 +107,17 @@ public class UiBooster {
     public void showWarningDialog(String warningMessage, String title) {
         nonNull(warningMessage);
         nonNull(title);
-        JOptionPane.showMessageDialog(null, warningMessage, title, JOptionPane.WARNING_MESSAGE);
+
+        JOptionPane jp = new JOptionPane(
+                warningMessage,
+                JOptionPane.WARNING_MESSAGE,
+                JOptionPane.DEFAULT_OPTION,
+                null
+        );
+        JDialog dialog = jp.createDialog(null, title);
+        ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setVisible(true);
     }
 
     /**
@@ -109,7 +130,17 @@ public class UiBooster {
     public void showErrorDialog(String errorMessage, String title) {
         nonNull(errorMessage);
         nonNull(title);
-        JOptionPane.showMessageDialog(null, errorMessage, title, JOptionPane.ERROR_MESSAGE);
+
+        JOptionPane jp = new JOptionPane(
+                errorMessage,
+                JOptionPane.ERROR_MESSAGE,
+                JOptionPane.DEFAULT_OPTION,
+                null
+        );
+        JDialog dialog = jp.createDialog(null, title);
+        ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setVisible(true);
     }
 
     /**
@@ -252,7 +283,7 @@ public class UiBooster {
      * @return returns the selection file or null on cancel
      */
     public File showFileSelection() {
-        return FilesystemDialog.showFileSelectionDialog();
+        return FilesystemDialog.showFileSelectionDialog(options);
     }
 
     /**
@@ -262,7 +293,7 @@ public class UiBooster {
      * @return returns the selection file or null on cancel
      */
     public File showFileSelectionFromPath(String currentDirectoryPath) {
-        return FilesystemDialog.showFileSelectionDialog(currentDirectoryPath);
+        return FilesystemDialog.showFileSelectionDialog(currentDirectoryPath, options);
     }
 
     /**
@@ -273,7 +304,7 @@ public class UiBooster {
      * @return returns the selection file or null on cancel
      */
     public File showFileSelection(String description, String... extensions) {
-        return FilesystemDialog.showFileSelectionDialog(null, description, extensions);
+        return FilesystemDialog.showFileSelectionDialog(null, description, options, extensions);
     }
 
     /**
@@ -285,7 +316,7 @@ public class UiBooster {
      * @return returns the selection file or null on cancel
      */
     public File showFileSelectionFromPath(String currentDirectoryPath, String description, String... extensions) {
-        return FilesystemDialog.showFileSelectionDialog(currentDirectoryPath, description, extensions);
+        return FilesystemDialog.showFileSelectionDialog(currentDirectoryPath, description, options, extensions);
     }
 
     /**
@@ -294,7 +325,7 @@ public class UiBooster {
      * @return returns the selection directory or null on cancel
      */
     public File showDirectorySelection() {
-        return FilesystemDialog.showDirectorySelectionDialog();
+        return FilesystemDialog.showDirectorySelectionDialog(options);
     }
 
     /**
@@ -304,7 +335,7 @@ public class UiBooster {
      * @return returns the selection directory or null on cancel
      */
     public File showDirectorySelectionFromPath(String currentDirectoryPath) {
-        return FilesystemDialog.showDirectorySelectionDialog(currentDirectoryPath);
+        return FilesystemDialog.showDirectorySelectionDialog(currentDirectoryPath, options);
     }
 
     /**
@@ -313,7 +344,7 @@ public class UiBooster {
      * @return returns the selection or null on cancel
      */
     public File showFileOrDirectorySelection() {
-        return FilesystemDialog.showFileOrDirectorySelectionDialog();
+        return FilesystemDialog.showFileOrDirectorySelectionDialog(options);
     }
 
     /**
@@ -323,7 +354,7 @@ public class UiBooster {
      * @return returns the selection or null on cancel
      */
     public File showFileOrDirectorySelectionFromPath(String currentDirectoryPath) {
-        return FilesystemDialog.showFileOrDirectorySelectionDialog(currentDirectoryPath);
+        return FilesystemDialog.showFileOrDirectorySelectionDialog(currentDirectoryPath, options);
     }
 
     /**
@@ -334,7 +365,7 @@ public class UiBooster {
      * @return returns the selection or null on cancel
      */
     public File showFileOrDirectorySelection(String description, String... extensions) {
-        return FilesystemDialog.showFileOrDirectorySelectionDialog(null, description, extensions);
+        return FilesystemDialog.showFileOrDirectorySelectionDialog(null, description, options, extensions);
     }
 
     /**
@@ -346,7 +377,7 @@ public class UiBooster {
      * @return returns the selection or null on cancel
      */
     public File showFileOrDirectorySelectionFromPath(String currentDirectoryPath, String description, String... extensions) {
-        return FilesystemDialog.showFileOrDirectorySelectionDialog(currentDirectoryPath, description, extensions);
+        return FilesystemDialog.showFileOrDirectorySelectionDialog(currentDirectoryPath, description, options, extensions);
     }
 
     /**

@@ -1,5 +1,8 @@
 package de.milchreis.uibooster.components;
 
+import de.milchreis.uibooster.model.UiBoosterOptions;
+import de.milchreis.uibooster.utils.WindowIconHelper;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
@@ -9,39 +12,43 @@ import static javax.swing.JFileChooser.FILES_ONLY;
 
 public class FilesystemDialog {
 
-    public static File showFileSelectionDialog() {
-        return showFileSelectionDialog(null);
+
+    public static File showFileSelectionDialog(UiBoosterOptions options) {
+        return showFileSelectionDialog(null, options);
     }
 
-    public static File showFileSelectionDialog(String currentDirectory) {
-        return showFsSelectionDialog(currentDirectory, FILES_ONLY, null, null);
+    public static File showFileSelectionDialog(String currentDirectory, UiBoosterOptions options) {
+        return showFsSelectionDialog(currentDirectory, FILES_ONLY, null, options, (String) null);
     }
 
-    public static File showFileSelectionDialog(String currentDirectory, String description, String... extensions) {
-        return showFsSelectionDialog(currentDirectory, FILES_ONLY, description, extensions);
+    public static File showFileSelectionDialog(String currentDirectory, String description, UiBoosterOptions options, String... extensions) {
+        return showFsSelectionDialog(currentDirectory, FILES_ONLY, description, options, extensions);
     }
 
-    public static File showDirectorySelectionDialog() {
-        return showDirectorySelectionDialog(null);
+    public static File showDirectorySelectionDialog(UiBoosterOptions options) {
+        return showDirectorySelectionDialog(null, options);
     }
 
-    public static File showDirectorySelectionDialog(String currentDirectory) {
-        return showFsSelectionDialog(currentDirectory, JFileChooser.DIRECTORIES_ONLY, null, null);
+    public static File showDirectorySelectionDialog(String currentDirectory, UiBoosterOptions options) {
+        return showFsSelectionDialog(currentDirectory, JFileChooser.DIRECTORIES_ONLY, null, options, (String) null);
     }
 
-    public static File showFileOrDirectorySelectionDialog() {
-        return showFileOrDirectorySelectionDialog(null);
+    public static File showFileOrDirectorySelectionDialog(UiBoosterOptions options) {
+        return showFileOrDirectorySelectionDialog(null, options);
     }
 
-    public static File showFileOrDirectorySelectionDialog(String currentDirectory) {
-        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, null, null);
+    public static File showFileOrDirectorySelectionDialog(String currentDirectory, UiBoosterOptions options) {
+        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, null, options, (String) null);
     }
 
-    public static File showFileOrDirectorySelectionDialog(String currentDirectory, String description, String... extensions) {
-        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, description, extensions);
+    public static File showFileOrDirectorySelectionDialog(String currentDirectory, String description, UiBoosterOptions options, String... extensions) {
+        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, description, options, extensions);
     }
 
-    private static File showFsSelectionDialog(String currentDirectoryPath, int type, String description, String... extensions) {
+    private static File showFsSelectionDialog(String currentDirectoryPath, int type, String description, UiBoosterOptions options, String... extensions) {
+
+        JFrame frameWithIcon = new JFrame();
+        frameWithIcon.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
 
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(type);
@@ -53,7 +60,7 @@ public class FilesystemDialog {
             chooser.setFileFilter(new FileNameExtensionFilter(description, extensions));
         }
 
-        int returnVal = chooser.showOpenDialog(null);
+        int returnVal = chooser.showOpenDialog(frameWithIcon);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             return chooser.getSelectedFile();
