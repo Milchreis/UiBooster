@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
+import static java.lang.Thread.sleep;
+
 class UiBoosterOptionsTest {
 
     @Test
@@ -21,11 +23,30 @@ class UiBoosterOptionsTest {
     }
 
     @Test
-    public void test_theme_and_icon() {
-        new UiBooster(
-                UiBoosterOptions.Theme.DARK_THEME,
-                "/path/to/your/custom-window-icon.png"
+    public void test_theme_and_icon() throws InterruptedException {
+        final UiBooster uiBooster = new UiBooster(
+                UiBoosterOptions.Theme.SWING,
+                "src/test/resources/avatar1.png"
         );
+
+        uiBooster.showInfoDialog("some title");
+        uiBooster.showWarningDialog("warning text", "some title");
+        uiBooster.showErrorDialog("warning text", "some title");
+
+        String res = uiBooster.showTextInputDialog("some title");
+        System.out.println(res);
+
+        final boolean isConfirmed = uiBooster.showConfirmDialog("message", "some title");
+        System.out.println("Is confirmed? -> " + isConfirmed);
+
+        final String selectedOption = uiBooster
+                .showSelectionDialog("some message", "some title", "Option 1", "Option 2");
+        System.out.println(selectedOption);
+        uiBooster.showFileSelection();
+        uiBooster.showDirectorySelection();
+
+        uiBooster.showWaitingDialog("message", "title", true);
+        sleep(2000);
     }
 
     @Test

@@ -18,7 +18,7 @@ public class FilesystemDialog {
     }
 
     public static File showFileSelectionDialog(String currentDirectory, UiBoosterOptions options) {
-        return showFsSelectionDialog(currentDirectory, FILES_ONLY, null, options, (String) null);
+        return showFsSelectionDialog(currentDirectory, FILES_ONLY, null, options, null);
     }
 
     public static File showFileSelectionDialog(String currentDirectory, String description, UiBoosterOptions options, String... extensions) {
@@ -30,7 +30,7 @@ public class FilesystemDialog {
     }
 
     public static File showDirectorySelectionDialog(String currentDirectory, UiBoosterOptions options) {
-        return showFsSelectionDialog(currentDirectory, JFileChooser.DIRECTORIES_ONLY, null, options, (String) null);
+        return showFsSelectionDialog(currentDirectory, JFileChooser.DIRECTORIES_ONLY, null, options, null);
     }
 
     public static File showFileOrDirectorySelectionDialog(UiBoosterOptions options) {
@@ -38,7 +38,7 @@ public class FilesystemDialog {
     }
 
     public static File showFileOrDirectorySelectionDialog(String currentDirectory, UiBoosterOptions options) {
-        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, null, options, (String) null);
+        return showFsSelectionDialog(currentDirectory, FILES_AND_DIRECTORIES, null, options, null);
     }
 
     public static File showFileOrDirectorySelectionDialog(String currentDirectory, String description, UiBoosterOptions options, String... extensions) {

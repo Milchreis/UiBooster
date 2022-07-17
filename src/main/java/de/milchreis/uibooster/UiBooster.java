@@ -4,6 +4,7 @@ import de.milchreis.uibooster.components.*;
 import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.options.*;
 import de.milchreis.uibooster.utils.FontHelper;
+import de.milchreis.uibooster.utils.JOptionPaneHelper;
 import de.milchreis.uibooster.utils.WindowIconHelper;
 
 import javax.swing.*;
@@ -150,8 +151,7 @@ public class UiBooster {
      * @return the user input or null on cancel
      */
     public String showTextInputDialog(String message) {
-        nonNull(message);
-        return JOptionPane.showInputDialog(null, message);
+        return JOptionPaneHelper.showInputDialog(message, options);
     }
 
     /**
@@ -178,11 +178,7 @@ public class UiBooster {
      */
     public void showConfirmDialog(String message, String title, Runnable onConfirm, Runnable onDecline) {
         nonNull(message);
-        nonNull(title);
-        int n = JOptionPane.showConfirmDialog(null,
-                message,
-                title,
-                JOptionPane.YES_NO_OPTION);
+        int n = JOptionPaneHelper.showConfirmDialog(message, title, options);
 
         if (n == 0 && onConfirm != null)
             onConfirm.run();
@@ -201,12 +197,7 @@ public class UiBooster {
      */
     public boolean showConfirmDialog(String message, String title) {
         nonNull(message);
-        nonNull(title);
-        int n = JOptionPane.showConfirmDialog(null,
-                message,
-                title,
-                JOptionPane.YES_NO_OPTION);
-
+        int n = JOptionPaneHelper.showConfirmDialog(message, title, options);
         return n == 0;
     }
 
@@ -234,18 +225,7 @@ public class UiBooster {
      */
     public String showSelectionDialog(String message, String title, String... possibilities) {
         nonNull(message);
-        nonNull(title);
-
-        String selection = (String) JOptionPane.showInputDialog(
-                null,
-                message,
-                title,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                possibilities,
-                possibilities[0]);
-
-        return selection;
+        return JOptionPaneHelper.showSelectionDialog(message, title, options, possibilities);
     }
 
     /**
