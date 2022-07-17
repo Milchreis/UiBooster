@@ -55,6 +55,12 @@ class UiBoosterTest {
     }
 
     @Test
+    public void test_confirm_dialog_simple() {
+        final boolean isConfirmed = booster.showConfirmDialog("Do you really want this action?", "Are you sure?");
+        System.out.println("Do you really want this action? -> " + isConfirmed);
+    }
+
+    @Test
     public void test_selection_dialog() {
         String selection = booster.showSelectionDialog(
                 "What's your favorite movie?",

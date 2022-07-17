@@ -192,6 +192,25 @@ public class UiBooster {
     }
 
     /**
+     * Shows a confirm dialog and blocks until a decision is selected.
+     * '\n' is allowed as newline character for the message.
+     *
+     * @param message expects the message
+     * @param title   expects the window title
+     * @return true if the dialog was confirmed by user, otherwise false
+     */
+    public boolean showConfirmDialog(String message, String title) {
+        nonNull(message);
+        nonNull(title);
+        int n = JOptionPane.showConfirmDialog(null,
+                message,
+                title,
+                JOptionPane.YES_NO_OPTION);
+
+        return n == 0;
+    }
+
+    /**
      * Shows an info dialog and blocks until the ok button was clicked.
      * '\n' is allowed as newline character for the info message.
      *
