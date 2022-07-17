@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
+
 
 public class WaitingDialog {
 
@@ -57,6 +59,7 @@ public class WaitingDialog {
         window.setUndecorated(!decorated);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setLocationRelativeTo(null);
+        applyWindowIcon(options.getIconPath(), window);
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
