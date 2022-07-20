@@ -24,7 +24,6 @@ public class FormBuilder {
     private WindowSetting windowSetting;
     private RowFormBuilder rowFormBuilder;
 
-
     public FormBuilder(String title, UiBoosterOptions options) {
         this.title = title;
         this.options = options;
@@ -325,49 +324,108 @@ public class FormBuilder {
         return this;
     }
 
+    /**
+     * Adds table with custom data to the form.
+     *
+     * @param label      expects the label for this input element
+     * @param header     expects a list of column names
+     * @param data       expects the data as two-dimensional array of Strings. It has to match with the number of column names
+     * @param isEditable true if the data should changeable by the user, otherwise set false for immutable data
+     */
     public FormBuilder addTable(String label, List<String> header, String[][] data, boolean isEditable) {
         addElement(new TableFormElement(label, header, data, isEditable));
         return this;
     }
 
+    /**
+     * Adds an editable table with custom data to the form.
+     *
+     * @param label  expects the label for this input element
+     * @param header expects a list of column names
+     * @param data   expects the data as two-dimensional array of Strings. It has to match with the number of column names
+     */
     public FormBuilder addTable(String label, List<String> header, String[][] data) {
         addElement(new TableFormElement(label, header, data, true));
         return this;
     }
 
+    /**
+     * Adds an image to the form.
+     *
+     * @param imagePath expects the path to the image file
+     */
     public FormBuilder addImage(String imagePath) {
         return addImage(null, imagePath, false);
     }
 
+    /**
+     * Adds an image centered to the form.
+     *
+     * @param imagePath expects the path to the image file
+     */
     public FormBuilder addImageCentered(String imagePath) {
         return addImage(null, imagePath, true);
     }
 
+    /**
+     * Adds an image to the form.
+     *
+     * @param label     expects the label for this input element
+     * @param imagePath expects the path to the image file
+     * @param centered  true if the image should be centered, false it's aligned to the left
+     */
     public FormBuilder addImage(String label, String imagePath, boolean centered) {
         addElement(new ImageFormElement(label, imagePath, centered));
         return this;
     }
 
+    /**
+     * Adds true/false option as checkbox to the form.
+     *
+     * @param label expects a text which is displayed next to the checkbox
+     */
     public FormBuilder addCheckbox(String label) {
         addElement(new CheckboxFormElement(label));
         return this;
     }
 
+    /**
+     * Adds true/false option as checkbox to the form.
+     *
+     * @param headline expects a text for this input element, which is displayed over the input element
+     * @param label    expects a text which is displayed next to the checkbox
+     */
     public FormBuilder addCheckbox(String headline, String label) {
         addElement(new CheckboxFormElement(label, headline));
         return this;
     }
 
+    /**
+     * Defines a listener which detects all changes in this form. It allows to react to different events for the
+     * added form elements.
+     *
+     * @param onChange expects an implementation of FormElementChangeListener
+     */
     public FormBuilder setChangeListener(FormElementChangeListener onChange) {
         this.changeListener = onChange;
         return this;
     }
 
+    /**
+     * Defines a listener which detects the closing of the window of form. It allows to react on f.e. exit
+     *
+     * @param closeListener expects an implementation of FormElementCloseListener
+     */
     public FormBuilder setCloseListener(FormCloseListener closeListener) {
         formCloseListener = closeListener;
         return this;
     }
 
+    /**
+     * Defines a custom ID or name to the lastly added element. It helps to identify this element in a custom change listener.
+     *
+     * @param id expects an unique name or id for last added input element.
+     */
     public FormBuilder setID(String id) {
         if (formElements.size() == 0)
             return this;
@@ -377,6 +435,9 @@ public class FormBuilder {
         return this;
     }
 
+    /**
+     * Disables the lastly added element, if it supports this state.
+     */
     public FormBuilder setDisabled() {
         if (formElements.size() == 0)
             return this;
@@ -386,11 +447,20 @@ public class FormBuilder {
         return this;
     }
 
+    /**
+     * Allows to define some settings for the created window of the form. The settings have to be closed with save()-method
+     */
     public WindowSetting andWindow() {
         windowSetting = new WindowSetting(this);
         return windowSetting;
     }
 
+    /**
+     * Creates the previous defined form as blocking dialog and shows the window. It blocks the process until the
+     * window is closed. After that it returns the user input as Form.
+     *
+     * @return an object with the user filled data
+     */
     public Form show() {
 
         final Form form = new Form(null, formElements);
@@ -411,6 +481,12 @@ public class FormBuilder {
         return form;
     }
 
+    /**
+     * Creates the previous defined form as non-blocking dialog and shows the window. The window is started in a new thread and allows to run the following code.
+     * It returns an object which is synchronized with the form. This form-object contains every user input as long as the dialog runs.
+     *
+     * @return an object which allows access to the user filled data.
+     */
     public Form run() {
         JPanel panel = createPanel(formElements, changeListener, 5);
 
@@ -418,20 +494,28 @@ public class FormBuilder {
         return new Form(dialog, formElements, initialElementsDisabled, formCloseListener);
     }
 
-    private void addElement(FormElement e) {
-        e.setFormIndex(formElements.size());
-        formElements.add(e);
-    }
-
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method.
+     */
     public RowFormBuilder startRow() {
         return startRow(null);
     }
 
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method.
+     *
+     * @param label expects the label for this input element
+     */
     public RowFormBuilder startRow(String label) {
         rowFormBuilder = new RowFormBuilder(label, options, this);
         return rowFormBuilder;
     }
 
+    /**
+     * Stops the current created row. It has to be used after startRow()-method.
+     */
     public FormBuilder endRow() {
         formElements.add(rowFormBuilder.getRowElement());
         return this;
@@ -439,6 +523,11 @@ public class FormBuilder {
 
     protected void addIndexToInitialElementsDisabled(int index) {
         initialElementsDisabled.add(index);
+    }
+
+    private void addElement(FormElement e) {
+        e.setFormIndex(formElements.size());
+        formElements.add(e);
     }
 
 }
