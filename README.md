@@ -28,7 +28,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [Multiple selection dialog](#multiple-selection-dialog)
  - [Slider dialog](#slider-dialog)
  - [Colorpicker](#colorpicker)
- - [FontChooser](#fontchooser)
+ - [FontChooser](#font-chooser)
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
  - [Exception dialog](#exception-dialog)
