@@ -109,6 +109,7 @@ Integer numberOfHotDogs = new UiBooster().showSlider("How many HotDogs do you wa
 ```java
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
+_library by @dheid: [colorpicker](https://github.com/dheid/colorpicker)_
 
 ### Datepicker
 ![screenshot datepicker](https://github.com/Milchreis/UiBooster/blob/master/screenshots/dateselection.jpg?raw=true)
