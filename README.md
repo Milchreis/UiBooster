@@ -113,7 +113,7 @@ Color selectedColor = new UiBooster().showColorPicker("Choose your favorite colo
 _library by @dheid: [colorpicker](https://github.com/dheid/colorpicker)_
 
 ### Font Chooser
-![screenshot font dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/font.jpg?raw=true)
+![screenshot font dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/font.png?raw=true)
 ```java
 Font selectedFont = new UiBooster().showFontChooser("Choose your favorite font", "Font choosing");
 ```    
