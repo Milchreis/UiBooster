@@ -1,16 +1,16 @@
 package de.milchreis.uibooster;
 
+import static java.lang.Thread.sleep;
+
 import de.milchreis.uibooster.model.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.ListElement;
-import org.junit.jupiter.api.Test;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static java.lang.Thread.sleep;
+import org.junit.jupiter.api.Test;
 
 class FormBuilderTest {
 
@@ -52,6 +52,7 @@ class FormBuilderTest {
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addCheckbox("Are you fine?", "yes")
                 .addColorPicker("Favorite color?", new Color(212, 32, 39))
+                .addFontChooser("Favorite font?", new Font(Font.SANS_SERIF, Font.PLAIN, 12))
                 .setChangeListener((element, value, filledForm) -> System.out.println(
                         "Component " + element.getLabel() +
                                 " at position " + element.getIndex() +

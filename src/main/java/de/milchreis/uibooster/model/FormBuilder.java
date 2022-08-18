@@ -1,17 +1,32 @@
 package de.milchreis.uibooster.model;
 
+import static de.milchreis.uibooster.utils.FormPanel.createPanel;
+
 import de.milchreis.uibooster.components.SimpleBlockingDialog;
 import de.milchreis.uibooster.components.SimpleDialog;
 import de.milchreis.uibooster.components.WindowSetting;
-import de.milchreis.uibooster.model.formelements.*;
-
-import javax.swing.*;
-import java.awt.*;
+import de.milchreis.uibooster.model.formelements.ButtonFormElement;
+import de.milchreis.uibooster.model.formelements.CheckboxFormElement;
+import de.milchreis.uibooster.model.formelements.CheckboxSelectionFormElement;
+import de.milchreis.uibooster.model.formelements.ColorPickerElement;
+import de.milchreis.uibooster.model.formelements.DatePickerElement;
+import de.milchreis.uibooster.model.formelements.FilterableCheckboxListFormElement;
+import de.milchreis.uibooster.model.formelements.FontChooserElement;
+import de.milchreis.uibooster.model.formelements.ImageFormElement;
+import de.milchreis.uibooster.model.formelements.LabelFormElement;
+import de.milchreis.uibooster.model.formelements.ListFormElement;
+import de.milchreis.uibooster.model.formelements.ProgressElement;
+import de.milchreis.uibooster.model.formelements.SelectionFormElement;
+import de.milchreis.uibooster.model.formelements.SliderFormElement;
+import de.milchreis.uibooster.model.formelements.TableFormElement;
+import de.milchreis.uibooster.model.formelements.TextAreaFormElement;
+import de.milchreis.uibooster.model.formelements.TextFormElement;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static de.milchreis.uibooster.utils.FormPanel.createPanel;
+import javax.swing.JPanel;
 
 public class FormBuilder {
 
@@ -264,6 +279,27 @@ public class FormBuilder {
      */
     public FormBuilder addColorPicker(String label, Color initialColor) {
         addElement(new ColorPickerElement(label, initialColor));
+        return this;
+    }
+
+    /**
+     * Adds a font chooser to the form.
+     *
+     * @param label expects the label for this input element
+     */
+    public FormBuilder addFontChooser(String label) {
+        addElement(new FontChooserElement(label));
+        return this;
+    }
+
+    /**
+     * Adds a font chooser to the form.
+     *
+     * @param label       expects the label for this input element
+     * @param initialFont expects a font which is set to the chooser as default
+     */
+    public FormBuilder addFontChooser(String label, Font initialFont) {
+        addElement(new FontChooserElement(label, initialFont));
         return this;
     }
 
