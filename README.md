@@ -117,7 +117,7 @@ _library by @dheid: [colorpicker](https://github.com/dheid/colorpicker)_
 ```java
 Font selectedFont = new UiBooster().showFontChooser("Choose your favorite font", "Font choosing");
 ```    
-_library by @dheid: [colorpicker](https://github.com/dheid/fontchooser)_
+_library by @dheid: [fontchooser](https://github.com/dheid/fontchooser)_
 
 ### Datepicker
 ![screenshot datepicker](https://github.com/Milchreis/UiBooster/blob/master/screenshots/dateselection.jpg?raw=true)
