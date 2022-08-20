@@ -28,6 +28,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [Multiple selection dialog](#multiple-selection-dialog)
  - [Slider dialog](#slider-dialog)
  - [Colorpicker](#colorpicker)
+ - [FontChooser](#font-chooser)
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
  - [Exception dialog](#exception-dialog)
@@ -110,6 +111,13 @@ Integer numberOfHotDogs = new UiBooster().showSlider("How many HotDogs do you wa
 Color selectedColor = new UiBooster().showColorPicker("Choose your favorite color", "Color picking");
 ```    
 _library by @dheid: [colorpicker](https://github.com/dheid/colorpicker)_
+
+### Font Chooser
+![screenshot font dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/font.png?raw=true)
+```java
+Font selectedFont = new UiBooster().showFontChooser("Choose your favorite font", "Font choosing");
+```    
+_library by @dheid: [fontchooser](https://github.com/dheid/fontchooser)_
 
 ### Datepicker
 ![screenshot datepicker](https://github.com/Milchreis/UiBooster/blob/master/screenshots/dateselection.jpg?raw=true)

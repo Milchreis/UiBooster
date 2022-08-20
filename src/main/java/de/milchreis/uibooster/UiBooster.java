@@ -1,22 +1,49 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.components.*;
-import de.milchreis.uibooster.model.*;
-import de.milchreis.uibooster.model.options.*;
+import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
+
+import de.milchreis.uibooster.components.ColorPickerDialog;
+import de.milchreis.uibooster.components.DatePickerDialog;
+import de.milchreis.uibooster.components.ExceptionDialog;
+import de.milchreis.uibooster.components.FilesystemDialog;
+import de.milchreis.uibooster.components.FilterableCheckboxListDialog;
+import de.milchreis.uibooster.components.FontChooserDialog;
+import de.milchreis.uibooster.components.ListDialog;
+import de.milchreis.uibooster.components.LoginDialog;
+import de.milchreis.uibooster.components.Notification;
+import de.milchreis.uibooster.components.PasswordDialog;
+import de.milchreis.uibooster.components.PictureGalleryDialog;
+import de.milchreis.uibooster.components.ProgressDialog;
+import de.milchreis.uibooster.components.SliderDialog;
+import de.milchreis.uibooster.components.Splashscreen;
+import de.milchreis.uibooster.components.TableDialog;
+import de.milchreis.uibooster.components.TrayMenu;
+import de.milchreis.uibooster.components.WaitingDialog;
+import de.milchreis.uibooster.model.FormBuilder;
+import de.milchreis.uibooster.model.ListElement;
+import de.milchreis.uibooster.model.LoginCredentials;
+import de.milchreis.uibooster.model.SelectElementListener;
+import de.milchreis.uibooster.model.UiBoosterOptions;
+import de.milchreis.uibooster.model.options.DarkUiBoosterOptions;
+import de.milchreis.uibooster.model.options.InferredUiBoosterOptions;
+import de.milchreis.uibooster.model.options.LightUiBoosterOptions;
+import de.milchreis.uibooster.model.options.OSNativeUiBoosterOptions;
+import de.milchreis.uibooster.model.options.SwingUiBoosterOptions;
 import de.milchreis.uibooster.utils.FontHelper;
 import de.milchreis.uibooster.utils.JOptionPaneHelper;
 import de.milchreis.uibooster.utils.WindowIconHelper;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Frame;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static de.milchreis.uibooster.utils.ParameterValidator.nonNull;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  * The UiBooster class it the main entry point to create a new dialog.
@@ -275,6 +302,30 @@ public class UiBooster {
         Color color = showColorPicker(message, title, initialColor);
         return color != null ? color.getRGB() : null;
     }
+
+    /**
+     * Shows a simple font chooser to select an installed font.
+     *
+     * @param message optional message above the font chooser
+     * @param title   expects a window title
+     * @return the selected font, on close it returns null.
+     */
+    public Font showFontChooser(String message, String title) {
+        return FontChooserDialog.showFontChooser(message, title, options.getIconPath());
+    }
+
+    /**
+     * Shows a simple font chooser to select a font with an initial font value
+     *
+     * @param message      optional message above the font chooser
+     * @param title        expects a window title
+     * @param initialFont  optional font which should be already selected on start
+     * @return the selected font, on close it returns null.
+     */
+    public Font showFontChooser(String message, String title, Font initialFont) {
+        return FontChooserDialog.showFontChooser(message, title, initialFont, options.getIconPath());
+    }
+
 
     /**
      * Shows a file selection dialog. Only files are shown and selectable

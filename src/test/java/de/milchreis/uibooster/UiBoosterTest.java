@@ -5,14 +5,14 @@ import de.milchreis.uibooster.components.Splashscreen;
 import de.milchreis.uibooster.components.WaitingDialog;
 import de.milchreis.uibooster.model.ListElement;
 import de.milchreis.uibooster.model.LoginCredentials;
-import org.junit.jupiter.api.Test;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 
 class UiBoosterTest {
 
@@ -80,6 +80,18 @@ class UiBoosterTest {
     public void test_colorpicker_initialcolor_dialog() {
         Color selectedColor = booster.showColorPicker("Choose your favorite color", "Color picking", new Color(210, 123, 43));
         System.out.println(selectedColor);
+    }
+
+    @Test
+    public void test_fontchooser_dialog() {
+        Font selectedFont = booster.showFontChooser("Choose your favorite font", "Font choosing");
+        System.out.println(selectedFont);
+    }
+
+    @Test
+    public void test_fontchooser_initialfont_dialog() {
+        Font selectedFont = booster.showFontChooser("Choose your favorite font", "Font choosing", new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        System.out.println(selectedFont);
     }
 
     @Test

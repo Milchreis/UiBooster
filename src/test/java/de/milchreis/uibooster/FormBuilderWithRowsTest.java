@@ -1,11 +1,10 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.Form;
-import org.junit.jupiter.api.Test;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import org.junit.jupiter.api.Test;
 
 class FormBuilderWithRowsTest {
 
@@ -23,6 +22,7 @@ class FormBuilderWithRowsTest {
                 .endRow()
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addColorPicker("Favorite color?")
+                .addFontChooser("Favorite font?")
                 .setChangeListener((element, value, filledForm) -> System.out.println(
                         "Component " + element.getLabel() +
                                 " at position " + element.getIndex() +
