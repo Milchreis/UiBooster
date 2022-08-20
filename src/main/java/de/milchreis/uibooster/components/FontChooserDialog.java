@@ -1,8 +1,9 @@
 package de.milchreis.uibooster.components;
 
 import de.milchreis.uibooster.model.DialogClosingState;
-import java.awt.Font;
 import org.drjekyll.fontchooser.FontChooser;
+
+import java.awt.*;
 
 public class FontChooserDialog {
 

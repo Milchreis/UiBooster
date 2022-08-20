@@ -1,32 +1,17 @@
 package de.milchreis.uibooster.model;
 
-import static de.milchreis.uibooster.utils.FormPanel.createPanel;
-
 import de.milchreis.uibooster.components.SimpleBlockingDialog;
 import de.milchreis.uibooster.components.SimpleDialog;
 import de.milchreis.uibooster.components.WindowSetting;
-import de.milchreis.uibooster.model.formelements.ButtonFormElement;
-import de.milchreis.uibooster.model.formelements.CheckboxFormElement;
-import de.milchreis.uibooster.model.formelements.CheckboxSelectionFormElement;
-import de.milchreis.uibooster.model.formelements.ColorPickerElement;
-import de.milchreis.uibooster.model.formelements.DatePickerElement;
-import de.milchreis.uibooster.model.formelements.FilterableCheckboxListFormElement;
-import de.milchreis.uibooster.model.formelements.FontChooserElement;
-import de.milchreis.uibooster.model.formelements.ImageFormElement;
-import de.milchreis.uibooster.model.formelements.LabelFormElement;
-import de.milchreis.uibooster.model.formelements.ListFormElement;
-import de.milchreis.uibooster.model.formelements.ProgressElement;
-import de.milchreis.uibooster.model.formelements.SelectionFormElement;
-import de.milchreis.uibooster.model.formelements.SliderFormElement;
-import de.milchreis.uibooster.model.formelements.TableFormElement;
-import de.milchreis.uibooster.model.formelements.TextAreaFormElement;
-import de.milchreis.uibooster.model.formelements.TextFormElement;
-import java.awt.Color;
-import java.awt.Font;
+import de.milchreis.uibooster.model.formelements.*;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.JPanel;
+
+import static de.milchreis.uibooster.utils.FormPanel.createPanel;
 
 public class FormBuilder {
 

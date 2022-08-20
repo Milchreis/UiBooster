@@ -3,9 +3,10 @@ package de.milchreis.uibooster.model.formelements;
 import de.milchreis.uibooster.components.FontChooserDialog;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
-import java.awt.Font;
-import javax.swing.JComponent;
 import org.drjekyll.fontchooser.FontChooser;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class FontChooserElement extends FormElement {
 
