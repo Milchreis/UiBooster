@@ -36,7 +36,7 @@ public class FontChooserElement extends FormElement {
 
     @Override
     public Font getValue() {
-        return fontChooser.getFont();
+        return fontChooser.getSelectedFont();
     }
 
     @Override
