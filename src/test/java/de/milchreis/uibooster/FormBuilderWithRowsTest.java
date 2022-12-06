@@ -79,7 +79,31 @@ class FormBuilderWithRowsTest {
                     filledForm.getById("result").setValue(input);
                 })
                 .show();
+    }
 
+    @Test
+    public void test_form_dialog_with_rows_and_disable() {
+        Form form = booster
+            .createForm("Personal information")
+            .addText("Whats your first name?")
+            .startRow("Select one")
+                .addButton(" ", "half full", () -> booster.showInfoDialog("Optimist")).setID("btn1")
+                .addButton(" ", "half empty", () -> booster.showInfoDialog("Pessimist")).setDisabled()
+                .addText("?").setID("?")
+            .endRow()
+            .addButton("Favorite font?", null).setDisabled()
+            .setChangeListener((element, value, filledForm) -> System.out.println(
+                "Component " + element.getLabel() +
+                    " at position " + element.getIndex() +
+                    " changed to " + value.toString()))
+            .show();
+
+        assert form.getByIndex(1).getId().equals("btn1");
+        assert form.getById("?") != null;
+
+        form.getElements().forEach(e -> {
+            System.out.println(e.getLabel() + " -> " + e.getValue());
+        });
     }
 
     private Integer calculate(String input) {

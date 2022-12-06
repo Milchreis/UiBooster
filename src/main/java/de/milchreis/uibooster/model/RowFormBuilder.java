@@ -17,13 +17,11 @@ public class RowFormBuilder extends FormBuilder {
     public FormBuilder endRow() {
 
         final int rowElementOffset = parent.formElements.size();
-
-        parent.formElements.add(getRowElement());
-
         for (Integer index : this.initialElementsDisabled) {
             parent.addIndexToInitialElementsDisabled(index + rowElementOffset);
         }
 
+        parent.addElement(getRowElement());
         return parent;
     }
 }

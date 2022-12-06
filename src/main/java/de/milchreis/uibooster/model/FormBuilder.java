@@ -23,6 +23,7 @@ public class FormBuilder {
     private FormCloseListener formCloseListener;
     private WindowSetting windowSetting;
     private RowFormBuilder rowFormBuilder;
+    private int componentCounter = 0;
 
     public FormBuilder(String title, UiBoosterOptions options) {
         this.title = title;
@@ -463,8 +464,8 @@ public class FormBuilder {
         if (formElements.size() == 0)
             return this;
 
-        int index = formElements.size() - 1;
-        initialElementsDisabled.add(index);
+        final int latestElementIndex = componentCounter - 1;
+        initialElementsDisabled.add(latestElementIndex);
         return this;
     }
 
@@ -493,10 +494,10 @@ public class FormBuilder {
         dialog.setDialogCreatedListener(form::setWindow);
 
         dialog.showDialog(null, title,
-                windowSetting,
-                options.getIconPath(),
-                new FormCloseListenerWrapper(form, formCloseListener),
-                true);
+            windowSetting,
+            options.getIconPath(),
+            new FormCloseListenerWrapper(form, formCloseListener),
+            true);
 
         form.setClosedByUser(false);
         return form;
@@ -546,9 +547,16 @@ public class FormBuilder {
         initialElementsDisabled.add(index);
     }
 
-    private void addElement(FormElement e) {
+    protected void addElement(FormElement e) {
         e.setFormIndex(formElements.size());
         formElements.add(e);
+
+        if (e instanceof RowFormElement) {
+            final RowFormElement rowFormElement = (RowFormElement) e;
+            componentCounter += rowFormElement.getElements().size();
+        } else {
+            componentCounter++;
+        }
     }
 
 }
