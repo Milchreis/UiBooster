@@ -288,6 +288,15 @@ class FormBuilderTest {
         sleep(10000);
     }
 
+    @Test
+    void test_form_with_changed_margins() {
+        booster.createForm("Margin testing")
+            .setMargin(0,0,0,0)
+            .addSelection("Choose an option:", Arrays.asList("Option 1", "Option 2"))
+            .addButton("Click me", () -> {}).setMargin(10,0,10,0)
+            .show();
+    }
+
     private List<String> elements = new ArrayList<>();
 
     public void refresh() {

@@ -16,6 +16,11 @@ public abstract class FormElement {
     protected int formIndex;
     protected Form form;
 
+    protected int marginLeft = 0;
+    protected int marginTop = 0;
+    protected int marginRight = 0;
+    protected int marginBottom = 15;
+
     public FormElement(String label) {
         this.label = label;
     }
@@ -97,4 +102,26 @@ public abstract class FormElement {
         return (SelectionFormElement) this;
     }
 
+    public void setMargin(int marginLeft, int marginTop, int marginRight, int marginBottom) {
+        this.marginLeft = marginLeft;
+        this.marginTop = marginTop;
+        this.marginRight = marginRight;
+        this.marginBottom = marginBottom;
+    }
+
+    public int getMarginLeft() {
+        return marginLeft;
+    }
+
+    public int getMarginTop() {
+        return marginTop;
+    }
+
+    public int getMarginRight() {
+        return marginRight;
+    }
+
+    public int getMarginBottom() {
+        return marginBottom;
+    }
 }

@@ -1,17 +1,23 @@
 package de.milchreis.uibooster.model;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.FormPanel.createPanel;
+import static java.util.Collections.singletonList;
 
 public class RowFormElement extends FormElement {
 
     private final List<FormElement> elements;
 
-    public RowFormElement(String label, List<FormElement> elements) {
+    public RowFormElement(String label, List<FormElement> elements, int marginLeft, int marginTop, int marginRight, int marginBottom) {
         super(label);
         this.elements = elements;
+        this.marginLeft = marginLeft;
+        this.marginTop = marginTop;
+        this.marginRight = marginRight;
+        this.marginBottom = marginBottom;
     }
 
     @Override
@@ -19,9 +25,10 @@ public class RowFormElement extends FormElement {
 
         Box hBox = Box.createHorizontalBox();
         hBox.setAlignmentY(Box.TOP_ALIGNMENT);
+        hBox.setBorder(new EmptyBorder(marginTop, marginLeft, marginBottom, marginRight));
 
         for (FormElement element : elements) {
-            JPanel panel = createPanel(element, onChange, 0);
+            JPanel panel = createPanel(singletonList(element), onChange, 0);
             hBox.add(panel);
         }
 

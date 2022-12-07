@@ -17,13 +17,17 @@ public class FormBuilder {
 
     protected final String title;
     protected final List<FormElement> formElements;
-    protected final List<Integer> initialElementsDisabled;
+    protected final List<String> initialElementsDisabled;
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
     private FormCloseListener formCloseListener;
     private WindowSetting windowSetting;
     private RowFormBuilder rowFormBuilder;
-    private int componentCounter = 0;
+
+    protected int defaultMarginLeft = 0;
+    protected int defaultMarginTop = 0;
+    protected int defaultMarginRight = 0;
+    protected int defaultMarginBottom = 10;
 
     public FormBuilder(String title, UiBoosterOptions options) {
         this.title = title;
@@ -452,8 +456,7 @@ public class FormBuilder {
         if (formElements.size() == 0)
             return this;
 
-        final FormElement lastElement = formElements.get(formElements.size() - 1);
-        lastElement.setId(id);
+        getLatestElement().setId(id);
         return this;
     }
 
@@ -464,8 +467,35 @@ public class FormBuilder {
         if (formElements.size() == 0)
             return this;
 
-        final int latestElementIndex = componentCounter - 1;
-        initialElementsDisabled.add(latestElementIndex);
+        initialElementsDisabled.add(getLatestElement().getId());
+        return this;
+    }
+
+    /**
+     * Defines a margin for the lastly added element to set the space around this element in pixel.
+     * If setMargin is called before any element is added the given margin will set as default values for upcoming elements.
+     *
+     * @param elementLeft   expects a margin space to the left in pixel
+     * @param elementTop    expects a margin space to top in pixel
+     * @param elementRight  expects a margin space to the right in pixel
+     * @param elementBottom expects a margin space to bottom in pixel
+     */
+    public FormBuilder setMargin(int elementLeft, int elementTop, int elementRight, int elementBottom) {
+        if (formElements.isEmpty()) {
+            defaultMarginLeft = Math.max(0, elementLeft);
+            defaultMarginTop = Math.max(0, elementTop);
+            defaultMarginRight = Math.max(0, elementRight);
+            defaultMarginBottom = Math.max(0, elementBottom);
+        } else {
+            final FormElement element = getLatestElement();
+            element.setMargin(
+                Math.max(0, elementLeft),
+                Math.max(0, elementTop),
+                Math.max(0, elementRight),
+                Math.max(0, elementBottom)
+            );
+        }
+
         return this;
     }
 
@@ -488,7 +518,7 @@ public class FormBuilder {
         final Form form = new Form(null, formElements);
 
         JPanel panel = createPanel(formElements, changeListener, 5);
-        form.setElementsDisableByIndices(initialElementsDisabled);
+        form.setElementsDisableById(initialElementsDisabled);
 
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
         dialog.setDialogCreatedListener(form::setWindow);
@@ -526,12 +556,66 @@ public class FormBuilder {
 
     /**
      * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow to set some space for the row in
+     * horizontal and vertical direction.
+     *
+     * @param hGap expects a space in horizontal direction in pixel. The space is the sum of left und right spacing.
+     * @param vGap expects a space in vertical direction in pixel. The space is the sum of left und right spacing.
+     */
+    public RowFormBuilder startRow(int hGap, int vGap) {
+        return startRow(null, hGap, vGap);
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method. The margin defines the space around this row in pixel.
+     *
+     * @param elementLeft   expects a margin space to the left in pixel
+     * @param elementTop    expects a margin space to top in pixel
+     * @param elementRight  expects a margin space to the right in pixel
+     * @param elementBottom expects a margin space to bottom in pixel
+     */
+    public RowFormBuilder startRow(int elementLeft, int elementTop, int elementRight, int elementBottom) {
+        return startRow(null, elementLeft, elementTop, elementRight, elementBottom);
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
      * The row has to end with the endRow()-method.
      *
      * @param label expects the label for this input element
      */
     public RowFormBuilder startRow(String label) {
-        rowFormBuilder = new RowFormBuilder(label, options, this);
+        rowFormBuilder = new RowFormBuilder(label, options, this, 0, 0);
+        return rowFormBuilder;
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow to set some space for the row in
+     * horizontal and vertical direction.
+     *
+     * @param label expects the label for this input element
+     * @param hGap  expects a space in horizontal direction in pixel. The space is the sum of left und right spacing.
+     * @param vGap  expects a space in vertical direction in pixel. The space is the sum of left und right spacing.
+     */
+    public RowFormBuilder startRow(String label, int hGap, int vGap) {
+        rowFormBuilder = new RowFormBuilder(label, options, this, hGap, vGap);
+        return rowFormBuilder;
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method. The margin defines the space around this row in pixel.
+     *
+     * @param label         expects the label for this input element
+     * @param elementLeft   expects a margin space to the left in pixel
+     * @param elementTop    expects a margin space to top in pixel
+     * @param elementRight  expects a margin space to the right in pixel
+     * @param elementBottom expects a margin space to bottom in pixel
+     */
+    public RowFormBuilder startRow(String label, int elementLeft, int elementTop, int elementRight, int elementBottom) {
+        rowFormBuilder = new RowFormBuilder(label, options, this, elementLeft, elementTop, elementRight, elementBottom);
         return rowFormBuilder;
     }
 
@@ -543,20 +627,22 @@ public class FormBuilder {
         return this;
     }
 
-    protected void addIndexToInitialElementsDisabled(int index) {
-        initialElementsDisabled.add(index);
-    }
-
     protected void addElement(FormElement e) {
         e.setFormIndex(formElements.size());
-        formElements.add(e);
 
-        if (e instanceof RowFormElement) {
-            final RowFormElement rowFormElement = (RowFormElement) e;
-            componentCounter += rowFormElement.getElements().size();
-        } else {
-            componentCounter++;
+        if (e.getId() == null)
+            e.setId(String.valueOf(e.hashCode()));
+
+        // Set default margins for non-RowFormElements only
+        if (!(e instanceof RowFormElement)) {
+            e.setMargin(defaultMarginLeft, defaultMarginTop, defaultMarginRight, defaultMarginBottom);
         }
+
+        formElements.add(e);
+    }
+
+    protected FormElement getLatestElement() {
+        return formElements.get(formElements.size() - 1);
     }
 
 }

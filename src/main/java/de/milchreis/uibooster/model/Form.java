@@ -37,16 +37,16 @@ public class Form {
         }
     }
 
-    public Form(SimpleDialog dialog, List<FormElement> formElements, List<Integer> initialElementsDisabled, FormCloseListener formCloseListener) {
+    public Form(SimpleDialog dialog, List<FormElement> formElements, List<String> initialElementsDisabled, FormCloseListener formCloseListener) {
         this(dialog, formElements, formCloseListener);
-        setElementsDisableByIndices(initialElementsDisabled);
+        setElementsDisableById(initialElementsDisabled);
     }
 
     public FormElement getById(String id) {
         return getAllFormElements().stream()
-                .filter(element -> Objects.nonNull(element.id))
-                .filter(element -> element.id.equals(id))
-                .findFirst().get();
+            .filter(element -> Objects.nonNull(element.id))
+            .filter(element -> element.id.equals(id))
+            .findFirst().get();
     }
 
     public FormElement getByIndex(int index) {
@@ -55,9 +55,9 @@ public class Form {
 
     public FormElement getByLabel(String label) {
         return getAllFormElements().stream()
-                .filter(element -> Objects.nonNull(element.label))
-                .filter(element -> element.label.equals(label))
-                .findFirst().get();
+            .filter(element -> Objects.nonNull(element.label))
+            .filter(element -> element.label.equals(label))
+            .findFirst().get();
     }
 
     public List<FormElement> getElements() {
@@ -133,8 +133,8 @@ public class Form {
         return allElements;
     }
 
-    void setElementsDisableByIndices(List<Integer> disableElementsIndices) {
-        disableElementsIndices.forEach(index -> getByIndex(index).setEnabled(false));
+    void setElementsDisableById(List<String> disableElementIds) {
+        disableElementIds.forEach(id -> getById(id).setEnabled(false));
     }
 
 }

@@ -1,10 +1,11 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.Form;
+import org.junit.jupiter.api.Test;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import org.junit.jupiter.api.Test;
 
 class FormBuilderWithRowsTest {
 
@@ -32,15 +33,14 @@ class FormBuilderWithRowsTest {
         assert form.getByIndex(1).getId().equals("btn1");
         assert form.getById("?") != null;
 
-        form.getElements().forEach(e -> {
-            System.out.println(e.getLabel() + " -> " + e.getValue());
-        });
+        form.getElements().forEach(e -> System.out.println(e.getLabel() + " -> " + e.getValue()));
     }
 
     @Test
     public void calculator() {
         booster.createForm("Calculator")
-                .addText("Result", "", true).setID("result")
+                .setMargin(0,0,0,0)
+                .addText("Result", "", true).setID("result").setMargin(0,0,0,5)
                 .startRow()
                     .addButton("7", () -> {})
                     .addButton("8", () -> {})
@@ -56,7 +56,7 @@ class FormBuilderWithRowsTest {
                     .addButton("2", () -> {})
                     .addButton("3", () -> {})
                 .endRow()
-                .startRow()
+                .startRow(0,0, 0, 10)
                     .addButton("0", () -> {})
                     .addButton("+", () -> {}).setID("plus")
                     .addButton("-", () -> {}).setID("minus")
@@ -89,9 +89,14 @@ class FormBuilderWithRowsTest {
             .startRow("Select one")
                 .addButton(" ", "half full", () -> booster.showInfoDialog("Optimist")).setID("btn1")
                 .addButton(" ", "half empty", () -> booster.showInfoDialog("Pessimist")).setDisabled()
-                .addText("?").setID("?")
             .endRow()
             .addButton("Favorite font?", null).setDisabled()
+            .startRow("Select one")
+                .addText("?").setID("?")
+                .addButton("Favorite font 1?", null).setDisabled()
+            .endRow()
+            .addButton("Favorite font 2?", null)
+            .addButton("Favorite font 3?", null).setDisabled()
             .setChangeListener((element, value, filledForm) -> System.out.println(
                 "Component " + element.getLabel() +
                     " at position " + element.getIndex() +
@@ -101,9 +106,7 @@ class FormBuilderWithRowsTest {
         assert form.getByIndex(1).getId().equals("btn1");
         assert form.getById("?") != null;
 
-        form.getElements().forEach(e -> {
-            System.out.println(e.getLabel() + " -> " + e.getValue());
-        });
+        form.getElements().forEach(e -> System.out.println(e.getLabel() + " -> " + e.getValue()));
     }
 
     private Integer calculate(String input) {
