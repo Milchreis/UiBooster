@@ -26,6 +26,7 @@ public class ExceptionDialog {
         exception.printStackTrace(printWriter);
 
         JTextArea textArea = new JTextArea(writer.toString(), 30, 80);
+        textArea.setEditable(false);
 
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
         return panel;
