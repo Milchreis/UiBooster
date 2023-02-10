@@ -134,6 +134,15 @@ File directory = booster.showDirectorySelection();
 File fileOrDirectory = booster.showFileOrDirectorySelection();
 ```
 
+### Text area dialog
+![screenshot text area dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/textarea.jpg?raw=true)
+```java
+new UiBooster().showTextArea("Want to read some lorem ipsum?", "Message for you",
+    "Lorem ipsum dolor sit amet ...",
+    10, 40, false);
+);
+```
+
 ### Exception dialog
 ![screenshot exception dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/exception.jpg?raw=true)
 ```java
