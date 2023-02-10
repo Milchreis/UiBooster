@@ -269,6 +269,27 @@ class UiBoosterTest {
     }
 
     @Test
+    void test_textarea_dialog() {
+        booster.showTextArea("Want to read some lorem ipsum?", "Message for you",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut \n" +
+                "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris \n" +
+                "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit \n" +
+                "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in \n" +
+                "culpa qui officia deserunt mollit anim id est laborum.");
+    }
+
+    @Test
+    void test_textarea_with_size_dialog() {
+        booster.showTextArea("Want to read some lorem ipsum?", "Message for you",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut \n" +
+                "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris \n" +
+                "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit \n" +
+                "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in \n" +
+                "culpa qui officia deserunt mollit anim id est laborum.",
+            10, 40, false);
+    }
+
+    @Test
     void test_list_dialog() {
         ListElement selectedElement = booster.showList("Select a robot", "Avatars from RoboHash.org",
                 element -> System.out.println("Selected: " + element.toString()),
