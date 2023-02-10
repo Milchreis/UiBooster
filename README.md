@@ -31,6 +31,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [FontChooser](#font-chooser)
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
+ - [Text area dialog](#text-area-dialog)
  - [Exception dialog](#exception-dialog)
  - [List dialog](#list-dialog)
  - [Login dialog](#login-dialog)
