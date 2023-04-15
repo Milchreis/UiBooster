@@ -32,6 +32,7 @@ If you like this project, and you want to keep me awake 🤪, please:
  - [Datepicker](#datepicker)
  - [File and directory selection dialogs](#file-and-directory-selection-dialogs)
  - [Text area dialog](#text-area-dialog)
+ - [HTML text dialog](#html-text-dialog)
  - [Exception dialog](#exception-dialog)
  - [List dialog](#list-dialog)
  - [Login dialog](#login-dialog)
@@ -142,6 +143,18 @@ new UiBooster().showTextArea("Want to read some lorem ipsum?", "Message for you"
     "Lorem ipsum dolor sit amet ...",
     10, 40, false);
 );
+```
+
+### HTML text dialog
+![screenshot html text dialog](https://github.com/Milchreis/UiBooster/blob/master/screenshots/htmltext.jpg?raw=true)
+```java
+new UiBooster().showHtmlText("My menu", "Menu overview",
+    "<h1>📜 Menu</h1>" +
+    "<ul>" +
+    "<li>🍕 Pizza </li>" +
+    "<li>🍔 Cheeseburger</li>" +
+    "<li>🥗 Caesar-Salat</li>" +
+    "</ul>");
 ```
 
 ### Exception dialog
@@ -309,7 +322,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
   <artifactId>UiBooster</artifactId>
-  <version>1.17.0</version>
+  <version>1.18.0</version>
 </dependency>
 ```
 
@@ -325,6 +338,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.17.0'
+        implementation 'com.github.Milchreis:UiBooster:1.18.0'
 }
 ```
