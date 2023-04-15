@@ -21,6 +21,7 @@ public class FormBuilder {
     private final UiBoosterOptions options;
     private FormElementChangeListener changeListener;
     private FormCloseListener formCloseListener;
+    private FormInitializedListener formInitializedListener;
     private WindowSetting windowSetting;
     private RowFormBuilder rowFormBuilder;
 
@@ -163,8 +164,8 @@ public class FormBuilder {
     /**
      * Adds a selection with checkboxes to the form, which allows to choose multiple options.
      *
-     * @param label         expects the label for this input element
-     * @param possibilities expects a list of possible texts options
+     * @param label                        expects the label for this input element
+     * @param possibilities                expects a list of possible texts options
      * @param initialSelectedPossibilities expects the initial
      */
     public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities, List<String> initialSelectedPossibilities) {
@@ -495,6 +496,16 @@ public class FormBuilder {
     }
 
     /**
+     * Defines a listener which is called onced after the creation of the form.
+     *
+     * @param formInitializedListener expects an implementation of FormInitializedListener
+     */
+    public FormBuilder setInitListener(FormInitializedListener formInitializedListener) {
+        this.formInitializedListener = formInitializedListener;
+        return this;
+    }
+
+    /**
      * Defines a custom ID or name to the lastly added element. It helps to identify this element in a custom change listener.
      *
      * @param id expects an unique name or id for last added input element.
@@ -570,6 +581,9 @@ public class FormBuilder {
         SimpleBlockingDialog dialog = new SimpleBlockingDialog(panel);
         dialog.setDialogCreatedListener(form::setWindow);
 
+        if (this.formInitializedListener != null)
+            this.formInitializedListener.onInit(form);
+
         dialog.showDialog(null, title,
             windowSetting,
             options.getIconPath(),
@@ -577,6 +591,7 @@ public class FormBuilder {
             true);
 
         form.setClosedByUser(false);
+
         return form;
     }
 
@@ -590,7 +605,12 @@ public class FormBuilder {
         JPanel panel = createPanel(formElements, changeListener, 5);
 
         SimpleDialog dialog = new SimpleDialog(title, panel, windowSetting, options.getIconPath());
-        return new Form(dialog, formElements, initialElementsDisabled, formCloseListener);
+        final Form form = new Form(dialog, formElements, initialElementsDisabled, formCloseListener);
+
+        if (this.formInitializedListener != null)
+            this.formInitializedListener.onInit(form);
+
+        return form;
     }
 
     /**

@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 class FormBuilderTest {
@@ -316,6 +318,14 @@ class FormBuilderTest {
 
         for (int i = 0; i < 10000; i++)
             elements.add("some string " + (i + 1));
+    }
+
+    @Test
+    void test_form_with_init_listener() {
+        booster.createForm("small form")
+            .addText("Some text here ... ", ".......")
+            .setInitListener(f -> System.out.println("This only called once"))
+            .show();
     }
 
 }
