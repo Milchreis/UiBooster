@@ -16,9 +16,14 @@ public class CheckboxFormElement extends FormElement {
     }
 
     public CheckboxFormElement(String label, String headline) {
+        this(label, headline, false);
+    }
+
+    public CheckboxFormElement(String label, String headline, boolean initialValue) {
         super(headline);
         title = new JLabel(label);
         checkbox = new JCheckBox();
+        checkbox.setSelected(initialValue);
     }
 
     @Override

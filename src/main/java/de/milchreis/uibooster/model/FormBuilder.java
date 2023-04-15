@@ -156,7 +156,19 @@ public class FormBuilder {
      * @param possibilities expects a list of possible texts options
      */
     public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities) {
-        addElement(new CheckboxSelectionFormElement(label, possibilities));
+        addElement(new CheckboxSelectionFormElement(label, possibilities, null));
+        return this;
+    }
+
+    /**
+     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     *
+     * @param label         expects the label for this input element
+     * @param possibilities expects a list of possible texts options
+     * @param initialSelectedPossibilities expects the initial
+     */
+    public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities, List<String> initialSelectedPossibilities) {
+        addElement(new CheckboxSelectionFormElement(label, possibilities, initialSelectedPossibilities));
         return this;
     }
 
@@ -423,6 +435,29 @@ public class FormBuilder {
      */
     public FormBuilder addCheckbox(String headline, String label) {
         addElement(new CheckboxFormElement(label, headline));
+        return this;
+    }
+
+    /**
+     * Adds true/false option as checkbox to the form.
+     *
+     * @param headline     expects a text for this input element, which is displayed over the input element
+     * @param label        expects a text which is displayed next to the checkbox
+     * @param initialValue executes a value which is set up for the checkbox
+     */
+    public FormBuilder addCheckbox(String headline, String label, boolean initialValue) {
+        addElement(new CheckboxFormElement(label, headline, initialValue));
+        return this;
+    }
+
+    /**
+     * Adds true/false option as checkbox to the form.
+     *
+     * @param label        expects a text which is displayed next to the checkbox
+     * @param initialValue executes a value which is set up for the checkbox
+     */
+    public FormBuilder addCheckbox(String label, boolean initialValue) {
+        addElement(new CheckboxFormElement(label, null, initialValue));
         return this;
     }
 

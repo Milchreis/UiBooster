@@ -12,12 +12,16 @@ public class CheckboxSelectionFormElement extends FormElement {
 
     private final List<JCheckBox> checkboxes;
 
-    public CheckboxSelectionFormElement(String label, List<String> options) {
+    public CheckboxSelectionFormElement(String label, List<String> options, List<String> initialSelectedOptions) {
         super(label);
 
         checkboxes = options.stream()
-                .map(JCheckBox::new)
-                .collect(Collectors.toList());
+            .map(JCheckBox::new)
+            .collect(Collectors.toList());
+
+        if (initialSelectedOptions != null && !initialSelectedOptions.isEmpty())
+            checkboxes.stream().filter(c -> initialSelectedOptions.contains(c.getText())).forEach(c -> c.setSelected(true));
+
     }
 
     @Override
@@ -45,9 +49,9 @@ public class CheckboxSelectionFormElement extends FormElement {
     @Override
     public Object getValue() {
         return checkboxes.stream()
-                .filter(AbstractButton::isSelected)
-                .map(AbstractButton::getText)
-                .collect(Collectors.toList());
+            .filter(AbstractButton::isSelected)
+            .map(AbstractButton::getText)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -56,8 +60,8 @@ public class CheckboxSelectionFormElement extends FormElement {
             List<String> valuesToSet = (List<String>) value;
 
             checkboxes.stream()
-                    .filter(c -> valuesToSet.contains(c.getText()))
-                    .forEach(c -> c.setSelected(true));
+                .filter(c -> valuesToSet.contains(c.getText()))
+                .forEach(c -> c.setSelected(true));
 
         } else {
             throw new IllegalArgumentException("The value has to be a list of strings");
