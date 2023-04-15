@@ -427,6 +427,18 @@ public class FormBuilder {
     }
 
     /**
+     * Adds a html interpreted text to the form. It supports HTML 3.2
+     *
+     * @param label       expects the label for this input element
+     * @param htmlContent expected html content
+     * @return
+     */
+    public FormBuilder addHtmlText(String label, String htmlContent) {
+        addElement(new HtmlTextFormElement(label, htmlContent));
+        return this;
+    }
+
+    /**
      * Defines a listener which detects all changes in this form. It allows to react to different events for the
      * added form elements.
      *

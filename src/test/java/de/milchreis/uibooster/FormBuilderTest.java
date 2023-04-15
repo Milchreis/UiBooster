@@ -83,6 +83,18 @@ class FormBuilderTest {
     }
 
     @Test
+    public void test_form_dialog_with_html() {
+        Form form = booster
+                .createForm("information")
+                .addHtmlText("Some formatted text", "<h2>headline</h2><b>Some</b> <i>text</i> 🎈")
+                .show();
+
+        form.getElements().forEach(e -> {
+            System.out.println(e.getLabel() + " -> " + e.getValue());
+        });
+    }
+
+    @Test
     public void test_form_textarea_size() {
         Form form = booster
                 .createForm("Personal information")

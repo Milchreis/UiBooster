@@ -314,6 +314,16 @@ class UiBoosterTest {
         System.out.println(selectedElement);
     }
 
+    @Test
+    void test_html_content_dialog() {
+        booster.showHtmlText("My menu", "Menu overview",
+            "<h1>📜 Menu</h1>" +
+                "<ul>" +
+                "<li>🍕 Pizza </li>" +
+                "<li>🍔 Cheeseburger</li>" +
+                "<li>🥗 Caesar-Salat</li>" +
+                "</ul>");
+    }
 
     private void sleep(int timeInMillis) {
         try {
