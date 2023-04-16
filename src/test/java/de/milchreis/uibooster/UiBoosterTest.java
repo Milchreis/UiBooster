@@ -325,6 +325,17 @@ class UiBoosterTest {
                 "</ul>");
     }
 
+    @Test
+    void test_html_content_small_dialog() {
+        booster.showHtmlText("My menu", "Menu overview",
+            "<h1>📜 Menu</h1>" +
+                "<ul>" +
+                "<li>🍕 Pizza </li>" +
+                "<li>🍔 Cheeseburger</li>" +
+                "<li>🥗 Caesar-Salat</li>" +
+                "</ul>", 300, 200);
+    }
+
     private void sleep(int timeInMillis) {
         try {
             Thread.sleep(timeInMillis);

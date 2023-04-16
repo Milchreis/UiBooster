@@ -759,13 +759,28 @@ public class UiBooster {
      * Shows a scrollable text area which allows HTML 3.2 in a dialog.
      * The dialogs blocks the process until it's closed.
      *
-     * @param message  expects a message for the meaning of this text
-     * @param title    expects a title for the window
-     * @param htmlContent  expects the content/text for the text area
+     * @param message     expects a message for the meaning of this text
+     * @param title       expects a title for the window
+     * @param htmlContent expects the content/text for the text area
      */
     public void showHtmlText(String message, String title, String htmlContent) {
-        HtmlRenderDialog.showDialog(message, title, htmlContent, options);
+        HtmlRenderDialog.showDialog(message, title, htmlContent, 600, 600, options);
     }
+
+    /**
+     * Shows a scrollable text area which allows HTML 3.2 in a dialog.
+     * The dialogs blocks the process until it's closed.
+     *
+     * @param message     expects a message for the meaning of this text
+     * @param title       expects a title for the window
+     * @param htmlContent expects the content/text for the text area
+     * @param width       expects the width in pixel which the component has to used preferred
+     * @param height      expects the height in pixel which the component has to used preferred
+     */
+    public void showHtmlText(String message, String title, String htmlContent, int width, int height) {
+        HtmlRenderDialog.showDialog(message, title, htmlContent, width, height, options);
+    }
+
 
     /**
      * Shows a fiterable list with multiple selectable elements in a dialog.

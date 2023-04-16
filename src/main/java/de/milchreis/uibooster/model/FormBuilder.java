@@ -467,10 +467,22 @@ public class FormBuilder {
      *
      * @param label       expects the label for this input element
      * @param htmlContent expected html content
-     * @return
      */
     public FormBuilder addHtmlText(String label, String htmlContent) {
-        addElement(new HtmlTextFormElement(label, htmlContent));
+        addElement(new HtmlTextFormElement(label, htmlContent, 600, 600));
+        return this;
+    }
+
+    /**
+     * Adds a html interpreted text to the form. It supports HTML 3.2
+     *
+     * @param label       expects the label for this input element
+     * @param htmlContent expects html content
+     * @param width       expects the width in pixel which the component has to used preferred
+     * @param height      expects the height in pixel which the component has to used preferred
+     */
+    public FormBuilder addHtmlText(String label, String htmlContent, int width, int height) {
+        addElement(new HtmlTextFormElement(label, htmlContent, width, height));
         return this;
     }
 

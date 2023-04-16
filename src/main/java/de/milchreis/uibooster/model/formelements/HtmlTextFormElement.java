@@ -4,6 +4,7 @@ import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -11,9 +12,10 @@ public class HtmlTextFormElement extends FormElement {
 
     private final JEditorPane area;
 
-    public HtmlTextFormElement(String label, String htmlContent) {
+    public HtmlTextFormElement(String label, String htmlContent, int width, int height) {
         super(label);
         area = new JEditorPane("text/html", htmlContent);
+        area.setPreferredSize(new Dimension(width, height));
     }
 
     @Override
