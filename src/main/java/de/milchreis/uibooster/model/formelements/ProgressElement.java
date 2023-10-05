@@ -40,6 +40,14 @@ public class ProgressElement extends FormElement {
         if (value instanceof Integer)
             progressBar.setValue((Integer) value);
         else
-            throw new IllegalArgumentException("The given value has to be of type 'Color' or 'int'");
+            throw new IllegalArgumentException("The given value has to be of type 'int'");
+    }
+
+    public void setMax(int max) {
+        progressBar.setMaximum(max);
+    }
+
+    public void setMin(int min) {
+        progressBar.setMinimum(min);
     }
 }
