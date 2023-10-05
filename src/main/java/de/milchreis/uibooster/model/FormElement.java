@@ -1,8 +1,6 @@
 package de.milchreis.uibooster.model;
 
-import de.milchreis.uibooster.model.formelements.ListFormElement;
-import de.milchreis.uibooster.model.formelements.SelectionFormElement;
-import de.milchreis.uibooster.model.formelements.TableFormElement;
+import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,6 +98,14 @@ public abstract class FormElement {
 
     public SelectionFormElement toSelection() {
         return (SelectionFormElement) this;
+    }
+
+    public ProgressElement toProgress() {
+        return (ProgressElement) this;
+    }
+
+    public ButtonFormElement toButton() {
+        return (ButtonFormElement) this;
     }
 
     public void setMargin(int marginLeft, int marginTop, int marginRight, int marginBottom) {
