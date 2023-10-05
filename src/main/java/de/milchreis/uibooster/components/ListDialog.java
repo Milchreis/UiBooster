@@ -42,7 +42,7 @@ public class ListDialog {
 
         if (selectElementListener != null) {
             list.addListSelectionListener(e -> {
-                if (e.getValueIsAdjusting()) {
+                if (e.getValueIsAdjusting() && elements.length > e.getFirstIndex()) {
                     selectElementListener.onSelected(elements[e.getFirstIndex()]);
                 }
             });
