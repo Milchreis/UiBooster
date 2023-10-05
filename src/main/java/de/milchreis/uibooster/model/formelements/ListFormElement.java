@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static de.milchreis.uibooster.components.ListDialog.createList;
 import static de.milchreis.uibooster.components.ListDialog.createListModel;
@@ -30,9 +32,9 @@ public class ListFormElement extends FormElement {
         }, elements);
 
         return new JScrollPane(
-                list,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            list,
+            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     }
 
     @Override
@@ -69,5 +71,19 @@ public class ListFormElement extends FormElement {
     public void clearAll() {
         elements = new ListElement[]{};
         list.setModel(createListModel(elements));
+    }
+
+    public void removeElement(ListElement element) {
+        elements = getAllElements().stream()
+            .filter(e -> !e.equals(element))
+            .collect(Collectors.toList())
+            .stream()
+            .toArray(ListElement[]::new);
+
+        list.setModel(createListModel(elements));
+    }
+
+    public List<ListElement> getAllElements() {
+        return Stream.of(elements).collect(Collectors.toList());
     }
 }

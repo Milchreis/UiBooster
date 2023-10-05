@@ -3,6 +3,7 @@ package de.milchreis.uibooster.model;
 import de.milchreis.uibooster.utils.WindowIconHelper;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class ListElement {
 
@@ -47,5 +48,18 @@ public class ListElement {
                 ", message='" + message + '\'' +
                 ", image=" + image +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ListElement that = (ListElement) o;
+        return Objects.equals(title, that.title) && Objects.equals(message, that.message) && Objects.equals(image, that.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, message, image);
     }
 }
