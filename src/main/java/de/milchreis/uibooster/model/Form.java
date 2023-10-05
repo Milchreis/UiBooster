@@ -46,7 +46,8 @@ public class Form {
         return getAllFormElements().stream()
             .filter(element -> Objects.nonNull(element.id))
             .filter(element -> element.id.equals(id))
-            .findFirst().get();
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Element with ID=" + id + " not found!"));
     }
 
     public FormElement getByIndex(int index) {
@@ -57,7 +58,8 @@ public class Form {
         return getAllFormElements().stream()
             .filter(element -> Objects.nonNull(element.label))
             .filter(element -> element.label.equals(label))
-            .findFirst().get();
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Element with label " + label + " not found!"));
     }
 
     public List<FormElement> getElements() {
@@ -98,7 +100,7 @@ public class Form {
     /**
      * Shows the window again, if it's hidden
      *
-     * @return
+     * @return form
      */
     public Form show() {
         if (window != null && !window.isVisible())
