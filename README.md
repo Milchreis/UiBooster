@@ -309,6 +309,25 @@ UiBooster booster = new UiBooster(
 ```
 See some examples for UiBoosterOptions [here](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/UiBoosterOptionsTest.java)  
 
+### More themes powered by flatlaf
+1. Add themes as maven dependency
+```xml
+<dependency>
+    <groupId>com.formdev</groupId>
+    <artifactId>flatlaf-intellij-themes</artifactId>
+    <version>3.2.1</version>
+</dependency>
+```
+
+2. Create a new UiBooster with theme as UiBoosterOption
+```java
+UiBooster booster = new UiBooster(new UiBoosterOptions(new com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicIJTheme(), null, null));
+booster.showInfoDialog("Info Message Empty Constructor");
+```
+
+![screenshot custom theme](https://github.com/Milchreis/UiBooster/blob/master/screenshots/another-theme.jpg?raw=true)
+
+
 ## Include to project
 ### Maven
 If you want to use `UiBooster` than add the following to your pom.xml.

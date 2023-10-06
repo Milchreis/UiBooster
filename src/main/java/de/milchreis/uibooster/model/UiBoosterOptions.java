@@ -3,9 +3,9 @@ package de.milchreis.uibooster.model;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
- * Abstract base class for user defined look and feel of the application.
+ *  Base class for user defined look and feel of the application.
  */
-public abstract class UiBoosterOptions {
+public class UiBoosterOptions {
 
     public enum Theme {
         DARK_THEME, LIGHT_THEME, SWING, OS_NATIVE, DEFAULT;
