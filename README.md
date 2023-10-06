@@ -327,6 +327,7 @@ booster.showInfoDialog("Info Message Empty Constructor");
 
 ![screenshot custom theme](https://github.com/Milchreis/UiBooster/blob/master/screenshots/another-theme.jpg?raw=true)
 
+[List with beautiful themes](https://github.com/JFormDesigner/FlatLaf/tree/main/flatlaf-intellij-themes#themes)
 
 ## Include to project
 ### Maven
