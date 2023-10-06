@@ -1,18 +1,17 @@
 package de.milchreis.uibooster;
 
-import static java.lang.Thread.sleep;
-
 import de.milchreis.uibooster.model.Form;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.ListElement;
-import java.awt.Color;
-import java.awt.Font;
+import de.milchreis.uibooster.model.formelements.ButtonFormElement;
+import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-import org.junit.jupiter.api.Test;
+import static java.lang.Thread.sleep;
 
 class FormBuilderTest {
 
@@ -22,7 +21,7 @@ class FormBuilderTest {
     public void test_form_close_itself() {
 
         booster.createForm("Title")
-                .addButton("Close window", () -> {
+                .addButton("Close window", (button, form) -> {
                             System.out.println("Close this window");
                         }
                 ).setID("close")
@@ -50,7 +49,7 @@ class FormBuilderTest {
                                 "Adventure", "Crime", "Mystery", "Sci-fi", "Horror"))
                 .addLabel("Choose an action")
                 .addButton("half full", () -> booster.showInfoDialog("Optimist"))
-                .addButton("half empty", () -> booster.showInfoDialog("Pessimist"))
+                .addButton("half empty", (button, form1) -> booster.showInfoDialog("Pessimist"))
                 .addSlider("How many liters did you drink today?", 0, 5, 1, 5, 1)
                 .addCheckbox("Are you fine?", "yes")
                 .addColorPicker("Favorite color?", new Color(212, 32, 39))
@@ -201,8 +200,7 @@ class FormBuilderTest {
     public void test_disable_button_dialog() throws InterruptedException {
         Form form = booster
                 .createForm("Test")
-                .addButton("Prev", () -> {
-                }).setDisabled().setID("test")
+                .addButton("Prev", (button, form1) -> {}).setDisabled().setID("test")
                 .run();
 
         sleep(1000);
@@ -214,12 +212,9 @@ class FormBuilderTest {
         Form form = booster
                 .createForm("Test")
                 .startRow()
-                .addButton("On", () -> {
-                }).setID("on1")
-                .addButton("Off", () -> {
-                }).setDisabled().setID("off1")
-                .addButton("On", () -> {
-                }).setID("on2")
+                .addButton("On", (button, form1) -> {}).setID("on1")
+                .addButton("Off", (button, form1) -> {}).setDisabled().setID("off1")
+                .addButton("On", (button, form1) -> {}).setID("on2")
                 .endRow()
                 .show();
 
@@ -325,6 +320,26 @@ class FormBuilderTest {
         booster.createForm("small form")
             .addText("Some text here ... ", ".......")
             .setInitListener(f -> System.out.println("This only called once"))
+            .show();
+    }
+
+    @Test
+    void test_custom_color_button() {
+        booster.createForm("small form")
+            .addButton("Default button", "click me", (e, f) -> {})
+            .addButton("Colored button here", "click me", (e, f) -> {}, new Color(183, 128, 0), Color.WHITE)
+            .addButton( "click me", (e, f) -> {}, new Color(71, 118, 65), Color.WHITE)
+            .show();
+    }
+
+    @Test
+    void test_change_custom_color_button() {
+        booster.createForm("small form")
+            .addButton("darker", (e, f) -> {
+                    final ButtonFormElement button = e.toButton();
+                    button.setBackgroundColor(button.getBackgroundColor().darker());
+                },
+                new Color(71, 118, 65), Color.WHITE)
             .show();
     }
 

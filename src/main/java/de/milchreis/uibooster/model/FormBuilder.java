@@ -211,7 +211,42 @@ public class FormBuilder {
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
     public FormBuilder addButton(String buttonLabel, Runnable onClick) {
+        return addButton(null, buttonLabel, (element, form) -> onClick.run());
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param buttonLabel expects the text which is shown on the button
+     * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
+     */
+    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick) {
         return addButton(null, buttonLabel, onClick);
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param buttonLabel     expects the text which is shown on the button
+     * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
+     * @param backgroundColor expects a color for the tint of this button background
+     */
+    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
+        addElement(new ButtonFormElement(buttonLabel, buttonLabel, onClick, backgroundColor, null));
+        return this;
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param buttonLabel     expects the text which is shown on the button
+     * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
+     * @param backgroundColor expects a color for the tint of this button background
+     * @param textColor       expects a color for the text in this button
+     */
+    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
+        addElement(new ButtonFormElement(buttonLabel, buttonLabel, onClick, backgroundColor, textColor));
+        return this;
     }
 
     /**
@@ -222,7 +257,46 @@ public class FormBuilder {
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
     public FormBuilder addButton(String label, String buttonLabel, Runnable onClick) {
+        addElement(new ButtonFormElement(label, buttonLabel, (element, form) -> onClick.run()));
+        return this;
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param label       expects the label for this input element
+     * @param buttonLabel expects the text which is shown on the button
+     * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
+     */
+    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick));
+        return this;
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param label           expects the label for this input element
+     * @param buttonLabel     expects the text which is shown on the button
+     * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
+     * @param backgroundColor expects a color for the tint of this button background
+     * @param textColor       expects a color for the text in this button
+     */
+    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
+        addElement(new ButtonFormElement(label, buttonLabel, onClick, backgroundColor, textColor));
+        return this;
+    }
+
+    /**
+     * Adds a button to the form.
+     *
+     * @param label           expects the label for this input element
+     * @param buttonLabel     expects the text which is shown on the button
+     * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
+     * @param backgroundColor expects a color for the tint of this button background
+     */
+    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
+        addElement(new ButtonFormElement(label, buttonLabel, onClick, backgroundColor, null));
         return this;
     }
 

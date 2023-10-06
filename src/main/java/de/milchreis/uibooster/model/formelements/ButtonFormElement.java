@@ -1,28 +1,42 @@
 package de.milchreis.uibooster.model.formelements;
 
+import de.milchreis.uibooster.model.ButtonClickListener;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ButtonFormElement extends FormElement {
 
     private String buttonLabel;
-    private final Runnable onClick;
+    private final ButtonClickListener onClick;
+    private Color backgroundColor;
+    private Color textColor;
     private JButton button;
 
-    public ButtonFormElement(String label, String buttonLabel, Runnable onClick) {
-        super(label);
+    public ButtonFormElement(String label, String buttonLabel, ButtonClickListener onClick) {
+        this(label, buttonLabel, onClick, null, null);
+    }
 
+    public ButtonFormElement(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
+        super(label);
         this.buttonLabel = buttonLabel;
         this.onClick = onClick;
+
+        this.backgroundColor = backgroundColor;
+        this.textColor = textColor;
     }
 
     @Override
     public JComponent createComponent(FormElementChangeListener onChange) {
         button = new JButton(buttonLabel);
+
+        setBackgroundColor(backgroundColor);
+        setTextColor(textColor);
+
         button.addActionListener(l -> {
-            onClick.run();
+            onClick.onClick(this, form);
 
             if (onChange != null)
                 onChange.onChange(this, buttonLabel, form);
@@ -45,5 +59,23 @@ public class ButtonFormElement extends FormElement {
     public void setValue(Object value) {
         buttonLabel = value.toString();
         button.setText(buttonLabel);
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        if (backgroundColor != null) this.backgroundColor = backgroundColor;
+        button.setBackground(backgroundColor);
+    }
+
+    public void setTextColor(Color textColor) {
+        if (textColor != null) this.textColor = textColor;
+        button.setForeground(textColor);
     }
 }

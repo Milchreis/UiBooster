@@ -90,13 +90,13 @@ class FormBuilderWithRowsTest {
                 .addButton(" ", "half full", () -> booster.showInfoDialog("Optimist")).setID("btn1")
                 .addButton(" ", "half empty", () -> booster.showInfoDialog("Pessimist")).setDisabled()
             .endRow()
-            .addButton("Favorite font?", null).setDisabled()
+            .addButton("Favorite font?", (Runnable) null).setDisabled()
             .startRow("Select one")
                 .addText("?").setID("?")
-                .addButton("Favorite font 1?", null).setDisabled()
+                .addButton("Favorite font 1?", (Runnable) null).setDisabled()
             .endRow()
-            .addButton("Favorite font 2?", null)
-            .addButton("Favorite font 3?", null).setDisabled()
+            .addButton("Favorite font 2?", (Runnable) null)
+            .addButton("Favorite font 3?", (Runnable) null).setDisabled()
             .setChangeListener((element, value, filledForm) -> System.out.println(
                 "Component " + element.getLabel() +
                     " at position " + element.getIndex() +

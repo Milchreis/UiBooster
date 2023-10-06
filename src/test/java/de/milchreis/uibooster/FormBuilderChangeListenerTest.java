@@ -16,8 +16,7 @@ class FormBuilderChangeListenerTest {
                 .addText("First name of your best friend").setID("first")
                 .addText("Last name of your best friend").setID("last")
                 .addDatePicker("Birthday of your best friend").setID("birthday")
-                .addButton("Submit", () -> {
-                }).setID("submit")
+                .addButton("Submit", () -> {}).setID("submit")
                 .addTable("Your friends", Arrays.asList("first name", "last name", "birthday"), new String[][]{}, false).setID("table")
                 .setChangeListener((element, value, form) -> {
 
