@@ -3,24 +3,15 @@ package de.milchreis.uibooster;
 import de.milchreis.uibooster.model.UiBoosterOptions;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 class ThemeTest {
 
     @Test
     public void test_look_and_feel() {
-        try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
 
-        UiBooster booster = new UiBooster();
+        UiBooster booster = new UiBooster(new UiBoosterOptions(new NimbusLookAndFeel(), null, null));
         booster.showInfoDialog("Info Message Empty Constructor");
-
-        UiBooster boosterDefault = new UiBooster(UiBoosterOptions.Theme.DEFAULT);
-        boosterDefault.showInfoDialog("Info message Theme.DEFAULT");
 
         UiBooster boosterDark = new UiBooster(UiBoosterOptions.Theme.DARK_THEME);
         boosterDark.showInfoDialog("Info message Theme.DARK_THEME");
