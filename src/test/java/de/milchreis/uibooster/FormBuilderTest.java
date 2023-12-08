@@ -38,7 +38,7 @@ class FormBuilderTest {
         Form form = booster
                 .createForm("Personal information")
                 .addText("Whats your first name?")
-                .addDatePicker("Whats your birthday?")
+                .addDatePicker("Whats your birthday?").setTooltip("Choose the date of your birthday...")
                 .addTextArea("Tell me something about you")
                 .addSelection(
                         "Whats your favorite movie?",

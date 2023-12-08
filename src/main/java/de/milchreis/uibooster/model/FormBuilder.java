@@ -604,6 +604,15 @@ public class FormBuilder {
         return this;
     }
 
+    public FormBuilder setTooltip(String tooltip) {
+        if (formElements.size() == 0)
+            return this;
+
+        getLatestElement().setTooltip(tooltip);
+
+        return this;
+    }
+
     /**
      * Disables the lastly added element, if it supports this state.
      */

@@ -13,6 +13,7 @@ public abstract class FormElement {
     protected String label;
     protected int formIndex;
     protected Form form;
+    protected String tooltip;
 
     protected int marginLeft = 0;
     protected int marginTop = 0;
@@ -115,6 +116,10 @@ public abstract class FormElement {
         this.marginBottom = marginBottom;
     }
 
+    public void setTooltip(String tooltip) {
+        this.tooltip = tooltip;
+    }
+
     public int getMarginLeft() {
         return marginLeft;
     }
@@ -130,4 +135,9 @@ public abstract class FormElement {
     public int getMarginBottom() {
         return marginBottom;
     }
+
+    public String getTooltip() {
+        return tooltip;
+    }
+
 }

@@ -20,6 +20,7 @@ public class FormPanel {
 
             JPanel elementPanel = new JPanel(new BorderLayout());
             JComponent component = formElement.createComponent(changeListener);
+            component.setToolTipText(formElement.getTooltip());
 
             if (formElement.getLabel() != null) {
                 JLabel label = new JLabel(formElement.getLabel());
