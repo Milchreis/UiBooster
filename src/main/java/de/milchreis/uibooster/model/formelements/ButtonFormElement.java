@@ -70,12 +70,16 @@ public class ButtonFormElement extends FormElement {
     }
 
     public void setBackgroundColor(Color backgroundColor) {
-        if (backgroundColor != null) this.backgroundColor = backgroundColor;
-        button.setBackground(backgroundColor);
+        if (backgroundColor != null) {
+            this.backgroundColor = backgroundColor;
+            button.setBackground(backgroundColor);
+        }
     }
 
     public void setTextColor(Color textColor) {
-        if (textColor != null) this.textColor = textColor;
-        button.setForeground(textColor);
+        if (textColor != null) {
+            this.textColor = textColor;
+            button.setForeground(textColor);
+        }
     }
 }
