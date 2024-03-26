@@ -95,6 +95,7 @@ public class UiBooster {
         JDialog dialog = jp.createDialog(null, infoMessage);
         ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
         dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
     }
 
@@ -118,6 +119,7 @@ public class UiBooster {
         JDialog dialog = jp.createDialog(null, title);
         ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
         dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
     }
 
@@ -141,6 +143,7 @@ public class UiBooster {
         JDialog dialog = jp.createDialog(null, title);
         ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
         dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
     }
 
