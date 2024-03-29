@@ -23,9 +23,14 @@ public class FontChooserElement extends FormElement {
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        if (changeListener != null) {
-            fontChooser.addChangeListener(e -> changeListener.onChange(FontChooserElement.this, getValue(), form));
-        }
+        fontChooser.addChangeListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(FontChooserElement.this, getValue(), form);
+        });
         return fontChooser;
     }
 

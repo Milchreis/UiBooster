@@ -21,6 +21,9 @@ public class TableFormElement extends FormElement {
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
         panel.getTable().getModel().addTableModelListener(e -> {
+            if (hasBinding())
+                binding.set(getValue());
+
             if (changeListener != null)
                 changeListener.onChange(this, panel.getData(), form);
         });
@@ -60,8 +63,8 @@ public class TableFormElement extends FormElement {
 
         } else
             throw new IllegalArgumentException(
-                    "The given value has to be of type 'String[][]' for data, " +
-                            "'List<String>' for headers or boolean for isEditable");
+                "The given value has to be of type 'String[][]' for data, " +
+                    "'List<String>' for headers or boolean for isEditable");
     }
 
     public void addRow(String[] row) {

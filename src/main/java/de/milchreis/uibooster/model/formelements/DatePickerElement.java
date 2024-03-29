@@ -18,9 +18,14 @@ public class DatePickerElement extends FormElement {
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        if (changeListener != null) {
-            picker.addActionListener(e -> changeListener.onChange(DatePickerElement.this, getValue(), form));
-        }
+        picker.addActionListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(DatePickerElement.this, getValue(), form);
+        });
 
         return picker;
     }

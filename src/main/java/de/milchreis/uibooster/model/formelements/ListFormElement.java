@@ -27,8 +27,13 @@ public class ListFormElement extends FormElement {
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
         list = createList(element -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
             if (changeListener != null)
                 changeListener.onChange(ListFormElement.this, getValue(), form);
+
         }, elements);
 
         return new JScrollPane(

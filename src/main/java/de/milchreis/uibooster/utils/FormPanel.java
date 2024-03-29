@@ -33,6 +33,10 @@ public class FormPanel {
                 elementPanel.add(component, BorderLayout.CENTER);
             }
 
+            if (formElement.hasBinding()) {
+                formElement.setValueFromBinding();
+            }
+
             elementPanel.setBorder(new EmptyBorder(
                 formElement.getMarginTop(), formElement.getMarginLeft(),
                 formElement.getMarginBottom(), formElement.getMarginRight())

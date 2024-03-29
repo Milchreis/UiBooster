@@ -7,7 +7,7 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonFormElement extends FormElement {
+public class ButtonFormElement extends FormElement<String> {
 
     private String buttonLabel;
     private final ButtonClickListener onClick;
@@ -38,6 +38,9 @@ public class ButtonFormElement extends FormElement {
         button.addActionListener(l -> {
             onClick.onClick(this, form);
 
+            if (hasBinding())
+                binding.set(getValue());
+
             if (onChange != null)
                 onChange.onChange(this, buttonLabel, form);
         });
@@ -51,13 +54,13 @@ public class ButtonFormElement extends FormElement {
     }
 
     @Override
-    public Object getValue() {
+    public String getValue() {
         return button.getName();
     }
 
     @Override
-    public void setValue(Object value) {
-        buttonLabel = value.toString();
+    public void setValue(String value) {
+        buttonLabel = value;
         button.setText(buttonLabel);
     }
 

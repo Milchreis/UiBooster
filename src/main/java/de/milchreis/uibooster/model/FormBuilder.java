@@ -789,6 +789,12 @@ public class FormBuilder {
         return this;
     }
 
+    public FormBuilder bind(Data dataReference) {
+        final FormElement element = getLatestElement();
+        element.setBinding(dataReference);
+        return this;
+    }
+
     protected void addElement(FormElement e) {
         e.setFormIndex(formElements.size());
 

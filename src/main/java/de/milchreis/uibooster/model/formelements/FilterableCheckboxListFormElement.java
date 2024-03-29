@@ -170,6 +170,9 @@ public class FilterableCheckboxListFormElement extends FormElement {
     private void updateUiAndListener() {
         list.repaint();
 
+        if (hasBinding())
+            binding.set(getValue());
+
         if (onChange != null)
             onChange.onChange(this, selected, form);
     }

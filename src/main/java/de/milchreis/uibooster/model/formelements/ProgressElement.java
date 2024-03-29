@@ -18,9 +18,14 @@ public class ProgressElement extends FormElement {
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        if (changeListener != null) {
-            progressBar.addChangeListener(e -> changeListener.onChange(ProgressElement.this, getValue(), form));
-        }
+        progressBar.addChangeListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(ProgressElement.this, getValue(), form);
+        });
 
         return progressBar;
     }
