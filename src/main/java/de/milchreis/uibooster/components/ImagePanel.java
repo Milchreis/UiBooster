@@ -16,7 +16,6 @@ public class ImagePanel extends JPanel {
     public ImagePanel(BufferedImage image, boolean centered) {
         this.image = image;
         this.centered = centered;
-//        setPreferredSize(new Dimension(image.getWidth(), image.getHeight() + 10));
     }
 
     @Override

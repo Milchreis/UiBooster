@@ -42,6 +42,10 @@ public class TablePanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    public List<String> getHeader() {
+        return header;
+    }
+
     public String[][] getData() {
 
         final TableModel model = table.getModel();

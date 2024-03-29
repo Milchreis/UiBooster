@@ -59,7 +59,7 @@ public class CheckboxFormElement extends FormElement<Boolean> {
         if (value != null) {
             checkbox.setSelected(value);
         } else {
-            throw new IllegalArgumentException("The value has to be a boolean");
+            throw new IllegalArgumentException("The value is null and can not set");
         }
     }
 

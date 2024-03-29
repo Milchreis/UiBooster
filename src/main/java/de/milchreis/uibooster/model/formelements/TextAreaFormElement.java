@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class TextAreaFormElement extends FormElement {
+public class TextAreaFormElement extends FormElement<String> {
 
     private final JTextArea area;
 
@@ -47,7 +47,7 @@ public class TextAreaFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        area.setText(value.toString());
+    public void setValue(String value) {
+        area.setText(value);
     }
 }

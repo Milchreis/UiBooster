@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class HtmlTextFormElement extends FormElement {
+public class HtmlTextFormElement extends FormElement<String> {
 
     private final JEditorPane area;
 
@@ -47,7 +47,7 @@ public class HtmlTextFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
+    public void setValue(String value) {
         area.setText(value.toString());
     }
 }

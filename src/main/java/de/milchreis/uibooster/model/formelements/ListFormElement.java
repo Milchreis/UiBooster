@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import static de.milchreis.uibooster.components.ListDialog.createList;
 import static de.milchreis.uibooster.components.ListDialog.createListModel;
 
-public class ListFormElement extends FormElement {
+public class ListFormElement extends FormElement<ListElement> {
 
     private ListElement[] elements;
     private JList<ListElement> list;
@@ -53,17 +53,27 @@ public class ListFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (value instanceof ListElement[]) {
-            elements = (ListElement[]) value;
-            list.setModel(createListModel(elements));
+    public void setValue(ListElement value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        } else if (value instanceof List) {
-            elements = (ListElement[]) ((List) value).stream().toArray(ListElement[]::new);
-            list.setModel(createListModel(elements));
+        list.setSelectedValue(value, true);
+    }
 
-        } else
-            throw new IllegalArgumentException("The given value has to be of type 'ListElement[]' or 'List<ListElement>'");
+    public void setElements(ListElement[] elements) {
+        if (elements == null)
+            throw new IllegalArgumentException("The value is null and can not set");
+
+        this.elements = elements;
+        list.setModel(createListModel(this.elements));
+    }
+
+    public void setElements(List<ListElement> elements) {
+        if (elements == null)
+            throw new IllegalArgumentException("The value is null and can not set");
+
+        this.elements = elements.stream().toArray(ListElement[]::new);
+        list.setModel(createListModel(this.elements));
     }
 
     public void addElement(ListElement element) {
@@ -81,8 +91,6 @@ public class ListFormElement extends FormElement {
     public void removeElement(ListElement element) {
         elements = getAllElements().stream()
             .filter(e -> !e.equals(element))
-            .collect(Collectors.toList())
-            .stream()
             .toArray(ListElement[]::new);
 
         list.setModel(createListModel(elements));

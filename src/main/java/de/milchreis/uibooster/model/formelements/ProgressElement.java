@@ -5,7 +5,7 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
 
-public class ProgressElement extends FormElement {
+public class ProgressElement extends FormElement<Integer> {
 
     private final JProgressBar progressBar;
 
@@ -41,11 +41,11 @@ public class ProgressElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (value instanceof Integer)
-            progressBar.setValue((Integer) value);
+    public void setValue(Integer value) {
+        if (value != null)
+            progressBar.setValue(value);
         else
-            throw new IllegalArgumentException("The given value has to be of type 'int'");
+            throw new IllegalArgumentException("The value is null and can not set\"");
     }
 
     public void setMax(int max) {

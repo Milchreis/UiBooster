@@ -47,8 +47,12 @@ public class ColorPickerElement extends FormElement<Color> {
     @Override
     public void setValue(Color value) {
         if (value == null)
-            throw new IllegalArgumentException("The given value has to be of type 'Color' or 'int'");
+            throw new IllegalArgumentException("The value is null and can not set");
 
         picker.setColor(value);
+    }
+
+    public void setValue(int value) {
+        picker.setColor(new Color(value));
     }
 }

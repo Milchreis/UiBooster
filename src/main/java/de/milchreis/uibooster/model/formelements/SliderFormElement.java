@@ -8,7 +8,7 @@ import java.awt.*;
 
 import static de.milchreis.uibooster.components.SliderDialog.createSlider;
 
-public class SliderFormElement extends FormElement {
+public class SliderFormElement extends FormElement<Integer> {
 
     private JSlider slider;
     private final int min, max, init, majorTick, minorTick;
@@ -56,10 +56,10 @@ public class SliderFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (!(value instanceof Integer))
-            throw new IllegalArgumentException("The given value has to be of type 'int'");
+    public void setValue(Integer value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        slider.setValue((int) value);
+        slider.setValue(value);
     }
 }

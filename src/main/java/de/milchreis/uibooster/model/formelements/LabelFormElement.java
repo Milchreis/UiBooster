@@ -5,7 +5,7 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.swing.*;
 
-public class LabelFormElement extends FormElement {
+public class LabelFormElement extends FormElement<String> {
 
     private final JLabel label;
 
@@ -30,8 +30,8 @@ public class LabelFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        label.setText(value.toString());
+    public void setValue(String value) {
+        label.setText(value);
     }
 
 }

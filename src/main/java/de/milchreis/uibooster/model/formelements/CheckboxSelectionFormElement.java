@@ -67,7 +67,7 @@ public class CheckboxSelectionFormElement extends FormElement<List<String>> {
                 .forEach(c -> c.setSelected(true));
 
         } else {
-            throw new IllegalArgumentException("The value has to be a list of strings");
+            throw new IllegalArgumentException("The value is null and can not set");
         }
     }
 

@@ -7,7 +7,7 @@ import org.jdesktop.swingx.JXDatePicker;
 import javax.swing.*;
 import java.util.Date;
 
-public class DatePickerElement extends FormElement {
+public class DatePickerElement extends FormElement<Date> {
 
     private final JXDatePicker picker;
 
@@ -41,10 +41,10 @@ public class DatePickerElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (!(value instanceof Date))
-            throw new IllegalArgumentException("The given value has to be of type 'Date'");
+    public void setValue(Date value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        picker.setDate((Date) value);
+        picker.setDate(value);
     }
 }
