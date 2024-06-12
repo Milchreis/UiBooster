@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.FormPanel.createPanel;
@@ -37,14 +38,30 @@ public class FormBuilder {
         this.initialElementsDisabled = new ArrayList<>();
     }
 
+    public FormBuilder(FormBuilder formBuilder) {
+        this.title = formBuilder.title;
+        this.formElements = formBuilder.formElements;
+        this.initialElementsDisabled = formBuilder.initialElementsDisabled;
+        this.options = formBuilder.options;
+        this.changeListener = formBuilder.changeListener;
+        this.formCloseListener = formBuilder.formCloseListener;
+        this.formInitializedListener = formBuilder.formInitializedListener;
+        this.windowSetting = formBuilder.windowSetting;
+        this.rowFormBuilder = formBuilder.rowFormBuilder;
+        this.defaultMarginLeft = formBuilder.defaultMarginLeft;
+        this.defaultMarginTop = formBuilder.defaultMarginTop;
+        this.defaultMarginRight = formBuilder.defaultMarginRight;
+        this.defaultMarginBottom = formBuilder.defaultMarginBottom;
+    }
+
     /**
      * Adds an input text field to the form.
      *
      * @param label expects the label for this input element
      */
-    public FormBuilder addText(String label) {
+    public FormBuilderElementTyped<String> addText(String label) {
         addElement(new TextFormElement(label, null, false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -53,9 +70,9 @@ public class FormBuilder {
      * @param label       expects the label for this input element
      * @param initialText expects a text which will be set into the text field
      */
-    public FormBuilder addText(String label, String initialText) {
+    public FormBuilderElementTyped<String> addText(String label, String initialText) {
         addElement(new TextFormElement(label, initialText, false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -65,9 +82,9 @@ public class FormBuilder {
      * @param initialText expects a text which will be set into the text field.
      * @param readonly    if readonly is set to true, the input field is not changable for the user
      */
-    public FormBuilder addText(String label, String initialText, boolean readonly) {
+    public FormBuilderElementTyped<String> addText(String label, String initialText, boolean readonly) {
         addElement(new TextFormElement(label, initialText, readonly));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -75,9 +92,9 @@ public class FormBuilder {
      *
      * @param label expects the label for this input element
      */
-    public FormBuilder addTextArea(String label) {
+    public FormBuilderElementTyped<String> addTextArea(String label) {
         addElement(new TextAreaFormElement(label, 3, "", false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -86,9 +103,9 @@ public class FormBuilder {
      * @param label expects the label for this input element
      * @param rows  expects the number of lines
      */
-    public FormBuilder addTextArea(String label, int rows) {
+    public FormBuilderElementTyped<String> addTextArea(String label, int rows) {
         addElement(new TextAreaFormElement(label, rows, "", false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -97,9 +114,9 @@ public class FormBuilder {
      * @param label       expects the label for this input element
      * @param initialText expects a text which will be set into the text area
      */
-    public FormBuilder addTextArea(String label, String initialText) {
+    public FormBuilderElementTyped<String> addTextArea(String label, String initialText) {
         addElement(new TextAreaFormElement(label, 3, initialText, false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -109,9 +126,9 @@ public class FormBuilder {
      * @param rows        expects the number of lines
      * @param initialText expects a text which will be set into the text area
      */
-    public FormBuilder addTextArea(String label, int rows, String initialText) {
+    public FormBuilderElementTyped<String> addTextArea(String label, int rows, String initialText) {
         addElement(new TextAreaFormElement(label, rows, initialText, false));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -122,9 +139,9 @@ public class FormBuilder {
      * @param initialText expects a text which will be set into the text area
      * @param readonly    if readonly is set to true, the input field is not changable for the user
      */
-    public FormBuilder addTextArea(String label, int rows, String initialText, boolean readonly) {
+    public FormBuilderElementTyped<String> addTextArea(String label, int rows, String initialText, boolean readonly) {
         addElement(new TextAreaFormElement(label, rows, initialText, readonly));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -133,9 +150,9 @@ public class FormBuilder {
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
      */
-    public FormBuilder addSelection(String label, List<String> possibilities) {
+    public FormBuilderElementTyped<String> addSelection(String label, List<String> possibilities) {
         addElement(new SelectionFormElement(label, possibilities));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -145,9 +162,9 @@ public class FormBuilder {
      * @param possibilities expects a list of possible texts options
      * @return
      */
-    public FormBuilder addSelection(String label, String... possibilities) {
+    public FormBuilderElementTyped<String> addSelection(String label, String... possibilities) {
         addSelection(label, Arrays.asList(possibilities));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -156,9 +173,9 @@ public class FormBuilder {
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
      */
-    public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities) {
+    public FormBuilderElementTyped<String> addSelectionWithCheckboxes(String label, List<String> possibilities) {
         addElement(new CheckboxSelectionFormElement(label, possibilities, null));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -168,9 +185,9 @@ public class FormBuilder {
      * @param possibilities                expects a list of possible texts options
      * @param initialSelectedPossibilities expects the initial
      */
-    public FormBuilder addSelectionWithCheckboxes(String label, List<String> possibilities, List<String> initialSelectedPossibilities) {
+    public FormBuilderElementTyped<String> addSelectionWithCheckboxes(String label, List<String> possibilities, List<String> initialSelectedPossibilities) {
         addElement(new CheckboxSelectionFormElement(label, possibilities, initialSelectedPossibilities));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -179,9 +196,9 @@ public class FormBuilder {
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
      */
-    public FormBuilder addSelectionWithCheckboxes(String label, String... possibilities) {
+    public FormBuilderElementTyped<String> addSelectionWithCheckboxes(String label, String... possibilities) {
         addSelectionWithCheckboxes(label, Arrays.asList(possibilities));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -189,9 +206,9 @@ public class FormBuilder {
      *
      * @param element expects an implementation of FormElement
      */
-    public FormBuilder addCustomElement(FormElement element) {
+    public <T> FormBuilderElementTyped<T> addCustomElement(FormElement<T> element) {
         addElement(element);
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -199,9 +216,9 @@ public class FormBuilder {
      *
      * @param label expects the label
      */
-    public FormBuilder addLabel(String label) {
+    public FormBuilderElementTyped<String> addLabel(String label) {
         addElement(new LabelFormElement(label));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -210,7 +227,7 @@ public class FormBuilder {
      * @param buttonLabel expects the text which is shown on the button
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
-    public FormBuilder addButton(String buttonLabel, Runnable onClick) {
+    public FormBuilderElementTyped<String> addButton(String buttonLabel, Runnable onClick) {
         return addButton(null, buttonLabel, (element, form) -> onClick.run());
     }
 
@@ -220,7 +237,7 @@ public class FormBuilder {
      * @param buttonLabel expects the text which is shown on the button
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
-    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick) {
+    public FormBuilderElementTyped<String> addButton(String buttonLabel, ButtonClickListener onClick) {
         return addButton(null, buttonLabel, onClick);
     }
 
@@ -231,9 +248,9 @@ public class FormBuilder {
      * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
      * @param backgroundColor expects a color for the tint of this button background
      */
-    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
+    public FormBuilderElementTyped<String> addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
         addElement(new ButtonFormElement(buttonLabel, buttonLabel, onClick, backgroundColor, null));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -244,9 +261,9 @@ public class FormBuilder {
      * @param backgroundColor expects a color for the tint of this button background
      * @param textColor       expects a color for the text in this button
      */
-    public FormBuilder addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
+    public FormBuilderElementTyped<String> addButton(String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
         addElement(new ButtonFormElement(buttonLabel, buttonLabel, onClick, backgroundColor, textColor));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -256,9 +273,9 @@ public class FormBuilder {
      * @param buttonLabel expects the text which is shown on the button
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
-    public FormBuilder addButton(String label, String buttonLabel, Runnable onClick) {
+    public FormBuilderElementTyped<String> addButton(String label, String buttonLabel, Runnable onClick) {
         addElement(new ButtonFormElement(label, buttonLabel, (element, form) -> onClick.run()));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -268,9 +285,9 @@ public class FormBuilder {
      * @param buttonLabel expects the text which is shown on the button
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
-    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick) {
+    public FormBuilderElementTyped<String> addButton(String label, String buttonLabel, ButtonClickListener onClick) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -282,9 +299,9 @@ public class FormBuilder {
      * @param backgroundColor expects a color for the tint of this button background
      * @param textColor       expects a color for the text in this button
      */
-    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
+    public FormBuilderElementTyped<String> addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor, Color textColor) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick, backgroundColor, textColor));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -295,9 +312,9 @@ public class FormBuilder {
      * @param onClick         expects an implementation of Runnable, which is executed when the button is clicked
      * @param backgroundColor expects a color for the tint of this button background
      */
-    public FormBuilder addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
+    public FormBuilderElementTyped<String> addButton(String label, String buttonLabel, ButtonClickListener onClick, Color backgroundColor) {
         addElement(new ButtonFormElement(label, buttonLabel, onClick, backgroundColor, null));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -308,9 +325,9 @@ public class FormBuilder {
      * @param max     expects the maximum value of the progress bar
      * @param initial expects the current value of the progress bar
      */
-    public FormBuilder addProgress(String label, int min, int max, int initial) {
+    public FormBuilderElementTyped<Integer> addProgress(String label, int min, int max, int initial) {
         addElement(new ProgressElement(label, min, max, initial));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -323,9 +340,9 @@ public class FormBuilder {
      * @param majorTick expects the step size for the bigger major tick
      * @param minorTick expects the step size for the smaller minor tick
      */
-    public FormBuilder addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
+    public FormBuilderElementTyped<Integer> addSlider(String label, int min, int max, int init, int majorTick, int minorTick) {
         addElement(new SliderFormElement(label, min, max, init, majorTick, minorTick));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -333,9 +350,9 @@ public class FormBuilder {
      *
      * @param label expects the label for this input element
      */
-    public FormBuilder addDatePicker(String label) {
+    public FormBuilderElementTyped<Date> addDatePicker(String label) {
         addElement(new DatePickerElement(label));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -343,9 +360,9 @@ public class FormBuilder {
      *
      * @param label expects the label for this input element
      */
-    public FormBuilder addColorPicker(String label) {
+    public FormBuilderElementTyped<Color> addColorPicker(String label) {
         addElement(new ColorPickerElement(label));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -354,9 +371,9 @@ public class FormBuilder {
      * @param label        expects the label for this input element
      * @param initialColor expects a color which is set to the picker as default
      */
-    public FormBuilder addColorPicker(String label, Color initialColor) {
+    public FormBuilderElementTyped<Color> addColorPicker(String label, Color initialColor) {
         addElement(new ColorPickerElement(label, initialColor));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -364,9 +381,9 @@ public class FormBuilder {
      *
      * @param label expects the label for this input element
      */
-    public FormBuilder addFontChooser(String label) {
+    public FormBuilderElementTyped<Font> addFontChooser(String label) {
         addElement(new FontChooserElement(label));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -375,9 +392,9 @@ public class FormBuilder {
      * @param label       expects the label for this input element
      * @param initialFont expects a font which is set to the chooser as default
      */
-    public FormBuilder addFontChooser(String label, Font initialFont) {
+    public FormBuilderElementTyped<Font> addFontChooser(String label, Font initialFont) {
         addElement(new FontChooserElement(label, initialFont));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -386,9 +403,9 @@ public class FormBuilder {
      * @param label    expects the label for this input element
      * @param elements expects a list of options as text
      */
-    public FormBuilder addMultipleSelection(String label, String... elements) {
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements)));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -398,9 +415,9 @@ public class FormBuilder {
      * @param hideFilter if set to true, the input text field for the search will be not shown
      * @param elements   expects a list of options as text
      */
-    public FormBuilder addMultipleSelection(String label, boolean hideFilter, String... elements) {
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, String... elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements)));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -409,9 +426,9 @@ public class FormBuilder {
      * @param label    expects the label for this input element
      * @param elements expects a list of options as text
      */
-    public FormBuilder addMultipleSelection(String label, List<String> elements) {
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, false, elements));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -421,9 +438,9 @@ public class FormBuilder {
      * @param hideFilter if set to true, the input text field for the search will be not shown
      * @param elements   expects a list of options as text
      */
-    public FormBuilder addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
         addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -432,9 +449,9 @@ public class FormBuilder {
      * @param label    expects the label for this input element
      * @param elements expects a list of objects with type ListElement
      */
-    public FormBuilder addList(String label, ListElement... elements) {
+    public FormBuilderElementTyped<ListElement> addList(String label, ListElement... elements) {
         addElement(new ListFormElement(label, elements));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -445,9 +462,9 @@ public class FormBuilder {
      * @param data       expects the data as two-dimensional array of Strings. It has to match with the number of column names
      * @param isEditable true if the data should changeable by the user, otherwise set false for immutable data
      */
-    public FormBuilder addTable(String label, List<String> header, String[][] data, boolean isEditable) {
+    public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data, boolean isEditable) {
         addElement(new TableFormElement(label, header, data, isEditable));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -457,9 +474,9 @@ public class FormBuilder {
      * @param header expects a list of column names
      * @param data   expects the data as two-dimensional array of Strings. It has to match with the number of column names
      */
-    public FormBuilder addTable(String label, List<String> header, String[][] data) {
+    public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data) {
         addElement(new TableFormElement(label, header, data, true));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -467,7 +484,7 @@ public class FormBuilder {
      *
      * @param imagePath expects the path to the image file
      */
-    public FormBuilder addImage(String imagePath) {
+    public FormBuilderElementTyped<String> addImage(String imagePath) {
         return addImage(null, imagePath, false);
     }
 
@@ -487,9 +504,9 @@ public class FormBuilder {
      * @param imagePath expects the path to the image file
      * @param centered  true if the image should be centered, false it's aligned to the left
      */
-    public FormBuilder addImage(String label, String imagePath, boolean centered) {
+    public FormBuilderElementTyped<String> addImage(String label, String imagePath, boolean centered) {
         addElement(new ImageFormElement(label, imagePath, centered));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -497,9 +514,9 @@ public class FormBuilder {
      *
      * @param label expects a text which is displayed next to the checkbox
      */
-    public FormBuilder addCheckbox(String label) {
+    public FormBuilderElementTyped<Boolean> addCheckbox(String label) {
         addElement(new CheckboxFormElement(label));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -508,9 +525,9 @@ public class FormBuilder {
      * @param headline expects a text for this input element, which is displayed over the input element
      * @param label    expects a text which is displayed next to the checkbox
      */
-    public FormBuilder addCheckbox(String headline, String label) {
+    public FormBuilderElementTyped<Boolean> addCheckbox(String headline, String label) {
         addElement(new CheckboxFormElement(label, headline));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -520,9 +537,9 @@ public class FormBuilder {
      * @param label        expects a text which is displayed next to the checkbox
      * @param initialValue executes a value which is set up for the checkbox
      */
-    public FormBuilder addCheckbox(String headline, String label, boolean initialValue) {
+    public FormBuilderElementTyped<Boolean> addCheckbox(String headline, String label, boolean initialValue) {
         addElement(new CheckboxFormElement(label, headline, initialValue));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -531,9 +548,9 @@ public class FormBuilder {
      * @param label        expects a text which is displayed next to the checkbox
      * @param initialValue executes a value which is set up for the checkbox
      */
-    public FormBuilder addCheckbox(String label, boolean initialValue) {
+    public FormBuilderElementTyped<Boolean> addCheckbox(String label, boolean initialValue) {
         addElement(new CheckboxFormElement(label, null, initialValue));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -542,9 +559,9 @@ public class FormBuilder {
      * @param label       expects the label for this input element
      * @param htmlContent expected html content
      */
-    public FormBuilder addHtmlText(String label, String htmlContent) {
+    public FormBuilderElementTyped<String> addHtmlText(String label, String htmlContent) {
         addElement(new HtmlTextFormElement(label, htmlContent, 600, 600));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -555,9 +572,9 @@ public class FormBuilder {
      * @param width       expects the width in pixel which the component has to used preferred
      * @param height      expects the height in pixel which the component has to used preferred
      */
-    public FormBuilder addHtmlText(String label, String htmlContent, int width, int height) {
+    public FormBuilderElementTyped<String> addHtmlText(String label, String htmlContent, int width, int height) {
         addElement(new HtmlTextFormElement(label, htmlContent, width, height));
-        return this;
+        return new FormBuilderElementTyped<>(this);
     }
 
     /**
@@ -588,39 +605,6 @@ public class FormBuilder {
      */
     public FormBuilder setInitListener(FormInitializedListener formInitializedListener) {
         this.formInitializedListener = formInitializedListener;
-        return this;
-    }
-
-    /**
-     * Defines a custom ID or name to the lastly added element. It helps to identify this element in a custom change listener.
-     *
-     * @param id expects an unique name or id for last added input element.
-     */
-    public FormBuilder setID(String id) {
-        if (formElements.size() == 0)
-            return this;
-
-        getLatestElement().setId(id);
-        return this;
-    }
-
-    public FormBuilder setTooltip(String tooltip) {
-        if (formElements.size() == 0)
-            return this;
-
-        getLatestElement().setTooltip(tooltip);
-
-        return this;
-    }
-
-    /**
-     * Disables the lastly added element, if it supports this state.
-     */
-    public FormBuilder setDisabled() {
-        if (formElements.size() == 0)
-            return this;
-
-        initialElementsDisabled.add(getLatestElement().getId());
         return this;
     }
 
@@ -789,13 +773,7 @@ public class FormBuilder {
         return this;
     }
 
-    public FormBuilder bind(Data dataReference) {
-        final FormElement element = getLatestElement();
-        element.setBinding(dataReference);
-        return this;
-    }
-
-    protected void addElement(FormElement e) {
+    protected <T> void addElement(FormElement<T> e) {
         e.setFormIndex(formElements.size());
 
         if (e.getId() == null)
@@ -809,8 +787,8 @@ public class FormBuilder {
         formElements.add(e);
     }
 
-    protected FormElement getLatestElement() {
-        return formElements.get(formElements.size() - 1);
+    protected <T> FormElement<T> getLatestElement() {
+        final List<FormElement> elements = formElements;
+        return elements.get(elements.size() - 1);
     }
-
 }

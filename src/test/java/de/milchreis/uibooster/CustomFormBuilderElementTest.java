@@ -14,7 +14,7 @@ class CustomFormBuilderElementTest {
     /**
      * Example custom form element
      */
-    class CustomRobotFormElement extends FormElement {
+    class CustomRobotFormElement extends FormElement<Integer> {
 
         JButton button;
         int count = 1;
@@ -23,8 +23,8 @@ class CustomFormBuilderElementTest {
             super(label);
             button = new JButton("Speak");
             button.addActionListener(l -> booster.showInfoDialog(
-                    "Hi, I'm Robo !!!\n " +
-                            "You called me for the " + count++ + " time"));
+                "Hi, I'm Robo !!!\n " +
+                    "You called me for the " + count++ + " time"));
         }
 
         @Override
@@ -41,12 +41,12 @@ class CustomFormBuilderElementTest {
         }
 
         @Override
-        public Object getValue() {
+        public Integer getValue() {
             return count;
         }
 
         @Override
-        public void setValue(Object value) {
+        public void setValue(Integer value) {
             button.setText(value.toString());
         }
     }
@@ -55,9 +55,9 @@ class CustomFormBuilderElementTest {
     @Test
     public void test_custom_form_dialog() {
         Form form = booster
-                .createForm("Custom elements")
-                .addCustomElement(new CustomRobotFormElement("Your custom robot"))
-                .show();
+            .createForm("Custom elements")
+            .addCustomElement(new CustomRobotFormElement("Your custom robot"))
+            .show();
 
         form.getElements().forEach(e -> {
             System.out.println(e.getLabel() + " -> " + e.getValue());
