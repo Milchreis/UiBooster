@@ -3,7 +3,6 @@
 </p>
 
 [![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
-[![Build Status](https://travis-ci.org/Milchreis/UiBooster.svg?branch=master)](https://travis-ci.org/Milchreis/UiBooster)
 
 UiBooster is a lean library to create fast and easy dialogs for utility tools. It equips your applications blazing
 fast with GUI components to increase the comfort for your users.
@@ -269,7 +268,7 @@ The form is very powerful and provides a lot of features:
 * add a listener for any changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
 * add a listener on window close ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L115))
 * set window setting, f.e. size and position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L141))
-* data-binding to manage inputs in form in dedicated variables 
+* data-binding to manage inputs in form in dedicated variables ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/DataBindingTest.java#L44))
 
 ### Splash screen
 ![screenshot splash screen](https://github.com/Milchreis/UiBooster/blob/master/screenshots/splash.jpg?raw=true)
@@ -338,7 +337,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
     <groupId>com.github.Milchreis</groupId>
   <artifactId>UiBooster</artifactId>
-  <version>1.20.1</version>
+  <version>1.21.0</version>
 </dependency>
 ```
 
@@ -354,6 +353,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:UiBooster:1.20.1'
+        implementation 'com.github.Milchreis:UiBooster:1.21.0'
 }
 ```
