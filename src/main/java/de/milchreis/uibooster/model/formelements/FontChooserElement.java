@@ -8,7 +8,7 @@ import org.drjekyll.fontchooser.FontChooser;
 import javax.swing.*;
 import java.awt.*;
 
-public class FontChooserElement extends FormElement {
+public class FontChooserElement extends FormElement<Font> {
 
     private final FontChooser fontChooser;
 
@@ -23,9 +23,14 @@ public class FontChooserElement extends FormElement {
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        if (changeListener != null) {
-            fontChooser.addChangeListener(e -> changeListener.onChange(FontChooserElement.this, getValue(), form));
-        }
+        fontChooser.addChangeListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(FontChooserElement.this, getValue(), form);
+        });
         return fontChooser;
     }
 
@@ -40,10 +45,10 @@ public class FontChooserElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (!(value instanceof Font)) {
-            throw new IllegalArgumentException("The given value has to be of type 'Font'");
+    public void setValue(Font value) {
+        if (value == null) {
+            throw new IllegalArgumentException("The value is null and can not set");
         }
-        fontChooser.setFont((Font) value);
+        fontChooser.setFont(value);
     }
 }

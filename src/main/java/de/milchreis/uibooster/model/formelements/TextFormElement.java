@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class TextFormElement extends FormElement {
+public class TextFormElement extends FormElement<String> {
 
     private final JTextField textfield;
 
@@ -24,15 +24,19 @@ public class TextFormElement extends FormElement {
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
-        if (changeListener != null) {
-            textfield.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    super.keyReleased(e);
+        textfield.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+
+                if (hasBinding())
+                    binding.set(getValue());
+
+                if (changeListener != null)
                     changeListener.onChange(TextFormElement.this, getValue(), form);
-                }
-            });
-        }
+            }
+        });
+
 
         return textfield;
     }
@@ -48,7 +52,7 @@ public class TextFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        textfield.setText(value.toString());
+    public void setValue(String value) {
+        textfield.setText(value);
     }
 }

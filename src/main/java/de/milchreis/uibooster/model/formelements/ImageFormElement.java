@@ -11,13 +11,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-public class ImageFormElement extends FormElement {
+public class ImageFormElement extends FormElement<String> {
 
     private final ImagePanel imagePanel;
+    private String imagePath;
 
     public ImageFormElement(String label, String imagePath, boolean centered) {
         super(label);
+        this.imagePath = imagePath;
         imagePanel = createImagePanel(imagePath, centered);
     }
 
@@ -32,21 +36,27 @@ public class ImageFormElement extends FormElement {
     }
 
     @Override
-    public Object getValue() {
-        return imagePanel;
+    public String getValue() {
+        return imagePath;
     }
 
     @Override
-    public void setValue(Object o) {
+    public void setValue(String imagePath) {
 
-        if (o instanceof String)
-            imagePanel.setImage(getBufferedImage(o.toString()));
+        if (imagePath != null) {
+            this.imagePath = imagePath;
+            imagePanel.setImage(getBufferedImage(imagePath));
+        } else
+            throw new IllegalArgumentException("The value is null and can not set");
+    }
 
-        else if (o instanceof File)
-            imagePanel.setImage(getBufferedImage(((File) o).getAbsolutePath()));
+    public void setValue(File imagePath) {
 
-        else
-            throw new IllegalArgumentException("Argument has to be the type String or File");
+        if (imagePath == null)
+            throw new IllegalArgumentException("The value is null and can not set");
+
+        this.imagePath = imagePath.getAbsolutePath();
+        imagePanel.setImage(getBufferedImage(imagePath.getAbsolutePath()));
     }
 
     private ImagePanel createImagePanel(String path, boolean centered) {
@@ -54,7 +64,7 @@ public class ImageFormElement extends FormElement {
     }
 
     private BufferedImage getBufferedImage(String path) {
-        try (InputStream inputStream = new FileInputStream(path)) {
+        try (InputStream inputStream = Files.newInputStream(Paths.get(path))) {
             return ImageIO.read(inputStream);
 
         } catch (IOException e) {

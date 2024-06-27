@@ -3,12 +3,13 @@ package de.milchreis.uibooster.model.formelements;
 import de.milchreis.uibooster.components.TablePanel;
 import de.milchreis.uibooster.model.FormElement;
 import de.milchreis.uibooster.model.FormElementChangeListener;
+import de.milchreis.uibooster.model.TableData;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
-public class TableFormElement extends FormElement {
+public class TableFormElement extends FormElement<TableData> {
 
     private final TablePanel panel;
 
@@ -21,6 +22,9 @@ public class TableFormElement extends FormElement {
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
         panel.getTable().getModel().addTableModelListener(e -> {
+            if (hasBinding())
+                binding.set(getValue());
+
             if (changeListener != null)
                 changeListener.onChange(this, panel.getData(), form);
         });
@@ -34,34 +38,20 @@ public class TableFormElement extends FormElement {
     }
 
     @Override
-    public String[][] getValue() {
-        return panel.getData();
+    public TableData getValue() {
+        return new TableData(
+            panel.getHeader(),
+            panel.getData()
+        );
     }
 
-    /**
-     * Sets the data, header or isEditable flag.
-     * Use different types to change the value:
-     * - 'String[][]' for data
-     * - 'List<String>' for headers
-     * - boolean for isEditable
-     *
-     * @param value
-     */
     @Override
-    public void setValue(Object value) {
-        if (value instanceof String[][]) {
-            panel.setData((String[][]) value);
+    public void setValue(TableData value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        } else if (value instanceof List) {
-            panel.setHeader((List<String>) value);
-
-        } else if (value instanceof Boolean) {
-            panel.setEditable((Boolean) value);
-
-        } else
-            throw new IllegalArgumentException(
-                    "The given value has to be of type 'String[][]' for data, " +
-                            "'List<String>' for headers or boolean for isEditable");
+        panel.setHeader(value.getHeader());
+        panel.setData(value.getData());
     }
 
     public void addRow(String[] row) {

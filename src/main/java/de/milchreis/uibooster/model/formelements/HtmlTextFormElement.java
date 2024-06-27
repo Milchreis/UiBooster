@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class HtmlTextFormElement extends FormElement {
+public class HtmlTextFormElement extends FormElement<String> {
 
     private final JEditorPane area;
 
@@ -21,15 +21,18 @@ public class HtmlTextFormElement extends FormElement {
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
-        if (changeListener != null) {
-            area.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    super.keyReleased(e);
+        area.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+
+                if (hasBinding())
+                    binding.set(getValue());
+
+                if (changeListener != null)
                     changeListener.onChange(HtmlTextFormElement.this, getValue(), form);
-                }
-            });
-        }
+            }
+        });
         return new JScrollPane(area);
     }
 
@@ -44,7 +47,7 @@ public class HtmlTextFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
+    public void setValue(String value) {
         area.setText(value.toString());
     }
 }

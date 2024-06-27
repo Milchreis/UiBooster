@@ -8,7 +8,7 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class ColorPickerElement extends FormElement {
+public class ColorPickerElement extends FormElement<Color> {
 
     private final ColorPicker picker;
 
@@ -23,9 +23,14 @@ public class ColorPickerElement extends FormElement {
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
-        if (changeListener != null) {
-            picker.addColorListener(e -> changeListener.onChange(ColorPickerElement.this, getValue(), form));
-        }
+        picker.addColorListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(ColorPickerElement.this, getValue(), form);
+        });
         return picker;
     }
 
@@ -40,13 +45,14 @@ public class ColorPickerElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (!(value instanceof Color) && !(value instanceof Integer))
-            throw new IllegalArgumentException("The given value has to be of type 'Color' or 'int'");
+    public void setValue(Color value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        if (value instanceof Integer)
-            picker.setColor(new Color((int) value));
-        else
-            picker.setColor((Color) value);
+        picker.setColor(value);
+    }
+
+    public void setValue(int value) {
+        picker.setColor(new Color(value));
     }
 }

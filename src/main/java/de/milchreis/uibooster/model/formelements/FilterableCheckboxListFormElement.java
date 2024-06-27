@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class FilterableCheckboxListFormElement extends FormElement {
+public class FilterableCheckboxListFormElement extends FormElement<List<String>> {
 
     private final JTextField search;
     private final JList<JCheckBox> list;
@@ -93,22 +93,25 @@ public class FilterableCheckboxListFormElement extends FormElement {
     }
 
     @Override
-    public Object getValue() {
+    public List<String> getValue() {
         return new ArrayList<>(this.selected);
     }
 
     @Override
-    public void setValue(Object value) {
-        if (value instanceof List) {
-            allItems = (List<String>) value;
+    public void setValue(List<String> value) {
+        if (value != null) {
+            allItems = value;
             list.setModel(createModel(allItems));
 
-        } else if (value instanceof String[]) {
-            allItems = Arrays.asList((String[]) value);
+        } else throw new IllegalArgumentException("The value is null and can not set");
+    }
+
+    public void setValue(String[] value) {
+        if (value != null) {
+            allItems = Arrays.asList(value);
             list.setModel(createModel(allItems));
 
-        } else
-            throw new IllegalArgumentException("The given value has to be List<String> or String[]");
+        } else throw new IllegalArgumentException("The value is null and can not set");
     }
 
     public List<String> getVisibleItems() {
@@ -169,6 +172,9 @@ public class FilterableCheckboxListFormElement extends FormElement {
 
     private void updateUiAndListener() {
         list.repaint();
+
+        if (hasBinding())
+            binding.set(getValue());
 
         if (onChange != null)
             onChange.onChange(this, selected, form);

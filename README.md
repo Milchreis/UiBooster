@@ -264,16 +264,12 @@ Form form = booster.createForm("Personal information")
 ```
 The form is very powerful and provides a lot of features:
 
-* add your own
-  elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
-* put multiple elements in one
-  row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
-* add a listener for any
-  changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
-* add a listener on window
-  close ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L115))
-* set window setting, f.e. size and
-  position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L141))
+* add your own elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
+* put multiple elements in one row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
+* add a listener for any changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
+* add a listener on window close ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L115))
+* set window setting, f.e. size and position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L141))
+* data-binding to manage inputs in form in dedicated variables 
 
 ### Splash screen
 ![screenshot splash screen](https://github.com/Milchreis/UiBooster/blob/master/screenshots/splash.jpg?raw=true)

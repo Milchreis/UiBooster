@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionFormElement extends FormElement {
+public class SelectionFormElement extends FormElement<String> {
 
     private List<String> possibilities;
     private JComboBox<String> box;
@@ -21,9 +21,14 @@ public class SelectionFormElement extends FormElement {
     public JComponent createComponent(FormElementChangeListener changeListener) {
         box = new JComboBox<>((possibilities).toArray(new String[]{}));
 
-        if (changeListener != null) {
-            box.addActionListener(e -> changeListener.onChange(SelectionFormElement.this, getValue(), form));
-        }
+        box.addActionListener(e -> {
+
+            if (hasBinding())
+                binding.set(getValue());
+
+            if (changeListener != null)
+                changeListener.onChange(SelectionFormElement.this, getValue(), form);
+        });
 
         return box;
     }
@@ -40,14 +45,14 @@ public class SelectionFormElement extends FormElement {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (!(value instanceof String))
-            throw new IllegalArgumentException("The given value has to be of type 'Date'");
+    public void setValue(String value) {
+        if (value == null)
+            throw new IllegalArgumentException("The value is null and can not set");
 
-        if (!possibilities.contains(value.toString()))
+        if (!possibilities.contains(value))
             throw new IllegalArgumentException("The given value has to be an element of the supported possibilities list");
 
-        box.setSelectedItem(value.toString());
+        box.setSelectedItem(value);
     }
 
     public void addSelection(String element) {

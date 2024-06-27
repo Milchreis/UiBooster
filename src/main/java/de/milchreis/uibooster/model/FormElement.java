@@ -7,7 +7,7 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class FormElement {
+public abstract class FormElement<T> {
 
     protected String id;
     protected String label;
@@ -20,6 +20,8 @@ public abstract class FormElement {
     protected int marginRight = 0;
     protected int marginBottom = 15;
 
+    protected Data<T> binding;
+
     public FormElement(String label) {
         this.label = label;
     }
@@ -28,13 +30,18 @@ public abstract class FormElement {
         this.formIndex = formIndex;
     }
 
+    public void setBinding(Data<T> binding) {
+        this.binding = binding;
+        this.binding.setChangeListener(this::setValue);
+    }
+
     public abstract JComponent createComponent(FormElementChangeListener onChange);
 
     public abstract void setEnabled(boolean enable);
 
-    public abstract Object getValue();
+    public abstract T getValue();
 
-    public abstract void setValue(Object value);
+    public abstract void setValue(T value);
 
     public void setId(String id) {
         this.id = id;
@@ -140,4 +147,11 @@ public abstract class FormElement {
         return tooltip;
     }
 
+    public boolean hasBinding() {
+        return binding != null;
+    }
+
+    public void setValueFromBinding() {
+        setValue(binding.getValue());
+    }
 }
