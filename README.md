@@ -3,6 +3,9 @@
 </p>
 
 [![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
+[![GitHub](https://img.shields.io/github/license/Milchreis/UiBooster)](https://github.com/Milchreis/UiBooster/blob/master/LICENSE)
+[![Snyk Known Vulnerabilities](https://snyk.io/test/github/milchreis/uibooster/badge.svg)](https://snyk.io/test/github/Milchreis/UiBooster)
+[![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/milchreis)
 
 UiBooster is a lean library to create fast and easy dialogs for utility tools. It equips your applications blazing
 fast with GUI components to increase the comfort for your users.
@@ -335,7 +338,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 ```
 ```xml
 <dependency>
-    <groupId>com.github.Milchreis</groupId>
+    <groupId>com.github.milchreis</groupId>
   <artifactId>uibooster</artifactId>
   <version>1.21.1</version>
 </dependency>
@@ -353,6 +356,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.Milchreis:uibooster:1.21.1'
+        implementation 'com.github.milchreis:uibooster:1.21.1'
 }
 ```
