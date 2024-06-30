@@ -110,14 +110,7 @@ class FormBuilderWithRowsTest {
     }
 
     private Integer calculate(String input) {
-        try {
-            ScriptEngineManager factory = new ScriptEngineManager();
-            ScriptEngine engine = factory.getEngineByName("JavaScript");
-            return Integer.parseInt(engine.eval(input).toString());
-        } catch (ScriptException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return (int) MathEvaluator.eval(input);
     }
 
 }
