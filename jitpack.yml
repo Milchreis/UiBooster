@@ -1,0 +1,9 @@
+jdk:
+  - openjdk11
+before_install:
+  - sdk install java 11.0.11-open
+  - sdk use java 11.0.11-open
+  - sdk install maven
+  - mvn -v
+install:
+  - mvn clean install -Dmaven.javadoc.skip=true -DskipTests
