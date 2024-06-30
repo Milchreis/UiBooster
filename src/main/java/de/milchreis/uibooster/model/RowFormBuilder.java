@@ -2,11 +2,9 @@ package de.milchreis.uibooster.model;
 
 public class RowFormBuilder extends FormBuilder {
 
-    private final FormBuilder parent;
-
     public RowFormBuilder(String title, UiBoosterOptions options, FormBuilder parent, int marginLeft, int marginTop, int marginRight, int marginBottom) {
         super(title, options);
-        this.parent = parent;
+        super.parent = parent;
         this.defaultMarginLeft = marginLeft;
         this.defaultMarginTop = marginTop;
         this.defaultMarginRight = marginRight;
