@@ -231,7 +231,11 @@ public class FormBuilder {
      * @param onClick     expects an implementation of Runnable, which is executed when the button is clicked
      */
     public FormBuilderElementTyped<String> addButton(String buttonLabel, Runnable onClick) {
-        return addButton(null, buttonLabel, (element, form) -> onClick.run());
+        return addButton(null, buttonLabel, (element, form) -> {
+            if (onClick != null) {
+                onClick.run();
+            }
+        });
     }
 
     /**
