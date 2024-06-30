@@ -1,8 +1,0 @@
-language: java
-jdk: openjdk11
-install: true
-script:
-  - mvn clean package
-cache:
-  directories:
-  - $HOME/.m2
