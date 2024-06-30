@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.milchreis</groupId>
-    <artifactId>UiBooster</artifactId>
+    <artifactId>uibooster</artifactId>
     <version>1.21.0</version>
     <packaging>jar</packaging>
 
