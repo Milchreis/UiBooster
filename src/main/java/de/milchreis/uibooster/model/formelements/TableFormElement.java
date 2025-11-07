@@ -6,12 +6,14 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 import de.milchreis.uibooster.model.TableData;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class TableFormElement extends FormElement<TableData> {
 
     private final TablePanel panel;
+    private boolean pauseBinding;
 
     public TableFormElement(String label, List<String> header, String[][] data, boolean isEditable) {
         super(label);
@@ -22,8 +24,9 @@ public class TableFormElement extends FormElement<TableData> {
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
         panel.getTable().getModel().addTableModelListener(e -> {
-            if (hasBinding())
+            if (hasBinding() && !pauseBinding) {
                 binding.set(getValue());
+            }
 
             if (changeListener != null)
                 changeListener.onChange(this, panel.getData(), form);
@@ -50,8 +53,10 @@ public class TableFormElement extends FormElement<TableData> {
         if (value == null)
             throw new IllegalArgumentException("The value is null and can not set");
 
+        pauseBinding = true;
         panel.setHeader(value.getHeader());
         panel.setData(value.getData());
+        pauseBinding = false;
     }
 
     public void addRow(String[] row) {
