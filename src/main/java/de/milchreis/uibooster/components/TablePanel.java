@@ -9,9 +9,9 @@ import java.util.List;
 public class TablePanel extends JPanel {
 
     private final JTable table;
-    private DefaultTableModel model;
-    private final JButton addRow;
-    private final JButton removeRow;
+    private final DefaultTableModel model;
+    private JButton addRow;
+    private JButton removeRow;
     private List<String> header;
 
     public TablePanel(String[][] data, List<String> header, boolean isEditable) {
@@ -26,20 +26,23 @@ public class TablePanel extends JPanel {
         table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         table.setEnabled(isEditable);
 
-        addRow = new JButton("+");
-        addRow.setEnabled(isEditable);
-        addRow.addActionListener(a -> model.addRow(new String[]{}));
+        if (isEditable) {
+            addRow = new JButton("+");
+            addRow.setEnabled(isEditable);
+            addRow.addActionListener(a -> model.addRow(new String[]{}));
 
-        removeRow = new JButton("-");
-        removeRow.setEnabled(isEditable);
-        removeRow.addActionListener(a -> model.removeRow(table.getSelectedRow()));
+            removeRow = new JButton("-");
+            removeRow.setEnabled(isEditable);
+            removeRow.addActionListener(a -> model.removeRow(table.getSelectedRow()));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-        buttonPanel.add(addRow);
-        buttonPanel.add(removeRow);
+            JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+            buttonPanel.add(addRow);
+            buttonPanel.add(removeRow);
+
+            add(buttonPanel, BorderLayout.SOUTH);
+        }
 
         add(new JScrollPane(table), BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public List<String> getHeader() {
