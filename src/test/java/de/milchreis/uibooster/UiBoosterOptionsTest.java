@@ -60,4 +60,9 @@ class UiBoosterOptionsTest {
         booster.showInfoDialog("Some fancy information with crazy font");
     }
 
+    @Test
+    public void test_info_with_title() {
+        new UiBooster().showInfoDialog("some info", "My title");
+    }
+
 }

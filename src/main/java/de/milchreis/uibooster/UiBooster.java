@@ -92,7 +92,30 @@ public class UiBooster {
             JOptionPane.DEFAULT_OPTION,
             null
         );
-        JDialog dialog = jp.createDialog(null, infoMessage);
+        JDialog dialog = jp.createDialog(null, "Info");
+        ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
+
+    /**
+     * Shows an info dialog and blocks until the ok button was clicked.
+     * '\n' is allowed as newline character for the info message.
+     *
+     * @param infoMessage   expects the info message
+     * @param title         expects the title for the window
+     */
+    public void showInfoDialog(String infoMessage, String title) {
+        nonNull(infoMessage);
+
+        JOptionPane jp = new JOptionPane(
+            infoMessage,
+            JOptionPane.INFORMATION_MESSAGE,
+            JOptionPane.DEFAULT_OPTION,
+            null
+        );
+        JDialog dialog = jp.createDialog(null, title);
         ((Frame) dialog.getParent()).setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
         dialog.setIconImage(WindowIconHelper.getIcon(options.getIconPath()).getImage());
         dialog.setAlwaysOnTop(true);
