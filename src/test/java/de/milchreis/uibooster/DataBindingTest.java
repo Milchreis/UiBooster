@@ -1,30 +1,21 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.Data;
-import de.milchreis.uibooster.model.Form;
-import de.milchreis.uibooster.model.FormElement;
-import de.milchreis.uibooster.model.ListElement;
-import de.milchreis.uibooster.model.formelements.ButtonFormElement;
+import de.milchreis.uibooster.model.TableData;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.TemporalUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
-
-import static java.lang.Thread.sleep;
 
 class DataBindingTest {
 
     Data<String> name = new Data<>("Peter");
     Data<String> movie = new Data<>("Bambi");
     Data<Date> birthday = new Data<>(Date.from(Instant.parse("2024-02-01T00:00:00Z")));
+    Data<TableData> table = new Data<>(new TableData(List.of("Name", "Age"), new String[][]{}));
 
     @Test
     public void test_simple_databinding() {
@@ -66,4 +57,17 @@ class DataBindingTest {
         // @formatter:on
     }
 
+
+    @Test
+    public void test_databinding_with_table() {
+        // Set up a custom change listener
+        table.addChangeListener(tableData -> System.out.println("changed"));
+
+        // @formatter:off
+        new UiBooster().createForm("Personal information")
+            .addTable("Table", List.of("Name","Age"), new String[][]{{"a", "b"}}, true)
+                .bind(table)
+            .show();
+        // @formatter:on
+    }
 }

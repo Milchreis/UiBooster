@@ -32,7 +32,9 @@ public abstract class FormElement<T> {
 
     public void setBinding(Data<T> binding) {
         this.binding = binding;
-        this.binding.setChangeListener(this::setValue);
+        if (binding != null) {
+            this.binding.addChangeListener(this::setValue);
+        }
     }
 
     public abstract JComponent createComponent(FormElementChangeListener onChange);

@@ -1,11 +1,13 @@
 package de.milchreis.uibooster.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Data<T> {
 
     private T value;
-    private Consumer<T> listener;
+    private List<Consumer<T>> listener = new ArrayList<>();
 
     public Data(T value) {
         this.value = value;
@@ -17,11 +19,20 @@ public class Data<T> {
 
     public void set(T value) {
         this.value = value;
-        listener.accept(value);
+        listener.forEach(l -> l.accept(value));
     }
 
+    /**
+     * This method will be deleted in the next version.
+     * Please use addChangeListener()
+     */
+    @Deprecated
     public void setChangeListener(Consumer<T> listener) {
-        this.listener = listener;
+        this.listener.add(listener);
+    }
+
+    public void addChangeListener(Consumer<T> listener) {
+        this.listener.add(listener);
     }
 }
 
