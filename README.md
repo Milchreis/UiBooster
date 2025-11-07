@@ -18,7 +18,7 @@ for my Java applications.
 
 If you like this project, and you want to keep me awake 🤪, please:
 
-<a href='https://ko-fi.com/L4L21072C' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://ko-fi.com/L4L21072C' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Components
 
@@ -340,7 +340,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
     <groupId>com.github.milchreis</groupId>
   <artifactId>uibooster</artifactId>
-  <version>1.21.1</version>
+  <version>1.22.0</version>
 </dependency>
 ```
 
@@ -356,6 +356,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-        implementation 'com.github.milchreis:uibooster:1.21.1'
+        implementation 'com.github.milchreis:uibooster:1.22.0'
 }
 ```
