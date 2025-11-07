@@ -6,7 +6,7 @@
 
     <groupId>com.suckatcoding</groupId>
     <artifactId>uibooster</artifactId>
-    <version>1.21.2-SNAPSHOT</version>
+    <version>1.22.0</version>
     <packaging>jar</packaging>
 
     <name>UiBooster</name>
@@ -78,6 +78,20 @@
                     <trimStackTrace>false</trimStackTrace>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
