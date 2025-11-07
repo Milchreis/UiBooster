@@ -6,7 +6,6 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.Collections;
 import java.util.List;
 
 public class FormPanel {
@@ -16,7 +15,7 @@ public class FormPanel {
         panel.setBorder(new EmptyBorder(panelBorder, panelBorder, panelBorder, panelBorder));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        for (FormElement formElement : formElements) {
+        for (FormElement<?> formElement : formElements) {
 
             JPanel elementPanel = new JPanel(new BorderLayout());
             JComponent component = formElement.createComponent(changeListener);
@@ -29,9 +28,7 @@ public class FormPanel {
                 elementPanel.add(label, BorderLayout.NORTH);
             }
 
-            if (component != null) {
-                elementPanel.add(component, BorderLayout.CENTER);
-            }
+            elementPanel.add(component, BorderLayout.CENTER);
 
             if (formElement.hasBinding()) {
                 formElement.setValueFromBinding();
