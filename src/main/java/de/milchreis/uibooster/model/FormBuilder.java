@@ -489,7 +489,9 @@ public class FormBuilder {
     /**
      * Adds an image to the form.
      *
-     * @param imagePath expects the path to the image file
+     * @param imagePath expects the path to the image file. It supports absolute and relative paths from the filesystem
+     *                  and files from the java app internal resources' path.
+     *                  Last one has to start with '/'
      */
     public FormBuilderElementTyped<String> addImage(String imagePath) {
         return addImage(null, imagePath, false);
@@ -500,7 +502,7 @@ public class FormBuilder {
      *
      * @param imagePath expects the path to the image file. It supports absolute and relative paths from the filesystem
      *                  and files from the java app internal resources' path.
-     *                  Last one has to start with /
+     *                  Last one has to start with '/'
      */
     public FormBuilder addImageCentered(String imagePath) {
         return addImage(null, imagePath, true);
@@ -510,7 +512,9 @@ public class FormBuilder {
      * Adds an image to the form.
      *
      * @param label     expects the label for this input element
-     * @param imagePath expects the path to the image file
+     * @param imagePath expects the path to the image file. It supports absolute and relative paths from the filesystem
+     *                  and files from the java app internal resources' path.
+     *                  Last one has to start with '/'
      * @param centered  true if the image should be centered, false it's aligned to the left
      */
     public FormBuilderElementTyped<String> addImage(String label, String imagePath, boolean centered) {
