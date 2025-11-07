@@ -6,12 +6,14 @@ import de.milchreis.uibooster.model.FormElementChangeListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ImageFormElement extends FormElement<String> {
@@ -64,12 +66,30 @@ public class ImageFormElement extends FormElement<String> {
     }
 
     private BufferedImage getBufferedImage(String path) {
-        try (InputStream inputStream = Files.newInputStream(Paths.get(path))) {
-            return ImageIO.read(inputStream);
+        final Path imagePath = Paths.get(path);
 
-        } catch (IOException e) {
-            throw new IllegalArgumentException("The given file is not ok", e);
+        try {
+            if (Files.exists(imagePath)) {
+                try (InputStream inputStream = Files.newInputStream(imagePath)) {
+                    return ImageIO.read(inputStream);
+                }
+            } else {
+                URL resource = ImageFormElement.class.getResource(path);
+                ImageIcon icon = resource == null ? new ImageIcon(path) : new ImageIcon(resource);
+                return getBufferedImageFromIcon(icon);
+
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("The given file could not found or load", e);
         }
+    }
+
+    private static BufferedImage getBufferedImageFromIcon(ImageIcon icon) {
+        BufferedImage bi = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics g = bi.createGraphics();
+        icon.paintIcon(null, g, 0, 0);
+        g.dispose();
+        return bi;
     }
 
 }

@@ -498,7 +498,9 @@ public class FormBuilder {
     /**
      * Adds an image centered to the form.
      *
-     * @param imagePath expects the path to the image file
+     * @param imagePath expects the path to the image file. It supports absolute and relative paths from the filesystem
+     *                  and files from the java app internal resources' path.
+     *                  Last one has to start with /
      */
     public FormBuilder addImageCentered(String imagePath) {
         return addImage(null, imagePath, true);

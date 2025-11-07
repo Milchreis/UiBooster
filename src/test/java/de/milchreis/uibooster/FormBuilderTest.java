@@ -37,6 +37,7 @@ class FormBuilderTest {
     public void test_form_dialog() {
         Form form = booster
                 .createForm("Personal information")
+                .addImageCentered("/uibooster-default-icon.png")
                 .addText("Whats your first name?")
                 .addDatePicker("Whats your birthday?").setTooltip("Choose the date of your birthday...")
                 .addTextArea("Tell me something about you")
