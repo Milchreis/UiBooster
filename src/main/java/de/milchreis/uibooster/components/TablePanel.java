@@ -62,7 +62,14 @@ public class TablePanel extends JPanel {
     }
 
     public void setData(String[][] data) {
-        model = new DefaultTableModel(data, header.toArray());
+        for (int i = 0; i < model.getRowCount(); i++) {
+            model.removeRow(i);
+        }
+
+        for (int i = 0; i < data.length; i++) {
+            final String[] row = data[i];
+            model.addRow(row);
+        }
     }
 
     public void setHeader(List<String> header) {
