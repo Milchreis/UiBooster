@@ -1,8 +1,6 @@
 package de.milchreis.uibooster;
 
-import de.milchreis.uibooster.model.Form;
-import de.milchreis.uibooster.model.FormElement;
-import de.milchreis.uibooster.model.ListElement;
+import de.milchreis.uibooster.model.*;
 import de.milchreis.uibooster.model.formelements.ButtonFormElement;
 import org.junit.jupiter.api.Test;
 
@@ -342,6 +340,20 @@ class FormBuilderTest {
                 },
                 new Color(71, 118, 65), Color.WHITE)
             .show();
+    }
+
+    @Test
+    void test_spinner() {
+        final Data<Double> dataReference = new Data<>(3.0);
+
+        booster.createForm("small form")
+            .addNumber("Test 1", -3, 5, 0.5, 1)
+                .bind(dataReference)
+            .addNumber("Test 2", 11.1)
+            .setChangeListener((element, value, form) -> System.out.println(element.getLabel() + " -> " + value))
+            .show();
+
+        System.out.println(dataReference.getValue());
     }
 
 }
