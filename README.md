@@ -2,7 +2,7 @@
   <img src="https://github.com/Milchreis/UiBooster/blob/master/screenshots/logo.png?raw=true" />
 </p>
 
-[![Release](https://jitpack.io/v/Milchreis/UiBooster.svg)](https://jitpack.io/#Milchreis/UiBooster)
+[![Sonatype Central](https://maven-badges.sml.io/sonatype-central/com.suckatcoding/uibooster/badge.svg)](https://maven-badges.sml.io/sonatype-central/com.suckatcoding/uibooster/)
 [![GitHub](https://img.shields.io/github/license/Milchreis/UiBooster)](https://github.com/Milchreis/UiBooster/blob/master/LICENSE)
 [![Snyk Known Vulnerabilities](https://snyk.io/test/github/milchreis/uibooster/badge.svg)](https://snyk.io/test/github/Milchreis/UiBooster)
 [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/milchreis)
@@ -331,14 +331,8 @@ booster.showInfoDialog("Info Message Empty Constructor");
 ### Maven
 If you want to use `UiBooster` than add the following to your pom.xml.
 ```xml
-<repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
-</repository>
-```
-```xml
 <dependency>
-    <groupId>com.github.milchreis</groupId>
+  <groupId>com.suckatcoding</groupId>
   <artifactId>uibooster</artifactId>
   <version>1.22.0</version>
 </dependency>
@@ -347,15 +341,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 ### Gradle
 If you want to use `UiBooster` with gradle than add the repo, and the dependency to your root build.gradle file.
 ```gradle
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-```gradle
 dependencies {
-        implementation 'com.github.milchreis:uibooster:1.22.0'
+        implementation 'com.suckatcoding:uibooster:1.22.0'
 }
 ```
