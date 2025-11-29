@@ -348,6 +348,6 @@ dependencies {
 
 ## Where is UiBooster used?
 
- - [Play UI for Alarmbian](https://github.com/sgjava/alarmbian/tree/main?tab=readme-ov-file#play-ui): a play for your own smart camera by @sgjava
+ - [Play UI for Alarmbian](https://github.com/sgjava/alarmbian/tree/main?tab=readme-ov-file#play-ui): a player for your own smart camera by @sgjava
  - [phixel](https://github.com/shadmanrakib/phixel-photo-editor): a photo editor by @shadmanrakib
- - [SvgToImage](https://github.com/Brahvim/SvgToImage): a convert by @Brahvim
+ - [SvgToImage](https://github.com/Brahvim/SvgToImage): a converter by @Brahvim
