@@ -367,4 +367,14 @@ class FormBuilderTest {
             .show();
     }
 
+    @Test
+    void test_separator() {
+
+        booster.createForm("small form")
+            .addLabel("Hi")
+            .addSeparator()
+            .addLabel("Bye")
+            .show();
+    }
+
 }

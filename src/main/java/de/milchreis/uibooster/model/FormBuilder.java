@@ -603,11 +603,11 @@ public class FormBuilder {
     /**
      * Adds a number field with arrows to step up or down.
      *
-     * @param label expects the label for this input element
-     * @param min   expects the minimum allowed value
-     * @param max   expects the maximum allowed value
-     * @param stepSize  expects the delta the number will be in- or decrease
-     * @param initialValue  expects the initial value the number field has to show
+     * @param label        expects the label for this input element
+     * @param min          expects the minimum allowed value
+     * @param max          expects the maximum allowed value
+     * @param stepSize     expects the delta the number will be in- or decrease
+     * @param initialValue expects the initial value the number field has to show
      */
     public FormBuilderElementTyped<Double> addNumber(String label, double min, double max, double stepSize, double initialValue) {
         addElement(new NumberFormElement(label, min, max, stepSize, initialValue));
@@ -617,11 +617,19 @@ public class FormBuilder {
     /**
      * Adds a number field with arrows to step up or down. It uses the complete range of Double and a step size of 1.0
      *
-     * @param label expects the label for this input element
-     * @param initialValue  expects the initial value the number field has to show
+     * @param label        expects the label for this input element
+     * @param initialValue expects the initial value the number field has to show
      */
     public FormBuilderElementTyped<Double> addNumber(String label, double initialValue) {
         addElement(new NumberFormElement(label, initialValue));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+    /**
+     * Adds horizontal separator line
+     */
+    public FormBuilderElementTyped<Double> addSeparator() {
+        addElement(new SeparatorFormElement(""));
         return new FormBuilderElementTyped<>(this);
     }
 
