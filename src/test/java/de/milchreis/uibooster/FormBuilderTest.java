@@ -356,4 +356,15 @@ class FormBuilderTest {
         System.out.println(dataReference.getValue());
     }
 
+    @Test
+    void test_selection_initial_value() {
+
+        booster.createForm("small form")
+            .addSelection(
+                "Whats your favorite movie?",
+                Arrays.asList("Pulp Fiction", "Bambi", "The Godfather", "Hangover"),
+                "Bambi")
+            .show();
+    }
+
 }

@@ -10,16 +10,22 @@ import java.util.List;
 public class SelectionFormElement extends FormElement<String> {
 
     private List<String> possibilities;
+    private final String initialValue;
     private JComboBox<String> box;
 
-    public SelectionFormElement(String label, List<String> possibilities) {
+    public SelectionFormElement(String label, List<String> possibilities, String initialValue) {
         super(label);
         this.possibilities = possibilities;
+        this.initialValue = initialValue;
     }
 
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
         box = new JComboBox<>((possibilities).toArray(new String[]{}));
+
+        if (initialValue != null && !initialValue.isEmpty() && possibilities.contains(initialValue)) {
+            box.setSelectedItem(initialValue);
+        }
 
         box.addActionListener(e -> {
 

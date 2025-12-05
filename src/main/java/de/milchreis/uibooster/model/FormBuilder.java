@@ -135,7 +135,7 @@ public class FormBuilder {
     }
 
     /**
-     * Adds an input text area with specified number of lines to the form and an initial text.
+     * Adds an input text area with a specified number of lines to the form and an initial text.
      *
      * @param label       expects the label for this input element
      * @param rows        expects the number of lines
@@ -148,30 +148,40 @@ public class FormBuilder {
     }
 
     /**
-     * Adds a selection list to the form, which allows to choose one option.
+     * Adds a selection list to the form, which allows choosing one option.
      *
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
      */
     public FormBuilderElementTyped<String> addSelection(String label, List<String> possibilities) {
-        addElement(new SelectionFormElement(label, possibilities));
+        return addSelection(label, possibilities, null);
+    }
+
+    /**
+     * Adds a selection list to the form, which allows choosing one option.
+     *
+     * @param label         expects the label for this input element
+     * @param initialValue  expects the initial value of the selection list
+     * @param possibilities expects a list of possible texts options
+     */
+    public FormBuilderElementTyped<String> addSelection(String label, List<String> possibilities, String initialValue) {
+        addElement(new SelectionFormElement(label, possibilities, initialValue));
         return new FormBuilderElementTyped<>(this);
     }
 
     /**
-     * Adds a selection list to the form, which allows to choose one option.
+     * Adds a selection list to the form, which allows choosing one option.
      *
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
      * @return
      */
     public FormBuilderElementTyped<String> addSelection(String label, String... possibilities) {
-        addSelection(label, Arrays.asList(possibilities));
-        return new FormBuilderElementTyped<>(this);
+        return addSelection(label, Arrays.asList(possibilities), null);
     }
 
     /**
-     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     * Adds a selection with checkboxes to the form, which allows choosing multiple options.
      *
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
@@ -182,7 +192,7 @@ public class FormBuilder {
     }
 
     /**
-     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     * Adds a selection with checkboxes to the form, which allows choosing multiple options.
      *
      * @param label                        expects the label for this input element
      * @param possibilities                expects a list of possible texts options
@@ -194,7 +204,7 @@ public class FormBuilder {
     }
 
     /**
-     * Adds a selection with checkboxes to the form, which allows to choose multiple options.
+     * Adds a selection with checkboxes to the form, which allows choosing multiple options.
      *
      * @param label         expects the label for this input element
      * @param possibilities expects a list of possible texts options
@@ -205,7 +215,7 @@ public class FormBuilder {
     }
 
     /**
-     * Adds the given self implemented FormElement to the form.
+     * Adds the given self-implemented FormElement to the form.
      *
      * @param element expects an implementation of FormElement
      */
