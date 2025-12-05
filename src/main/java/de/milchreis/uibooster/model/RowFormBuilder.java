@@ -2,8 +2,21 @@ package de.milchreis.uibooster.model;
 
 public class RowFormBuilder extends FormBuilder {
 
-    public RowFormBuilder(String title, UiBoosterOptions options, FormBuilder parent, int marginLeft, int marginTop, int marginRight, int marginBottom) {
+    private int vGap = 0;
+    private int hGap = 0;
+    private final double[] columnWeights;
+
+    public RowFormBuilder(String title,
+                          UiBoosterOptions options,
+                          FormBuilder parent,
+                          int marginLeft,
+                          int marginTop,
+                          int marginRight,
+                          int marginBottom,
+                          double[] columnWeights) {
+
         super(title, options);
+        this.columnWeights = columnWeights;
         super.parent = parent;
         this.defaultMarginLeft = marginLeft;
         this.defaultMarginTop = marginTop;
@@ -12,7 +25,13 @@ public class RowFormBuilder extends FormBuilder {
     }
 
     public RowFormBuilder(String title, UiBoosterOptions options, FormBuilder parent, int hGap, int vGap) {
+        this(title, options, parent, hGap, vGap, null);
+    }
+
+    public RowFormBuilder(String title, UiBoosterOptions options, FormBuilder parent, int hGap, int vGap, double[] columnWeights) {
         super(title, options);
+        this.hGap = hGap;
+        this.vGap = vGap;
         this.parent = parent;
 
         this.defaultMarginLeft = hGap > 0 ? hGap / 2 : 0;
@@ -21,9 +40,17 @@ public class RowFormBuilder extends FormBuilder {
         this.defaultMarginBottom = vGap > 0 ? vGap / 2 : 0;
     }
 
-    public FormElement getRowElement() {
-        return new RowFormElement(title, formElements,
-            defaultMarginLeft, defaultMarginTop, defaultMarginRight, defaultMarginBottom
+    public FormElement<Object> getRowElement() {
+        return new RowFormElement(
+            title,
+            formElements,
+            defaultMarginLeft,
+            defaultMarginTop,
+            defaultMarginRight,
+            defaultMarginBottom,
+            hGap,
+            vGap,
+            columnWeights
         );
     }
 

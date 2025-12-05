@@ -749,16 +749,32 @@ public class FormBuilder {
     }
 
     /**
-     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
      * The row has to end with the endRow()-method.
      */
     public RowFormBuilder startRow() {
-        return startRow(null);
+        return startRow((String) null);
     }
 
     /**
-     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
-     * The row has to end with the endRow()-method. The gap params allow to set some space for the row in
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method.
+     *
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     */
+    public RowFormBuilder startRow(double[] columnWeights) {
+        return startRow(
+            null,
+            defaultMarginLeft,
+            defaultMarginTop,
+            defaultMarginRight,
+            defaultMarginBottom,
+            columnWeights);
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow setting some space for the row in
      * horizontal and vertical direction.
      *
      * @param hGap expects a space in horizontal direction in pixel. The space is the sum of left und right spacing.
@@ -770,6 +786,21 @@ public class FormBuilder {
 
     /**
      * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow to set some space for the row in
+     * horizontal and vertical direction.
+     *
+     * @param hGap          expects a space in horizontal direction in pixel. The space is the sum of left und right spacing.
+     * @param vGap          expects a space in vertical direction in pixel. The space is the sum of left und right spacing.
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each.
+     *                      see predefined arrays in RowFormBuilder.COLUMN_ ...
+     * @return
+     */
+    public RowFormBuilder startRow(int hGap, int vGap, double[] columnWeights) {
+        return startRow(null, hGap, vGap, columnWeights);
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
      * The row has to end with the endRow()-method. The margin defines the space around this row in pixel.
      *
      * @param elementLeft   expects a margin space to the left in pixel
@@ -793,8 +824,21 @@ public class FormBuilder {
     }
 
     /**
-     * Starts a new row to set multiple elements next to each other. It allows to set elements in the same row.
-     * The row has to end with the endRow()-method. The gap params allow to set some space for the row in
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method.
+     *
+     * @param label         expects the label for this input element
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each.
+     *                      see predefined arrays in Weights.HALF ...
+     */
+    public RowFormBuilder startRow(String label, double[] columnWeights) {
+        rowFormBuilder = new RowFormBuilder(label, options, this, 0, 0, columnWeights);
+        return rowFormBuilder;
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow setting some space for the row in
      * horizontal and vertical direction.
      *
      * @param label expects the label for this input element
@@ -803,6 +847,22 @@ public class FormBuilder {
      */
     public RowFormBuilder startRow(String label, int hGap, int vGap) {
         rowFormBuilder = new RowFormBuilder(label, options, this, hGap, vGap);
+        return rowFormBuilder;
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method. The gap params allow setting some space for the row in
+     * horizontal and vertical direction.
+     *
+     * @param label         expects the label for this input element
+     * @param hGap          expects a space in horizontal direction in pixel. The space is the sum of left und right spacing.
+     * @param vGap          expects a space in vertical direction in pixel. The space is the sum of left und right spacing.
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each.
+     *                      see predefined arrays in RowFormBuilder.COLUMN_ ...
+     */
+    public RowFormBuilder startRow(String label, int hGap, int vGap, double[] columnWeights) {
+        rowFormBuilder = new RowFormBuilder(label, options, this, hGap, vGap, columnWeights);
         return rowFormBuilder;
     }
 
@@ -817,7 +877,24 @@ public class FormBuilder {
      * @param elementBottom expects a margin space to bottom in pixel
      */
     public RowFormBuilder startRow(String label, int elementLeft, int elementTop, int elementRight, int elementBottom) {
-        rowFormBuilder = new RowFormBuilder(label, options, this, elementLeft, elementTop, elementRight, elementBottom);
+        rowFormBuilder = new RowFormBuilder(label, options, this, elementLeft, elementTop, elementRight, elementBottom, null);
+        return rowFormBuilder;
+    }
+
+    /**
+     * Starts a new row to set multiple elements next to each other. It allows setting elements in the same row.
+     * The row has to end with the endRow()-method. The margin defines the space around this row in pixel.
+     *
+     * @param label         expects the label for this input element
+     * @param elementLeft   expects a margin space to the left in pixel
+     * @param elementTop    expects a margin space to top in pixel
+     * @param elementRight  expects a margin space to the right in pixel
+     * @param elementBottom expects a margin space to bottom in pixel
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each.
+     *                      see predefined arrays in RowFormBuilder.COLUMN_ ...
+     */
+    public RowFormBuilder startRow(String label, int elementLeft, int elementTop, int elementRight, int elementBottom, double[] columnWeights) {
+        rowFormBuilder = new RowFormBuilder(label, options, this, elementLeft, elementTop, elementRight, elementBottom, columnWeights);
         return rowFormBuilder;
     }
 

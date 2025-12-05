@@ -1,11 +1,8 @@
 package de.milchreis.uibooster;
 
 import de.milchreis.uibooster.model.Form;
+import de.milchreis.uibooster.model.Weights;
 import org.junit.jupiter.api.Test;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 class FormBuilderWithRowsTest {
 
@@ -107,6 +104,32 @@ class FormBuilderWithRowsTest {
         assert form.getById("?") != null;
 
         form.getElements().forEach(e -> System.out.println(e.getLabel() + " -> " + e.getValue()));
+    }
+
+    @Test
+    public void test_form_dialog_with_rows_and_weights() {
+        booster.createForm("Weighted rows")
+            .startRow("half", Weights.HALF)
+                .addText("1")
+                .addText("2")
+            .endRow()
+            .startRow("thirds", Weights.THIRDS)
+                .addText("1")
+                .addText("2")
+                .addText("3")
+            .endRow()
+            .startRow("quarter", Weights.QUARTER)
+                .addText("1")
+                .addText("2")
+                .addText("3")
+                .addText("4")
+            .endRow()
+            .startRow("custom", new double[]{0.2, 0.3, 0.5})
+                .addText("1")
+                .addText("2")
+                .addText("3")
+            .endRow()
+            .show();
     }
 
     private Integer calculate(String input) {
