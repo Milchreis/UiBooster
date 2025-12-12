@@ -11,9 +11,12 @@ public class DatePickerElement extends FormElement<Date> {
 
     private final JXDatePicker picker;
 
-    public DatePickerElement(String label) {
+    public DatePickerElement(String label, Date initialDate) {
         super(label);
-        picker = new JXDatePicker(new Date(System.currentTimeMillis()));
+        Date initDate = initialDate != null
+            ? initialDate
+            : new Date(System.currentTimeMillis());
+        picker = new JXDatePicker(initDate);
     }
 
     @Override

@@ -7,9 +7,7 @@ import de.milchreis.uibooster.model.formelements.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 import static de.milchreis.uibooster.utils.FormPanel.createPanel;
@@ -368,7 +366,18 @@ public class FormBuilder {
      * @param label expects the label for this input element
      */
     public FormBuilderElementTyped<Date> addDatePicker(String label) {
-        addElement(new DatePickerElement(label));
+        addElement(new DatePickerElement(label, null));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+    /**
+     * Adds a date picker to the form.
+     *
+     * @param label       expects the label for this input element
+     * @param initialDate expects a date which is set to the picker as default
+     */
+    public FormBuilderElementTyped<Date> addDatePicker(String label, Date initialDate) {
+        addElement(new DatePickerElement(label, initialDate));
         return new FormBuilderElementTyped<>(this);
     }
 
@@ -421,7 +430,7 @@ public class FormBuilder {
      * @param elements expects a list of options as text
      */
     public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, String... elements) {
-        addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements)));
+        addElement(new FilterableCheckboxListFormElement(label, false, Arrays.asList(elements), null));
         return new FormBuilderElementTyped<>(this);
     }
 
@@ -433,7 +442,7 @@ public class FormBuilder {
      * @param elements   expects a list of options as text
      */
     public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, String... elements) {
-        addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements)));
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, Arrays.asList(elements), null));
         return new FormBuilderElementTyped<>(this);
     }
 
@@ -444,7 +453,7 @@ public class FormBuilder {
      * @param elements expects a list of options as text
      */
     public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, List<String> elements) {
-        addElement(new FilterableCheckboxListFormElement(label, false, elements));
+        addElement(new FilterableCheckboxListFormElement(label, false, elements, null));
         return new FormBuilderElementTyped<>(this);
     }
 
@@ -456,7 +465,33 @@ public class FormBuilder {
      * @param elements   expects a list of options as text
      */
     public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, List<String> elements) {
-        addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements));
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements, null));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label        expects the label for this input element
+     * @param hideFilter   if set to true, the input text field for the search will be not shown
+     * @param elements     expects a list of options as text
+     * @param initialValue expects an element of options which are selected by default
+     */
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, List<String> elements, String initialValue) {
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements, List.of(initialValue)));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+    /**
+     * Adds a scrollable and searchable list of elements to the form, which allows to choose multiple elements.
+     *
+     * @param label         expects the label for this input element
+     * @param hideFilter    if set to true, the input text field for the search will be not shown
+     * @param elements      expects a list of options as text
+     * @param initialValues expects a list of elements of options which are selected by default
+     */
+    public FormBuilderElementTyped<List<String>> addMultipleSelection(String label, boolean hideFilter, List<String> elements, List<String> initialValues) {
+        addElement(new FilterableCheckboxListFormElement(label, hideFilter, elements, initialValues));
         return new FormBuilderElementTyped<>(this);
     }
 

@@ -20,7 +20,7 @@ public class FilterableCheckboxListFormElement extends FormElement<List<String>>
     private final Set<String> selected = new LinkedHashSet<>();
     private FormElementChangeListener onChange;
 
-    public FilterableCheckboxListFormElement(String label, boolean hideFilter, List<String> possibleValues) {
+    public FilterableCheckboxListFormElement(String label, boolean hideFilter, List<String> possibleValues, List<String> initialValues) {
         super(label);
         this.hideFilter = hideFilter;
 
@@ -50,6 +50,12 @@ public class FilterableCheckboxListFormElement extends FormElement<List<String>>
                 }
             }
         });
+
+        if(initialValues != null && !initialValues.isEmpty()) {
+            initialValues.stream()
+                .filter(possibleValues::contains)
+                .forEach(this::select);
+        }
 
         list.setCellRenderer((list, checkbox, index, isSelected, cellHasFocus) -> {
 
