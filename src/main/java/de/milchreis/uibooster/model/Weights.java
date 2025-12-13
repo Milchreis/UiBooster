@@ -9,4 +9,8 @@ public class Weights {
     public static final double[] SMALL_SMALL_LARGE = new double[]{0.2, 0.2, 0.6};
     public static final double[] SMALL_LARGE_SMALL = new double[]{0.2, 0.6, 0.2};
     public static final double[] LARGE_SMALL_SMALL = new double[]{0.6, 0.2, 0.2};
+
+    public static final double[] SMALL_LARGE_LARGE = new double[]{0.1, 0.45, 0.45};
+    public static final double[] LARGE_SMALL_LARGE = new double[]{0.45, 0.1, 0.45};
+    public static final double[] LARGE_LARGE_SMALL = new double[]{0.45, 0.45, 0.1};
 }
