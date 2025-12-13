@@ -132,6 +132,18 @@ class FormBuilderWithRowsTest {
             .show();
     }
 
+    @Test
+    public void test_form_dialog_with_rows_and_margins() {
+        booster.createForm("Weighted rows")
+            .startRow("half", 20, 10, Weights.HALF)
+                .addText("1")
+                .addText("2")
+            .endRow()
+            .addText("1")
+                .setMargin(0,0,0,10)
+            .show();
+    }
+
     private Integer calculate(String input) {
         return (int) MathEvaluator.eval(input);
     }

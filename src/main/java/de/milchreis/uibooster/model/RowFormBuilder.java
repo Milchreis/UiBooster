@@ -33,11 +33,8 @@ public class RowFormBuilder extends FormBuilder {
         this.hGap = hGap;
         this.vGap = vGap;
         this.parent = parent;
-
-        this.defaultMarginLeft = hGap > 0 ? hGap / 2 : 0;
-        this.defaultMarginRight = hGap > 0 ? hGap / 2 : 0;
-        this.defaultMarginTop = vGap > 0 ? vGap / 2 : 0;
-        this.defaultMarginBottom = vGap > 0 ? vGap / 2 : 0;
+        this.defaultMarginBottom = 0;
+        this.columnWeights = columnWeights;
     }
 
     public FormElement<Object> getRowElement() {
