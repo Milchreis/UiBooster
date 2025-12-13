@@ -6,7 +6,7 @@
 
     <groupId>com.suckatcoding</groupId>
     <artifactId>uibooster</artifactId>
-    <version>1.22.0</version>
+    <version>1.23.0</version>
     <packaging>jar</packaging>
     <name>UiBooster</name>
 
@@ -24,7 +24,6 @@
         </license>
     </licenses>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -33,7 +32,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.drjekyll</groupId>
             <artifactId>colorpicker</artifactId>

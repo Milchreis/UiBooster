@@ -268,6 +268,8 @@ The form is very powerful and provides a lot of features:
 
 * add your own elements ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/CustomFormBuilderElementTest.java))
 * put multiple elements in one row ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L41))
+* use weights for different columns sizes in tables ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/TableTest.java#L22))
+* use weights for different sizes in rows ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderWithRowsTest.java#L110))
 * add a listener for any changes ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderChangeListenerTest.java#L22))
 * add a listener on window close ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L115))
 * set window setting, f.e. size and position ([Example](https://github.com/Milchreis/UiBooster/blob/master/src/test/java/de/milchreis/uibooster/FormBuilderTest.java#L141))
@@ -334,7 +336,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
   <groupId>com.suckatcoding</groupId>
   <artifactId>uibooster</artifactId>
-  <version>1.22.0</version>
+  <version>1.23.0</version>
 </dependency>
 ```
 
@@ -342,7 +344,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 If you want to use `UiBooster` with gradle than add the repo, and the dependency to your root build.gradle file.
 ```gradle
 dependencies {
-        implementation 'com.suckatcoding:uibooster:1.22.0'
+        implementation 'com.suckatcoding:uibooster:1.23.0'
 }
 ```
 
