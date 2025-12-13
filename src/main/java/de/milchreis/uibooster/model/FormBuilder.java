@@ -515,7 +515,22 @@ public class FormBuilder {
      * @param isEditable true if the data should changeable by the user, otherwise set false for immutable data
      */
     public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data, boolean isEditable) {
-        addElement(new TableFormElement(label, header, data, isEditable));
+        addElement(new TableFormElement(label, header, data, isEditable, null));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+
+    /**
+     * Adds table with custom data to the form.
+     *
+     * @param label      expects the label for this input element
+     * @param header     expects a list of column names
+     * @param data       expects the data as two-dimensional array of Strings. It has to match with the number of column names
+     * @param isEditable true if the data should changeable by the user, otherwise set false for immutable data
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     */
+    public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data, boolean isEditable, double[] columnWeights) {
+        addElement(new TableFormElement(label, header, data, isEditable, columnWeights));
         return new FormBuilderElementTyped<>(this);
     }
 
@@ -527,7 +542,20 @@ public class FormBuilder {
      * @param data   expects the data as two-dimensional array of Strings. It has to match with the number of column names
      */
     public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data) {
-        addElement(new TableFormElement(label, header, data, true));
+        addElement(new TableFormElement(label, header, data, true, null));
+        return new FormBuilderElementTyped<>(this);
+    }
+
+    /**
+     * Adds an editable table with custom data to the form.
+     *
+     * @param label  expects the label for this input element
+     * @param header expects a list of column names
+     * @param data   expects the data as two-dimensional array of Strings. It has to match with the number of column names
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     */
+    public FormBuilderElementTyped<TableData> addTable(String label, List<String> header, String[][] data, double[] columnWeights) {
+        addElement(new TableFormElement(label, header, data, true, columnWeights));
         return new FormBuilderElementTyped<>(this);
     }
 

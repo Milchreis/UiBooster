@@ -15,9 +15,9 @@ public class TableFormElement extends FormElement<TableData> {
     private final TablePanel panel;
     private boolean pauseBinding;
 
-    public TableFormElement(String label, List<String> header, String[][] data, boolean isEditable) {
+    public TableFormElement(String label, List<String> header, String[][] data, boolean isEditable, double[] columnWeights) {
         super(label);
-        panel = new TablePanel(data, header, isEditable);
+        panel = new TablePanel(data, header, isEditable, columnWeights);
     }
 
     @Override

@@ -11,11 +11,11 @@ import static de.milchreis.uibooster.utils.WindowIconHelper.applyWindowIcon;
 
 public class TableDialog {
 
-    public static String[][] showTable(String[][] data, List<String> header, String title, String iconPath, boolean isEditable) {
+    public static String[][] showTable(String[][] data, List<String> header, String title, String iconPath, boolean isEditable, double[] columnWeights) {
 
         DialogClosingState closingState = new DialogClosingState();
 
-        TablePanel panel = new TablePanel(data, header, isEditable);
+        TablePanel panel = new TablePanel(data, header, isEditable, columnWeights);
 
         JOptionPane optionPane = new JOptionPane();
         optionPane.setMessage(new Object[]{panel});

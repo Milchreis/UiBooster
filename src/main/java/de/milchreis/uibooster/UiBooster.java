@@ -533,7 +533,22 @@ public class UiBooster {
      * @return the accepted or changed data or null on cancel.
      */
     public String[][] showTable(String[][] data, List<String> header, String title) {
-        return TableDialog.showTable(data, header, title, options.getIconPath(), true);
+        return TableDialog.showTable(data, header, title, options.getIconPath(), true, null);
+    }
+
+
+    /**
+     * Shows a dialog with a table view. It allows to change cell values, add rows and remove rows.
+     * The dialogs wait for user input.
+     *
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     * @return the accepted or changed data or null on cancel.
+     */
+    public String[][] showTable(String[][] data, List<String> header, String title, double[] columnWeights) {
+        return TableDialog.showTable(data, header, title, options.getIconPath(), true, columnWeights);
     }
 
     /**
@@ -550,6 +565,20 @@ public class UiBooster {
     }
 
     /**
+     * Shows a dialog with a table view. It allows to change cell values, add rows and remove rows.
+     * The dialogs wait for user input.
+     *
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     * @return the accepted or changed data or null on cancel.
+     */
+    public String[][] showTable(String[][] data, String[] header, String title, double[] columnWeights) {
+        return showTable(data, Arrays.asList(header), title, columnWeights);
+    }
+
+    /**
      * Shows a dialog with a table view. The table values are not changeable.
      * The dialogs wait for user input.
      *
@@ -559,7 +588,21 @@ public class UiBooster {
      * @return the accepted or changed data or null on cancel.
      */
     public String[][] showTableImmutable(String[][] data, List<String> header, String title) {
-        return TableDialog.showTable(data, header, title, options.getIconPath(), false);
+        return TableDialog.showTable(data, header, title, options.getIconPath(), false, null);
+    }
+
+    /**
+     * Shows a dialog with a table view. The table values are not changeable.
+     * The dialogs wait for user input.
+     *
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     * @return the accepted or changed data or null on cancel.
+     */
+    public String[][] showTableImmutable(String[][] data, List<String> header, String title, double[] columnWeights) {
+        return TableDialog.showTable(data, header, title, options.getIconPath(), false, columnWeights);
     }
 
     /**
@@ -572,7 +615,22 @@ public class UiBooster {
      * @return the accepted or changed data or null on cancel.
      */
     public String[][] showTableImmutable(String[][] data, String[] header, String title) {
-        return TableDialog.showTable(data, Arrays.asList(header), title, options.getIconPath(), false);
+        return TableDialog.showTable(data, Arrays.asList(header), title, options.getIconPath(), false, null);
+    }
+
+
+    /**
+     * Shows a dialog with a table view. The table values are not changeable.
+     * The dialogs wait for user input.
+     *
+     * @param data   expects the values in rows of columns -> [row_n][column_n]
+     * @param header expects the labels for the columns
+     * @param title  expects a title for the window
+     * @param columnWeights expects an array of values between 0.0 and 1.0 to for each row element to define the relative width of each
+     * @return the accepted or changed data or null on cancel.
+     */
+    public String[][] showTableImmutable(String[][] data, String[] header, String title, double[] columnWeights) {
+        return TableDialog.showTable(data, Arrays.asList(header), title, options.getIconPath(), false, columnWeights);
     }
 
     /**
