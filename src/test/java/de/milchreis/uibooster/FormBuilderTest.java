@@ -377,4 +377,14 @@ class FormBuilderTest {
             .show();
     }
 
+    @Test
+    void test_slider() {
+
+        booster.createForm("small form")
+            .addLabel("Hi")
+            .addSlider("slide", 0, 100, 50, 10, 0)
+            .addLabel("Bye")
+            .show();
+    }
+
 }

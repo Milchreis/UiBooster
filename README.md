@@ -336,7 +336,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 <dependency>
   <groupId>com.suckatcoding</groupId>
   <artifactId>uibooster</artifactId>
-  <version>1.23.0</version>
+  <version>1.23.1</version>
 </dependency>
 ```
 
@@ -344,7 +344,7 @@ If you want to use `UiBooster` than add the following to your pom.xml.
 If you want to use `UiBooster` with gradle than add the repo, and the dependency to your root build.gradle file.
 ```gradle
 dependencies {
-        implementation 'com.suckatcoding:uibooster:1.23.0'
+        implementation 'com.suckatcoding:uibooster:1.23.1'
 }
 ```
 

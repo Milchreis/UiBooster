@@ -10,6 +10,7 @@ import static de.milchreis.uibooster.components.SliderDialog.createSlider;
 
 public class SliderFormElement extends FormElement<Integer> {
 
+    JLabel current;
     private JSlider slider;
     private final int min, max, init, majorTick, minorTick;
 
@@ -25,7 +26,7 @@ public class SliderFormElement extends FormElement<Integer> {
     @Override
     public JComponent createComponent(FormElementChangeListener changeListener) {
 
-        JLabel current = new JLabel("1");
+        current = new JLabel(String.valueOf(init));
         current.setHorizontalAlignment(JLabel.CENTER);
 
         slider = createSlider(min, max, init, majorTick, minorTick, current);
@@ -61,5 +62,6 @@ public class SliderFormElement extends FormElement<Integer> {
             throw new IllegalArgumentException("The value is null and can not set");
 
         slider.setValue(value);
+        current.setText(String.valueOf(value));
     }
 }

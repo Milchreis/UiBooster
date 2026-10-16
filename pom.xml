@@ -6,7 +6,7 @@
 
     <groupId>com.suckatcoding</groupId>
     <artifactId>uibooster</artifactId>
-    <version>1.23.0</version>
+    <version>1.23.1</version>
     <packaging>jar</packaging>
     <name>UiBooster</name>
 
